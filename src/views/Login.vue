@@ -3,7 +3,7 @@
     <h3>Sign in</h3>
     <input type="text" placeholder="Email"><br>
     <input type="password" placeholder="Password"><br>
-    <button>Connection</button>
+    <button @click="login">Connection</button>
     <p>Ei tunnareita? <router-link to="/sign-up">Rekisteröidy tästä!</router-link></p>
   </div>
 </template>
@@ -14,7 +14,11 @@
     data() {
       return {};
     },
-    methods: {}
+    methods: {
+      login: function() {
+        this.$router.replace('dashboard')
+      }
+    }
   }
 </script>
 
