@@ -2,7 +2,6 @@
 header {
   position: relative;
   background: $white;
-  box-shadow: 0 0 5px 0 rgba($dark, .5);
   z-index: 10;
 
   h3 {
@@ -251,7 +250,6 @@ header {
       padding: 2rem;
       border-radius: 3px;
       background: $white;
-      box-shadow: 0 0 20px 0 rgba($dark, 0.5);
 
       a {
         position: absolute;
@@ -286,7 +284,6 @@ header {
       padding: 2rem;
       border-radius: 3px;
       background: $white;
-      box-shadow: 0 0 20px 0 rgba($dark, 0.5);
       overflow: auto;
 
       .close {
