@@ -20,7 +20,6 @@ const currentUser = auth.currentUser
 const usersCollection = db.collection('users')
 const postsCollection = db.collection('posts')
 const commentsCollection = db.collection('comments')
-const likesCollection = db.collection('likes')
 
 export {
     db,
@@ -29,5 +28,4 @@ export {
     usersCollection,
     postsCollection,
     commentsCollection,
-    likesCollection
 }

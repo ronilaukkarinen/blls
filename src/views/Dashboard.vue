@@ -30,7 +30,6 @@
             <p>{{ post.content | trimLength }}</p>
             <ul>
               <li><a @click="openCommentModal(post)">comments {{ post.comments }}</a></li>
-              <li><a @click="likePost(post.id, post.likes)">likes {{ post.likes }}</a></li>
               <li><a @click="viewPost(post)">view full post</a></li>
             </ul>
           </div>
@@ -66,7 +65,6 @@
             <p>{{ fullPost.content }}</p>
             <ul>
               <li><a>comments {{ fullPost.comments }}</a></li>
-              <li><a>likes {{ fullPost.likes }}</a></li>
             </ul>
           </div>
           <div v-show="postComments.length" class="comments">
@@ -115,8 +113,7 @@
                     content: this.post.content,
                     userId: this.currentUser.uid,
                     userName: this.userProfile.name,
-                    comments: 0,
-                    likes: 0
+                    comments: 0
                 }).then(ref => {
                     this.post.content = ''
                 }).catch(err => {
@@ -156,25 +153,6 @@
                         comments: postComments + 1
                     }).then(() => {
                         this.closeCommentModal()
-                    })
-                }).catch(err => {
-                    console.log(err)
-                })
-            },
-            likePost(postId, postLikes) {
-                let docId = `${this.currentUser.uid}_${postId}`
-
-                fb.likesCollection.doc(docId).get().then(doc => {
-                    if (doc.exists) { return }
-
-                    fb.likesCollection.doc(docId).set({
-                        postId: postId,
-                        userId: this.currentUser.uid
-                    }).then(() => {
-                        // update post likes
-                        fb.postsCollection.doc(postId).update({
-                            likes: postLikes + 1
-                        })
                     })
                 }).catch(err => {
                     console.log(err)
