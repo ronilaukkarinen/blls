@@ -2,10 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import firebase from 'firebase'
 
-import Dashboard from '@/views/Dashboard'
 import Login from '@/views/Login'
-import SignUp from '@/views/SignUp'
-import AccountCreated from '@/views/AccountCreated'
+import Dashboard from '@/views/Dashboard'
+import Settings from '@/views/Settings'
 
 Vue.use(Router)
 
@@ -28,16 +27,14 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
-    },    
-    {
-      path: '/account-created',
-      name: 'Account created',
-      component: AccountCreated
     },
     {
-      path: '/sign-up',
-      name: 'SignUp',
-      component: SignUp
+      path: '/settings',
+      name: 'Settings',
+      component: Settings,
+      meta: {
+        requiresAuth: true
+      }
     }
   ]
 })

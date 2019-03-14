@@ -2,13 +2,14 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 // colors
-$primary: #30A0EE;
+$primary: #0d233e;
 $error: #ef5777;
 $success: #1abc9c;
 $light: #F5F8FA;
 $medium: #657786;
 $dark: #34495E;
 $white: #fff;
+
 // resets
 body {
 	margin: 0;
@@ -30,6 +31,7 @@ html {
 		outline: none;
 	}
 }
+
 // fonts
 h1,
 h2,
