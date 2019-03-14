@@ -1,0 +1,22 @@
+<template>
+  <div class="login">
+    <h3>Sign in</h3>
+    <input type="text" placeholder="Email"><br>
+    <input type="password" placeholder="Password"><br>
+    <button>Connection</button>
+    <p>Ei tunnareita? Rekisteröidy tästä!</p>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: 'login',
+    data() {
+      return {};
+    },
+    methods: {}
+  }
+</script>
+
+<style scoped> /* "scoped" attribute limit the CSS to this component only */
+</style>
