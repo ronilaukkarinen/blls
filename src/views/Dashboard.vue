@@ -24,7 +24,7 @@
           </div>
         </transition>
         <div v-if="posts.length">
-          <div v-for="post in posts" class="post">
+          <div v-bind:key="post in posts" v-for="post in posts" class="post">
             <h5>{{ post.userName }}</h5>
             <span>{{ post.createdOn | formatDate }}</span>
             <p>{{ post.content | trimLength }}</p>
@@ -70,7 +70,7 @@
             </ul>
           </div>
           <div v-show="postComments.length" class="comments">
-            <div v-for="comment in postComments" class="comment">
+            <div v-bind:key="comment in postComments" v-for="comment in postComments" class="comment">
               <p>{{ comment.userName }}</p>
               <span>{{ comment.createdOn | formatDate }}</span>
               <p>{{ comment.content }}</p>
@@ -83,9 +83,9 @@
 </template>
 
 <script>
+    const fb = require('../firebaseConfig.js')
     import { mapState } from 'vuex'
     import moment from 'moment'
-    const fb = require('../firebaseConfig.js')
 
     export default {
         data() {
