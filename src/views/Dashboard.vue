@@ -24,7 +24,7 @@
           </div>
         </transition>
         <div v-if="posts.length">
-          <div v-bind:key="post in posts" v-for="post in posts" class="post">
+          <div v-if="currentUser.uid == post.userId" v-bind:key="post in posts" v-for="post in posts" class="post">
             <h5>{{ post.userName }}</h5>
             <span>{{ post.createdOn | formatDate }}</span>
             <p>{{ post.content | trimLength }}</p>
