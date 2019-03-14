@@ -1,13 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Dashboard from './views/Dashboard.vue'
-import Login from './views/Login.vue'
-import SignUp from './views/SignUp.vue'
-import AccountCreated from './views/AccountCreated.vue'
+import firebase from 'firebase'
+
+import Dashboard from '@/views/Dashboard'
+import Login from '@/views/Login'
+import SignUp from '@/views/SignUp'
+import AccountCreated from '@/views/AccountCreated'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
@@ -38,4 +40,19 @@ export default new Router({
       component: SignUp
     }
   ]
+})
+
+export default router
+
+router.beforeEach((to, from, next) => {
+    const requiresAuth = to.matched.some(x => x.meta.requiresAuth)
+    const currentUser = firebase.auth().currentUser
+
+    if (requiresAuth && !currentUser) {
+        next('/login')
+    } else if (requiresAuth && currentUser) {
+        next()
+    } else {
+        next()
+    }
 })
