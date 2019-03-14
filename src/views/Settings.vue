@@ -29,6 +29,7 @@
             return {
                 name: '',
                 title: '',
+                userId: '',
                 showSuccess: false
             }
         },
@@ -39,11 +40,13 @@
             updateProfile() {
                 this.$store.dispatch('updateProfile', {
                     name: this.name !== '' ? this.name : this.userProfile.name,
-                    title: this.title !== '' ? this.title : this.userProfile.title
+                    title: this.title !== '' ? this.title : this.userProfile.title,
+                    userId: this.userId !== '' ? this.userId : this.userProfile.userId
                 })
 
                 this.name = ''
                 this.title = ''
+                this.userId = ''
 
                 this.showSuccess = true
 

@@ -92,6 +92,7 @@
                     name: '',
                     title: '',
                     email: '',
+                    userId: '',
                     password: ''
                 },
                 passwordForm: {
