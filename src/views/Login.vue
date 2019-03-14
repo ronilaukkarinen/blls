@@ -4,7 +4,7 @@
     <input type="text" placeholder="Email"><br>
     <input type="password" placeholder="Password"><br>
     <button>Connection</button>
-    <p>Ei tunnareita? Rekisteröidy tästä!</p>
+    <p>Ei tunnareita? <router-link to="/sign-up">Rekisteröidy tästä!</router-link></p>
   </div>
 </template>
 
