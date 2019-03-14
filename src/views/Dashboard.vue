@@ -6,7 +6,7 @@
           <h5>{{ userProfile.name }}</h5>
           <p>{{ userProfile.title }}</p>
           <div class="create-post">
-            <p>create a post</p>
+            <p>Lisää lasku</p>
             <form @submit.prevent>
               <textarea v-model.trim="post.content"></textarea>
               <button @click="createPost" :disabled="post.content == ''" class="button">post</button>
