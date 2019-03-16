@@ -43,18 +43,18 @@
     padding: 20px;
     margin-bottom: 1.5rem;
 
+    svg {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 20px;
+      width: auto;
+    }
+
     .bill-details {
       display: flex;
       flex-wrap: wrap;
       position: relative;
-
-      .logo svg {
-        position: absolute;
-        top: 0;
-        right: 0;
-        height: 20px;
-        width: auto;
-      }
 
       .amount {
         width: 100%;
