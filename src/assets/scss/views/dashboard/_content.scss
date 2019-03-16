@@ -3,7 +3,8 @@
 
   @media (min-width: 760px) {
     @include grid(2, $gutter_x: 40px, $gutter_y: 40px);
-    width: 70%;
+    // width: 70%;
+    width: 100%;
   }
 
   h1 {
@@ -127,6 +128,10 @@
     margin: 0;
     padding: 0;
   }
+}
+
+.column-bills {
+  grid-column: 1 / -1;
 }
 
 .column-credit-cards,
