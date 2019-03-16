@@ -4,7 +4,7 @@ const fb = require('./firebaseConfig.js')
 
 Vue.use(Vuex)
 
-// handle page reload
+// Handle page reload
 fb.auth.onAuthStateChanged(user => {
     if (user) {
         store.commit('setCurrentUser', user)
@@ -14,15 +14,15 @@ fb.auth.onAuthStateChanged(user => {
             store.commit('setUserProfile', doc.data())
         })
 
-        // realtime updates from our posts collection
+        // Realtime updates from our posts collection
         fb.postsCollection.orderBy('createdOn', 'desc').onSnapshot(querySnapshot => {
-            // check if created by currentUser
+            // Check if created by currentUser
             let createdByCurrentUser
             if (querySnapshot.docs.length) {
                 createdByCurrentUser = store.state.currentUser.uid == querySnapshot.docChanges()[0].doc.data().userId ? true : false
             }
 
-            // add new posts to hiddenPosts array after initial load
+            // Add new posts to hiddenPosts array after initial load
             if (querySnapshot.docChanges().length !== querySnapshot.docs.length
                 && querySnapshot.docChanges()[0].type == 'added' && !createdByCurrentUser) {
 

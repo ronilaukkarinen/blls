@@ -1,0 +1,19 @@
+.dashboard-status-bar {
+  background: linear-gradient(to bottom, #21273f 0%, #1b3b62 100%);
+  box-shadow: 0 0 20px rgba(#000, .1);
+  padding: 1.5rem;
+
+  @media (max-width: 760px) {
+    padding: 1rem 1.5rem;
+  }
+
+  h1 {
+    margin: 0;
+  }
+
+  svg {
+    fill: #fff;
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+}

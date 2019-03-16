@@ -1,0 +1,99 @@
+// Subscriptions
+.column-subscriptions {
+  .item {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    transition: all .66s;
+
+    .biller {
+      margin: 0;
+    }
+
+    .type {
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+
+      .details {
+        order: 2;
+        color: #fff;
+        line-height: 1;
+      }
+
+      svg {
+        order: 1;
+        width: 32px;
+        height: auto;
+        fill: #fff;
+        margin-right: 1rem;
+      }
+
+      svg,
+      svg path {
+        fill: #fff;
+      }
+    }
+
+    p,
+    li,
+    .value,
+    span {
+      color: #fff;
+    }
+
+    .content {
+      text-align: right;
+      font-size: 12px;
+
+      .amount {
+        font-size: 15px;
+        margin-bottom: .3rem;
+        font-weight: 500;
+      }
+    }
+
+    // Types of subscriptions
+    &.item-netflix {
+      background: $color-netflix;
+      border-color: $color-netflix;
+    }
+
+    &.item-playstation {
+      background: $color-playstation;
+      border-color: $color-playstation;
+    }
+
+    &.item-plex {
+      background: $color-plex;
+      border-color: $color-plex;
+    }
+
+    &.item-trakt {
+      background: $color-trakt;
+      border-color: $color-trakt;
+    }
+
+    &.item-toshl {
+      background: $color-toshl;
+      border-color: $color-toshl;
+    }
+
+    &.item-bookbeat {
+      background: $color-bookbeat;
+      border-color: $color-bookbeat;
+    }
+
+    &.inactive:not(:hover) {
+      opacity: .5;
+      background: #bfc7cf;
+      border-color: #bfc7cf;
+    }
+  }
+}

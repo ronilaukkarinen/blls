@@ -1,0 +1,34 @@
+#login {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  background: #fff;
+
+  #wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.login-container {
+  max-width: 39rem;
+  background: #fff;
+  margin: 0;
+  padding: 0;
+
+  h1 {
+    font-size: 22px;
+    margin-top: 0;
+  }
+
+  svg {
+    margin: 0 auto;
+    width: 4rem;
+  }
+
+  form > * {
+    width: 100%;
+  }
+}

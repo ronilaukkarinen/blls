@@ -1,0 +1,39 @@
+// Colors
+$color-main: #dc3651;
+$color-default: #0d233e;
+$color-body: #0d233e;
+$color-headings: #0d233e;
+
+// Status colors
+$color-high: lighten(#dd3d55, 8%);
+$color-medium: darken(#f9c192, 5%);
+$color-low: #95dd3d;
+$color-error: #ef5777;
+$color-success: #1abc9c;
+
+// Brand colors
+$color-netflix: #e50914;
+$color-playstation: #003087;
+$color-plex: #e5a00d;
+$color-trakt: #cb161e;
+$color-toshl: #b23655;
+$color-bookbeat: #1f222f;
+
+// Font settings
+$font-base: 'Rubik', 'Helvetica Neue', Helvetica, sans-serif;
+$font-headings: 'Rubik', 'Helvetica Neue', Helvetica, sans-serif;
+$font-monospace: 'Menlo', 'Courier', monospace;
+
+// Font sizes and line heights
+$font-min-size: 18px; // Minimum font size, on mobile
+$font-max-size: 22px; // Maximum font size, on desktop
+$font-base-line-height: 1.55; // Line height for paragraphs
+$headings-weight: 500; // Default title weight. Usually 700 or 900 works pretty well
+
+// Breakpoints
+$grid-base: 1000px;
+$container-tv: 1824px;
+$container-large: 1224px;
+$container-desktop: 960px;
+$container-ipad: 768px;
+$container-mobile: 480px;

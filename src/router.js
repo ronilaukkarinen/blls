@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import firebase from 'firebase'
 
 import Login from '@/views/Login'
+import Sivu from '@/views/Sivu'
 import Dashboard from '@/views/Dashboard'
 import Settings from '@/views/Settings'
 
@@ -14,6 +15,11 @@ const router = new Router({
     {
       path: '*',
       redirect: '/dashboard'
+    },
+    {
+      path: '/sivu',
+      name: 'Sivu',
+      component: Sivu
     },
     {
       path: '/login',

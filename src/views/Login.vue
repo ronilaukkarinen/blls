@@ -2,17 +2,13 @@
     <div id="login">
         <transition name="fade">
             <div v-if="performingRequest" class="loading">
-                <p>Loading...</p>
+                <p>Ladataan...</p>
             </div>
         </transition>
-        <section>
-            <div class="col1">
-                <h1>Hillo</h1>
-                <p>Hilloa perkele. Nii, saatana.</p>
-            </div>
-            <div class="col2" :class="{ 'signup-form': !showLoginForm && !showForgotPassword }">
+        <section id="wrapper">
+            <div class="login-container" :class="{ 'signup-form': !showLoginForm && !showForgotPassword }">
                 <form v-if="showLoginForm" @submit.prevent>
-                    <h1>Tervetuloa takaisin</h1>
+                    <h1>Tervetuloa takaisin</h1>                    
 
                     <label for="email1">Email</label>
                     <input v-model.trim="loginForm.email" type="text" placeholder="you@email.com" id="email1" />
@@ -80,8 +76,10 @@
 
 <script>
     const fb = require('../firebaseConfig.js')
+    import HilloLogo from '../assets/svg/dashboard/logo.svg';
 
     export default {
+        name: 'Login',
         data() {
             return {
                 loginForm: {

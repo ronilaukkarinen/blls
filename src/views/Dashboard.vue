@@ -24,7 +24,8 @@
           </div>
         </transition>
         <div v-if="posts.length">
-          <div v-if="currentUser.uid == post.userId" v-bind:key="post in posts" v-for="post in posts" class="post">
+          <div v-if="currentUser.uid == post.userId">
+          <div v-bind:key="post in posts" v-for="post in posts" class="post">
             <h5>{{ post.userName }}</h5>
             <span>{{ post.createdOn | formatDate }}</span>
             <p>{{ post.content | trimLength }}</p>
@@ -32,6 +33,7 @@
               <li><a @click="openCommentModal(post)">comments {{ post.comments }}</a></li>
               <li><a @click="viewPost(post)">view full post</a></li>
             </ul>
+          </div>
           </div>
         </div>
         <div v-else>

@@ -1,0 +1,70 @@
+#app {
+  display: flex;
+  width: 100%;
+}
+
+[v-cloak] {
+  display: none;
+}
+
+.loading {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba($color-body, 0.4);
+  z-index: 9999;
+
+  p {
+    background: #fff;
+    width: 150px;
+    text-align: center;
+    margin: 40vh auto 0;
+    padding: 40px 0;
+    border-radius: 3px;
+  }
+}
+
+.error-msg {
+  margin-top: 1rem;
+  text-align: center;
+
+  p {
+    color: $color-error;
+    margin: 0;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.inline {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: inline-block;
+  }
+}
+
+.clear {
+  clear: both;
+}
+
+
+// Transitions
+.fade-enter-active {
+  transition: opacity .5s;
+}
+
+.fade-leave-active {
+  transition: opacity 0;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
