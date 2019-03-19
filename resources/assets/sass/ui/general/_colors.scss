@@ -1,0 +1,26 @@
+// General color definitions
+.color-high,
+.past {
+  color: $color-high;
+}
+
+.color-medium {
+  color: $color-medium;
+}
+
+.color-high,
+.color-medium.color-high,
+.color-low.color-high {
+  color: $color-high;
+}
+
+.color-low,
+.future {
+  color: $color-low;
+}
+
+// Selections
+::selection {
+  color: $color-main;
+  background: $color-default;
+}

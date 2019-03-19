@@ -11,8 +11,4 @@ class Tag extends Model {
     protected $dates = ['deleted_at'];
 
     protected $fillable = ['space_id', 'name'];
-
-    public function spendings() {
-        return $this->hasMany(Spending::class);
-    }
 }

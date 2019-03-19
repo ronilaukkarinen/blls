@@ -20,37 +20,8 @@ class Space extends Model {
         return $this->hasMany(Tag::class);
     }
 
-    public function earnings() {
-        return $this->hasMany(Earning::class);
-    }
-
-    public function spendings() {
-        return $this->hasMany(Spending::class);
-    }
-
     public function recurrings() {
         return $this->hasMany(Recurring::class);
-    }
-
-    public function imports() {
-        return $this->hasMany(Import::class);
-    }
-
-    //
-    public function monthlyBalance($year, $month) {
-        $query = DB::selectOne('
-            SELECT (
-                SELECT SUM(amount) 
-                FROM earnings
-                WHERE space_id = :e_space_id AND YEAR(happened_on) = :e_year AND MONTH(happened_on) = :e_month
-            ) - (
-                SELECT SUM(amount) 
-                FROM spendings
-                WHERE space_id = :s_space_id AND YEAR(happened_on) = :s_year AND MONTH(happened_on) = :s_month
-            ) AS balance;
-        ', ['e_space_id' => $this->id, 'e_year' => $year, 'e_month' => $month, 's_space_id' => $this->id, 's_year' => $year, 's_month' => $month]);
-
-        return $query->balance;
     }
 
     public function monthlyRecurrings($year, $month) {

@@ -23,11 +23,6 @@ class Recurring extends Model {
         return 0;
     }
 
-    // Relations
-    public function spendings() {
-        return $this->hasMany(Spending::class);
-    }
-
     public function tag() {
         return $this->belongsTo(Tag::class);
     }

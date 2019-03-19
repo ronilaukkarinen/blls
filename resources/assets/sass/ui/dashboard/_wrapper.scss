@@ -1,0 +1,27 @@
+#app {
+  display: flex;
+  overflow: hidden;
+}
+
+body {
+  @media (min-width: 760px) {
+    display: flex;
+    height: 100%;
+    min-height: 100vh;
+  }
+}
+
+.dashboard {
+  @media (min-width: 760px) {
+    display: flex;
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+.temp-hidden {
+  display: none;
+}

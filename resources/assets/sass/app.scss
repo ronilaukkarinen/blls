@@ -1,28 +1,18 @@
-@import 'variables/colors';
-@import 'variables/dimensions';
+// Base
+@import 'base/normalize';
+@import 'jeet/scss/index';
+@import 'base/config';
+@import 'base/helpers';
+@import 'base/accessibility';
 
-@import 'components/reset';
-@import 'components/typography';
-@import 'components/row';
-@import 'components/navigation';
-@import 'components/wrapper';
-@import 'components/card';
-@import 'components/box';
-@import 'components/input';
-@import 'components/date-picker';
-@import 'components/dropdown';
-@import 'components/helpers';
+// General
+@import 'ui/general/typography';
+@import 'ui/general/colors';
+@import 'ui/general/tables';
+@import 'ui/general/tooltips';
 
-body {
-    &.theme-light {
-        background: $colors-light-body;
-    }
-
-    &.theme-dark {
-        background: $colors-dark-body;
-    }
-}
-
-canvas {
-    width: 100%;
-}
+// UI
+@import 'ui/dashboard/wrapper';
+@import 'ui/dashboard/status-bar';
+@import 'ui/dashboard/content';
+@import 'ui/dashboard/subscriptions';
