@@ -1,29 +1,27 @@
-# hillo
+# Hillo
 
-## Project setup
-```
-npm install
-```
+Hillo is an open-source web application that helps you keep track of your finances.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Features
 
-### Compiles and minifies for production
-```
-npm run build
-```
+* Coming soon
 
-### Run your tests
-```
-npm run test
-```
+## Installation
 
-### Lints and fixes files
 ```
-npm run lint
-```
+composer install --no-dev
+yarn install
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+cp .env.example .env
+php artisan key:generate
+
+php artisan storage:link
+
+php artisan migrate
+
+yarn run development
+
+php artisan serve
+
+php artisan queue:work
+```
