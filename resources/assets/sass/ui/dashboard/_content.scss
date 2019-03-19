@@ -166,6 +166,10 @@
     background: lighten(#f0eff2, 1%);
     cursor: pointer;
   }
+
+  .row-clickable:hover {
+    cursor: pointer;
+  }
 }
 
 .dashboard {

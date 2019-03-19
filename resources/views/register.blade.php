@@ -10,27 +10,27 @@
                 <form method="POST">
                     {{ csrf_field() }}
                     <div class="input">
-                        <label>Name</label>
+                        <label>Nimi</label>
                         <input type="text" name="name" value="{{ old('name') }}" />
                         @include('partials.validation_error', ['payload' => 'name'])
                     </div>
                     <div class="input">
-                        <label>E-mail</label>
+                        <label>Sähköposti</label>
                         <input type="email" name="email" value="{{ old('email') }}" />
                         @include('partials.validation_error', ['payload' => 'email'])
                     </div>
                     <div class="input">
-                        <label>Password</label>
+                        <label>Salasana</label>
                         <input type="password" name="password" />
                         @include('partials.validation_error', ['payload' => 'password'])
                     </div>
                     <div class="input">
-                        <label>Verify Password</label>
+                        <label>Vahvista salasana</label>
                         <input type="password" name="password_confirmation" />
                         @include('partials.validation_error', ['payload' => 'password_confirmation'])
                     </div>
                     <div class="input">
-                        <label>Currency</label>
+                        <label>Valuuttayksikkö</label>
                         <select name="currency">
                             @foreach ($currencies as $currency)
                                 <option value="{{ $currency->id }}" {{ old('currency') == $currency->id ? 'selected' : '' }}>{!! $currency->symbol !!} &middot; {{ $currency->name }}</option>
@@ -38,11 +38,11 @@
                         </select>
                         @include('partials.validation_error', ['payload' => 'currency'])
                     </div>
-                    <button class="button">Register</button>
+                    <button class="button">Rekisteröidy</button>
                 </form>
             </div>
             <div class="box__section box__section--highlight text-center">
-                <a href="/login">Already on Budget?</a>
+                <a href="/login">Onko sinulla jo käyttäjä?</a>
             </div>
         </div>
     </div>
