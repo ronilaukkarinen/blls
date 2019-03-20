@@ -12,11 +12,8 @@ Route::post('/register', 'RegisterController@store');
 // Stuff to happen when logged in
 Route::group(['middleware' => ['auth']], function () {
 
-    // Dashboard
-    Route::get('/dashboard', 'DashboardController')->name('dashboard');
-
     // Bills
-    Route::get('/dashboard/', 'BillController@showBills');
+    Route::get('/dashboard/', 'BillController@showBills')->name('dashboard');
     Route::post('/addbill', 'BillController@addBill');
     Route::post('/editbill', 'BillController@editBill');
     Route::post('/markaspaid', 'BillController@markasPaid');
