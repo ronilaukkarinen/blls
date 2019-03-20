@@ -15,17 +15,10 @@
         <div class="column-bills">
           <h1>Laskut</h1>
 
-          <?php
-          $tables = DB::select('SHOW TABLES');
-          foreach($tables as $table) {
-            var_dump($table);
-          }
-          ?>
-
           <div class="items status">
             <div class="item-col month-current">
               <h2 class="title-small">Maksettavaa yhteensä</h2>
-              <p class="amount">&euro; <span class="sum formatted-amount"><?php echo $total_sum_decimals; ?></span></p>
+              <p class="amount">&euro; <span class="sum formatted-amount">{{ $balance }}</span></p>
             </div>
 
             <!-- <div class="item-col month-next">
@@ -115,9 +108,25 @@
               <span class="total">Total: <span class="sum"><?php echo $total_sum_decimals; ?></span></span>
             </div>
           <?php else : ?>
-            <?php echo $bills; ?>
-          <?php endif; ?>
-        </div>
+            <?php //echo $bills; ?>
+
+            <table class="bills-list" border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <th class="row-biller">Laskuttaja</th>
+                <th class="row-billnumber row-hidden">Laskun numero</th>
+                <th class="row-virtualcode row-hidden">Virtuaaliviivakoodi</th>
+                <th class="row-refnumber row-hidden">Viitenumero</th>
+                <th class="row-accountnumber row-hidden">Tilinumero</th>
+                <th class="row-type row-hidden">Tyyppi</th>
+                <th class="row-description row-hidden">Selite</th>
+                <th class="row-amount row-hidden">Summa</th>
+                <th class="row-duedate row-hidden">Eräpäivä</th>
+                <th class="row-actions row-hidden">Toiminnot</th>
+              </tr>
+            </table>
+
+            <?php endif; ?>
+          </div>
 
       </section>
 

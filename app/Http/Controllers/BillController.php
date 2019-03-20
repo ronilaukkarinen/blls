@@ -19,6 +19,18 @@ class BillController extends Controller {
     return response()->json(['response' => 'This is get method']);
   }
 
+  // Get total amount of bills that are not paid
+  public function totalAmount() {
+
+    $balance = DB::table('bills')
+        ->where('userid', Auth::user()->id)
+        ->where('paid', '0')
+        ->sum('amount');
+
+    return view( 'dashboard' )->with( 'balance', $balance );
+  }
+
+
   // List bills
   public function getBills() {
 
