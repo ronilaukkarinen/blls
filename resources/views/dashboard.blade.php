@@ -15,7 +15,12 @@
         <div class="column-bills">
           <h1>Laskut</h1>
 
-          <?php getUsers(); ?>
+          <?php
+          $tables = DB::select('SHOW TABLES');
+          foreach($tables as $table) {
+            var_dump($table);
+          }
+          ?>
 
           <div class="items status">
             <div class="item-col month-current">
@@ -112,143 +117,6 @@
           <?php else : ?>
             <?php echo $bills; ?>
           <?php endif; ?>
-        </div>
-
-        <div class="column column-subscriptions">
-          <h1>Kuukausimaksulliset palvelut</h1>
-
-          <!-- Item starts -->
-          <div class="item item-netflix">
-            <div class="logo">
-              <?php echo file_get_contents( 'svg/subscriptions/netflix.svg' ); ?>
-
-              <div class="details">
-                <span class="biller">Netflix</span><br />
-                <span class="type">Subscription</span>
-              </div>
-            </div>
-
-            <div class="content">
-              <ul>
-                <li class="amount"><span class="value">€ 13,99</span></li>
-                <li class="due-date"><span class="value">07.04.2019</span></li>
-              </ul>
-            </div>
-          </div>
-          <!-- Item ends -->
-
-          <!-- Item starts -->
-          <div class="item item-playstation">
-            <div class="logo">
-              <?php echo file_get_contents( 'svg/subscriptions/playstation.svg' ); ?>
-
-              <div class="details">
-                <span class="biller">PlayStation™ Network</span><br />
-                <span class="type">Subscription</span>
-              </div>
-            </div>
-
-            <div class="content">
-              <ul>
-                <li class="amount"><span class="value">€ 7,95</span></li>
-                <li class="due-date"><span class="value">08.04.2019</span></li>
-              </ul>
-            </div>
-          </div>
-          <!-- Item ends -->
-
-          <!-- Item starts -->
-          <div class="item item-plex">
-            <div class="logo">
-              <?php echo file_get_contents( 'svg/subscriptions/plex.svg' ); ?>
-
-              <div class="details">
-                <span class="biller">Plex Pass</span><br />
-                <span class="type">Subscription</span>
-              </div>
-            </div>
-
-            <div class="content">
-              <ul>
-                <li class="amount"><span class="value">€ 3,49</span></li>
-                <li class="due-date"><span class="value">28.03.2019</span></li>
-              </ul>
-            </div>
-          </div>
-          <!-- Item ends -->
-
-          <!-- Item starts -->
-          <div class="item item-trakt">
-            <div class="logo">
-              <?php echo file_get_contents( 'svg/subscriptions/trakt.svg' ); ?>
-
-              <div class="details">
-                <span class="biller">Trakt VIP</span><br />
-                <span class="type">Subscription</span>
-              </div>
-            </div>
-
-            <div class="content">
-              <ul>
-                <li class="amount"><span class="value">$ 30,00 / y</span></li>
-                <li class="due-date"><span class="value">15.04.2019</span></li>
-              </ul>
-            </div>
-          </div>
-          <!-- Item ends -->
-
-          <!-- Item starts -->
-          <div class="item item-toshl">
-            <div class="logo">
-              <?php echo file_get_contents( 'svg/subscriptions/toshl.svg' ); ?>
-
-              <div class="details">
-                <span class="biller">Toshl</span><br />
-                <span class="type">Subscription</span>
-              </div>
-            </div>
-
-            <div class="content">
-              <ul>
-                <li class="amount"><span class="value">€ 2,99</span></li>
-                <li class="due-date"><span class="value">17.04.2019</span></li>
-              </ul>
-            </div>
-          </div>
-          <!-- Item ends -->
-
-          <!-- Item starts -->
-          <div class="item inactive item-bookbeat">
-            <div class="logo">
-              <?php echo file_get_contents( 'svg/subscriptions/bookbeat.svg' ); ?>
-
-              <div class="details">
-                <span class="biller">BookBeat</span><br />
-                <span class="type">Subscription</span>
-              </div>
-            </div>
-
-            <div class="content">
-              <ul>
-                <li class="amount"><span class="value">€ 16,99</span></li>
-                <li class="due-date"><span class="value-inactive">Inactive</span></li>
-              </ul>
-            </div>
-          </div>
-          <!-- Item ends -->
-
-        </div>
-
-        <div class="column column-credit-cards">
-          <h1>Luottokortit</h1>
-        </div>
-
-        <div class="column column-payment-plans">
-          <h1>Maksusuunnitelmat</h1>
-        </div>
-
-        <div class="column column-friend-loans">
-          <h1>Velat kavereille</h1>
         </div>
 
       </section>

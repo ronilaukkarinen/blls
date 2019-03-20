@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Recurring;
 use Auth;
+use Bills;
 use DB;
 
 class DashboardController extends Controller {
@@ -13,11 +14,11 @@ class DashboardController extends Controller {
     return view('dashboard');
   }
 
-  public function getUsers(){
-    // Call getuserData() method of Page Model
-    $userData['data'] = Page::getuserData();
+  public function testfunction(Illuminate\Http\Request $request) {
+        if ($request->isMethod('post')) {
+            return response()->json(['response' => 'This is post method']);
+        }
 
-    echo json_encode($userData);
-    exit;
-  }
+        return response()->json(['response' => 'This is get method']);
+    }
 }

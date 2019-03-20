@@ -1,6 +1,6 @@
 <?php
 // Start MySQL connection and magic
-$conn = mysqli_connect( 'localhost', 'root', 'LwyfPp4vxtWn3RCQzY', 'hillo' );
+$conn = mysqli_connect( 'localhost', 'root', 'LwyfPp4vxtWn3RCQzY', 'oww' );
 
   if ( ! $conn) {
     die( 'Connection failed ' . mysqli_error( $conn ) );
