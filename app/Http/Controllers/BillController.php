@@ -12,15 +12,6 @@ use Response;
 
 class BillController extends Controller {
 
-  // Test function
-  public function testfunction(Request $request) {
-    if ( $request->isMethod('post') ) {
-      return response()->json(['response' => 'This is post method']);
-    }
-
-    return response()->json(['response' => 'This is get method']);
-  }
-
   // Get total amount of bills that are not paid
   public function showBills() {
 
@@ -41,7 +32,8 @@ class BillController extends Controller {
   public function addBill(Request $request) {
 
     // Define stuff that we will add to the database
-    DB::table('bills')->insert([
+    DB::table('bills')
+    ->insert([
       'biller' => $request->biller,
       'billnumber' => $request->billnumber,
       'virtualcode' => $request->virtualcode,
@@ -54,6 +46,35 @@ class BillController extends Controller {
       'created' => date('Y-m-d H:i:s'),
       'paid' => 0,
       'userid' => $request->userid,
+    ]);
+
+    // Print results
+    echo '<tr class="row-clickable">
+    <td data-heading="Laskuttaja" class="row-biller biller_text">' . $request->biller . '</td>
+    <td data-heading="Eräpäivä" class="formatted-duedate row-duedate duedate_text past">' . $request->duedate . '</td>
+    <td data-heading="Summa" class="row-amount amount amount_text">€ <span class="formatted-amount">' . $request->amount . '</span></td>
+    </tr>';
+  }
+
+  // Edit bill
+  public function editBill(Request $request) {
+
+    // Define stuff that we will edit
+    DB::table('bills')
+    ->where('userid', Auth::user()->id)
+    ->where('id', $request->id)
+    ->where('paid', '0')
+    ->update([
+      'biller' => $request->biller,
+      'billnumber' => $request->billnumber,
+      'virtualcode' => $request->virtualcode,
+      'refnumber' => $request->refnumber,
+      'accountnumber' => $request->accountnumber,
+      'type' => $request->type,
+      'description' => $request->description,
+      'amount' => $request->amount,
+      'duedate' => $request->duedate,
+      'userid' => Auth::user()->id,
     ]);
 
     // Print results

@@ -81,7 +81,7 @@
 
                 <div class="row">
                   <label for="duedate">Eräpäivä</label>
-                  <input type="text" name="duedate" id="duedate" class="due-date update-due-date" placeholder="<?php echo date( 'Y-m-d H:i:s' ); ?>">
+                  <input type="text" name="duedate" id="duedate" class="due-date update-due-date">
                 </div>
               </footer>
 
@@ -143,6 +143,7 @@
                   <td data-heading="Tyyppi" class="row-type row-hidden type_text"><?php echo $bill->type; ?></td>
                   <td data-heading="Selite" class="row-description row-hidden description_text"><?php echo $bill->description; ?></td>
                   <td data-heading="Eräpäivä" class="formatted-duedate row-duedate duedate_text" data-balloon="<?php echo $local_date; ?>" data-copy-to-clipboard="<?php echo $formatted_date; ?>" data-balloon-pos="up"><?php echo $bill->duedate; ?></td>
+                  <td data-heading="Eräpäivä (original)" class="row-duedate-original row-hidden"><?php echo $bill->duedate; ?></td>
                   <td data-heading="Summa" class="row-amount amount amount_text" data-copy-to-clipboard="<?php echo $formatted_amount; ?>">&euro; <span class="formatted-amount"><?php echo $formatted_amount; ?></span></td>
                   <td data-heading="Toiminnot" class="row-actions"><span class="delete" data-id="<?php echo $bill->id; ?>" ><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></span>
                     <span class="edit" data-id="<?php echo $bill->id; ?>"><?php echo file_get_contents( '../public/svg/dashboard/edit.svg' ); ?></span>
@@ -164,6 +165,9 @@
 <?php
 // Bill modals
 foreach ( $bills as $bill) :
+
+// Define formatted date
+$formatted_amount = str_replace( '.', ',', $bill->amount );
 
 // Check if not paid and if owned by current user
 if ( '0' == $bill->paid && $user_id == $bill->userid ) :

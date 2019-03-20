@@ -172,7 +172,7 @@ $(document).ready(function() {
     var id = $(this).data('id');
 
     $.ajax({
-      url: 'api/bills.php',
+      url: 'deletebill',
       type: 'GET',
       data: {
       'delete': 1,
@@ -197,6 +197,7 @@ $(document).ready(function() {
   var edit_id;
   var $edit_bill;
 
+  // Edit bill
   $(document).on('click', '.edit', function() {
     edit_id = $(this).data('id');
     $edit_bill = $('.row-id-' + edit_id);
@@ -220,7 +221,10 @@ $(document).ready(function() {
     var type = $('.row-id-' + edit_id + ' .type_text').text();
     var description = $('.row-id-' + edit_id + ' .description_text').text();
     var amount = $('.row-id-' + edit_id + ' .formatted-amount').text();
-    var duedate = $('.row-id-' + edit_id + ' .duedate_text').attr('data-original-date');
+    var duedate = $('.row-id-' + edit_id + ' .row-duedate-original').text();
+
+    // Add current due date to form input
+    console.log(duedate);
 
     // Place bill in form
     $('#biller').val(biller);
@@ -248,9 +252,17 @@ $(document).ready(function() {
     var amount = $('#amount').val();
     var duedate = $('#duedate').val();
 
+    // Close modals
+    $('body').removeClass('modal-opened');
+    $('.bill-modal').removeClass('show');
+
     $.ajax({
-      url: 'api/bills.php',
+      url: 'editbill',
       type: 'POST',
+      dataType: 'html',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
       data: {
         'update': 1,
         'id': id,
@@ -276,7 +288,9 @@ $(document).ready(function() {
         $('#duedate').val('');
         $('#submit_btn').show();
         $('#update_btn').hide();
+
         $edit_bill.replaceWith(response);
+        duedate = formatDate(duedate);
       }
     });
   });

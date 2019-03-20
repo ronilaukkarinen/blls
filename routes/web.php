@@ -15,13 +15,10 @@ Route::group(['middleware' => ['auth']], function () {
     // Dashboard
     Route::get('/dashboard', 'DashboardController')->name('dashboard');
 
-    // Tests
-    Route::get('/test', 'BillController@testfunction');
-    Route::post('/test', 'BillController@testfunction');
-
     // Bills
     Route::get('/dashboard/', 'BillController@showBills');
     Route::post('/addbill', 'BillController@addBill');
+    Route::post('/editbill', 'BillController@editBill');
     Route::post('/markaspaid', 'BillController@markasPaid');
 
     Route::resource('/recurrings', 'RecurringController')->only([
