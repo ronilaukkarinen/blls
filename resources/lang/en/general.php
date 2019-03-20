@@ -2,7 +2,7 @@
 
 return [
     'dashboard' => 'Dashboard',
-
+    'app_name' => 'Oww',
     'balance' => 'Balance',
     'recurrings' => 'Recurrings',
     'left_to_spend' => 'Left to Spend',
@@ -10,14 +10,10 @@ return [
     'total_spent' => 'Total Spent',
     'most_expensive_tag' => 'Most Expensive Tag',
     'most_expensive_day' => 'Most Expensive Day',
-
     'analysis' => 'Analysis',
-
     'recent' => 'Recent',
-
     'profile' => 'Profile',
     'account' => 'Account',
     'preferences' => 'Preferences',
-
     'empty_state' => 'There aren\'t any :resource yet'
 ];

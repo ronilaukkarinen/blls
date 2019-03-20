@@ -1,6 +1,6 @@
-# Hillo
+# Oww
 
-Hillo is an open-source web application that helps you keep track of your finances.
+Oww is an open-source web application that helps you keep track of your finances.
 
 ## Features
 

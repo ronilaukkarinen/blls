@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Name',
-
     'avatar' => 'Avatar',
     'email' => 'E-mail',
     'password' => 'Password',
@@ -10,10 +9,8 @@ return [
     'theme' => 'Theme',
     'currency' => 'Currency',
     'weekly_report' => 'Weekly Report',
-
     'date' => 'Date',
     'description' => 'Description',
     'amount' => 'Amount',
-
     'file' => 'File'
 ];

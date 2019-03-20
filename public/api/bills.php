@@ -33,13 +33,6 @@ $conn = mysqli_connect( 'localhost', 'root', 'LwyfPp4vxtWn3RCQzY', 'hillo' );
 
       $saved_bill = '<tr class="row-clickable row-id-' . $id . '" data-row-id="' . $id . '">
           <td data-heading="Laskuttaja" class="row-biller biller_text" data-copy-to-clipboard="'. $biller .'">'. $biller .'</td>
-          <td data-heading="Laskun numero" class="able-to-copy row-hidden row-billnumber billnumber_text" data-copy-to-clipboard="'. $billnumber .'">'. $billnumber .'</td>
-          <td data-heading="Virtuaaliviivakoodi" class="able-to-copy row-hidden row-virtualcode virtualcode_text" data-copy-to-clipboard="'. $virtualcode .'">'. $virtualcode .'</td>
-          <td data-heading="Viitenumero" class="able-to-copy row-hidden row-refnumber refnumber_text" data-copy-to-clipboard="'. $refnumber .'">'. $refnumber .'</td>
-          <td data-heading="Tilinumero" class="able-to-copy row-hidden row-accountnumber accountnumber_text" data-copy-to-clipboard="'. $accountnumber .'">'. $accountnumber .'</td>
-          <td data-heading="Tyyppi" class="row-type row-hidden type_text">'. $type .'</td>
-          <td data-heading="Selite" class="row-description row-hidden description_text">'. $description .'</td>
-          <td data-heading="Eräpäivä" class="formatted-duedate row-duedate duedate_text" data-original-date="' . $row['duedate'] . ' data-balloon="' . $local_date . '" data-copy-to-clipboard="' . $formatted_date . '" data-balloon-pos="up">'. $duedate .'</td>
           <td data-heading="Summa" class="row-amount amount amount_text" data-copy-to-clipboard="'. $formatted_amount .'">&euro; <span class="formatted-amount">'. $formatted_amount .'</span></td>
           <td data-heading="Toiminnot" class="row-actions">
           </td>

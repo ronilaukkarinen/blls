@@ -11,25 +11,25 @@
                 <form method="POST">
                     {{ csrf_field() }}
                     <div class="input">
-                        <label>Sähköposti</label>
+                        <label>{{ __('login.email') }}</label>
                         <input type="email" name="email" value="{{ old('email') }}" />
                     </div>
                     <div class="input">
-                        <label>Salasana</label>
+                        <label>{{ __('login.password') }}</label>
                         <input type="password" name="password" />
                     </div>
                     <div class="row row--separate" style="justify-content: space-between;">
                         <div class="row__column row__column--compact">
-                            <button class="button">Kirjaudu</button>
+                            <button class="button">{{ __('login.login') }}</button>
                         </div>
                         <div class="row__column row__column--compact row__column--middle">
-                            <a href="/reset_password">Pääsikö unohtumaan?</a>
+                            <a href="/reset-password">{{ __('login.forgot_password_question') }}</a>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="box__section box__section--highlight text-center">
-                <a href="/register">Uusi Hillon käyttäjä?</a>
+                <a href="/register">{{ __('login.new_user_question') }}</a>
             </div>
         </div>
     </div>

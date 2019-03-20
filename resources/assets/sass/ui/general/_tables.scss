@@ -100,18 +100,19 @@ body {
       margin: .25rem 0;
       padding: .5rem 0;
       display: block;
-      border-bottom: 2px solid #ffc842;
     }
 
-    td:before {
-      content: attr(data-heading);
-      display: inline-block;
-      width: 10rem;
-      margin-right: 2rem;
-      color: #999;
-      font-size: 1rem;
-      font-weight: 700;
-      text-transform: uppercase;
+    @media(max-width: 620px) {
+      td:before {
+        content: attr(data-heading) !important;
+        display: inline-block !important;
+        width: 10rem !important;
+        margin-right: 2rem !important;
+        color: #999 !important;
+        font-size: 1rem !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+      }
     }
   }
 }

@@ -9,18 +9,15 @@ use Auth;
 use DB;
 
 class DashboardController extends Controller {
-    public function __invoke() {
-        $space_id = session('space')->id;
-        $currentYear = date('Y');
-        $currentMonth = date('m');
-        $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $currentMonth, $currentYear);
+  public function __invoke() {
+    return view('dashboard');
+  }
 
-        $recurrings = session('space')->monthlyRecurrings($currentYear, $currentMonth);
+  public function getUsers(){
+    // Call getuserData() method of Page Model
+    $userData['data'] = Page::getuserData();
 
-
-        return view('dashboard', [
-            'month' => date('n'),
-            'recurrings' => $recurrings,
-        ]);
-    }
+    echo json_encode($userData);
+    exit;
+  }
 }

@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>{{ View::hasSection('title') ? View::getSection('title') . ' - ' . config('app.name') : config('app.name') }}</title>
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
@@ -16,7 +17,7 @@
 
       <aside class="dashboard-status-bar">
         <header>
-          <h1 class="logo"><span class="screen-reader-text">Hillo</span><?php echo file_get_contents( 'svg/dashboard/logo.svg' ); ?></h1>
+          <h1 class="logo"><a href="/dashboard"><span class="screen-reader-text">{{ __('fields.app_name') }}</span><?php echo file_get_contents( 'svg/dashboard/logo.svg' ); ?></a></h1>
         </header>
 
         <ul class="navigation__menu temp-hidden">

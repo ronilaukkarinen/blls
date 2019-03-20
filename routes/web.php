@@ -7,8 +7,8 @@ Route::post('/login', 'LoginController@store');
 
 Route::get('/verify/{token}', 'VerifyController')->name('verify');
 
-Route::get('/reset_password', 'ResetPasswordController@get')->name('reset_password');
-Route::post('/reset_password', 'ResetPasswordController@post');
+Route::get('/reset-password', 'ResetPasswordController@get')->name('reset_password');
+Route::post('/reset-password', 'ResetPasswordController@post');
 
 Route::get('/register', 'RegisterController@index')->name('register');
 Route::post('/register', 'RegisterController@store');

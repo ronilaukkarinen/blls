@@ -15,6 +15,8 @@
         <div class="column-bills">
           <h1>Laskut</h1>
 
+          <?php getUsers(); ?>
+
           <div class="items status">
             <div class="item-col month-current">
               <h2 class="title-small">Maksettavaa yhteensä</h2>

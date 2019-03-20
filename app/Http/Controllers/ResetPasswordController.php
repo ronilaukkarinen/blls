@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Mail;
 
 class ResetPasswordController extends Controller {
     public function get(Request $request) {
-        return view('reset_password', [
+        return view('reset-password', [
             'token' => $request->get('token')
         ]);
     }
@@ -74,6 +74,6 @@ class ResetPasswordController extends Controller {
                 ]);
         }
 
-        return redirect()->route('reset_password');
+        return redirect()->route('reset-password');
     }
 }
