@@ -14,7 +14,7 @@
           <div class="items status">
             <div class="item-col month-current">
               <h2 class="title-small">Maksettavaa yhteensä</h2>
-              <p class="amount">&euro; <span class="sum formatted-amount">{{ $balance }}</span></p>
+              <p class="amount">&euro; <span class="sum total-amount formatted-amount">{{ $balance }}</span></p>
             </div>
 
             <!-- <div class="item-col month-next">

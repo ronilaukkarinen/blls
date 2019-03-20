@@ -126,6 +126,11 @@ $(document).ready(function() {
     var duedate = $('#duedate').val();
     var userid = $('.user-id-input').val();
 
+    // Update totals
+    var currenttotal = $('.total-amount').text();
+    var newtotal = parseInt(currenttotal) + parseInt(amount);
+    $('.total-amount').text(newtotal);
+
     $.ajax({
       url: 'addbill',
       type: 'POST',
@@ -157,14 +162,7 @@ $(document).ready(function() {
         $('#amount').val('');
         $('#duedate').val('');
 
-        console.log(response);
-
         $('.bills-list tr:last').after(response);
-
-        // Update total
-        var currenttotal = $('.total .sum').text();
-        var newtotal = parseInt(currenttotal) + parseInt(amount);
-        $('.total .sum').text(newtotal);
       }
     });
   });

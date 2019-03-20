@@ -39,6 +39,7 @@ class BillController extends Controller {
 
   public function addBill(Request $request) {
 
+    // Define stuff that we will add to the database
     DB::table('bills')->insert([
       'biller' => $request->biller,
       'billnumber' => $request->billnumber,
@@ -54,13 +55,13 @@ class BillController extends Controller {
       'userid' => $request->userid,
     ]);
 
-    echo '
-    <tr class="row-clickable">
+    // Print results
+    echo '<tr class="row-clickable">
     <td data-heading="Laskuttaja" class="row-biller biller_text">' . $request->biller . '</td>
     <td data-heading="Eräpäivä" class="formatted-duedate row-duedate duedate_text past">' . $request->duedate . '</td>
     <td data-heading="Summa" class="row-amount amount amount_text">€ <span class="formatted-amount">' . $request->amount . '</span></td>
-    </tr>
-    ';
+    </tr>';
+
   }
 
 }
