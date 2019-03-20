@@ -1,20 +1,26 @@
 <?php
-
+// Stuff to happen when logged out
 Route::get('/', 'IndexController@index')->name('index');
-
 Route::get('/login', 'LoginController@index')->name('login');
 Route::post('/login', 'LoginController@store');
-
 Route::get('/verify/{token}', 'VerifyController')->name('verify');
-
 Route::get('/reset-password', 'ResetPasswordController@get')->name('reset_password');
 Route::post('/reset-password', 'ResetPasswordController@post');
-
 Route::get('/register', 'RegisterController@index')->name('register');
 Route::post('/register', 'RegisterController@store');
 
+// Stuff to happen when logged in
 Route::group(['middleware' => ['auth']], function () {
+
+    // Dashboard
     Route::get('/dashboard', 'DashboardController')->name('dashboard');
+
+    // Tests
+    Route::get('/getb', 'BillController@testfunction');
+    Route::post('/test', 'BillController@testfunction');
+
+    // Bills
+    Route::get('/getbills', 'BillController@getBills');
 
     Route::resource('/recurrings', 'RecurringController')->only([
         'index',

@@ -46,7 +46,6 @@ $conn = mysqli_connect( 'localhost', 'root', 'LwyfPp4vxtWn3RCQzY', 'oww' );
 
   // Delete bill from database
   if (isset($_GET['delete'])) {
-
     $id = $_GET['id'];
     $sql = "DELETE FROM bills WHERE id=" . $id;
     mysqli_query( $conn, $sql );
