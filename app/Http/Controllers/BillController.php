@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
 
 use App\Recurring;
 use Auth;
@@ -20,25 +21,18 @@ class BillController extends Controller {
   }
 
   // Get total amount of bills that are not paid
-  public function totalAmount() {
+  public function showBills() {
 
     $balance = DB::table('bills')
         ->where('userid', Auth::user()->id)
         ->where('paid', '0')
         ->sum('amount');
 
-    return view( 'dashboard' )->with( 'balance', $balance );
-  }
-
-
-  // List bills
-  public function getBills() {
-
     $bills = DB::table('bills')
-        ->orderBy('duedate', 'asc')
+        ->latest('duedate')
         ->where('userid', Auth::user()->id)
         ->get();
 
-    return $bills;
+    return view( 'dashboard', compact('balance', 'bills') );
   }
 }

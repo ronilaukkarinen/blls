@@ -4,13 +4,9 @@
 
 @section('body')
 
-    <?php include('../public/api/bills.php'); ?>
+    <?php //include('../public/api/bills.php'); ?>
 
       <section class="dashboard-content">
-
-        <?php
-          $total_sum_decimals = number_format( ( float )$total_sum, 2, '.', '');
-        ?>
 
         <div class="column-bills">
           <h1>Laskut</h1>
@@ -100,15 +96,10 @@
         </div>
 
           <?php
-            if ( 0 === $total_sum ) :
+            if ( 0 === $balance ) :
             ?>
             InboxZero
-            <div style="display: none;" class="hidden-area">
-              <?php echo $bills; ?>
-              <span class="total">Total: <span class="sum"><?php echo $total_sum_decimals; ?></span></span>
-            </div>
           <?php else : ?>
-            <?php //echo $bills; ?>
 
             <table class="bills-list" border="0" cellpadding="0" cellspacing="0">
               <tr>
@@ -123,6 +114,43 @@
                 <th class="row-duedate row-hidden">Eräpäivä</th>
                 <th class="row-actions row-hidden">Toiminnot</th>
               </tr>
+
+            <?php
+              // List bills
+              foreach ( $bills as $bill) :
+
+              // Variables
+              $old_date = $bill->duedate;
+              $old_date_timestamp = strtotime( $old_date );
+              $formatted_date = date( 'd.m.Y', $old_date_timestamp );
+              $stylish_date = date( 'd/m/Y', $old_date_timestamp );
+              setlocale( LC_TIME, "fi_FI" );
+              $local_date = strftime( "%e. %Bta %Y", $old_date_timestamp );
+              $formatted_amount = str_replace( '.', ',', $bill->amount );
+              $user_id = Auth::id();
+
+              // Check if not paid and if owned by current user
+              if ( '0' == $bill->paid && $user_id == $bill->userid ) :
+                ?>
+                <tr class="row-clickable row-id-<?php echo $bill->id; ?>" data-row-id="<?php echo $bill->id; ?>">
+
+                  <td data-heading="Laskuttaja" class="row-biller biller_text" data-copy-to-clipboard="<?php echo $bill->biller; ?>"><?php echo $bill->biller; ?></td>
+                  <td data-heading="Laskun numero" class="able-to-copy row-hidden row-billnumber billnumber_text" data-copy-to-clipboard="<?php echo $bill->billnumber; ?>"><?php echo $bill->billnumber; ?></td>
+                  <td data-heading="Virtuaaliviivakoodi" class="able-to-copy row-hidden row-virtualcode virtualcode_text" data-copy-to-clipboard="<?php echo $bill->virtualcode; ?>"><?php echo $bill->virtualcode; ?></td>
+                  <td data-heading="Viitenumero" class="able-to-copy row-hidden row-refnumber refnumber_text" data-copy-to-clipboard="<?php echo $bill->refnumber; ?>"><?php echo $bill->refnumber; ?></td>
+                  <td data-heading="Tilinumero" class="able-to-copy row-hidden row-accountnumber accountnumber_text" data-copy-to-clipboard="<?php echo $bill->accountnumber; ?>"><?php echo $bill->accountnumber; ?></td>
+                  <td data-heading="Tyyppi" class="row-type row-hidden type_text"><?php echo $bill->type; ?></td>
+                  <td data-heading="Selite" class="row-description row-hidden description_text"><?php echo $bill->description; ?></td>
+                  <td data-heading="Eräpäivä" class="formatted-duedate row-duedate duedate_text" data-balloon="<?php echo $local_date; ?>" data-copy-to-clipboard="<?php echo $formatted_date; ?>" data-balloon-pos="up"><?php echo $bill->duedate; ?></td>
+                  <td data-heading="Summa" class="row-amount amount amount_text" data-copy-to-clipboard="<?php echo $formatted_amount; ?>">&euro; <span class="formatted-amount"><?php echo $formatted_amount; ?></span></td>
+                  <td data-heading="Toiminnot" class="row-actions"><span class="delete" data-id="<?php echo $bill->id; ?>" ><?php file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></span>
+                    <span class="edit" data-id="<?php echo $bill->id; ?>"><?php file_get_contents( '../public/svg/dashboard/edit.svg' ); ?></span>
+                    <span class="mark-as-paid" data-id="<?php echo $bill->id; ?>"><?php file_get_contents( '../public/svg/dashboard/check.svg' ); ?></span>
+                  </td>
+                </tr>
+
+              <?php endif; ?>
+            <?php endforeach; ?>
             </table>
 
             <?php endif; ?>
@@ -131,5 +159,75 @@
       </section>
 
     </div>
+
+<?php
+// Bill modals
+foreach ( $bills as $bill) :
+
+// Check if not paid and if owned by current user
+if ( '0' == $bill->paid && $user_id == $bill->userid ) :
+?>
+
+<div class="bill-modal bill-modal-<?php echo $bill->id; ?>">
+  <div class="bill-modal-overlay"></div>
+  <div class="bill-modal-content">
+    <header class="bill-header">
+      <div>
+        <h2>Lasku</h2>
+        <h3 class="date"><?php echo $stylish_date; ?></h3>
+      </div>
+
+      <span class="bill-number">#<span class="able-to-copy" data-copy-to-clipboard="<?php echo $bill->billnumber; ?>"><?php echo $bill->billnumber; ?></span></span>
+    </header>
+
+    <div class="row biller">
+      <h3>Saaja</h3>
+      <p class="able-to-copy" data-copy-to-clipboard="<?php echo $bill->biller; ?>"><?php echo $bill->biller; ?></p>
+    </div>
+
+    <div class="row">
+      <h3>Tilinumero</h3>
+      <p class="able-to-copy" data-copy-to-clipboard="<?php echo $bill->accountnumber; ?>"><?php echo $bill->accountnumber; ?></p>
+    </div>
+
+    <?php if ( ! empty( $bill->virtualcode ) ) : ?>
+    <div class="row">
+      <h3>Virtuaaliviivakoodi</h3>
+      <p class="able-to-copy" data-copy-to-clipboard="<?php echo $bill->virtualcode; ?>"><?php echo $bill->virtualcode; ?></p>
+    </div>
+    <?php endif; ?>
+
+    <div class="row">
+      <h3>Viitenumero</h3>
+      <p class="able-to-copy" data-copy-to-clipboard="<?php echo $bill->refnumber; ?>"><?php echo $bill->refnumber; ?></p>
+    </div>
+
+    <div class="row">
+      <h3>Tuote</h3>
+      <p class="able-to-copy" data-copy-to-clipboard="<?php echo $bill->description; ?>"><?php echo $bill->description; ?></p>
+    </div>
+
+    <footer class="bill-footer">
+      <div class="row">
+        <h3>Yhteensä</h3>
+        <p class="amount">&euro; <span class="formatted-amount able-to-copy" data-original-amount="<?php echo $bill->amount; ?>" data-copy-to-clipboard="<?php echo $formatted_amount; ?>"><?php echo $formatted_amount; ?></span></p>
+      </div>
+
+      <div class="row">
+        <h3>Eräpäivä</h3>
+        <p class="due-date formatted-duedate able-to-copy" data-original-date="<?php echo $bill->duedate; ?>" data-balloon="<?php echo $local_date; ?>" data-copy-to-clipboard="<?php echo $formatted_date; ?>" data-balloon-pos="up"><?php echo $bill->duedate; ?></p>
+      </div>
+    </footer>
+
+    <div class="row actions">
+      <span class="edit" data-id="<?php echo $bill->id; ?>"><?php file_get_contents( '../public/svg/dashboard/edit.svg' ); ?></span>
+      <span class="mark-as-paid" data-id="<?php echo $bill->id; ?>"><?php file_get_contents( '../public/svg/dashboard/check.svg' ); ?></span>
+    </div>
+  </div>
+</div>
+<?php
+endif;
+endforeach;
+?>
 
 @endsection
