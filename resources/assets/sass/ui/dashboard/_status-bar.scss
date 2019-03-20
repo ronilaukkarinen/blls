@@ -3,6 +3,15 @@
   box-shadow: 0 0 20px rgba(#000, .1);
   padding: 1.5rem;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: flex-start;
+
+  header {
+    margin-bottom: auto;
+  }
 
   @media (max-width: 760px) {
     padding: 1rem 1.5rem;
@@ -10,12 +19,34 @@
   }
 
   h1 {
-    margin: 0;
+    margin: 0 0 2rem;
   }
 
   svg {
     fill: #fff;
     width: 2.2rem;
     height: 2.2rem;
+    margin-bottom: auto;
+  }
+
+  .navigation-menu {
+    margin-bottom: auto;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding: 0;
+    text-align: center;
+  }
+
+  .navigation-menu li {
+    margin: 0;
+    padding: 0;
+
+    svg {
+      stroke: #fff;
+      fill: none;
+      width: 18px;
+      height: 18px;
+    }
   }
 }

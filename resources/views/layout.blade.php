@@ -20,38 +20,9 @@
           <h1 class="logo"><a href="/dashboard"><span class="screen-reader-text">{{ __('fields.app_name') }}</span><?php echo file_get_contents( 'svg/dashboard/logo.svg' ); ?></a></h1>
         </header>
 
-        <ul class="navigation__menu temp-hidden">
+        <ul class="navigation-menu">
           <li>
-            <a href="/dashboard" {!! (Request::path() == 'dashboard') ? 'class="active"' : '' !!}><span class="hidden ml-05">{{ __('general.dashboard') }}</span></a>
-          </li>
-          <li>
-            <a href="/recurrings" {!! (Request::path() == 'recurrings') ? 'class="active"' : '' !!}><span class="hidden ml-05">{{ __('models.recurrings') }}</span></a>
-          </li>
-          <li>
-            <a href="/tags" {!! (Request::path() == 'tags') ? 'class="active"' : '' !!}><span class="hidden ml-05">{{ __('models.tags') }}</span></a>
-          </li>
-          <li>
-            <a href="/reports" {!! (Request::path() == 'reports') ? 'class="active"' : '' !!}><span class="hidden ml-05">Reports</span></a>
-          </li>
-        </ul>
-        <ul class="navigation__menu temp-hidden">
-          <li>
-            <dropdown>
-              <span slot="button">
-                <img src="{{ Auth::user()->avatar }}" class="avatar mr-05" /> <i class="fas fa-caret-down fa-sm"></i>
-              </span>
-              <ul slot="menu" v-cloak>
-                <li>
-                  <a href="/imports">{{ __('models.imports') }}</a>
-                </li>
-                <li>
-                  <a href="/settings">{{ __('pages.settings') }}</a>
-                </li>
-                <li>
-                  <a href="/logout">{{ __('pages.log_out') }}</a>
-                </li>
-              </ul>
-            </dropdown>
+            <a href="/logout"><span class="screen-reader-text">{{ __('pages.log_out') }}</span><?php echo file_get_contents( 'svg/dashboard/logout.svg' ); ?></a>
           </li>
         </ul>
       </aside>
