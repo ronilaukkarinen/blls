@@ -128,8 +128,8 @@ $(document).ready(function() {
 
     // Update totals
     var currenttotal = $('.total-amount').text();
-    var newtotal = parseInt(currenttotal) + parseInt(amount);
-    $('.total-amount').text(newtotal);
+    var newtotal = parseFloat(currenttotal).toFixed(2) + parseFloat(amount).toFixed(2);
+    $('.total-amount').html(newtotal);
 
     $.ajax({
       url: 'addbill',
@@ -284,28 +284,31 @@ $(document).ready(function() {
   // Mark as paid action
   $(document).on('click', '.mark-as-paid', function() {
     var id = $(this).attr('data-id');
-    var paid = '1';
-    var amount_substracted = $('.bill-modal-' + id + ' .formatted-amount').attr('data-original-amount');
+    var amount_to_be_substracted = $('.bill-modal-' + id + ' .formatted-amount').attr('data-original-amount');
 
     // Close modals
     $('body').removeClass('modal-opened');
     $('.bill-modal').removeClass('show');
 
     // Update total
-    var currenttotal_substraction = $('.total .sum').text();
-    var newtotal_substraction = parseInt(currenttotal_substraction) - parseInt(amount_substracted);
-    $('.total .sum').text(newtotal_substraction);
+    var currenttotal_substraction = $('.total-amount').text();
+    var newtotal_substraction = parseFloat(currenttotal_substraction).toFixed(2) - parseFloat(amount_to_be_substracted).toFixed(2);
+    $('.total-amount').html(newtotal_substraction);
+
+    // Fade out row
+    $('.row-id-' + id).fadeOut();
 
     $.ajax({
-      url: 'api/bills.php',
+      url: 'markaspaid',
       type: 'POST',
+      dataType: 'html',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
       data: {
-        'paid': 1,
-        'id': id,
-        'paid_status': paid,
+        'id': id
       },
       success: function(response) {
-        $('.row-id-' + id).fadeOut();
       }
     });
   });

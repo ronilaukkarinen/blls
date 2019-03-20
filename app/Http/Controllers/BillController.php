@@ -37,6 +37,7 @@ class BillController extends Controller {
     return view( 'dashboard', compact('balance', 'bills') );
   }
 
+  // Add bill
   public function addBill(Request $request) {
 
     // Define stuff that we will add to the database
@@ -61,7 +62,20 @@ class BillController extends Controller {
     <td data-heading="Eräpäivä" class="formatted-duedate row-duedate duedate_text past">' . $request->duedate . '</td>
     <td data-heading="Summa" class="row-amount amount amount_text">€ <span class="formatted-amount">' . $request->amount . '</span></td>
     </tr>';
+  }
 
+  // Mark bill as paid
+  public function markasPaid(Request $request) {
+
+    // Update the bill in question
+    DB::table('bills')
+      ->where('userid', Auth::user()->id)
+      ->where('id', $request->id)
+      ->where('paid', '0')
+      ->update([
+        'paid' => 1,
+        'datepaid' => date('Y-m-d H:i:s')
+    ]);
   }
 
 }
