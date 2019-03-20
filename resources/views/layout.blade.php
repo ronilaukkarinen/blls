@@ -10,7 +10,7 @@
   <script src="/js/app.js"></script>
   <link rel="stylesheet" href="/css/app.css" />
 </head>
-<body class="theme-{{ Auth::check() ? Auth::user()->theme : 'light' }}">
+<body>
   <div id="app">
     <div class="dashboard">
       @if (Auth::check())

@@ -86,6 +86,7 @@
               </footer>
 
               <div class="row actions">
+                <input type="hidden" class="user-id-input" value="{{ Auth::id() }}">
                 <button type="button" id="submit_btn">Lisää</button>
                 <button type="button" id="update_btn" style="display: none;">Päivitä</button>
               </div>
@@ -143,9 +144,9 @@
                   <td data-heading="Selite" class="row-description row-hidden description_text"><?php echo $bill->description; ?></td>
                   <td data-heading="Eräpäivä" class="formatted-duedate row-duedate duedate_text" data-balloon="<?php echo $local_date; ?>" data-copy-to-clipboard="<?php echo $formatted_date; ?>" data-balloon-pos="up"><?php echo $bill->duedate; ?></td>
                   <td data-heading="Summa" class="row-amount amount amount_text" data-copy-to-clipboard="<?php echo $formatted_amount; ?>">&euro; <span class="formatted-amount"><?php echo $formatted_amount; ?></span></td>
-                  <td data-heading="Toiminnot" class="row-actions"><span class="delete" data-id="<?php echo $bill->id; ?>" ><?php file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></span>
-                    <span class="edit" data-id="<?php echo $bill->id; ?>"><?php file_get_contents( '../public/svg/dashboard/edit.svg' ); ?></span>
-                    <span class="mark-as-paid" data-id="<?php echo $bill->id; ?>"><?php file_get_contents( '../public/svg/dashboard/check.svg' ); ?></span>
+                  <td data-heading="Toiminnot" class="row-actions"><span class="delete" data-id="<?php echo $bill->id; ?>" ><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></span>
+                    <span class="edit" data-id="<?php echo $bill->id; ?>"><?php echo file_get_contents( '../public/svg/dashboard/edit.svg' ); ?></span>
+                    <span class="mark-as-paid" data-id="<?php echo $bill->id; ?>"><?php echo file_get_contents( '../public/svg/dashboard/check.svg' ); ?></span>
                   </td>
                 </tr>
 
@@ -220,8 +221,8 @@ if ( '0' == $bill->paid && $user_id == $bill->userid ) :
     </footer>
 
     <div class="row actions">
-      <span class="edit" data-id="<?php echo $bill->id; ?>"><?php file_get_contents( '../public/svg/dashboard/edit.svg' ); ?></span>
-      <span class="mark-as-paid" data-id="<?php echo $bill->id; ?>"><?php file_get_contents( '../public/svg/dashboard/check.svg' ); ?></span>
+      <span class="edit" data-id="<?php echo $bill->id; ?>"><?php echo file_get_contents( '../public/svg/dashboard/edit.svg' ); ?></span>
+      <span class="mark-as-paid" data-id="<?php echo $bill->id; ?>"><?php echo file_get_contents( '../public/svg/dashboard/check.svg' ); ?></span>
     </div>
   </div>
 </div>

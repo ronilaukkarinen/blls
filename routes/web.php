@@ -21,7 +21,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     // Bills
     Route::get('/dashboard/', 'BillController@showBills');
-    Route::get('/getbills', 'BillController@getBills');
+    Route::post('/addbill', 'BillController@addBill');
 
     Route::resource('/recurrings', 'RecurringController')->only([
         'index',

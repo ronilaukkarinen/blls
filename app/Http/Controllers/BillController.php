@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Recurring;
 use Auth;
 use DB;
+use Response;
 
 class BillController extends Controller {
 
@@ -24,15 +25,42 @@ class BillController extends Controller {
   public function showBills() {
 
     $balance = DB::table('bills')
-        ->where('userid', Auth::user()->id)
-        ->where('paid', '0')
-        ->sum('amount');
+    ->where('userid', Auth::user()->id)
+    ->where('paid', '0')
+    ->sum('amount');
 
     $bills = DB::table('bills')
-        ->latest('duedate')
-        ->where('userid', Auth::user()->id)
-        ->get();
+    ->latest('duedate')
+    ->where('userid', Auth::user()->id)
+    ->get();
 
     return view( 'dashboard', compact('balance', 'bills') );
   }
+
+  public function addBill(Request $request) {
+
+    DB::table('bills')->insert([
+      'biller' => $request->biller,
+      'billnumber' => $request->billnumber,
+      'virtualcode' => $request->virtualcode,
+      'refnumber' => $request->refnumber,
+      'accountnumber' => $request->accountnumber,
+      'type' => $request->type,
+      'description' => $request->description,
+      'amount' => $request->amount,
+      'duedate' => $request->duedate,
+      'created' => date('Y-m-d H:i:s'),
+      'paid' => 0,
+      'userid' => $request->userid,
+    ]);
+
+    echo '
+    <tr class="row-clickable">
+    <td data-heading="Laskuttaja" class="row-biller biller_text">' . $request->biller . '</td>
+    <td data-heading="Eräpäivä" class="formatted-duedate row-duedate duedate_text past">' . $request->duedate . '</td>
+    <td data-heading="Summa" class="row-amount amount amount_text">€ <span class="formatted-amount">' . $request->amount . '</span></td>
+    </tr>
+    ';
+  }
+
 }

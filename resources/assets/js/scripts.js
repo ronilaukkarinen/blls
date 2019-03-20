@@ -124,10 +124,15 @@ $(document).ready(function() {
     var description = $('#description').val();
     var amount = $('#amount').val();
     var duedate = $('#duedate').val();
+    var userid = $('.user-id-input').val();
 
     $.ajax({
-      url: 'api/bills.php',
+      url: 'addbill',
       type: 'POST',
+      dataType: 'html',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
       data: {
         'save': 1,
         'biller': biller,
@@ -139,6 +144,7 @@ $(document).ready(function() {
         'description': description,
         'amount': amount,
         'duedate': duedate,
+        'userid': userid
       },
       success: function(response) {
         $('#biller').val('');
@@ -151,9 +157,7 @@ $(document).ready(function() {
         $('#amount').val('');
         $('#duedate').val('');
 
-        if( $('.hidden-area:hidden') ) {
-          $('.hidden-area').show();
-        }
+        console.log(response);
 
         $('.bills-list tr:last').after(response);
 
