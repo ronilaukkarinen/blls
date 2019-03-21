@@ -17,13 +17,12 @@
 
       <aside class="dashboard-status-bar">
         <header>
-          <h1 class="logo"><a href="/dashboard"><span class="screen-reader-text">{{ __('fields.app_name') }}</span><?php echo file_get_contents( 'svg/dashboard/logo.svg' ); ?></a></h1>
+          <h1 class="logo"><a href="/dashboard" {!! (Request::path() == 'dashboard') ? 'class="active"' : '' !!}><span class="screen-reader-text">{{ __('fields.app_name') }}</span><?php echo file_get_contents( 'svg/dashboard/logo.svg' ); ?></a></h1>
         </header>
 
         <ul class="navigation-menu">
-          <li>
-            <a href="/logout"><span class="screen-reader-text">{{ __('pages.log_out') }}</span><?php echo file_get_contents( 'svg/dashboard/logout.svg' ); ?></a>
-          </li>
+          <li><a href="/settings"><span class="screen-reader-text">{{ __('pages.settings') }}</span><?php echo file_get_contents( 'svg/dashboard/settings.svg' ); ?></a></li>
+          <li><a href="/logout"><span class="screen-reader-text">{{ __('pages.log_out') }}</span><?php echo file_get_contents( 'svg/dashboard/logout.svg' ); ?></a></li>
         </ul>
       </aside>
       @endif
