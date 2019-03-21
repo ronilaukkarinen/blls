@@ -21,6 +21,7 @@ class BillController extends Controller {
     ->sum('amount');
 
     $bills = DB::table('bills')
+    ->orderBy('duedate', 'asc')
     ->where('userid', Auth::user()->id)
     ->get();
 
