@@ -2,7 +2,7 @@
 
 return [
     'dashboard' => 'Dashboard',
-    'app_name' => 'Oww',
+    'app_name' => 'Blls',
     'balance' => 'Balance',
     'recurrings' => 'Recurrings',
     'left_to_spend' => 'Left to Spend',

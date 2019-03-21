@@ -1,6 +1,6 @@
-# Oww
+# Blls.io
 
-Oww is an open-source web application that helps you keep track of your finances.
+Blls (bills.io as in 'bills I owe') is a web app for logging and tracking unpaid and paid bills and other payments.
 
 ## Features
 

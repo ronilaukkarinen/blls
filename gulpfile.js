@@ -71,10 +71,10 @@ gulp.task('browsersync', function() {
     ];
 
     browsersync.init(files, {
-        proxy: "127.0.0.1:8000",
+        proxy: "blls.test",
         browser: null,
         notify: true,
-        open: "external",
+        open: false,
         reloadDelay: 1000
     });
 });
