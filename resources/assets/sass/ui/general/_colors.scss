@@ -14,6 +14,15 @@
   color: $color-high;
 }
 
+td .formatted-amount {
+  opacity: .85;
+  transition: all .22s;
+}
+
+tr:hover .formatted-amount {
+  opacity: 1;
+}
+
 .color-low,
 .future {
   color: $color-low;
