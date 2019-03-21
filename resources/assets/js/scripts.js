@@ -51,14 +51,14 @@ $(document).ready(function() {
   $(document).keyup(function(e) {
     if (e.keyCode === 27) {
       $('body').removeClass('modal-opened');
-      $('.bill-modal').removeClass('show');
+      $('.bill-modal, .modal').removeClass('show');
     }
   });
 
   // Close with click outside
   $(document).on('click', '.show .bill-modal-overlay', function() {
     $('body').removeClass('modal-opened');
-    $('.bill-modal').removeClass('show');
+    $('.bill-modal, .modal').removeClass('show');
   });
 
   // Variables

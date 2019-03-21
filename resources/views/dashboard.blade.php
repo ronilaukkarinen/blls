@@ -7,12 +7,12 @@
       <section class="dashboard-content">
 
         <div class="column-bills">
-          <h1>Laskut</h1>
+          <h1>Tilanne</h1>
 
           <div class="items status">
             <div class="item-col month-current">
-              <h2 class="title-small">Maksettavaa yhteensä</h2>
-              <p class="amount">&euro; <span class="sum total-amount formatted-amount">{{ $balance }}</span></p>
+              <h2 class="title-small">Laskuja maksettavana yhteensä</h2>
+              <p class="amount">&euro; <span class="sum total-amount formatted-amount">{{ str_replace( '.', ',', $balance ) }}</span></p>
             </div>
 
             <!-- <div class="item-col month-next">
@@ -23,7 +23,7 @@
 
           <h1>Maksamattomat laskut <span class="add-new add-new-bill"><?php echo file_get_contents( 'svg/dashboard/plus.svg' ); ?></span></h1>
 
-          <div class="bill-modal bill-modal-new">
+          <div class="bill-modal modal bill-modal-new">
             <div class="bill-modal-overlay"></div>
             <div class="bill-modal-content">
 
@@ -177,20 +177,20 @@
                 if ( '1' == $sub->active && $user_id == $sub->userid ) :
                   ?>
 
-                  <div class="item item-<?php echo $biller; ?>">
+                  <div class="item item-<?php echo $biller; ?>" data-id="<?php echo $sub->id; ?>">
                     <div class="logo">
                       <?php echo file_get_contents( "svg/subscriptions/{$biller}.svg" ); ?>
 
                       <div class="details">
-                        <span class="biller"><?php echo $sub->biller; ?></span><br />
-                        <span class="type">Subscription</span>
+                        <span class="biller"><?php echo $sub->biller; ?></span><input type="text" name="subscription-biller-edit" value="<?php echo $sub->biller; ?>">
+                        <span class="type">Subscription</span><input type="text" name="subscription-plan-edit" value="Subscription">
                       </div>
                     </div>
 
                     <div class="content">
                       <ul>
-                        <li class="amount"><span class="value">€ <?php echo $formatted_amount; ?></span></li>
-                        <li class="subscription-due"><span class="value"><?php echo $stylish_date; ?></span></li>
+                        <li class="amount">&euro; <span class="value"><?php echo $formatted_amount; ?></span><input type="text" name="subscription-amount-edit" value="<?php echo $formatted_amount; ?>"></li>
+                        <li class="subscription-due"><span class="value"><?php echo $stylish_date; ?></span><input type="text" name="subscription-date-edit" value="<?php echo $stylish_date; ?>"></li>
                       </ul>
                     </div>
                   </div>
@@ -259,7 +259,7 @@ $stylish_date = date( 'd/m/Y', $old_date_timestamp );
 if ( '0' == $bill->paid && $user_id == $bill->userid ) :
 ?>
 
-<div class="bill-modal bill-modal-<?php echo $bill->id; ?>">
+<div class="bill-modal modal bill-modal-<?php echo $bill->id; ?>">
   <div class="bill-modal-overlay"></div>
   <div class="bill-modal-content">
     <header class="bill-header">

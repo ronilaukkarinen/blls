@@ -172,7 +172,7 @@
   }
 
   tr:hover {
-    background: lighten(#f0eff2, 1%);
+    background: rgba(lighten(#f0eff2, 1%), .5);
     cursor: pointer;
   }
 

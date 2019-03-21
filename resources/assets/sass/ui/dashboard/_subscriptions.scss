@@ -3,12 +3,95 @@
   .item {
     color: #fff;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
-    transition: all .66s;
+    transition: all .22s ease-in-out;
+    overflow: hidden;
+    border: 0;
+
+    input {
+      display: none;
+      font-size: 14px;
+      color: #fff;
+      background: transparent;
+      border: 0;
+      transition: all .22s ease-in-out;
+
+      &:hover,
+      &:focus {
+        outline: 0;
+        background: rgba(#000, .1);
+      }
+
+      &[name="subscription-biller-edit"] {
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      &[name="subscription-plan-edit"] {
+        font-size: 11px;
+        text-transform: uppercase;
+      }
+
+      &[name="subscription-date-edit"] {
+        font-size: 12px;
+        text-align: right;
+      }
+
+      &[name="subscription-amount-edit"] {
+        font-size: 15px;
+        margin-bottom: .3rem;
+        font-weight: 500;
+        max-width: 40px;
+        margin-left: auto;
+        text-align: right;
+      }
+    }
+
+    // Edit mode
+    &.edit-mode {
+      transform: scale(1.05);
+      box-shadow: 0 8px 34px 0 rgba(#000, .3);
+      cursor: text;
+
+      .edit-head {
+        transition: all .22s ease-in-out;
+        height: 25px;
+
+        h3 {
+          display: block;
+        }
+      }
+
+      span {
+        display: none;
+      }
+
+      input {
+        display: flex;
+
+        &[name="subscription-amount-edit"] {
+          display: inline-block;
+        }
+      }
+
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 34px 0 rgba(#000, .3);
+        cursor: text;
+      }
+    }
+
+    &:hover {
+      box-shadow: 0 8px 34px 0 rgba(#000, .3);
+      transform: scale(1.03);
+      cursor: pointer;
+    }
 
     .biller {
+      @include clearfix();
       margin: 0;
     }
 
@@ -62,37 +145,30 @@
     // Types of subscriptions
     &.item-netflix {
       background: $color-netflix;
-      border-color: $color-netflix;
     }
 
     &.item-playstation {
       background: $color-playstation;
-      border-color: $color-playstation;
     }
 
     &.item-plex {
       background: $color-plex;
-      border-color: $color-plex;
     }
 
     &.item-trakt {
       background: $color-trakt;
-      border-color: $color-trakt;
     }
 
     &.item-toshl {
       background: $color-toshl;
-      border-color: $color-toshl;
     }
 
     &.item-bookbeat {
       background: $color-bookbeat;
-      border-color: $color-bookbeat;
     }
 
     &.item-spotify {
       background: $color-spotify;
-      border-color: $color-spotify;
     }
 
     &.inactive:not(:hover) {

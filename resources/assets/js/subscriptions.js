@@ -7,6 +7,16 @@ $(document).ready(function() {
     $('.subscription-modal-new').addClass('show');
   });
 
+  // Edit subscriptions by clicking them
+  $('.column-subscriptions').on('click', '.item', function() {
+    $(this).addClass('edit-mode');
+  });
+
+  // Cancel editing
+  $('.item').on('click', '.save-action', function() {
+    $(this).parent().parent().removeClass('edit-mode');
+  });
+
   // Save bill to database
   $(document).on('click', '#submit-subscription', function() {
 
