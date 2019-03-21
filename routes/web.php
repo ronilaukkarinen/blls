@@ -25,15 +25,6 @@ Route::group(['middleware' => ['auth']], function () {
         'show'
     ]);
 
-    Route::resource('/tags', 'TagController')->only([
-        'index',
-        'create',
-        'store',
-        'edit',
-        'update',
-        'destroy'
-    ]);
-
     Route::name('settings.')->group(function () {
         Route::get('/settings', 'SettingsController@getIndex')->name('index');
         Route::post('/settings', 'SettingsController@postIndex');
