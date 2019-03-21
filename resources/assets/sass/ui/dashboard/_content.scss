@@ -282,7 +282,6 @@
     border-top: 1px dashed rgba($color-grey, .5);
 
     .due-date {
-      font-weight: 500;
       margin-left: auto;
       font-size: 1.9rem;
       font-weight: 400;
@@ -308,11 +307,6 @@
         font-weight: 500;
         opacity: 1;
       }
-    }
-
-    .due-date {
-      font-size: 1.9rem;
-      font-weight: 400;
     }
   }
 
@@ -475,6 +469,7 @@
   .flex {
     align-items: center;
     color: $color-body;
+    display: flex;
   }
 
   .flex input {
@@ -493,10 +488,6 @@
     padding-left: 0;
     padding-right: 0;
     color: darken($color-body, 20%);
-  }
-
-  .flex {
-    display: flex;
   }
 
   .bill-number {

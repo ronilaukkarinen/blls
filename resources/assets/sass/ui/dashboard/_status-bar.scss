@@ -15,6 +15,10 @@
 
   h1 {
     margin: 0 0 2rem;
+
+    a:hover svg {
+      transform: scale(1.2) rotate(-3deg);
+    }
   }
 
   svg {
@@ -22,6 +26,7 @@
     width: 2.2rem;
     height: 2.2rem;
     margin-bottom: auto;
+    transition: all .22s;
   }
 
   .navigation-menu {
@@ -34,7 +39,7 @@
   }
 
   .navigation-menu li {
-    margin: 0 0 1rem;
+    margin: 0 0 1.5rem;
     padding: 0;
 
     svg {
@@ -42,6 +47,12 @@
       fill: none;
       width: 18px;
       height: 18px;
+      transition: all .22s;
+    }
+
+    a:hover svg {
+      transform: scale(1.1);
+      stroke: lighten($color-lightblue, 15%);
     }
   }
 }
