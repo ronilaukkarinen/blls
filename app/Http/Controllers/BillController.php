@@ -21,7 +21,6 @@ class BillController extends Controller {
     ->sum('amount');
 
     $bills = DB::table('bills')
-    ->latest('duedate')
     ->where('userid', Auth::user()->id)
     ->get();
 

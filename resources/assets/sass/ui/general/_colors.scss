@@ -19,8 +19,25 @@ td .formatted-amount {
   transition: all .22s;
 }
 
-tr:hover .formatted-amount {
+tr:hover .past {
   opacity: 1;
+  filter: saturate(100%);
+}
+
+.row-duedate {
+  &.future {
+    color: rgba($color-altblue, .3);
+  }
+
+  &.past {
+    filter: saturate(80%);
+  }
+
+  &.soon,
+  &.soon.future {
+    filter: saturate(50%);
+    color: $color-high;
+  }
 }
 
 .color-low,

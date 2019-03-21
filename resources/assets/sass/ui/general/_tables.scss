@@ -7,16 +7,6 @@ body {
     text-align: right;
   }
 
-  .row-duedate {
-    &.future {
-      filter: saturate(80%);
-    }
-
-    &.past {
-      color: rgba($color-altblue, .3);
-    }
-  }
-
   .row-virtualcode,
   .row-refnumber {
     max-width: 20rem;
