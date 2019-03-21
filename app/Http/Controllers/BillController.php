@@ -31,6 +31,9 @@ class BillController extends Controller {
   // Add bill
   public function addBill(Request $request) {
 
+    // Let's format the date
+    $date_to_db = date( 'Y-m-d H:i:s', strtotime( $request->duedate ) );
+
     // Define stuff that we will add to the database
     DB::table('bills')
     ->insert([
@@ -42,7 +45,7 @@ class BillController extends Controller {
       'type' => $request->type,
       'description' => $request->description,
       'amount' => $request->amount,
-      'duedate' => $request->duedate,
+      'duedate' => $date_to_db,
       'created' => date('Y-m-d H:i:s'),
       'paid' => 0,
       'userid' => $request->userid,
