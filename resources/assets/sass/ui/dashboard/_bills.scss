@@ -1,0 +1,410 @@
+.dashboard-content {
+  .status {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid $color-darkgrey;
+    border-radius: .5rem;
+    padding: 2rem;
+    margin-bottom: 5rem;
+
+    .amount {
+      margin: 0;
+      font-weight: 500;
+    }
+  }
+
+  .title-small {
+    font-size: 15px;
+    color: $color-darkestgrey;
+    margin: 0 0 1rem;
+  }
+
+  // Bills
+  .item {
+    border: 1px solid $color-darkgrey;
+    border-radius: .5rem;
+    padding: 20px;
+    margin-bottom: 1.5rem;
+
+    .bill-details {
+      display: flex;
+      flex-wrap: wrap;
+      position: relative;
+
+      .logo svg {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 20px;
+        width: auto;
+      }
+
+      .amount {
+        width: 100%;
+        font-size: 24px;
+        font-weight: 500;
+        margin-bottom: 1rem;
+        transition: all .66s;
+        color: #ddd;
+      }
+    }
+
+    .bill-details li {
+      width: 50%;
+    }
+  }
+
+  .more-details {
+    display: flex;
+    flex-wrap: wrap;
+
+    li {
+      line-height: 1.33;
+      font-size: 11px;
+      color: $color-darkergrey;
+
+      span {
+        transition: all .66s;
+      }
+
+      span:hover {
+        color: $color-default;
+      }
+    }
+
+    li:after {
+      content: ', ';
+      display: inline;
+      margin-right: 3px;
+    }
+
+    li:last-child:after {
+      display: none;
+    }
+
+    .due-date {
+      font-weight: 500;
+      margin-left: auto;
+      margin-top: 1rem;
+    }
+  }
+
+  .payment-details {
+    display: none;
+  }
+
+  .biller {
+    font-size: 14px;
+    color: $color-darkergrey;
+    font-weight: 500;
+    margin-bottom: 2rem;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.column-bills {
+  max-width: 80rem;
+  overflow: visible;
+  display: block;
+  background: #fff;
+  border-radius: .5rem;
+
+  table {
+    border-radius: .5rem;
+    border: 1px solid $color-darkgrey;
+    max-width: 65rem;
+  }
+
+  td {
+    padding: 1rem 2rem;
+    font-weight: 500;
+    border-bottom: 1px solid #f0eff2;
+  }
+
+  tr {
+    border-radius: .5rem;
+  }
+
+  td:first-of-type {
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+  }
+
+  td:last-of-type {
+    border-bottom: 0;
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+  }
+
+  tr:hover {
+    background: lighten(#f0eff2, 1%);
+    cursor: pointer;
+  }
+
+  .row-clickable:hover {
+    cursor: pointer;
+  }
+}
+
+.dashboard {
+  transition: all .33s;
+}
+
+.modal-opened {
+  overflow: hidden;
+}
+
+.modal-opened .dashboard {
+  filter: blur(8px);
+  transform: scale(1.005);
+}
+
+.bill-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(lighten($color-blueish, 20%), .3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: all .33s;
+  z-index: -99;
+
+  &.bill-modal-new .bill-header {
+    padding-bottom: 4rem;
+  }
+
+  .bill-modal-overlay {
+    z-index: 90;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &.show {
+    opacity: 1;
+    z-index: 99;
+  }
+
+  .bill-modal-content {
+    padding: 3rem;
+    width: 100%;
+    max-width: 40rem;
+    border-radius: .7rem;
+    box-shadow: 0 13px 28px -2px rgba(#000, .1);
+    background: #fff;
+    overflow: hidden;
+    position: relative;
+    z-index: 100;
+  }
+
+  h2 {
+    font-family: $font-alt;
+    margin: 0 0 1rem;
+    font-size: 2rem;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: $color-altblue;
+    opacity: .9;
+  }
+
+  .date {
+    font-family: $font-alt;
+    margin: 0;
+    font-size: 11px;
+    color: $color-grey;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
+  }
+
+  .bill-header {
+    display: flex;
+    justify-content: space-between;
+    color: $color-grey;
+    padding-bottom: 8.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px dashed rgba($color-grey, .5);
+
+    .bill-number,
+    .bill-number::placeholder {
+      letter-spacing: 1px;
+      top: 1px;
+      position: relative;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    .bill-number::placeholder {
+      color: $color-grey;
+      opacity: 1;
+    }
+  }
+
+  .bill-footer {
+    display: flex;
+    justify-content: space-between;
+    color: $color-grey;
+    padding-top: 2rem;
+    margin-top: 2rem;
+    border-top: 1px dashed rgba($color-grey, .5);
+
+    .due-date {
+      margin-left: auto;
+      font-size: 1.9rem;
+      font-weight: 400;
+
+      input,
+      input::placeholder {
+        font-size: 1.9rem;
+        font-weight: 400;
+        margin-left: auto;
+        opacity: 1;
+      }
+    }
+
+    .amount {
+      font-family: $font-alt;
+      font-size: 2.2rem;
+      font-weight: 500;
+
+      input,
+      input::placeholder {
+        font-family: $font-alt;
+        font-size: 2.2rem;
+        font-weight: 500;
+        opacity: 1;
+      }
+    }
+  }
+
+  .row {
+    margin-bottom: 2rem;
+
+    button {
+      font-family: $font-alt;
+      font-size: 1.8rem;
+      font-weight: 400;
+      border: 1px solid transparent;
+      padding: 0;
+      margin: 0;
+      background: 0;
+      color: $color-sherpablue;
+    }
+
+    button:hover {
+      cursor: pointer;
+      border-bottom: 1px solid $color-sherpablue;
+    }
+
+    &.actions {
+      padding-top: 2rem;
+      margin-top: 0;
+      border-top: 1px dashed rgba($color-grey, .5);
+
+      .op-ebill {
+        font-weight: 500;
+        color: #ff6a10;
+        font-size: 14px;
+        text-decoration: none;
+        float: right;
+        display: flex;
+        align-items: center;
+
+        svg {
+          stroke: #ff6a10;
+          margin-right: 1rem;
+          position: relative;
+          top: -.5px;
+        }
+
+        &:hover {
+          color: darken(#ff6a10, 10%);
+        }
+
+        &:hover svg {
+          stroke: darken(#ff6a10, 10%);
+        }
+      }
+
+      svg {
+        margin-right: .5rem;
+        width: 20px;
+        height: 20px;
+        stroke: $color-sherpablue;
+
+        path {
+          stroke: $color-sherpablue;
+        }
+      }
+
+      .edit svg:hover {
+        cursor: pointer;
+        stroke: lighten($color-sherpablue, 40%);
+
+        path {
+          stroke: lighten($color-sherpablue, 40%);
+        }
+      }
+
+      .mark-as-paid svg:hover {
+        cursor: pointer;
+        stroke: $color-success;
+
+        path {
+          stroke: $color-success;
+        }
+      }
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    &.biller {
+      p {
+        font-size: 2.2rem;
+        font-weight: 500;
+      }
+    }
+
+    h3,
+    label {
+      font-family: $font-alt;
+      margin-top: 0;
+      font-size: 12px;
+      color: $color-grey;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 400;
+      margin-bottom: .3rem;
+    }
+
+    p {
+      margin: 0;
+      font-size: 14px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      max-width: 34rem;
+      height: 1.2em;
+      white-space: nowrap;
+      position: relative;
+    }
+  }
+}
