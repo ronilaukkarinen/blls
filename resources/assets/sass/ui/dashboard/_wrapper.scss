@@ -1,10 +1,14 @@
 #app {
   display: flex;
   overflow: hidden;
+
+  > div {
+    width: 100%;
+  }
 }
 
 body {
-  @media (min-width: 760px) {
+  @media (min-width: 600px) {
     display: flex;
     height: 100%;
     min-height: 100vh;
@@ -12,7 +16,7 @@ body {
 }
 
 .dashboard {
-  @media (min-width: 760px) {
+  @media (min-width: 600px) {
     display: flex;
     width: 100%;
   }

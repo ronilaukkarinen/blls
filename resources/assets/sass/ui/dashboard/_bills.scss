@@ -113,22 +113,47 @@
 }
 
 .column-bills {
-  max-width: 80rem;
+  max-width: 55rem;
+  width: 100%;
   overflow: visible;
   display: block;
   background: #fff;
   border-radius: .5rem;
+  margin-bottom: 5rem;
 
   table {
     border-radius: .5rem;
     border: 1px solid $color-darkgrey;
-    max-width: 65rem;
+    max-width: 55rem;
+
+    @media (max-width: 660px) {
+      max-width: 50rem;
+    }
   }
 
   td {
     padding: 1rem 2rem;
     font-weight: 500;
     border-bottom: 1px solid #f0eff2;
+  }
+
+  .row-biller,
+  .row-duedate {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .row-biller {
+    max-width: 280px;
+  }
+
+  .row-duedate {
+    max-width: 150px;
+  }
+
+  .row-amount {
+    max-width: 90px;
   }
 
   tr {

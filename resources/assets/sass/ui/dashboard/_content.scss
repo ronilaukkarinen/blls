@@ -1,8 +1,12 @@
 .dashboard-content {
   padding: 5rem;
 
-  @media (min-width: 760px) {
+  @media (min-width: 1020px) {
     @include grid(2, $gutter_x: 40px, $gutter_y: 40px);
+  }
+
+  @media (max-width: 760px) {
+    padding: 3rem;
   }
 
   h1 {
@@ -10,7 +14,7 @@
   }
 
   .column {
-    @media (max-width: 760px) {
+    @media (max-width: 1020px) {
       width: 100%;
     }
   }
