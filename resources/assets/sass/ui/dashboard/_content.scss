@@ -2,7 +2,7 @@
   padding: 5rem;
 
   @media (min-width: 1020px) {
-    @include grid(2, $gutter_x: 40px, $gutter_y: 40px);
+    @include grid(2, $gutter_x: 50px, $gutter_y: 50px);
   }
 
   @media (max-width: 760px) {

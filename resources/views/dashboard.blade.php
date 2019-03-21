@@ -4,8 +4,6 @@
 
 @section('body')
 
-    <?php //include('../public/api/bills.php'); ?>
-
       <section class="dashboard-content">
 
         <div class="column-bills">
@@ -23,7 +21,7 @@
             </div> -->
           </div>
 
-          <h1>Maksamattomat laskut <span class="add-new"><?php echo file_get_contents( 'svg/dashboard/plus.svg' ); ?></span></h1>
+          <h1>Maksamattomat laskut <span class="add-new add-new-bill"><?php echo file_get_contents( 'svg/dashboard/plus.svg' ); ?></span></h1>
 
           <div class="bill-modal bill-modal-new">
             <div class="bill-modal-overlay"></div>
@@ -87,10 +85,9 @@
 
               <div class="row actions">
                 <input type="hidden" class="user-id-input" value="{{ Auth::id() }}">
-                <button type="button" id="submit_btn">Lisää</button>
-                <button type="button" id="update_btn" style="display: none;">Päivitä</button>
+                <button type="button" id="submit-button">Lisää</button>
+                <button type="button" id="update-button" style="display: none;">Päivitä</button>
               </div>
-
             </form>
 
           </div>
@@ -144,7 +141,7 @@
                   <td data-heading="Selite" class="row-description row-hidden description_text"><?php echo $bill->description; ?></td>
                   <td data-heading="Eräpäivä" class="formatted-duedate row-duedate duedate_text" data-balloon="<?php echo $local_date; ?>" data-copy-to-clipboard="<?php echo $formatted_date; ?>" data-balloon-pos="up"><?php echo $bill->duedate; ?></td>
                   <td data-heading="Eräpäivä (original)" class="row-duedate-original row-hidden"><?php echo $bill->duedate; ?></td>
-                  <td data-heading="Summa" class="row-amount amount amount_text" data-copy-to-clipboard="<?php echo $formatted_amount; ?>">&euro; <span class="formatted-amount"><?php echo $formatted_amount; ?></span></td>
+                  <td data-heading="Summa" class="row-amount amount amount_text" data-copy-to-clipboard="<?php echo $formatted_amount; ?>"><span>&euro;</span> <span class="formatted-amount"><?php echo $formatted_amount; ?></span></td>
                   <td data-heading="Toiminnot" class="row-actions row-hidden"><span class="delete" data-id="<?php echo $bill->id; ?>" ><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></span>
                     <span class="edit" data-id="<?php echo $bill->id; ?>"><?php echo file_get_contents( '../public/svg/dashboard/edit.svg' ); ?></span>
                     <span class="mark-as-paid" data-id="<?php echo $bill->id; ?>"><?php echo file_get_contents( '../public/svg/dashboard/check.svg' ); ?></span>
@@ -159,7 +156,7 @@
           </div>
 
           <div class="column column-subscriptions">
-            <h1>Kuukausimaksulliset palvelut</h1>
+            <h1>Kuukausimaksulliset palvelut <span class="add-new add-new-subscription"><?php echo file_get_contents( 'svg/dashboard/plus.svg' ); ?></span></h1>
 
             <?php
             // List subscriptions
@@ -203,6 +200,54 @@
               endif;
             endforeach;
             ?>
+
+<form class="subscriptions-form">
+  <header class="subscription-header">
+    <div>
+      <h2 class="subscription-title">Uusi kuukausimaksu</h2>
+    </div>
+  </header>
+
+  <div class="row">
+    <label for="biller">Tuote</label>
+    <select name="biller" id="biller">
+      <option value="Spotify">Spotify</option>
+      <option value="Netflix">Netflix</option>
+    </select>
+  </div>
+
+  <div class="row">
+    <label for="type">Tyyppi:</label>
+    <select name="type" id="type">
+      <option value="E-lasku">E-lasku</option>
+      <option value="Sähköpostilasku">Sähköpostilasku</option>
+      <option value="Paperilasku">Paperilasku</option>
+    </select>
+  </div>
+
+  <footer class="subscription-footer">
+    <div class="row">
+      <label for="amount">Yhteensä</label>
+      <span class="flex amount">&euro; <input type="text" name="amount" id="amount" placeholder="100"></span>
+    </div>
+
+    <div class="row">
+      <label for="duedate">Eräpäivä</label>
+      <input type="text" name="duedate" id="duedate" class="due-date update-due-date" placeholder="{{ date('d.m.Y') }}">
+    </div>
+  </footer>
+
+  <div class="row actions">
+    <input type="hidden" class="user-id-input" value="{{ Auth::id() }}">
+    <button type="button" id="submit-subscription">Lisää</button>
+    <button type="button" id="update-subscription" style="display: none;">Päivitä</button>
+  </div>
+</form>
+
+
+
+
+
           </div>
 
       </section>
@@ -218,6 +263,7 @@ $formatted_amount = str_replace( '.', ',', $bill->amount );
 $old_date = $bill->duedate;
 $old_date_timestamp = strtotime( $old_date );
 $local_date = strftime( "%e. %Bta %Y", $old_date_timestamp );
+$stylish_date = date( 'd/m/Y', $old_date_timestamp );
 
 // Check if not paid and if owned by current user
 if ( '0' == $bill->paid && $user_id == $bill->userid ) :

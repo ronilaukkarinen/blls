@@ -31,8 +31,16 @@ $(document).ready(function() {
       }, 2000);
   })
 
+  // Add new subscription modal
+  $(document).on('click', '.add-new-subscription', function() {
+    $('body').addClass('modal-opened');
+    var $div = $('.subscription-modal-new').appendTo('body').hide().fadeIn('fast');
+    $('.subscription-modal-new').addClass('show');
+    $('.subscription-title').html('Uusi kk-kulu');
+  });
+
   // Add new bill modal
-  $(document).on('click', '.add-new', function() {
+  $(document).on('click', '.add-new-bill', function() {
     $('body').addClass('modal-opened');
     var $div = $('.bill-modal-new').appendTo('body').hide().fadeIn('fast');
     $('.bill-modal-new').addClass('show');
@@ -110,7 +118,7 @@ $(document).ready(function() {
   colorAmounts(amounts);
 
   // Save bill to database
-  $(document).on('click', '#submit_btn', function() {
+  $(document).on('click', '#submit-button', function() {
 
     // Close modals
     $('body').removeClass('modal-opened');
@@ -243,11 +251,11 @@ $(document).ready(function() {
     $('#description').val(description);
     $('#amount').val(amount);
     $('#duedate').val(duedate);
-    $('#submit_btn').hide();
-    $('#update_btn').show();
+    $('#submit-button').hide();
+    $('#update-button').show();
   });
 
-  $(document).on('click', '#update_btn', function() {
+  $(document).on('click', '#update-button', function() {
     var id = edit_id;
     var biller = $('#biller').val();
     var billnumber = $('#billnumber').val();
@@ -293,8 +301,8 @@ $(document).ready(function() {
         $('#description').val('');
         $('#amount').val('');
         $('#duedate').val('');
-        $('#submit_btn').show();
-        $('#update_btn').hide();
+        $('#submit-button').show();
+        $('#update-button').hide();
 
         $edit_bill.replaceWith(response);
         duedate = formatDate(duedate);

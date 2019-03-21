@@ -15,8 +15,32 @@
 }
 
 td .formatted-amount {
-  opacity: .85;
   transition: all .22s;
+}
+
+.row-amount {
+  transition: all .22s;
+
+  span {
+    transition: all .22s;
+  }
+
+  &.color-low span {
+    opacity: .9;
+  }
+
+  &.color-medium span {
+    opacity: .5;
+  }
+
+  &.color-high span {
+    opacity: .5;
+  }
+}
+
+tr:hover .row-amount span {
+  filter: saturate(100%);
+  opacity: 1;
 }
 
 tr:hover .past {
@@ -25,6 +49,8 @@ tr:hover .past {
 }
 
 .row-duedate {
+  transition: all .22s;
+
   &.future {
     color: rgba($color-altblue, .3);
   }
@@ -38,6 +64,15 @@ tr:hover .past {
     filter: saturate(50%);
     color: $color-high;
   }
+}
+
+tr:hover .row-duedate.future {
+  @extend .future;
+}
+
+tr:hover .row-duedate.past {
+  @extend .past;
+  filter: saturate(100%);
 }
 
 .color-low,
