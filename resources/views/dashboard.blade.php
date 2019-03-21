@@ -192,6 +192,9 @@ foreach ( $bills as $bill) :
 
 // Define formatted date
 $formatted_amount = str_replace( '.', ',', $bill->amount );
+$old_date = $bill->duedate;
+$old_date_timestamp = strtotime( $old_date );
+$local_date = strftime( "%e. %Bta %Y", $old_date_timestamp );
 
 // Check if not paid and if owned by current user
 if ( '0' == $bill->paid && $user_id == $bill->userid ) :
