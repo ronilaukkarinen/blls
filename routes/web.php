@@ -37,17 +37,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/reports', 'ReportController@index')->name('reports.index');
     Route::get('/reports/{slug}', 'ReportController@show');
 
-    Route::name('imports.')->group(function () {
-        Route::get('/imports', 'ImportController@index')->name('index');
-        Route::get('/imports/create', 'ImportController@create')->name('create');
-        Route::post('/imports', 'ImportController@store')->name('store');
-        Route::get('/imports/{import}/prepare', 'ImportController@getPrepare')->name('prepare');
-        Route::post('/imports/{import}/prepare', 'ImportController@postPrepare');
-        Route::get('/imports/{import}/complete', 'ImportController@getComplete')->name('complete');
-        Route::post('/imports/{import}/complete', 'ImportController@postComplete');
-        Route::delete('/imports/{import}', 'ImportController@destroy');
-    });
-
     Route::name('settings.')->group(function () {
         Route::get('/settings', 'SettingsController@getIndex')->name('index');
         Route::post('/settings', 'SettingsController@postIndex');
