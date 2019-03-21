@@ -34,9 +34,6 @@ Route::group(['middleware' => ['auth']], function () {
         'destroy'
     ]);
 
-    Route::get('/reports', 'ReportController@index')->name('reports.index');
-    Route::get('/reports/{slug}', 'ReportController@show');
-
     Route::name('settings.')->group(function () {
         Route::get('/settings', 'SettingsController@getIndex')->name('index');
         Route::post('/settings', 'SettingsController@postIndex');

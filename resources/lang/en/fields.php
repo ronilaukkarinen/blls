@@ -8,7 +8,6 @@ return [
     'language' => 'Language',
     'theme' => 'Theme',
     'currency' => 'Currency',
-    'weekly_report' => 'Weekly Report',
     'date' => 'Date',
     'description' => 'Description',
     'amount' => 'Amount',
