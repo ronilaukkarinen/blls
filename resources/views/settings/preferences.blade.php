@@ -25,6 +25,12 @@
                 </select>
                 @include('partials.validation_error', ['payload' => 'currency'])
             </div>
+            <div class="input input--small">
+                <label>E-laskupalvelun tarjoaja</label>
+                <select name="ebillprovider" id="ebillprovider">
+                  <option value="Osuuspankki">Osuuspankki</option>
+                </select>
+            </div>
             <button class="button">{{ __('actions.save') }}</button>
         </div>
     </div>

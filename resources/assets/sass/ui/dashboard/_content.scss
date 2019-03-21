@@ -334,6 +334,31 @@
       margin-top: 0;
       border-top: 1px dashed rgba($color-grey, .5);
 
+      .op-ebill {
+        font-weight: 500;
+        color: #ff6a10;
+        font-size: 14px;
+        text-decoration: none;
+        float: right;
+        display: flex;
+        align-items: center;
+
+        svg {
+          stroke: #ff6a10;
+          margin-right: 1rem;
+          position: relative;
+          top: -.5px;
+        }
+
+        &:hover {
+          color: darken(#ff6a10, 10%);
+        }
+
+        &:hover svg {
+          stroke: darken(#ff6a10, 10%);
+        }
+      }
+
       svg {
         margin-right: .5rem;
         width: 20px;

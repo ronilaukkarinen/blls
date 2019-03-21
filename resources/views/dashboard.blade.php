@@ -251,6 +251,10 @@ if ( '0' == $bill->paid && $user_id == $bill->userid ) :
     <div class="row actions">
       <span class="edit" data-id="<?php echo $bill->id; ?>"><?php echo file_get_contents( '../public/svg/dashboard/edit.svg' ); ?></span>
       <span class="mark-as-paid" data-id="<?php echo $bill->id; ?>"><?php echo file_get_contents( '../public/svg/dashboard/check.svg' ); ?></span>
+
+      <?php if ( Auth::user()->ebillprovider === 'Osuuspankki') : ?>
+        <a target="_blank" href="https://www.op.fi" class="op-ebill"><?php echo file_get_contents( '../public/svg/dashboard/pay.svg' ); ?>Maksa OP E-lasku</a>
+      <?php endif; ?>
     </div>
   </div>
 </div>

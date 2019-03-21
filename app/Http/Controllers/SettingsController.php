@@ -63,6 +63,10 @@ class SettingsController extends Controller {
             $user->currency_id = $request->input('currency');
         }
 
+        if ($request->has('ebillprovider')) {
+            $user->ebillprovider = $request->input('ebillprovider');
+        }
+
         $user->save();
 
         // Notify upon changing of password
