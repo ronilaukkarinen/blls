@@ -208,6 +208,11 @@
   transition: all .33s;
   z-index: -99;
 
+  @media (max-width: 480px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
   &.bill-modal-new .bill-header {
     padding-bottom: 4rem;
   }
@@ -415,6 +420,10 @@
         font-size: 2.2rem;
         font-weight: 500;
         overflow: visible;
+
+        @media (max-width: 480px) {
+          font-size: 1.8rem;
+        }
       }
     }
 
