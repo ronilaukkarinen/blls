@@ -161,25 +161,48 @@
           <div class="column column-subscriptions">
             <h1>Kuukausimaksulliset palvelut</h1>
 
+            <?php
+            // List subscriptions
+            foreach ( $subscriptions as $sub) :
+
+              // Variables
+              $old_date = $sub->date;
+              $old_date_timestamp = strtotime( $old_date );
+              $formatted_date = date( 'd.m.Y', $old_date_timestamp );
+              $stylish_date = date( 'd/m/Y', $old_date_timestamp );
+              setlocale( LC_TIME, "fi_FI" );
+              $formatted_amount = str_replace( '.', ',', $sub->amount );
+              $user_id = Auth::id();
+              $biller = strtolower( $sub->biller );
+
+              // Check if not paid and if owned by current user
+              if ( '1' == $sub->active && $user_id == $sub->userid ) :
+            ?>
+
             <!-- Item starts -->
-            <div class="item item-netflix">
+            <div class="item item-<?php echo $biller; ?>">
               <div class="logo">
-                <?php echo file_get_contents( 'svg/subscriptions/netflix.svg' ); ?>
+                <?php echo file_get_contents( "svg/subscriptions/{$biller}.svg" ); ?>
 
                 <div class="details">
-                  <span class="biller">Netflix</span><br />
+                  <span class="biller"><?php echo $sub->biller; ?></span><br />
                   <span class="type">Subscription</span>
                 </div>
               </div>
 
               <div class="content">
                 <ul>
-                  <li class="amount"><span class="value">€ 13,99</span></li>
-                  <li class="due-date"><span class="value">07.04.2019</span></li>
+                  <li class="amount"><span class="value">€ <?php echo $sub->amount; ?></span></li>
+                  <li class="due-date"><span class="value"><?php echo $stylish_date; ?></span></li>
                 </ul>
               </div>
             </div>
             <!-- Item ends -->
+
+            <?php
+              endif;
+            endforeach;
+            ?>
           </div>
 
       </section>
