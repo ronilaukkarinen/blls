@@ -1,11 +1,12 @@
 $(document).ready(function() {
 
   // Remove spaces from inputs if any key or click is pressed
-  $('#refnumber, #accountnumber, #billnumber').keyup(function() {
+  $('#refnumber, #accountnumber, #billnumber, #amount').keyup(function() {
     $(this).val($(this).val().replace(/ +?/g, ''));
   });
 
-  $('#refnumber, #accountnumber, #billnumber').focus(function() {
+  // Remove spaces from inputs when field is in focus
+  $('#refnumber, #accountnumber, #billnumber, #amount').focus(function() {
     $(this).val($(this).val().replace(/ +?/g, ''));
   });
 
