@@ -201,7 +201,7 @@
               ?>
             </div>
 
-<form class="subscriptions-form">
+<form class="subscriptions-form" style="display: none;">
   <header class="subscription-header">
     <div>
       <h2 class="subscription-title">Uusi kuukausimaksu</h2>
