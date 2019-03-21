@@ -7615,9 +7615,9 @@
 
     //! moment.js locale configuration
 
-    var numbersPast = 'nolla yksi kaksi kolme neljä viisi kuusi seitsemän kahdeksan yhdeksän'.split(' '),
+    var numbersPast = 'nolla 1 2 3 4 5 6 7 8 9'.split(' '),
         numbersFuture = [
-            'nolla', 'yhden', 'kahden', 'kolmen', 'neljän', 'viiden', 'kuuden',
+            'nolla', '1', '2', '3', '4', '5', '6',
             numbersPast[7], numbersPast[8], numbersPast[9]
         ];
     function translate$2(number, withoutSuffix, key, isFuture) {
