@@ -158,6 +158,30 @@
             <?php endif; ?>
           </div>
 
+          <div class="column column-subscriptions">
+            <h1>Kuukausimaksulliset palvelut</h1>
+
+            <!-- Item starts -->
+            <div class="item item-netflix">
+              <div class="logo">
+                <?php echo file_get_contents( 'svg/subscriptions/netflix.svg' ); ?>
+
+                <div class="details">
+                  <span class="biller">Netflix</span><br />
+                  <span class="type">Subscription</span>
+                </div>
+              </div>
+
+              <div class="content">
+                <ul>
+                  <li class="amount"><span class="value">€ 13,99</span></li>
+                  <li class="due-date"><span class="value">07.04.2019</span></li>
+                </ul>
+              </div>
+            </div>
+            <!-- Item ends -->
+          </div>
+
       </section>
 
     </div>

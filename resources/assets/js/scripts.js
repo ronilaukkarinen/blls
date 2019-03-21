@@ -162,7 +162,13 @@ $(document).ready(function() {
         $('#amount').val('');
         $('#duedate').val('');
 
+        // Add to row
         $('.bills-list tr:last').after(response);
+
+        // Reload page
+        setTimeout(function() {
+           location.reload();
+        }, 500);
       }
     });
   });
