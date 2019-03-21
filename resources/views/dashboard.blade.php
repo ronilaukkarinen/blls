@@ -81,7 +81,7 @@
 
                 <div class="row">
                   <label for="duedate">Eräpäivä</label>
-                  <input type="text" name="duedate" id="duedate" class="due-date update-due-date" value="{{ date('d.m.Y') }}">
+                  <input type="text" name="duedate" id="duedate" class="due-date update-due-date" placeholder="{{ date('d.m.Y') }}">
                 </div>
               </footer>
 
