@@ -265,6 +265,11 @@
     margin-top: 2rem;
     border-top: 1px dashed rgba($color-grey, .5);
 
+    #duedate::placeholder {
+      font-size: 1.9rem;
+      font-weight: 400;
+    }
+
     .due-date {
       margin-left: auto;
       font-size: 1.9rem;
