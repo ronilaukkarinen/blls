@@ -35,11 +35,6 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::get('/spaces/{id}', 'SpaceController');
-
-    Route::name('ideas.')->group(function () {
-        Route::get('/ideas/create', 'IdeaController@create')->name('create');
-        Route::post('/ideas', 'IdeaController@store');
-    });
 });
 
 Route::get('/logout', 'LogoutController@index')->name('logout');

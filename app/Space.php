@@ -16,10 +16,6 @@ class Space extends Model {
         return $this->belongsToMany(User::class, 'user_space');
     }
 
-    public function tags() {
-        return $this->hasMany(Tag::class);
-    }
-
     public function recurrings() {
         return $this->hasMany(Recurring::class);
     }

@@ -7,7 +7,7 @@ use Closure;
 class RefreshSpaceRelations {
     public function handle($request, Closure $next) {
         if ($request->session()->has('space')) {
-            $request->session()->get('space')->load('tags', 'recurrings');
+            $request->session()->get('space')->load('recurrings');
         }
 
         return $next($request);
