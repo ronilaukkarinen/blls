@@ -53,7 +53,7 @@ class BillController extends Controller {
       'duedate' => $date_to_db,
       'created' => date('Y-m-d H:i:s'),
       'paid' => 0,
-      'userid' => $request->userid,
+      'userid' => Auth::user()->id,
     ]);
 
     // Print results

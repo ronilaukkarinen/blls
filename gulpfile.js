@@ -190,6 +190,7 @@ gulp.task('js', function() {
           'node_modules/jquery/dist/jquery.js',
           'resources/assets/js/moment-with-locales.js',
           'resources/assets/js/scripts.js',
+          'resources/assets/js/subscriptions.js'
         ])
         .pipe(concat('app.js'))
         .pipe(uglify({
@@ -240,7 +241,6 @@ gulp.task('watch', ['browsersync'], function() {
 
   gulp.watch(sassSrc, ['styles', 'scss-lint']).on( 'change', stylefmtfile );
   gulp.watch(jsSrc, ['js-watch']);
-  gulp.watch(markupSrc, ['php']);
 
 });
 

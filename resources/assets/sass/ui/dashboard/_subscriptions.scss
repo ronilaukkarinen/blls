@@ -90,6 +90,11 @@
       border-color: $color-bookbeat;
     }
 
+    &.item-spotify {
+      background: $color-spotify;
+      border-color: $color-spotify;
+    }
+
     &.inactive:not(:hover) {
       opacity: .5;
       background: #bfc7cf;

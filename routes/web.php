@@ -18,6 +18,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/editbill', 'BillController@editBill');
     Route::post('/markaspaid', 'BillController@markasPaid');
 
+    // Subscriptions
+    Route::post('/addsubscription', 'SubscriptionController@addSubscription');
+
+    // Recurrings
     Route::resource('/recurrings', 'RecurringController')->only([
         'index',
         'create',

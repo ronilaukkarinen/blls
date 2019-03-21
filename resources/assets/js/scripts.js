@@ -31,14 +31,6 @@ $(document).ready(function() {
       }, 2000);
   })
 
-  // Add new subscription modal
-  $(document).on('click', '.add-new-subscription', function() {
-    $('body').addClass('modal-opened');
-    var $div = $('.subscription-modal-new').appendTo('body').hide().fadeIn('fast');
-    $('.subscription-modal-new').addClass('show');
-    $('.subscription-title').html('Uusi kk-kulu');
-  });
-
   // Add new bill modal
   $(document).on('click', '.add-new-bill', function() {
     $('body').addClass('modal-opened');
@@ -133,7 +125,6 @@ $(document).ready(function() {
     var description = $('#description').val();
     var amount = $('#amount').val();
     var duedate = $('#duedate').val();
-    var userid = $('.user-id-input').val();
 
     // Update totals
     var currenttotal = $('.total-amount').text();
@@ -157,8 +148,7 @@ $(document).ready(function() {
         'type': type,
         'description': description,
         'amount': amount,
-        'duedate': duedate,
-        'userid': userid
+        'duedate': duedate
       },
       success: function(response) {
         $('#biller').val('');
@@ -341,6 +331,5 @@ $(document).ready(function() {
       }
     });
   });
-
 
 });

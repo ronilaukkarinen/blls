@@ -158,48 +158,48 @@
           <div class="column column-subscriptions">
             <h1>Kuukausimaksulliset palvelut <span class="add-new add-new-subscription"><?php echo file_get_contents( 'svg/dashboard/plus.svg' ); ?></span></h1>
 
-            <?php
-            // List subscriptions
-            foreach ( $subscriptions as $sub) :
+            <div class="items-subscriptions">
+              <?php
+              // List subscriptions
+              foreach ( $subscriptions as $sub) :
 
-              // Variables
-              $old_date = $sub->date;
-              $old_date_timestamp = strtotime( $old_date );
-              $formatted_date = date( 'd.m.Y', $old_date_timestamp );
-              $stylish_date = date( 'd/m/Y', $old_date_timestamp );
-              setlocale( LC_TIME, "fi_FI" );
-              $formatted_amount = str_replace( '.', ',', $sub->amount );
-              $user_id = Auth::id();
-              $biller = strtolower( $sub->biller );
+                // Variables
+                $old_date = $sub->date;
+                $old_date_timestamp = strtotime( $old_date );
+                $formatted_date = date( 'd.m.Y', $old_date_timestamp );
+                $stylish_date = date( 'd/m/Y', $old_date_timestamp );
+                setlocale( LC_TIME, "fi_FI" );
+                $formatted_amount = str_replace( '.', ',', $sub->amount );
+                $user_id = Auth::id();
+                $biller = strtolower( $sub->biller );
 
-              // Check if not paid and if owned by current user
-              if ( '1' == $sub->active && $user_id == $sub->userid ) :
-            ?>
+                // Check if not paid and if owned by current user
+                if ( '1' == $sub->active && $user_id == $sub->userid ) :
+                  ?>
 
-            <!-- Item starts -->
-            <div class="item item-<?php echo $biller; ?>">
-              <div class="logo">
-                <?php echo file_get_contents( "svg/subscriptions/{$biller}.svg" ); ?>
+                  <div class="item item-<?php echo $biller; ?>">
+                    <div class="logo">
+                      <?php echo file_get_contents( "svg/subscriptions/{$biller}.svg" ); ?>
 
-                <div class="details">
-                  <span class="biller"><?php echo $sub->biller; ?></span><br />
-                  <span class="type">Subscription</span>
-                </div>
-              </div>
+                      <div class="details">
+                        <span class="biller"><?php echo $sub->biller; ?></span><br />
+                        <span class="type">Subscription</span>
+                      </div>
+                    </div>
 
-              <div class="content">
-                <ul>
-                  <li class="amount"><span class="value">€ <?php echo $sub->amount; ?></span></li>
-                  <li class="due-date"><span class="value"><?php echo $stylish_date; ?></span></li>
-                </ul>
-              </div>
+                    <div class="content">
+                      <ul>
+                        <li class="amount"><span class="value">€ <?php echo $formatted_amount; ?></span></li>
+                        <li class="subscription-due"><span class="value"><?php echo $stylish_date; ?></span></li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <?php
+                endif;
+              endforeach;
+              ?>
             </div>
-            <!-- Item ends -->
-
-            <?php
-              endif;
-            endforeach;
-            ?>
 
 <form class="subscriptions-form">
   <header class="subscription-header">
@@ -209,36 +209,26 @@
   </header>
 
   <div class="row">
-    <label for="biller">Tuote</label>
-    <select name="biller" id="biller">
+    <label for="biller-subscription">Tuote</label>
+    <select name="biller-subscription" id="biller-subscription">
       <option value="Spotify">Spotify</option>
       <option value="Netflix">Netflix</option>
-    </select>
-  </div>
-
-  <div class="row">
-    <label for="type">Tyyppi:</label>
-    <select name="type" id="type">
-      <option value="E-lasku">E-lasku</option>
-      <option value="Sähköpostilasku">Sähköpostilasku</option>
-      <option value="Paperilasku">Paperilasku</option>
     </select>
   </div>
 
   <footer class="subscription-footer">
     <div class="row">
       <label for="amount">Yhteensä</label>
-      <span class="flex amount">&euro; <input type="text" name="amount" id="amount" placeholder="100"></span>
+      <span class="flex amount">&euro; <input type="text" name="amount-subscription" id="amount-subscription" placeholder="100"></span>
     </div>
 
     <div class="row">
-      <label for="duedate">Eräpäivä</label>
-      <input type="text" name="duedate" id="duedate" class="due-date update-due-date" placeholder="{{ date('d.m.Y') }}">
+      <label for="duedate-subscription">Eräpäivä</label>
+      <input type="text" name="duedate-subscription" id="duedate-subscription" class="due-date-subscription" placeholder="{{ date('d.m.Y') }}">
     </div>
   </footer>
 
   <div class="row actions">
-    <input type="hidden" class="user-id-input" value="{{ Auth::id() }}">
     <button type="button" id="submit-subscription">Lisää</button>
     <button type="button" id="update-subscription" style="display: none;">Päivitä</button>
   </div>
