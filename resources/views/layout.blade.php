@@ -10,7 +10,11 @@
   <script src="/js/app.js"></script>
   <link rel="stylesheet" href="/css/app.css" />
 </head>
-<body>
+@if (Auth::check())
+  <body class="<?php echo strtolower( View::getSection( 'title' ) ); ?>">
+@else
+  <body class="login">
+@endif
   <div id="app">
     <div class="dashboard">
       @if (Auth::check())

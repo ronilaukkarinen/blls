@@ -1,5 +1,4 @@
 <?php
-
 return [
     'cancel' => 'Peruuta',
     'create' => 'Luo',
