@@ -228,9 +228,6 @@ $(document).ready(function() {
     var amount = $('.row-id-' + edit_id + ' .formatted-amount').text();
     var duedate = $('.row-id-' + edit_id + ' .row-duedate-original').text();
 
-    // Add current due date to form input
-    console.log(duedate);
-
     // Place bill in form
     $('#biller').val(biller);
     $('#billnumber').val(billnumber);
@@ -296,6 +293,11 @@ $(document).ready(function() {
 
         $edit_bill.replaceWith(response);
         duedate = formatDate(duedate);
+
+        // Reload page
+        setTimeout(function() {
+         location.reload();
+       }, 500);
       }
     });
   });
