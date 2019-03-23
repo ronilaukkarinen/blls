@@ -2,6 +2,9 @@
 
 @section('body')
     <div class="login-wrapper">
+      <?php echo file_get_contents( 'svg/general/graphics-1.svg' ); ?>
+      <?php echo file_get_contents( 'svg/general/graphics-3.svg' ); ?>
+
         <div class="box">
 
         <h1 class="logo"><?php echo file_get_contents( 'svg/dashboard/logo.svg' ); ?>blls</h1>

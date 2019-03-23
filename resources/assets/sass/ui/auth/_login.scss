@@ -5,6 +5,51 @@
   height: 100vh;
   overflow: hidden;
 
+  .graphics {
+    position: fixed;
+    width: 450px;
+    height: 450px;
+    transform: rotate(-20deg);
+    filter: saturate(50%);
+    opacity: .5;
+    z-index: 0;
+
+    @media (max-width: 1000px) {
+      width: 400px;
+      height: 400px;
+    }
+
+    @media (max-width: 860px) {
+      width: 350px;
+      height: 350px;
+    }
+
+    @media (max-width: 600px) {
+      width: 200px;
+      height: 200px;
+    }
+
+    &.graphics-1 {
+      bottom: -15%;
+      left: -15%;
+
+      @media (max-width: 600px) {
+        bottom: -15%;
+        left: -8%;
+      }
+    }
+
+    &.graphics-2 {
+      top: -12%;
+      right: -12%;
+
+      @media (max-width: 600px) {
+        top: -15%;
+        right: -8%;
+      }
+    }
+  }
+
   .logo {
     text-align: center;
     margin-top: 0;
@@ -73,6 +118,8 @@
     max-width: 30rem;
     min-width: 25rem;
     width: 100%;
+    position: relative;
+    z-index: 1, ;
   }
 
   h2 {
