@@ -22,13 +22,13 @@
                         <label class="screen-reader-text">{{ __('login.password') }}</label>
                         <input type="password" name="password" placeholder="{{ __('login.password') }}" />
                     </div>
-                    <div class="row row--separate" style="justify-content: space-between;">
+                    <div class="row row--separate">
                         <div class="row__column row__column--compact">
                             <button class="button">{{ __('login.login') }}</button>
                         </div>
-                        <div class="row__column row__column--compact row__column--middle" style="display: none;">
-                            <a href="/reset-password">{{ __('login.forgot_password_question') }}</a>
-                            <a href="/register">{{ __('login.new_user_question') }}</a>
+                        <hr>
+                        <div class="field links">
+                            <a href="/reset-password">{{ __('login.forgot_password_question') }}</a> {{ __('login.or_conjuction') }} <a href="/register">{{ __('login.new_user_question') }}</a>
                         </div>
                     </div>
                 </form>

@@ -4,6 +4,30 @@
   height: 100vh;
   overflow: hidden;
 
+  a {
+    text-decoration: none;
+    color: $color-blueish;
+    transition: all 175ms;
+
+    &:hover {
+      color: $color-lightblue;
+    }
+  }
+
+  hr {
+    border: none;
+    border-top: solid 1px #e4e8ed;
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+
+  .field.links {
+    font-weight: 400;
+    font-size: 14px;
+    color: #7e8f9f;
+    text-align: center;
+  }
+
   > div {
     display: flex;
     width: 100%;
@@ -29,6 +53,7 @@
 
   .box {
     max-width: 30rem;
+    min-width: 25rem;
     width: 100%;
   }
 
@@ -36,13 +61,13 @@
     line-height: 1.25;
     color: #1b1b1b;
     font-weight: 500;
-    font-size: 28px;
+    font-size: 2.8rem;
     text-align: center;
     margin-top: 0;
     margin-bottom: 10px;
 
     @media (max-width: $container-mobile) {
-      font-size: 2.2rem;
+      font-size: 2.4rem;
     }
   }
 
@@ -76,12 +101,15 @@
     text-align: center;
     text-decoration: none;
     border-radius: .30769231rem;
-    -ms-user-select: none;
     user-select: none;
     transition: opacity 175ms ease-in-out, background-color 175ms ease-in-out, color 175ms ease-in-out, box-shadow 175ms ease-in-out, background 175ms ease-in-out;
     will-change: '';
     -webkit-tap-highlight-color: transparent;
     width: 100%;
+
+    &:hover {
+      background-color: $color-lightblue;
+    }
   }
 
   input {
