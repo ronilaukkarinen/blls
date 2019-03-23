@@ -34,8 +34,8 @@ $(document).ready(function() {
   // Add new bill modal
   $(document).on('click', '.add-new-bill', function() {
     $('body').addClass('modal-opened');
-    var $div = $('.bill-modal-new').appendTo('body').hide().fadeIn('fast');
-    $('.bill-modal-new').addClass('show');
+    var $div = $('.modal-bill-new').appendTo('body').hide().fadeIn('fast');
+    $('.modal-bill-new').addClass('show');
     $('.bill-title').html('Uusi lasku');
   });
 
@@ -43,22 +43,22 @@ $(document).ready(function() {
   $('.bills-list').on('click', '.row-clickable', function() {
     row_id = $(this).attr('data-row-id');
     $('body').addClass('modal-opened');
-    var $div = $('.bill-modal-' + row_id).appendTo('body').hide().fadeIn('fast');
-    $('.bill-modal-' + row_id).addClass('show');
+    var $div = $('.modal-bill-' + row_id).appendTo('body').hide().fadeIn('fast');
+    $('.modal-bill-' + row_id).addClass('show');
   });
 
   // Close with esc
   $(document).keyup(function(e) {
     if (e.keyCode === 27) {
       $('body').removeClass('modal-opened');
-      $('.bill-modal, .modal').removeClass('show');
+      $('.modal-bill, .modal').removeClass('show');
     }
   });
 
   // Close with click outside
-  $(document).on('click', '.show .bill-modal-overlay', function() {
+  $(document).on('click', '.show .modal-overlay', function() {
     $('body').removeClass('modal-opened');
-    $('.bill-modal, .modal').removeClass('show');
+    $('.modal-bill, .modal').removeClass('show');
   });
 
   // Variables
@@ -114,7 +114,7 @@ $(document).ready(function() {
 
     // Close modals
     $('body').removeClass('modal-opened');
-    $('.bill-modal').removeClass('show');
+    $('.modal-bill').removeClass('show');
 
     var biller = $('#biller').val();
     var billnumber = $('#billnumber').val();
@@ -209,12 +209,12 @@ $(document).ready(function() {
 
     // Close modals
     $('body').removeClass('modal-opened');
-    $('.bill-modal').removeClass('show');
+    $('.modal-bill').removeClass('show');
 
     // Open add/edit modal
     $('body').addClass('modal-opened');
-    var $div = $('.bill-modal-new').appendTo('body').hide().fadeIn('fast');
-    $('.bill-modal-new').addClass('show');
+    var $div = $('.modal-bill-new').appendTo('body').hide().fadeIn('fast');
+    $('.modal-bill-new').addClass('show');
     $('.bill-title').html('Muokkaa laskua');
 
     // Grab the bill to be edited
@@ -256,7 +256,7 @@ $(document).ready(function() {
 
     // Close modals
     $('body').removeClass('modal-opened');
-    $('.bill-modal').removeClass('show');
+    $('.modal-bill').removeClass('show');
 
     $.ajax({
       url: 'editbill',
@@ -305,11 +305,11 @@ $(document).ready(function() {
   // Mark as paid action
   $(document).on('click', '.mark-as-paid', function() {
     var id = $(this).attr('data-id');
-    var amount_to_be_substracted = $('.bill-modal-' + id + ' .formatted-amount').attr('data-original-amount');
+    var amount_to_be_substracted = $('.modal-bill-' + id + ' .formatted-amount').attr('data-original-amount');
 
     // Close modals
     $('body').removeClass('modal-opened');
-    $('.bill-modal').removeClass('show');
+    $('.modal-bill').removeClass('show');
 
     // Update total
     var currenttotal_substraction = $('.total-amount').text();

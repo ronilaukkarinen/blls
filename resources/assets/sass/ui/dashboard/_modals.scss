@@ -1,0 +1,337 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(lighten($color-blueish, 20%), .3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: all .33s;
+  z-index: -99;
+
+  @media (max-width: 480px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  &.modal-bill-new .modal-header {
+    padding-bottom: 4rem;
+  }
+
+  .modal-overlay {
+    z-index: 90;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &.show {
+    opacity: 1;
+    z-index: 99;
+  }
+
+  .modal-content {
+    padding: 3rem;
+    width: 100%;
+    max-width: 40rem;
+    border-radius: .7rem;
+    box-shadow: 0 13px 28px -2px rgba(#000, .1);
+    background: #fff;
+    overflow: hidden;
+    position: relative;
+    z-index: 100;
+  }
+
+  h2 {
+    font-family: $font-alt;
+    margin: 0 0 1rem;
+    font-size: 2rem;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: $color-altblue;
+    opacity: .9;
+  }
+
+  .date {
+    font-family: $font-alt;
+    margin: 0;
+    font-size: 11px;
+    color: $color-grey;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    color: $color-grey;
+    padding-bottom: 8.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px dashed rgba($color-grey, .5);
+
+    .bill-number,
+    .bill-number::placeholder {
+      letter-spacing: 1px;
+      top: 1px;
+      position: relative;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    .bill-number::placeholder {
+      color: $color-grey;
+      opacity: 1;
+    }
+  }
+
+  .modal-footer {
+    display: flex;
+    justify-content: space-between;
+    color: $color-grey;
+    padding-top: 2rem;
+    margin-top: 2rem;
+    border-top: 1px dashed rgba($color-grey, .5);
+
+    #duedate::placeholder {
+      font-size: 1.9rem;
+      font-weight: 400;
+    }
+
+    .due-date {
+      margin-left: auto;
+      font-size: 1.9rem;
+      font-weight: 400;
+
+      input,
+      input::placeholder {
+        font-size: 1.9rem;
+        font-weight: 400;
+        margin-left: auto;
+        opacity: 1;
+      }
+    }
+
+    .amount {
+      font-family: $font-alt;
+      font-size: 2.2rem;
+      font-weight: 500;
+
+      input,
+      input::placeholder {
+        font-family: $font-alt;
+        font-size: 2.2rem;
+        font-weight: 500;
+        opacity: 1;
+      }
+    }
+  }
+
+  .row {
+    margin-bottom: 2rem;
+
+    button {
+      font-family: $font-alt;
+      font-size: 1.8rem;
+      font-weight: 400;
+      border: 1px solid transparent;
+      padding: 0;
+      margin: 0;
+      background: 0;
+      color: $color-sherpablue;
+    }
+
+    button:hover {
+      cursor: pointer;
+      border-bottom: 1px solid $color-sherpablue;
+    }
+
+    &.actions {
+      padding-top: 2rem;
+      margin-top: 0;
+      border-top: 1px dashed rgba($color-grey, .5);
+
+      .op-ebill {
+        font-weight: 500;
+        color: #ff6a10;
+        font-size: 14px;
+        text-decoration: none;
+        float: right;
+        display: flex;
+        align-items: center;
+
+        svg {
+          stroke: #ff6a10;
+          margin-right: 1rem;
+          position: relative;
+          top: -.5px;
+        }
+
+        &:hover {
+          color: darken(#ff6a10, 10%);
+        }
+
+        &:hover svg {
+          stroke: darken(#ff6a10, 10%);
+        }
+      }
+
+      svg {
+        margin-right: .5rem;
+        width: 20px;
+        height: 20px;
+        stroke: $color-sherpablue;
+
+        path {
+          stroke: $color-sherpablue;
+        }
+      }
+
+      .edit svg:hover {
+        cursor: pointer;
+        stroke: lighten($color-sherpablue, 40%);
+
+        path {
+          stroke: lighten($color-sherpablue, 40%);
+        }
+      }
+
+      .mark-as-paid svg:hover {
+        cursor: pointer;
+        stroke: $color-success;
+
+        path {
+          stroke: $color-success;
+        }
+      }
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    &.biller {
+      overflow: visible;
+
+      p {
+        height: 1.4em;
+        font-size: 2.2rem;
+        font-weight: 500;
+        overflow: visible;
+
+        @media (max-width: 480px) {
+          font-size: 1.8rem;
+        }
+      }
+    }
+
+    h3,
+    label {
+      font-family: $font-alt;
+      margin-top: 0;
+      font-size: 12px;
+      color: $color-grey;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 400;
+      margin-bottom: .3rem;
+    }
+
+    p {
+      margin: 0;
+      font-size: 14px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      max-width: 34rem;
+      white-space: nowrap;
+      position: relative;
+    }
+  }
+
+  form input,
+  form select {
+    border: 0;
+    background: transparent;
+    color: $color-body;
+    font-size: 14px;
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 34rem;
+
+    &:hover,
+    &:focus {
+      background: rgba($color-grey, .1);
+    }
+
+    &.biller-label {
+      font-size: 2.2rem;
+      font-weight: 500;
+
+      &::placeholder {
+        font-size: 2.2rem;
+        font-weight: 500;
+      }
+    }
+
+    &::placeholder {
+      opacity: 1;
+      color: $color-body;
+      font-size: 14px;
+    }
+  }
+
+  form {
+    .modal-footer span,
+    .modal-footer input,
+    .modal-footer input::placeholder {
+      font-family: $font-alt;
+      font-size: 2.2rem;
+      font-weight: 500;
+      opacity: 1;
+      color: $color-body;
+    }
+
+    .flex {
+      align-items: center;
+      color: $color-body;
+      display: flex;
+    }
+
+    .flex input {
+      margin-left: .6rem;
+    }
+
+    select {
+      position: relative;
+      background: transparent;
+      background-image: none;
+      outline: none;
+      cursor: pointer;
+      text-overflow: '';
+      text-indent: 0;
+      appearance: none;
+      padding-left: 0;
+      padding-right: 0;
+      color: darken($color-body, 20%);
+    }
+
+    .bill-number {
+      display: flex;
+      justify-content: flex-end;
+
+      input {
+        margin-bottom: auto;
+        max-width: 12rem;
+      }
+    }
+  }
+}

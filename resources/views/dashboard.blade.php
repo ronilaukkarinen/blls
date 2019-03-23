@@ -7,11 +7,11 @@
       <section class="dashboard-content">
 
         <div class="column-bills">
-          <h1>Tilanne</h1>
+          <h1>{{ __('dashboard.summary') }}</h1>
 
           <div class="items status">
             <div class="item-col month-current">
-              <h2 class="title-small">Laskuja maksettavana yhteensä</h2>
+              <h2 class="title-small">{{ __('dashboard.total') }}</h2>
               <p class="amount">&euro; <span class="sum total-amount formatted-amount">{{ str_replace( '.', ',', $balance ) }}</span></p>
             </div>
 
@@ -21,20 +21,20 @@
             </div> -->
           </div>
 
-          <h1>Maksamattomat laskut <span class="add-new add-new-bill"><?php echo file_get_contents( 'svg/dashboard/plus.svg' ); ?></span></h1>
+          <h1>{{ __('dashboard.unpaidbills') }} <span class="add-new add-new-bill"><?php echo file_get_contents( 'svg/dashboard/plus.svg' ); ?></span></h1>
 
-          <div class="bill-modal modal bill-modal-new">
-            <div class="bill-modal-overlay"></div>
-            <div class="bill-modal-content">
+          <div class="modal modal-bill modal-bill-new">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
 
               <form class="bills-form">
-              <header class="bill-header">
+              <header class="modal-header">
                 <div>
-                    <h2 class="bill-title">Uusi lasku</h2>
+                    <h2 class="bill-title">{{ __('dashboard.newbill') }}</h2>
                     <h3 class="date"><?php echo date( 'd/m/Y' ); ?></h3>
                 </div>
 
-                <span class="bill-number">#<label for="billnumber" class="screen-reader-text">Laskun numero:</label><input type="text" name="billnumber" id="billnumber" class="bill-number" placeholder="183411639682"></span>
+                <span class="bill-number">#<label for="billnumber" class="screen-reader-text">{{ __('dashboard.billnumber') }}</label><input type="text" name="billnumber" id="billnumber" class="bill-number" placeholder="183411639682"></span>
               </header>
 
               <div class="row biller">
@@ -71,7 +71,7 @@
                 </select>
               </div>
 
-              <footer class="bill-footer">
+              <footer class="modal-footer">
                 <div class="row">
                   <label for="amount">Yhteensä</label>
                   <span class="flex amount">&euro; <input type="text" name="amount" id="amount" placeholder="100"></span>
@@ -201,38 +201,48 @@
               ?>
             </div>
 
-<form class="subscriptions-form" style="display: none;">
-  <header class="subscription-header">
-    <div>
-      <h2 class="subscription-title">Uusi kuukausimaksu</h2>
-    </div>
-  </header>
 
-  <div class="row">
-    <label for="biller-subscription">Tuote</label>
-    <select name="biller-subscription" id="biller-subscription">
-      <option value="Spotify">Spotify</option>
-      <option value="Netflix">Netflix</option>
-    </select>
-  </div>
+            <div class="modal modal-subscriptions modal-new-subscription show">
 
-  <footer class="subscription-footer">
-    <div class="row">
-      <label for="amount">Yhteensä</label>
-      <span class="flex amount">&euro; <input type="text" name="amount-subscription" id="amount-subscription" placeholder="100"></span>
-    </div>
+              <div class="modal-overlay"></div>
+              <div class="modal-content">
 
-    <div class="row">
-      <label for="duedate-subscription">Eräpäivä</label>
-      <input type="text" name="duedate-subscription" id="duedate-subscription" class="due-date-subscription" placeholder="{{ date('d.m.Y') }}">
-    </div>
-  </footer>
+                <form class="subscriptions-form">
+                  <header class="subscription-header">
+                    <div>
+                      <h2 class="subscription-title">Uusi kuukausimaksu</h2>
+                    </div>
+                  </header>
 
-  <div class="row actions">
-    <button type="button" id="submit-subscription">Lisää</button>
-    <button type="button" id="update-subscription" style="display: none;">Päivitä</button>
-  </div>
-</form>
+                  <div class="row">
+                    <label for="biller-subscription">Tuote</label>
+                    <select name="biller-subscription" id="biller-subscription">
+                      <option value="Spotify">Spotify</option>
+                      <option value="Netflix">Netflix</option>
+                    </select>
+                  </div>
+
+                  <footer class="subscription-footer">
+                    <div class="row">
+                      <label for="amount">Yhteensä</label>
+                      <span class="flex amount">&euro; <input type="text" name="amount-subscription" id="amount-subscription" placeholder="100"></span>
+                    </div>
+
+                    <div class="row">
+                      <label for="duedate-subscription">Eräpäivä</label>
+                      <input type="text" name="duedate-subscription" id="duedate-subscription" class="due-date-subscription" placeholder="{{ date('d.m.Y') }}">
+                    </div>
+                  </footer>
+
+                  <div class="row actions">
+                    <button type="button" id="submit-subscription">Lisää</button>
+                    <button type="button" id="update-subscription" style="display: none;">Päivitä</button>
+                  </div>
+                </form>
+
+              </div>
+
+            </div>
 
 
 
@@ -259,10 +269,10 @@ $stylish_date = date( 'd/m/Y', $old_date_timestamp );
 if ( '0' == $bill->paid && $user_id == $bill->userid ) :
 ?>
 
-<div class="bill-modal modal bill-modal-<?php echo $bill->id; ?>">
-  <div class="bill-modal-overlay"></div>
-  <div class="bill-modal-content">
-    <header class="bill-header">
+<div class="modal modal-bill modal-bill-<?php echo $bill->id; ?>">
+  <div class="modal-overlay"></div>
+  <div class="modal-content">
+    <header class="modal-header">
       <div>
         <h2>Lasku</h2>
         <h3 class="date"><?php echo $stylish_date; ?></h3>
@@ -298,7 +308,7 @@ if ( '0' == $bill->paid && $user_id == $bill->userid ) :
       <p class="able-to-copy" data-copy-to-clipboard="<?php echo $bill->description; ?>"><?php echo $bill->description; ?></p>
     </div>
 
-    <footer class="bill-footer">
+    <footer class="modal-footer">
       <div class="row">
         <h3>Yhteensä</h3>
         <p class="amount">&euro; <span class="formatted-amount able-to-copy" data-original-amount="<?php echo $bill->amount; ?>" data-copy-to-clipboard="<?php echo $formatted_amount; ?>"><?php echo $formatted_amount; ?></span></p>
