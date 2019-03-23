@@ -48,9 +48,6 @@
                     <button class="button">Rekisteröidy</button>
                 </form>
             </div>
-            <div class="box__section box__section--highlight text-center">
-                <a href="/login">Onko sinulla jo käyttäjä?</a>
-            </div>
         </div>
     </div>
 @endsection
