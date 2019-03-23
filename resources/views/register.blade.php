@@ -6,6 +6,8 @@
     <div class="login-wrapper">
 
       <div class="box">
+
+        <h1 class="logo"><?php echo file_get_contents( 'svg/dashboard/logo.svg' ); ?>blls</h1>
         <h2 class="text-center mb-3">Sign up</h2>
         <p class="login-desc">Just fill your details here.</p>
 

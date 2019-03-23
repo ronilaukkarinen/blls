@@ -1,5 +1,4 @@
 <?php
-
 return [
     'login' => 'Login',
     'logintitle' => 'Welcome back',

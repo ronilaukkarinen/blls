@@ -5,6 +5,19 @@
   height: 100vh;
   overflow: hidden;
 
+  .logo {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 40px;
+    color: $color-blueish;
+
+    svg {
+      position: relative;
+      top: 4px;
+      fill: $color-blueish;
+    }
+  }
+
   .currency-selection {
     display: none;
   }
@@ -20,7 +33,7 @@
   }
 
   hr {
-    border: none;
+    border: 0;
     border-top: solid 1px #e4e8ed;
     margin-top: 15px;
     margin-bottom: 10px;
