@@ -10,6 +10,10 @@ $focus-background-color: #f9bf47;
 $focus-outline-color: #f9bf47;
 $focus-text-color: #000;
 
+input:focus {
+  outline: none;
+}
+
 // Text meant only for screen readers.
 .screen-reader-text {
   border: 0;

@@ -12,6 +12,11 @@
   transition: all .33s;
   z-index: -99;
 
+  &.modal-subscription .actions {
+    display: flex;
+    justify-content: space-between;
+  }
+
   @media (max-width: 480px) {
     padding-left: 1rem;
     padding-right: 1rem;

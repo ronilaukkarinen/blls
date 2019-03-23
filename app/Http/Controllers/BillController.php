@@ -67,6 +67,9 @@ class BillController extends Controller {
   // Edit bill
   public function editBill(Request $request) {
 
+    // Let's format the date
+    $date_to_db = date( 'Y-m-d H:i:s', strtotime( $request->duedate ) );
+
     // Define stuff that we will edit
     DB::table('bills')
     ->where('userid', Auth::user()->id)
@@ -81,7 +84,7 @@ class BillController extends Controller {
       'type' => $request->type,
       'description' => $request->description,
       'amount' => $request->amount,
-      'duedate' => $request->duedate,
+      'duedate' => $date_to_db,
       'userid' => Auth::user()->id,
     ]);
 

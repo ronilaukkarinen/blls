@@ -20,6 +20,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     // Subscriptions
     Route::post('/addsubscription', 'SubscriptionController@addSubscription');
+    Route::post('/editsubscription', 'SubscriptionController@editSubscription');
+    Route::post('/cancelsubscription', 'SubscriptionController@ecancelSubscription');
 
     // Recurrings
     Route::resource('/recurrings', 'RecurringController')->only([

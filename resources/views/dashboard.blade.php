@@ -177,20 +177,20 @@
                 if ( '1' == $sub->active && $user_id == $sub->userid ) :
                   ?>
 
-                  <div class="item item-<?php echo $biller; ?>" data-id="<?php echo $sub->id; ?>">
+                  <div class="item item-<?php echo $biller; ?> item-<?php echo $sub->id; ?><?php if ('1' === $sub->active) : ?> inactive<?php endif; ?>" data-id="<?php echo $sub->id; ?>">
                     <div class="logo">
                       <?php echo file_get_contents( "svg/subscriptions/{$biller}.svg" ); ?>
 
                       <div class="details">
-                        <span class="biller"><?php echo $sub->biller; ?></span><input type="text" name="subscription-biller-edit" value="<?php echo $sub->biller; ?>">
-                        <span class="type">Subscription</span><input type="text" name="subscription-plan-edit" value="Subscription">
+                        <span class="biller"><?php echo $sub->biller; ?></span>
+                        <span class="type"><?php echo $sub->plan; ?></span>
                       </div>
                     </div>
 
                     <div class="content">
                       <ul>
-                        <li class="amount">&euro; <span class="value"><?php echo $formatted_amount; ?></span><input type="text" name="subscription-amount-edit" value="<?php echo $formatted_amount; ?>"></li>
-                        <li class="subscription-due"><span class="value"><?php echo $stylish_date; ?></span><input type="text" name="subscription-date-edit" value="<?php echo $stylish_date; ?>"></li>
+                        <li class="amount">&euro; <span class="value"><?php echo $formatted_amount; ?></span></li>
+                        <li class="subscription-due"><span class="value" data-copy-to-clipboard="<?php echo $formatted_date; ?>"><?php echo $stylish_date; ?></span></li>
                       </ul>
                     </div>
                   </div>
@@ -201,16 +201,16 @@
               ?>
             </div>
 
-
-            <div class="modal modal-subscriptions modal-new-subscription show">
+            <div class="modal modal-subscription modal-subscription-new">
 
               <div class="modal-overlay"></div>
               <div class="modal-content">
 
                 <form class="subscriptions-form">
-                  <header class="subscription-header">
+                  <header class="modal-header">
                     <div>
                       <h2 class="subscription-title">Uusi kuukausimaksu</h2>
+                      <h3 class="date"><?php echo $stylish_date; ?></h3>
                     </div>
                   </header>
 
@@ -222,7 +222,12 @@
                     </select>
                   </div>
 
-                  <footer class="subscription-footer">
+                  <div class="row">
+                    <label for="plan-subscription">Tuotepaketin nimi tai muu selite</label>
+                    <input type="text" name="plan-subscription" id="plan-subscription" placeholder="Esim. Family">
+                  </div>
+
+                  <footer class="modal-footer">
                     <div class="row">
                       <label for="amount">Yhteensä</label>
                       <span class="flex amount">&euro; <input type="text" name="amount-subscription" id="amount-subscription" placeholder="100"></span>
@@ -244,7 +249,72 @@
 
             </div>
 
+            <?php
+            // Subscription modals
+            foreach ( $subscriptions as $subscription ) :
 
+              // Define formatted date
+              $formatted_amount = str_replace( '.', ',', $subscription->amount );
+              $old_date = $subscription->date;
+              $old_date_timestamp = strtotime( $old_date );
+              $local_date = strftime( "%e. %Bta %Y", $old_date_timestamp );
+              $stylish_date = date( 'd/m/Y', $old_date_timestamp );
+              $formatted_date = date( 'd.m.Y', $old_date_timestamp );
+
+              // Check if not paid and if owned by current user
+              if ( $user_id == $subscription->userid ) :
+                ?>
+
+              <div class="modal modal-subscription modal-subscription-<?php echo $subscription->id; ?>">
+
+              <div class="modal-overlay"></div>
+              <div class="modal-content">
+
+                <form class="subscriptions-form">
+                  <header class="modal-header">
+                    <div>
+                      <h2 class="subscription-title">Muokkaa kuukausimaksua</h2>
+                      <h3 class="date"><?php echo $stylish_date; ?></h3>
+                    </div>
+                  </header>
+
+                  <div class="row">
+                    <label for="biller-subscription">Tuote</label>
+                    <select name="biller-subscription" id="biller-subscription">
+                      <option value="<?php echo $subscription->biller; ?>"><?php echo $subscription->biller; ?></option>
+                    </select>
+                  </div>
+
+                  <div class="row">
+                    <label for="plan-subscription">Tuotepaketin nimi tai muu selite</label>
+                    <input type="text" name="plan-subscription" id="plan-subscription" placeholder="Esim. Family" value="<?php echo $subscription->plan; ?>">
+                  </div>
+
+                  <footer class="modal-footer">
+                    <div class="row">
+                      <label for="amount">Yhteensä</label>
+                      <span class="flex amount">&euro; <input type="text" name="amount-subscription" id="amount-subscription" placeholder="100" value="<?php echo $formatted_amount; ?>"></span>
+                    </div>
+
+                    <div class="row">
+                      <label for="duedate-subscription">Eräpäivä</label>
+                      <input type="text" name="duedate-subscription" id="duedate-subscription" class="due-date-subscription" placeholder="{{ date('d.m.Y') }}" value="<?php echo $formatted_date; ?>">
+                    </div>
+                  </footer>
+
+                  <div class="row actions">
+                    <button type="button" id="update-subscription" data-id="<?php echo $subscription->id; ?>">Päivitä</button>
+                    <button type="button" id="make-inactive" data-id="<?php echo $subscription->id; ?>">Poista käytöstä</button>
+                  </div>
+                </form>
+
+              </div>
+
+            </div>
+
+            <?php
+            endif;
+            endforeach; ?>
 
 
 

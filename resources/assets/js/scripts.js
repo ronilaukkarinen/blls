@@ -31,7 +31,7 @@ $(document).ready(function() {
       }, 2000);
   })
 
-  // Add new bill modal
+  // Open new bill modal from click
   $(document).on('click', '.add-new-bill', function() {
     $('body').addClass('modal-opened');
     var $div = $('.modal-bill-new').appendTo('body').hide().fadeIn('fast');
@@ -39,7 +39,7 @@ $(document).ready(function() {
     $('.bill-title').html('Uusi lasku');
   });
 
-  // Modal on clicks
+  // Open modal when clicking single items
   $('.bills-list').on('click', '.row-clickable', function() {
     row_id = $(this).attr('data-row-id');
     $('body').addClass('modal-opened');
@@ -167,7 +167,7 @@ $(document).ready(function() {
         // Reload page
         setTimeout(function() {
            location.reload();
-        }, 500);
+        }, 50);
       }
     });
   });
@@ -226,9 +226,9 @@ $(document).ready(function() {
     var type = $('.row-id-' + edit_id + ' .type_text').text();
     var description = $('.row-id-' + edit_id + ' .description_text').text();
     var amount = $('.row-id-' + edit_id + ' .formatted-amount').text();
-    var duedate = $('.row-id-' + edit_id + ' .row-duedate-original').text();
+    var duedate = $('.row-id-' + edit_id + ' .formatted-duedate').attr('data-copy-to-clipboard');
 
-    // Place bill in form
+    // Place bill details into the form
     $('#biller').val(biller);
     $('#billnumber').val(billnumber);
     $('#virtualcode').val(virtualcode);
@@ -292,12 +292,11 @@ $(document).ready(function() {
         $('#update-button').hide();
 
         $edit_bill.replaceWith(response);
-        duedate = formatDate(duedate);
 
         // Reload page
         setTimeout(function() {
          location.reload();
-       }, 500);
+       }, 50);
       }
     });
   });

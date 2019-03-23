@@ -20,15 +20,15 @@
                     {{ csrf_field() }}
                     <div class="input">
                         <label class="screen-reader-text">{{ __('login.email') }}</label>
-                        <input type="email" name="email" placeholder="{{ __('login.email') }}" value="{{ old('email') }}" />
+                        <input type="email" name="email" placeholder="{{ __('login.email') }}" value="{{ old('email') }}" aria-label="{{ __('login.email') }}" />
                     </div>
                     <div class="input">
                         <label class="screen-reader-text">{{ __('login.password') }}</label>
-                        <input type="password" name="password" placeholder="{{ __('login.password') }}" />
+                        <input type="password" name="password" placeholder="{{ __('login.password') }}" aria-label="Password" />
                     </div>
                     <div class="row row--separate">
                         <div class="row__column row__column--compact">
-                            <button class="button">{{ __('login.login') }}</button>
+                            <button class="button" aria-label="{{ __('login.login') }}">{{ __('login.login') }}</button>
                         </div>
                         <hr>
                         <div class="field links">
