@@ -3,34 +3,37 @@
 @section('title', 'Register')
 
 @section('body')
-    <div class="wrapper wrapper--narrow my-3">
-        <h2 class="text-center mb-3">Register</h2>
-        <div class="box">
+    <div class="login-wrapper">
+
+      <div class="box">
+        <h2 class="text-center mb-3">Sign up</h2>
+        <p class="login-desc">Just fill your details here.</p>
+
             <div class="box__section">
                 <form method="POST">
                     {{ csrf_field() }}
                     <div class="input">
-                        <label>Nimi</label>
-                        <input type="text" name="name" value="{{ old('name') }}" />
+                        <label class="screen-reader-text">Name</label>
+                        <input type="text" name="name" value="{{ old('name') }}" placeholder="Name" />
                         @include('partials.validation_error', ['payload' => 'name'])
                     </div>
                     <div class="input">
-                        <label>Sähköposti</label>
-                        <input type="email" name="email" value="{{ old('email') }}" />
+                        <label class="screen-reader-text">E-mail</label>
+                        <input type="email" name="email" value="{{ old('email') }}" placeholder="E-mail" />
                         @include('partials.validation_error', ['payload' => 'email'])
                     </div>
                     <div class="input">
-                        <label>Salasana</label>
-                        <input type="password" name="password" />
+                        <label class="screen-reader-text">Password</label>
+                        <input type="password" name="password" placeholder="Password" />
                         @include('partials.validation_error', ['payload' => 'password'])
                     </div>
                     <div class="input">
-                        <label>Vahvista salasana</label>
-                        <input type="password" name="password_confirmation" />
+                        <label class="screen-reader-text">Verify password</label>
+                        <input type="password" name="password_confirmation" placeholder="Verify password" />
                         @include('partials.validation_error', ['payload' => 'password_confirmation'])
                     </div>
-                    <div class="input">
-                        <label>Valuuttayksikkö</label>
+                    <div class="input currency-selection">
+                        <label>Currency</label>
                         <select name="currency">
                             @foreach ($currencies as $currency)
                                 <option value="{{ $currency->id }}" {{ old('currency') == $currency->id ? 'selected' : '' }}>{!! $currency->symbol !!} &middot; {{ $currency->name }}</option>
@@ -38,14 +41,12 @@
                         </select>
                         @include('partials.validation_error', ['payload' => 'currency'])
                     </div>
+                    <button class="button">Sign up</button>
 
-                    <div class="input">
-                      <label>E-laskupalvelun tarjoaja</label>
-                      <select name="ebillprovider" id="ebillprovider">
-                        <option value="Osuuspankki">Osuuspankki</option>
-                      </select>
+                    <hr>
+                    <div class="field links">
+                      <a href="/login">{{ __('login.back_to_login') }}</a> {{ __('login.or_conjuction') }} <a href="/register">{{ __('login.new_user_question') }}</a>
                     </div>
-                    <button class="button">Rekisteröidy</button>
                 </form>
             </div>
         </div>

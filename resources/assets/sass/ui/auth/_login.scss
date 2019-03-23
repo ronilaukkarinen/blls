@@ -5,6 +5,10 @@
   height: 100vh;
   overflow: hidden;
 
+  .currency-selection {
+    display: none;
+  }
+
   a {
     text-decoration: none;
     color: $color-blueish;
