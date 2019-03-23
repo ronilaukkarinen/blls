@@ -1,3 +1,15 @@
+.message svg {
+  fill: #fff;
+  margin-right: 1rem;
+  font-weight: 500;
+}
+
+.message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .login,
 .reset-password {
   display: flex;
