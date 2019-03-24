@@ -169,7 +169,14 @@
               foreach ( $subscriptions as $sub) :
 
                 // Variables
-                $old_date = $sub->date;
+                // If day has passed, let's get next month
+                if ( date( 'd' ) > $sub->day ) :
+                  $relative_month = date( 'm', strtotime('+1 month') );
+                else :
+                  $relative_month = date( 'm' );
+                endif;
+
+                $old_date = date( 'Y-' ) . $relative_month . '-' . str_pad($sub->day, 2, '0', STR_PAD_LEFT) . ' ' . date( 'H:i:s' );
                 $old_date_timestamp = strtotime( $old_date );
                 $formatted_date = date( 'd.m.Y', $old_date_timestamp );
                 $stylish_date = date( 'd/m/Y', $old_date_timestamp );
@@ -195,7 +202,7 @@
                     <div class="content">
                       <ul>
                         <li class="amount">&euro; <span class="value"><?php echo $formatted_amount; ?></span></li>
-                        <li class="subscription-due"><span class="value" data-copy-to-clipboard="<?php echo $formatted_date; ?>"><?php echo $stylish_date; ?></span></li>
+                        <li class="subscription-due"><span class="value formatted-duedate" data-copy-to-clipboard="<?php echo $formatted_date; ?>"><?php echo $old_date; ?></span></li>
                       </ul>
                     </div>
                   </div>
@@ -248,8 +255,8 @@
                     </div>
 
                     <div class="row">
-                      <label for="subscription_date">{{ __('dashboard.duedate') }}</label>
-                      <input type="text" name="subscription_date" id="subscription_date" class="due-date-subscription" placeholder="{{ date('d.m.Y') }}">
+                      <label for="subscription_month_day">{{ __('dashboard.subscription_month_day') }}</label>
+                      <input type="text" name="subscription_month_day" id="subscription_month_day" class="due-date-subscription" placeholder="{{ date('d.m.Y') }}">
                     </div>
                   </footer>
 
@@ -267,11 +274,18 @@
             // Subscription modals
             foreach ( $subscriptions as $subscription ) :
 
-              // Define formatted date
-              $formatted_amount = str_replace( '.', ',', $subscription->amount );
-              $old_date = $subscription->date;
+              // Variables
+              // If day has passed, let's get next month
+              if ( date( 'd' ) > $subscription->day ) :
+                $relative_month = date( 'm', strtotime('+1 month') );
+              else :
+                $relative_month = date( 'm' );
+              endif;
+
+              $old_date = date( 'Y-' ) . $relative_month . '-' . str_pad($subscription->day, 2, '0', STR_PAD_LEFT) . ' ' . date( 'H:i:s' );
               $old_date_timestamp = strtotime( $old_date );
               $local_date = strftime( "%e. %Bta %Y", $old_date_timestamp );
+              $formatted_amount = str_replace( '.', ',', $subscription->amount );
               $stylish_date = date( 'd/m/Y', $old_date_timestamp );
               $formatted_date = date( 'd.m.Y', $old_date_timestamp );
 
@@ -311,8 +325,8 @@
                     </div>
 
                     <div class="row">
-                      <label for="subscription_date">{{ __('dashboard.duedate') }}</label>
-                      <input type="text" name="subscription_date" id="subscription_date" class="subscription_date" placeholder="{{ date('d.m.Y') }}" value="<?php echo $formatted_date; ?>">
+                      <label for="subscription_month_day">{{ __('dashboard.subscription_month_day') }}</label>
+                      <input type="text" name="subscription_month_day" id="subscription_month_day" class="subscription_month_day" placeholder="{{ date('d.m.Y') }}" value="<?php echo $formatted_date; ?>">
                     </div>
                   </footer>
 

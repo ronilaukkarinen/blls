@@ -30,5 +30,7 @@ return [
     'editsubscription' => 'Muokkaa kuukausimaksua',
     'subscription_description_placeholder' => 'Esim. Family',
     'makeinactive' => 'Poista käytöstä',
+    'makeactive' => 'Ota käyttöön',
     'op_ebill' => 'Maksa OP E-lasku',
+    'subscription_month_day' => 'Maksupäivä',
 ];

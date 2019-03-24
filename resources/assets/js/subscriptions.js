@@ -20,7 +20,7 @@ $(document).ready(function() {
     var edit_id = $(this).attr('data-id');
     var subscription_biller = $('.modal-subscription-' + edit_id + ' #subscription_biller').val();
     var subscription_amount = $('.modal-subscription-' + edit_id + ' #subscription_amount').val();
-    var subscription_date = $('.modal-subscription-' + edit_id + ' #subscription_date').val();
+    var subscription_month_day = $('.modal-subscription-' + edit_id + ' #subscription_month_day').val();
     var subscription_plan = $('.modal-subscription-' + edit_id + ' #subscription_plan').val();
 
     // Close other possible modals
@@ -39,16 +39,16 @@ $(document).ready(function() {
         'id': edit_id,
         'subscription_biller': subscription_biller,
         'subscription_amount': subscription_amount,
-        'subscription_date': subscription_date,
+        'subscription_month_day': subscription_month_day,
         'subscription_plan': subscription_plan
       },
       success: function(response) {
         $('.item-' + edit_id).replaceWith(response);
 
         // Reload page
-        setTimeout(function() {
-         location.reload();
-       }, 50);
+       //  setTimeout(function() {
+       //   location.reload();
+       // }, 50);
       }
     });
   });
@@ -58,7 +58,7 @@ $(document).ready(function() {
     var edit_id = $(this).attr('data-id');
     var subscription_biller = $('.modal-subscription-' + edit_id + ' #subscription_biller').val();
     var subscription_amount = $('.modal-subscription-' + edit_id + ' #subscription_amount').val();
-    var subscription_date = $('.modal-subscription-' + edit_id + ' #subscription_date').val();
+    var subscription_month_day = $('.modal-subscription-' + edit_id + ' #subscription_month_day').val();
     var subscription_plan = $('.modal-subscription-' + edit_id + ' #subscription_plan').val();
 
     // Close other possible modals
@@ -78,7 +78,7 @@ $(document).ready(function() {
         'subscription_active': 0,
         'subscription_biller': subscription_biller,
         'subscription_amount': subscription_amount,
-        'subscription_date': subscription_date,
+        'subscription_month_day': subscription_month_day,
         'subscription_plan': subscription_plan
       },
       success: function(response) {
@@ -97,7 +97,7 @@ $(document).ready(function() {
     var edit_id = $(this).attr('data-id');
     var subscription_biller = $('.modal-subscription-' + edit_id + ' #subscription_biller').val();
     var subscription_amount = $('.modal-subscription-' + edit_id + ' #subscription_amount').val();
-    var subscription_date = $('.modal-subscription-' + edit_id + ' #subscription_date').val();
+    var subscription_month_day = $('.modal-subscription-' + edit_id + ' #subscription_month_day').val();
     var subscription_plan = $('.modal-subscription-' + edit_id + ' #subscription_plan').val();
 
     // Close other possible modals
@@ -117,7 +117,7 @@ $(document).ready(function() {
         'subscription_active': 1,
         'subscription_biller': subscription_biller,
         'subscription_amount': subscription_amount,
-        'subscription_date': subscription_date,
+        'subscription_month_day': subscription_month_day,
         'subscription_plan': subscription_plan
       },
       success: function(response) {
@@ -140,7 +140,7 @@ $(document).ready(function() {
 
     var subscription_biller = $('.modal-subscription-new #subscription_biller').val();
     var subscription_amount = $('.modal-subscription-new #subscription_amount').val();
-    var subscription_date = $('.modal-subscription-new #subscription_date').val();
+    var subscription_month_day = $('.modal-subscription-new #subscription_month_day').val();
     var subscription_plan = $('.modal-subscription-new #subscription_plan').val();
 
     $.ajax({
@@ -154,7 +154,7 @@ $(document).ready(function() {
         'save': 1,
         'subscription_biller': subscription_biller,
         'subscription_amount': subscription_amount,
-        'subscription_date': subscription_date,
+        'subscription_month_day': subscription_month_day,
         'subscription_plan': subscription_plan
       },
       success: function(response) {

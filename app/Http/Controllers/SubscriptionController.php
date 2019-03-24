@@ -15,15 +15,28 @@ class SubscriptionController extends Controller {
   // Add subscription
   public function addSubscription(Request $request) {
 
-    // Let's format the date
-    $date_to_db = date( 'Y-m-d H:i:s', strtotime( $request->subscription_date ) );
+    // Get day from inserted date
+    $date_inserted = new \DateTime($request->subscription_month_day);
+    $timestamp = $date_inserted->format('Y-m-d') . ' 00:00:00';
+    $timestamp_day = $date_inserted->format('d');
+    $timestamp_month = $date_inserted->format('m');
+
+    // If day has passed, let's get next month
+    if ( date( 'd' ) > $timestamp_day && $timestamp_month == date( 'm' ) ) :
+      $relative_month = date( 'm', strtotime('+1 month') );
+    else :
+      $relative_month = $timestamp_month;
+    endif;
+
+    $timestamp = date( 'Y-' ) . $relative_month . '-' . str_pad($request->subscription_month_day, 2, '0', STR_PAD_LEFT) . ' ' . date( 'H:i:s' );
 
     // Define stuff that we will add to the database
     DB::table('subscriptions')
     ->insert([
       'biller' => $request->subscription_biller,
       'amount' => $request->subscription_amount,
-      'date' => $date_to_db,
+      'day' => $timestamp_day,
+      'date' => $timestamp,
       'plan' => $request->subscription_plan,
       'created' => date('Y-m-d H:i:s'),
       'active' => 1,
@@ -31,8 +44,7 @@ class SubscriptionController extends Controller {
     ]);
 
     /// Variables
-    $old_date = $request->subscription_date;
-    $old_date_timestamp = strtotime( $old_date );
+    $old_date_timestamp = strtotime( $timestamp );
     $formatted_date = date( 'd.m.Y', $old_date_timestamp );
     $stylish_date = date( 'd/m/Y', $old_date_timestamp );
     setlocale( LC_TIME, "fi_FI" );
@@ -62,8 +74,21 @@ class SubscriptionController extends Controller {
   // Edit Subscription
   public function editSubscription(Request $request) {
 
-    // Let's format the date
-    $date_to_db = date( 'Y-m-d H:i:s', strtotime( $request->subscription_date ) );
+    // Get day from inserted date
+    $date_inserted = new \DateTime($request->subscription_month_day);
+    $timestamp = $date_inserted->format('Y-m-d') . ' 00:00:00';
+    $timestamp_day = $date_inserted->format('d');
+    $timestamp_month = $date_inserted->format('m');
+
+    // If day has passed, let's get next month
+    if ( date( 'd' ) > $timestamp_day && $timestamp_month == date( 'm' ) ) :
+      $relative_month = date( 'm', strtotime('+1 month') );
+    else :
+      $relative_month = $timestamp_month;
+    endif;
+
+    $timestamp = $date_inserted->format('Y-' . $relative_month . '-d') . ' 00:00:00';
+    echo $timestamp;
 
     // Define stuff that we will edit
     DB::table('subscriptions')
@@ -72,14 +97,14 @@ class SubscriptionController extends Controller {
     ->update([
       'biller' => $request->subscription_biller,
       'amount' => $request->subscription_amount,
-      'date' => $date_to_db,
+      'day' => $timestamp_day,
+      'date' => $timestamp,
       'plan' => $request->subscription_plan,
       'userid' => Auth::id(),
     ]);
 
     /// Variables
-    $old_date = $request->subscription_date;
-    $old_date_timestamp = strtotime( $old_date );
+    $old_date_timestamp = strtotime( $timestamp );
     $formatted_date = date( 'd.m.Y', $old_date_timestamp );
     $stylish_date = date( 'd/m/Y', $old_date_timestamp );
     setlocale( LC_TIME, "fi_FI" );
@@ -109,8 +134,20 @@ class SubscriptionController extends Controller {
   // Cancel Subscription
   public function handleSubscription(Request $request) {
 
-    // Let's format the date
-    $date_to_db = date( 'Y-m-d H:i:s', strtotime( $request->subscription_date ) );
+    // Get day from inserted date
+    $date_inserted = new \DateTime($request->subscription_month_day);
+    $timestamp = $date_inserted->format('Y-m-d') . ' 00:00:00';
+    $timestamp_day = $date_inserted->format('d');
+    $timestamp_month = $date_inserted->format('m');
+
+    // If day has passed, let's get next month
+    if ( date( 'd' ) > $timestamp_day && $timestamp_month == date( 'm' ) ) :
+      $relative_month = date( 'm', strtotime('+1 month') );
+    else :
+      $relative_month = $timestamp_month;
+    endif;
+
+    $timestamp = date( 'Y-' ) . $relative_month . '-' . str_pad($request->subscription_month_day, 2, '0', STR_PAD_LEFT) . ' ' . date( 'H:i:s' );
 
     // Define stuff that we will edit
     DB::table('subscriptions')
@@ -119,15 +156,15 @@ class SubscriptionController extends Controller {
     ->update([
       'biller' => $request->subscription_biller,
       'amount' => $request->subscription_amount,
-      'date' => $date_to_db,
+      'day' => $timestamp_day,
+      'date' => $timestamp,
       'plan' => $request->subscription_plan,
       'userid' => Auth::id(),
       'active' => $request->subscription_active,
     ]);
 
     /// Variables
-    $old_date = $request->subscription_date;
-    $old_date_timestamp = strtotime( $old_date );
+    $old_date_timestamp = strtotime( $timestamp );
     $formatted_date = date( 'd.m.Y', $old_date_timestamp );
     $stylish_date = date( 'd/m/Y', $old_date_timestamp );
     setlocale( LC_TIME, "fi_FI" );
