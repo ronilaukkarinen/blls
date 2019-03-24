@@ -9,10 +9,11 @@
 
         <h1 class="logo"><?php echo file_get_contents( 'svg/dashboard/logo.svg' ); ?>blls</h1>
         <h2 class="text-center mb-3">Sign up</h2>
-        <p class="login-desc">Just fill your details here.</p>
+        <p class="login-desc"><?php if ( 'local' == App::environment() ) : ?>Just fill your details here.<?php else : ?>Not there yet. Hang tight!<?php endif; ?></p>
 
             <div class="box__section">
                 <form method="POST">
+                    <?php if ( 'local' == App::environment() ) : ?>
                     {{ csrf_field() }}
                     <div class="input">
                         <label class="screen-reader-text">Name</label>
@@ -44,10 +45,11 @@
                         @include('partials.validation_error', ['payload' => 'currency'])
                     </div>
                     <button class="button">Sign up</button>
+                    <?php endif; ?>
 
                     <hr>
                     <div class="field links">
-                      <a href="/login">{{ __('login.back_to_login') }}</a> {{ __('login.or_conjuction') }} <a href="/register">{{ __('login.new_user_question') }}</a>
+                      <a href="/reset-password">{{ __('login.forgot_password_question') }}</a> {{ __('login.or_conjuction') }} <a href="/login">{{ __('login.wantlogin') }}</a>
                     </div>
                 </form>
             </div>
