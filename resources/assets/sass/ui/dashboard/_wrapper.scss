@@ -1,6 +1,7 @@
 #app {
   display: flex;
   overflow: hidden;
+  width: 100%;
 
   > div {
     width: 100%;
@@ -21,7 +22,8 @@ body {
     width: 100%;
   }
 
-  h1 {
+  h1,
+  .title-larger {
     font-size: 2rem;
   }
 }

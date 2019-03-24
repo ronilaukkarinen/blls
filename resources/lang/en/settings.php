@@ -1,5 +1,6 @@
 <?php
 return [
+    'settings' => 'Settings',
     'name' => 'Name',
     'avatar' => 'Avatar',
     'email' => 'E-mail',

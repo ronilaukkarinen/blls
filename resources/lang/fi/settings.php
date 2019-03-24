@@ -1,5 +1,6 @@
 <?php
 return [
+    'Settings' => 'Asetukset',
     'name' => 'Nimi',
     'avatar' => 'Profiilikuva',
     'email' => 'Sähköposti',

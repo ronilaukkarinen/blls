@@ -8,7 +8,7 @@
     <div class="box">
         <div class="box__section">
             <div class="input input--small">
-                <label>{{ __('fields.language') }}</label>
+                <label>{{ __('settings.language') }}</label>
                 <select name="language">
                     @foreach ($languages as $key => $value)
                         <option value="{{ $key }}" @if (Auth::user()->language === $key) selected @endif>{{ $value }}</option>
@@ -17,7 +17,7 @@
                 @include('partials.validation_error', ['payload' => 'language'])
             </div>
             <div class="input input--small">
-                <label>{{ __('fields.currency') }}</label>
+                <label>{{ __('settings.currency') }}</label>
                 <select name="currency">
                     @foreach ($currencies as $currency)
                         <option value="{{ $currency->id }}" {{ Auth::user()->currency_id == $currency->id ? 'selected' : '' }}>{!! $currency->symbol !!} &middot; {{ $currency->name }}</option>

@@ -10,7 +10,6 @@
 @import 'ui/general/colors';
 @import 'ui/general/tables';
 @import 'ui/general/tooltips';
-@import 'ui/auth/login';
 
 // UI
 @import 'ui/dashboard/wrapper';
@@ -19,3 +18,5 @@
 @import 'ui/dashboard/bills';
 @import 'ui/dashboard/subscriptions';
 @import 'ui/dashboard/modals';
+@import 'ui/dashboard/settings';
+@import 'ui/auth/login';
