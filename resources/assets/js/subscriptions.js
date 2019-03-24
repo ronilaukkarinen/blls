@@ -46,9 +46,9 @@ $(document).ready(function() {
         $('.item-' + edit_id).replaceWith(response);
 
         // Reload page
-       //  setTimeout(function() {
-       //   location.reload();
-       // }, 50);
+        setTimeout(function() {
+         location.reload();
+       }, 50);
       }
     });
   });
@@ -124,9 +124,9 @@ $(document).ready(function() {
         $('.item-' + edit_id).replaceWith(response);
 
         // Reload page
-       //  setTimeout(function() {
-       //   location.reload();
-       // }, 50);
+        setTimeout(function() {
+         location.reload();
+       }, 50);
       }
     });
   });

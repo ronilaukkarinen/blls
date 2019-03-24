@@ -219,12 +219,21 @@
                     <select name="subscription_biller" id="subscription_biller">
                       <option value="Spotify">Spotify</option>
                       <option value="Netflix">Netflix</option>
+                      <option value="BookBeat">BookBeat</option>
+                      <option value="PlayStation">PlayStation™ Network</option>
+                      <option value="Plex">Plex</option>
+                      <option value="PayPal">PayPal</option>
+                      <option value="Toshl">Toshl Finance</option>
+                      <option value="Trakt">Trakt</option>
+                      <option value="Patreon">Patreon</option>
+                      <option value="Untappd">Untappd</option>
+                      <option value="IRCCloud">IRCCloud</option>
                     </select>
                   </div>
 
                   <div class="row">
                     <label for="subscription_plan">Tuotepaketin nimi tai muu selite</label>
-                    <input type="text" name="subscription_plan" id="subscription_plan" placeholder="Esim. Family">
+                    <input type="text" name="subscription_plan" id="subscription_plan" placeholder="Esim. Family" value="Subscription">
                   </div>
 
                   <footer class="modal-footer">

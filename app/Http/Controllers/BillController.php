@@ -26,6 +26,7 @@ class BillController extends Controller {
     ->get();
 
     $subscriptions = DB::table('subscriptions')
+    ->orderBy('active', 'desc')
     ->orderBy('date', 'asc')
     ->where('userid', Auth::user()->id)
     ->get();
