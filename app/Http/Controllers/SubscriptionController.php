@@ -28,7 +28,7 @@ class SubscriptionController extends Controller {
       $relative_month = $timestamp_month;
     endif;
 
-    $timestamp = date( 'Y-' ) . $relative_month . '-' . str_pad($request->subscription_month_day, 2, '0', STR_PAD_LEFT) . ' ' . date( 'H:i:s' );
+    $timestamp = $date_inserted->format('Y-' . $relative_month . '-d') . ' 00:00:00';
 
     // Define stuff that we will add to the database
     DB::table('subscriptions')
@@ -88,7 +88,6 @@ class SubscriptionController extends Controller {
     endif;
 
     $timestamp = $date_inserted->format('Y-' . $relative_month . '-d') . ' 00:00:00';
-    echo $timestamp;
 
     // Define stuff that we will edit
     DB::table('subscriptions')
@@ -147,7 +146,7 @@ class SubscriptionController extends Controller {
       $relative_month = $timestamp_month;
     endif;
 
-    $timestamp = date( 'Y-' ) . $relative_month . '-' . str_pad($request->subscription_month_day, 2, '0', STR_PAD_LEFT) . ' ' . date( 'H:i:s' );
+    $timestamp = $date_inserted->format('Y-' . $relative_month . '-d') . ' 00:00:00';
 
     // Define stuff that we will edit
     DB::table('subscriptions')
