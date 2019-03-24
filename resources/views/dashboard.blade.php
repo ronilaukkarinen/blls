@@ -12,17 +12,17 @@
           <div class="items status">
             <div class="item-col month-current">
               <h2 class="title-small">{{ __('dashboard.total') }}</h2>
-              <p class="amount">&euro; <span class="sum total-amount formatted-amount">{{ str_replace( '.', ',', $balance ) }}</span></p>
+              <p class="amount">&euro; <span class="sum total-amount formatted-amount-high">{{ str_replace( '.', ',', $balance ) }}</span></p>
             </div>
 
             <div class="item-col month-next">
               <h2 class="title-small">Kuukausimaksut</h2>
-              <p class="amount color-high">&euro; <span class="sum total-amount formatted-amount">{{ str_replace( '.', ',', $balance_subscriptions ) }}</span></p>
+              <p class="amount">&euro; <span class="sum total-amount formatted-amount-high">{{ str_replace( '.', ',', $balance_subscriptions ) }}</span></p>
             </div>
 
             <div class="item-col month-next">
               <h2 class="title-small">Kaikki</h2>
-              <p class="amount color-high">&euro; <span class="sum total-amount formatted-amount">{{ str_replace( '.', ',', $balance_subscriptions + $balance ) }}</span></p>
+              <p class="amount">&euro; <span class="sum total-amount formatted-amount-high">{{ str_replace( '.', ',', $balance_subscriptions + $balance ) }}</span></p>
             </div>
           </div>
 

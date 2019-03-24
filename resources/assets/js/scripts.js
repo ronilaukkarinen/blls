@@ -64,6 +64,7 @@ $(document).ready(function() {
   // Variables
   var duedates = $('.formatted-duedate');
   var amounts = $('.formatted-amount');
+  var amounts_high = $('.formatted-amount-high');
 
   // Functions
   function formatDate(date) {
@@ -102,12 +103,34 @@ $(document).ready(function() {
     });
   };
 
+  function colorAmountsHigh(amount) {
+    amount.each(function() {
+      var formattedAmount = parseInt($(this).text());
+
+      if ((formattedAmount >= '0') && (formattedAmount <= '50')) {
+        $(this).addClass('color-low');
+        $(this).closest('.amount').addClass('color-low');
+      }
+
+      else if ((formattedAmount >= '50') && (formattedAmount <= '70')) {
+        $(this).addClass('color-medium');
+        $(this).closest('.amount').addClass('color-medium');
+      }
+
+      else if ((formattedAmount >= '70')) {
+        $(this).addClass('color-high');
+        $(this).closest('.amount').addClass('color-high');
+      }
+    });
+  };
+
   // Set moment.js to Finnish language
   moment.locale('fi');
 
   // Run functions
   formatDate(duedates);
   colorAmounts(amounts);
+  colorAmountsHigh(amounts_high);
 
   // Save bill to database
   $(document).on('click', '#submit-button', function() {
