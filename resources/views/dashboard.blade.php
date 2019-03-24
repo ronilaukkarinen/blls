@@ -394,7 +394,7 @@ endif;
                     endif;
                   ?>
                   <div class="progress<?php echo $percent_class; ?>" style="width: <?php echo $percent; ?>%;">
-                    <p><?php echo $paymentplan->months_paid; ?> paid of total <?php echo $paymentplan->months_total; ?> rounds. (<?php echo $percent; ?>%)</p>
+                    <p><?php echo $paymentplan->months_paid; ?> {{ __('dashboard.paidoftotal') }} <?php echo $paymentplan->months_total; ?> {{ __('dashboard.rounds') }}. (<?php echo $percent; ?>%)</p>
                   </div>
                 </div>
               </div>
@@ -407,6 +407,45 @@ endif;
       </section>
 
     </div>
+
+    <div class="modal modal-paymentplan modal-paymentplan-new">
+
+      <div class="modal-overlay"></div>
+      <div class="modal-content">
+
+        <form class="subscriptions-form">
+          <header class="modal-header">
+            <div>
+              <h2 class="paymentplan-title">{{ __('dashboard.newpaymentplan') }}</h2>
+              <h3 class="date"><?php echo date( 'd/m/Y' ); ?></h3>
+            </div>
+          </header>
+
+          <div class="row">
+            <label for="paymentplan-name">{{ __('dashboard.paymentplanname') }}</label>
+            <input type="text" name="paymentplan-name" id="paymentplan-name" placeholder="{{ __('dashboard.paymentplanname') }}">
+          </div>
+
+          <footer class="modal-footer">
+            <div class="row">
+              <label for="amount">{{ __('dashboard.paymentplan_monthspaid') }}</label>
+              <span class="flex amount"><input type="text" name="paymentplan-months-paid" id="paymentplan-months-paid" placeholder="0"></span>
+            </div>
+
+            <div class="row">
+              <label for="amount">{{ __('dashboard.paymentplan_monthstotal') }}</label>
+              <span class="flex amount"><input type="text" name="paymentplan-months-total" id="paymentplan-months-total" placeholder="12"></span>
+            </div>
+          </footer>
+
+          <div class="row actions">
+            <button type="button" id="submit-paymentplan">{{ __('dashboard.submit') }}</button>
+            <button type="button" id="update-paymentplan" style="display: none;">{{ __('dashboard.update') }}</button>
+          </div>
+        </form>
+
+      </div>
+
 
 <?php
 // Bill modals

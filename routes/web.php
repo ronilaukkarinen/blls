@@ -24,6 +24,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/editsubscription', 'SubscriptionController@editSubscription');
     Route::post('/handlesubscription', 'SubscriptionController@handleSubscription');
 
+    // Payment plans
+    Route::post('/addpaymentplan', 'PaymentplanController@addPaymentplan');
+
+    // Settings
     Route::name('settings.')->group(function () {
         Route::get('/settings', 'SettingsController@getIndex')->name('index');
         Route::post('/settings', 'SettingsController@postIndex');

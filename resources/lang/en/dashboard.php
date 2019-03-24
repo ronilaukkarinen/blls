@@ -35,4 +35,10 @@ return [
     'subscription_month_day' => 'Day of the month',
     'remove' => 'Remove',
     'paymentplans' => 'Payment plans',
+    'newpaymentplan' => 'New payment plan',
+    'paymentplanname' => 'Payment plan name',
+    'paymentplan_monthspaid' => 'Months paid',
+    'paymentplan_monthstotal' => 'Months total',
+    'paidoftotal' => 'paid of total',
+    'rounds' => 'rounds',
 ];

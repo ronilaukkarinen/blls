@@ -35,4 +35,10 @@ return [
     'subscription_month_day' => 'Maksupäivä',
     'remove' => 'Poista',
     'paymentplans' => 'Maksusopimukset',
+    'newpaymentplan' => 'Uusi maksusopimus',
+    'paymentplanname' => 'Maksusopimuksen nimi',
+    'paymentplan_monthspaid' => 'Maksetut kuukaudet',
+    'paymentplan_monthstotal' => 'Kuukausia yhteensä',
+    'paidoftotal' => 'maksettu',
+    'rounds' => 'maksukerrasta',
 ];
