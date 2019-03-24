@@ -11,6 +11,10 @@ $lang = Config::get('app.locale');
 if ( 'fi' == $lang ) :
   setlocale( LC_TIME, 'fi_FI.UTF8' );
 endif;
+
+if ( 'local' == App::environment() ) :
+  setlocale( LC_TIME, 'fi_FI' );
+endif;
 ?>
       <section class="dashboard-content">
 
@@ -375,10 +379,10 @@ endif;
           <div class="column column-payment-plans">
             <h1>{{ __('dashboard.paymentplans') }} <span class="add-new add-new-paymentplan"><?php echo file_get_contents( 'svg/dashboard/plus.svg' ); ?></span></h1>
 
-            <?php foreach ( $paymentplans as $paymentplan ) : ?>
             <div class="items items-playmentplans">
+            <?php foreach ( $paymentplans as $paymentplan ) : ?>
 
-              <div class="item">
+              <div class="item item-<?php echo $paymentplan->id; ?>" data-id="<?php echo $paymentplan->id; ?>">
                 <h2>{{ $paymentplan->name }}</h2>
 
                 <div class="progress-bar">
@@ -398,9 +402,8 @@ endif;
                   </div>
                 </div>
               </div>
-
-            </div>
             <?php endforeach; ?>
+            </div>
 
           </div>
 
@@ -413,7 +416,7 @@ endif;
       <div class="modal-overlay"></div>
       <div class="modal-content">
 
-        <form class="subscriptions-form">
+        <form class="paymentplan-form">
           <header class="modal-header">
             <div>
               <h2 class="paymentplan-title">{{ __('dashboard.newpaymentplan') }}</h2>
@@ -446,6 +449,61 @@ endif;
 
       </div>
 
+<?php
+// Payment plan modals
+foreach ( $paymentplans as $paymentplan ) :
+
+  // Variables
+  $user_id = Auth::id();
+
+  // Check if owned by current user
+  if ( $user_id == $paymentplan->userid ) :
+    ?>
+
+    <div class="modal modal-paymentplan modal-paymentplan-<?php echo $paymentplan->id; ?>">
+
+      <div class="modal-overlay"></div>
+      <div class="modal-content">
+
+        <form class="paymentplan-form">
+          <header class="modal-header">
+            <div>
+              <h2 class="paymentplan-title">{{ __('dashboard.editpaymentplan') }}</h2>
+              <h3 class="date"><?php echo date( 'd/m/Y' ); ?></h3>
+            </div>
+          </header>
+
+          <div class="row">
+            <label for="paymentplan-name">{{ __('dashboard.paymentplanname') }}</label>
+            <input type="text" name="paymentplan-name" id="paymentplan-name" value="<?php echo $paymentplan->name; ?>" placeholder="{{ __('dashboard.paymentplanname') }}">
+          </div>
+
+          <footer class="modal-footer">
+            <div class="row">
+              <label for="amount">{{ __('dashboard.paymentplan_monthspaid') }}</label>
+              <span class="flex amount"><input type="text" name="paymentplan-months-paid" id="paymentplan-months-paid" value="<?php echo $paymentplan->months_paid; ?>" placeholder="0"></span>
+            </div>
+
+            <div class="row">
+              <label for="amount">{{ __('dashboard.paymentplan_monthstotal') }}</label>
+              <span class="flex amount"><input type="text" name="paymentplan-months-total" id="paymentplan-months-total" value="<?php echo $paymentplan->months_total; ?>" placeholder="12"></span>
+            </div>
+          </footer>
+
+          <div class="row actions">
+            <button type="button" id="update-paymentplan" data-id="<?php echo $paymentplan->id; ?>">{{ __('dashboard.update') }}</button>
+          </div>
+        </form>
+
+      </div>
+
+    </div>
+
+    <?php
+  endif;
+endforeach; ?>
+
+</div>
 
 <?php
 // Bill modals

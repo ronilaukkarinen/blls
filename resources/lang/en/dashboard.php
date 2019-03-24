@@ -41,4 +41,5 @@ return [
     'paymentplan_monthstotal' => 'Months total',
     'paidoftotal' => 'paid of total',
     'rounds' => 'rounds',
+    'editpaymentplan' => 'Edit payment plan',
 ];

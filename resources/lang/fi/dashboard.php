@@ -41,4 +41,5 @@ return [
     'paymentplan_monthstotal' => 'Kuukausia yhteensä',
     'paidoftotal' => 'maksettu',
     'rounds' => 'maksukerrasta',
+    'editpaymentplan' => 'Muokkaa maksusopimusta',
 ];
