@@ -26,7 +26,7 @@
                 @include('partials.validation_error', ['payload' => 'currency'])
             </div>
             <div class="input input--small">
-                <label>E-laskupalvelun tarjoaja</label>
+                <label>{{ __('settings.ebillingprovider') }}</label>
                 <select name="ebillprovider" id="ebillprovider">
                   <option value="Osuuspankki">Osuuspankki</option>
                 </select>

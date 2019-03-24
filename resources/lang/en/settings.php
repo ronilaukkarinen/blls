@@ -11,5 +11,6 @@ return [
     'date' => 'Date',
     'description' => 'Description',
     'amount' => 'Amount',
-    'file' => 'File'
+    'file' => 'File',
+    'ebillingprovider' => 'E-billing provider'
 ];

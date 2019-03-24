@@ -10,18 +10,18 @@
           <h1>{{ __('dashboard.summary') }}</h1>
 
           <div class="items status">
-            <div class="item-col month-current">
+            <div class="item-col">
               <h2 class="title-small">{{ __('dashboard.total') }}</h2>
               <p class="amount">&euro; <span class="sum total-amount formatted-amount-high">{{ str_replace( '.', ',', $balance ) }}</span></p>
             </div>
 
-            <div class="item-col month-next">
-              <h2 class="title-small">Kuukausimaksut</h2>
+            <div class="item-col">
+              <h2 class="title-small">{{ __('dashboard.subscriptiontotal') }}</h2>
               <p class="amount">&euro; <span class="sum total-amount formatted-amount-high">{{ str_replace( '.', ',', $balance_subscriptions ) }}</span></p>
             </div>
 
-            <div class="item-col month-next">
-              <h2 class="title-small">Kaikki</h2>
+            <div class="item-col">
+              <h2 class="title-small">{{ __('dashboard.overalltotal') }}</h2>
               <p class="amount">&euro; <span class="sum total-amount formatted-amount-high">{{ str_replace( '.', ',', $balance_subscriptions + $balance ) }}</span></p>
             </div>
           </div>
@@ -43,55 +43,55 @@
               </header>
 
               <div class="row biller">
-                <label for="biller">Saaja</label>
+                <label for="biller">{{ __('dashboard.biller') }}</label>
                 <input type="text" name="biller" id="biller" class="biller-label" placeholder="Saaja">
               </div>
 
               <div class="row">
-                <label for="accountnumber">Tilinumero</label>
+                <label for="accountnumber">{{ __('dashboard.accountnumber') }}</label>
                 <input type="text" name="accountnumber" id="accountnumber" placeholder="FI0000000000000000">
               </div>
 
               <div class="row">
-                <label for="virtualcode">Virtuaaliviivakoodi</label>
+                <label for="virtualcode">{{ __('dashboard.virtualcode') }}</label>
                   <input type="text" name="virtualcode" id="virtualcode" placeholder="438121430001070640000460000000000000000075867126190225">
               </div>
 
               <div class="row">
-                <label for="refnumber">Viitenumero</label>
+                <label for="refnumber">{{ __('dashboard.refnumber') }}</label>
                 <input type="text" name="refnumber" id="refnumber" placeholder="10001957104320605">
               </div>
 
               <div class="row">
-                <label for="description">Tuote</label>
+                <label for="description">{{ __('dashboard.product') }}</label>
                 <input type="text" name="description" id="description" placeholder="Tuotteen tai palvelun nimi">
               </div>
 
               <div class="row">
-                <label for="type">Tyyppi:</label>
+                <label for="type">{{ __('dashboard.type') }}</label>
                 <select name="type" id="type">
-                  <option value="E-lasku">E-lasku</option>
-                  <option value="Sähköpostilasku">Sähköpostilasku</option>
-                  <option value="Paperilasku">Paperilasku</option>
+                  <option value="E-lasku">{{ __('dashboard.ebill') }}</option>
+                  <option value="Sähköpostilasku">{{ __('dashboard.emailbill') }}</option>
+                  <option value="Paperilasku">{{ __('dashboard.paperbill') }}</option>
                 </select>
               </div>
 
               <footer class="modal-footer">
                 <div class="row">
-                  <label for="amount">Yhteensä</label>
+                  <label for="amount">{{ __('dashboard.totalamount') }}</label>
                   <span class="flex amount">&euro; <input type="text" name="amount" id="amount" placeholder="100"></span>
                 </div>
 
                 <div class="row">
-                  <label for="duedate">Eräpäivä</label>
+                  <label for="duedate">{{ __('dashboard.duedate') }}</label>
                   <input type="text" name="duedate" id="duedate" class="due-date update-due-date" placeholder="{{ date('d.m.Y') }}">
                 </div>
               </footer>
 
               <div class="row actions">
                 <input type="hidden" class="user-id-input" value="{{ Auth::id() }}">
-                <button type="button" id="submit-button">Lisää</button>
-                <button type="button" id="update-button" style="display: none;">Päivitä</button>
+                <button type="button" id="submit-button">{{ __('dashboard.submit') }}</button>
+                <button type="button" id="update-button" style="display: none;">{{ __('dashboard.update') }}</button>
               </div>
             </form>
 
@@ -106,16 +106,16 @@
 
             <table class="bills-list" border="0" cellpadding="0" cellspacing="0">
               <tr>
-                <th class="row-biller">Laskuttaja</th>
-                <th class="row-billnumber row-hidden">Laskun numero</th>
-                <th class="row-virtualcode row-hidden">Virtuaaliviivakoodi</th>
-                <th class="row-refnumber row-hidden">Viitenumero</th>
-                <th class="row-accountnumber row-hidden">Tilinumero</th>
-                <th class="row-type row-hidden">Tyyppi</th>
-                <th class="row-description row-hidden">Selite</th>
-                <th class="row-amount row-hidden">Summa</th>
-                <th class="row-duedate row-hidden">Eräpäivä</th>
-                <th class="row-actions row-hidden">Toiminnot</th>
+                <th class="row-biller">{{ __('dashboard.biller') }}</th>
+                <th class="row-billnumber row-hidden">{{ __('dashboard.billnumber') }}</th>
+                <th class="row-virtualcode row-hidden">{{ __('dashboard.virtualcode') }}</th>
+                <th class="row-refnumber row-hidden">{{ __('dashboard.refnumber') }}</th>
+                <th class="row-accountnumber row-hidden">{{ __('dashboard.accountnumber') }}</th>
+                <th class="row-type row-hidden">{{ __('dashboard.type') }}</th>
+                <th class="row-description row-hidden">{{ __('dashboard.description') }}</th>
+                <th class="row-amount row-hidden">{{ __('dashboard.amount') }}</th>
+                <th class="row-duedate row-hidden">{{ __('dashboard.duedate') }}</th>
+                <th class="row-actions row-hidden">{{ __('dashboard.actions') }}</th>
               </tr>
 
             <?php
@@ -137,17 +137,17 @@
                 ?>
                 <tr class="row-clickable row-id-<?php echo $bill->id; ?>" data-row-id="<?php echo $bill->id; ?>">
 
-                  <td data-heading="Laskuttaja" class="row-biller biller_text" data-copy-to-clipboard="<?php echo $bill->biller; ?>"><?php echo $bill->biller; ?></td>
-                  <td data-heading="Laskun numero" class="able-to-copy row-hidden row-billnumber billnumber_text" data-copy-to-clipboard="<?php echo $bill->billnumber; ?>"><?php echo $bill->billnumber; ?></td>
-                  <td data-heading="Virtuaaliviivakoodi" class="able-to-copy row-hidden row-virtualcode virtualcode_text" data-copy-to-clipboard="<?php echo $bill->virtualcode; ?>"><?php echo $bill->virtualcode; ?></td>
-                  <td data-heading="Viitenumero" class="able-to-copy row-hidden row-refnumber refnumber_text" data-copy-to-clipboard="<?php echo $bill->refnumber; ?>"><?php echo $bill->refnumber; ?></td>
-                  <td data-heading="Tilinumero" class="able-to-copy row-hidden row-accountnumber accountnumber_text" data-copy-to-clipboard="<?php echo $bill->accountnumber; ?>"><?php echo $bill->accountnumber; ?></td>
-                  <td data-heading="Tyyppi" class="row-type row-hidden type_text"><?php echo $bill->type; ?></td>
-                  <td data-heading="Selite" class="row-description row-hidden description_text"><?php echo $bill->description; ?></td>
-                  <td data-heading="Eräpäivä" class="formatted-duedate row-duedate duedate_text" data-balloon="<?php echo $local_date; ?>" data-copy-to-clipboard="<?php echo $formatted_date; ?>" data-balloon-pos="up"><?php echo $bill->duedate; ?></td>
-                  <td data-heading="Eräpäivä (original)" class="row-duedate-original row-hidden"><?php echo $bill->duedate; ?></td>
-                  <td data-heading="Summa" class="row-amount amount amount_text" data-copy-to-clipboard="<?php echo $formatted_amount; ?>"><span>&euro;</span> <span class="formatted-amount"><?php echo $formatted_amount; ?></span></td>
-                  <td data-heading="Toiminnot" class="row-actions row-hidden"><span class="delete" data-id="<?php echo $bill->id; ?>" ><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></span>
+                  <td data-heading="{{ __('dashboard.biller') }}" class="row-biller biller_text" data-copy-to-clipboard="<?php echo $bill->biller; ?>"><?php echo $bill->biller; ?></td>
+                  <td data-heading="{{ __('dashboard.billnumber') }}" class="able-to-copy row-hidden row-billnumber billnumber_text" data-copy-to-clipboard="<?php echo $bill->billnumber; ?>"><?php echo $bill->billnumber; ?></td>
+                  <td data-heading="{{ __('dashboard.virtualcode') }}" class="able-to-copy row-hidden row-virtualcode virtualcode_text" data-copy-to-clipboard="<?php echo $bill->virtualcode; ?>"><?php echo $bill->virtualcode; ?></td>
+                  <td data-heading="{{ __('dashboard.refnumber') }}" class="able-to-copy row-hidden row-refnumber refnumber_text" data-copy-to-clipboard="<?php echo $bill->refnumber; ?>"><?php echo $bill->refnumber; ?></td>
+                  <td data-heading="{{ __('dashboard.accountnumber') }}" class="able-to-copy row-hidden row-accountnumber accountnumber_text" data-copy-to-clipboard="<?php echo $bill->accountnumber; ?>"><?php echo $bill->accountnumber; ?></td>
+                  <td data-heading="{{ __('dashboard.type') }}" class="row-type row-hidden type_text"><?php echo $bill->type; ?></td>
+                  <td data-heading="{{ __('dashboard.description') }}" class="row-description row-hidden description_text"><?php echo $bill->description; ?></td>
+                  <td data-heading="{{ __('dashboard.duedate') }}" class="formatted-duedate row-duedate duedate_text" data-balloon="<?php echo $local_date; ?>" data-copy-to-clipboard="<?php echo $formatted_date; ?>" data-balloon-pos="up"><?php echo $bill->duedate; ?></td>
+                  <td data-heading="{{ __('dashboard.duedate') }} (original)" class="row-duedate-original row-hidden"><?php echo $bill->duedate; ?></td>
+                  <td data-heading="{{ __('dashboard.amount') }}" class="row-amount amount amount_text" data-copy-to-clipboard="<?php echo $formatted_amount; ?>"><span>&euro;</span> <span class="formatted-amount"><?php echo $formatted_amount; ?></span></td>
+                  <td data-heading="{{ __('dashboard.actions') }}" class="row-actions row-hidden"><span class="delete" data-id="<?php echo $bill->id; ?>" ><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></span>
                     <span class="edit" data-id="<?php echo $bill->id; ?>"><?php echo file_get_contents( '../public/svg/dashboard/edit.svg' ); ?></span>
                     <span class="mark-as-paid" data-id="<?php echo $bill->id; ?>"><?php echo file_get_contents( '../public/svg/dashboard/check.svg' ); ?></span>
                   </td>
@@ -161,7 +161,7 @@
           </div>
 
           <div class="column column-subscriptions">
-            <h1>Kuukausimaksulliset palvelut <span class="add-new add-new-subscription"><?php echo file_get_contents( 'svg/dashboard/plus.svg' ); ?></span></h1>
+            <h1>{{ __('dashboard.subscriptions') }} <span class="add-new add-new-subscription"><?php echo file_get_contents( 'svg/dashboard/plus.svg' ); ?></span></h1>
 
             <div class="items-subscriptions">
               <?php
@@ -214,13 +214,13 @@
                 <form class="subscriptions-form">
                   <header class="modal-header">
                     <div>
-                      <h2 class="subscription-title">Uusi kuukausimaksu</h2>
+                      <h2 class="subscription-title">{{ __('dashboard.newsubscription') }}</h2>
                       <h3 class="date"><?php echo $stylish_date; ?></h3>
                     </div>
                   </header>
 
                   <div class="row">
-                    <label for="subscription_biller">Tuote</label>
+                    <label for="subscription_biller">{{ __('dashboard.product') }}</label>
                     <select name="subscription_biller" id="subscription_biller">
                       <option value="Spotify">Spotify</option>
                       <option value="Netflix">Netflix</option>
@@ -237,25 +237,25 @@
                   </div>
 
                   <div class="row">
-                    <label for="subscription_plan">Tuotepaketin nimi tai muu selite</label>
+                    <label for="subscription_plan">{{ __('dashboard.subscription_description') }}</label>
                     <input type="text" name="subscription_plan" id="subscription_plan" placeholder="Esim. Family" value="Subscription">
                   </div>
 
                   <footer class="modal-footer">
                     <div class="row">
-                      <label for="amount">Yhteensä</label>
+                      <label for="amount">{{ __('dashboard.totalamount') }}</label>
                       <span class="flex amount">&euro; <input type="text" name="subscription_amount" id="subscription_amount" placeholder="100"></span>
                     </div>
 
                     <div class="row">
-                      <label for="subscription_date">Eräpäivä</label>
+                      <label for="subscription_date">{{ __('dashboard.duedate') }}</label>
                       <input type="text" name="subscription_date" id="subscription_date" class="due-date-subscription" placeholder="{{ date('d.m.Y') }}">
                     </div>
                   </footer>
 
                   <div class="row actions">
-                    <button type="button" id="submit-subscription">Lisää</button>
-                    <button type="button" id="update-subscription" style="display: none;">Päivitä</button>
+                    <button type="button" id="submit-subscription">{{ __('dashboard.submit') }}</button>
+                    <button type="button" id="update-subscription" style="display: none;">{{ __('dashboard.update') }}</button>
                   </div>
                 </form>
 
@@ -287,38 +287,38 @@
                 <form class="subscriptions-form">
                   <header class="modal-header">
                     <div>
-                      <h2 class="subscription-title">Muokkaa kuukausimaksua</h2>
+                      <h2 class="subscription-title">{{ __('dashboard.editsubscription') }}</h2>
                       <h3 class="date"><?php echo $stylish_date; ?></h3>
                     </div>
                   </header>
 
                   <div class="row">
-                    <label for="subscription_biller">Tuote</label>
+                    <label for="subscription_biller">{{ __('dashboard.product') }}</label>
                     <select name="subscription_biller" id="subscription_biller">
                       <option value="<?php echo $subscription->biller; ?>"><?php echo $subscription->biller; ?></option>
                     </select>
                   </div>
 
                   <div class="row">
-                    <label for="subscription_plan">Tuotepaketin nimi tai muu selite</label>
-                    <input type="text" name="subscription_plan" id="subscription_plan" placeholder="Esim. Family" value="<?php echo $subscription->plan; ?>">
+                    <label for="subscription_plan">{{ __('dashboard.subscription_description') }}</label>
+                    <input type="text" name="subscription_plan" id="subscription_plan" placeholder="{{ __('dashboard.subscription_description_placeholder') }}" value="<?php echo $subscription->plan; ?>">
                   </div>
 
                   <footer class="modal-footer">
                     <div class="row">
-                      <label for="amount">Yhteensä</label>
+                      <label for="amount">{{ __('dashboard.totalamount') }}</label>
                       <span class="flex amount">&euro; <input type="text" name="subscription_amount" id="subscription_amount" placeholder="100" value="<?php echo $formatted_amount; ?>"></span>
                     </div>
 
                     <div class="row">
-                      <label for="subscription_date">Eräpäivä</label>
+                      <label for="subscription_date">{{ __('dashboard.duedate') }}</label>
                       <input type="text" name="subscription_date" id="subscription_date" class="subscription_date" placeholder="{{ date('d.m.Y') }}" value="<?php echo $formatted_date; ?>">
                     </div>
                   </footer>
 
                   <div class="row actions">
-                    <button type="button" id="update-subscription" data-id="<?php echo $subscription->id; ?>">Päivitä</button>
-                    <?php if ('1' == $subscription->active) : ?><button type="button" id="make-inactive" data-id="<?php echo $subscription->id; ?>">Poista käytöstä</button><?php else : ?><button type="button" id="make-active" data-id="<?php echo $subscription->id; ?>">Ota käyttöön</button><?php endif; ?>
+                    <button type="button" id="update-subscription" data-id="<?php echo $subscription->id; ?>">{{ __('dashboard.update') }}</button>
+                    <?php if ('1' == $subscription->active) : ?><button type="button" id="make-inactive" data-id="<?php echo $subscription->id; ?>">{{ __('dashboard.makeinactive') }}</button><?php else : ?><button type="button" id="make-active" data-id="<?php echo $subscription->id; ?>">{{ __('dashboard.makeactive') }}</button><?php endif; ?>
                   </div>
                 </form>
 
@@ -358,7 +358,7 @@ if ( '0' == $bill->paid && $user_id == $bill->userid ) :
   <div class="modal-content">
     <header class="modal-header">
       <div>
-        <h2>Lasku</h2>
+        <h2>{{ __('dashboard.bill') }}</h2>
         <h3 class="date"><?php echo $stylish_date; ?></h3>
       </div>
 
@@ -366,40 +366,40 @@ if ( '0' == $bill->paid && $user_id == $bill->userid ) :
     </header>
 
     <div class="row biller">
-      <h3>Saaja</h3>
+      <h3>{{ __('dashboard.biller') }}</h3>
       <p class="able-to-copy" data-copy-to-clipboard="<?php echo $bill->biller; ?>"><?php echo $bill->biller; ?></p>
     </div>
 
     <div class="row">
-      <h3>Tilinumero</h3>
+      <h3>{{ __('dashboard.accountnumber') }}</h3>
       <p class="able-to-copy" data-copy-to-clipboard="<?php echo $bill->accountnumber; ?>"><?php echo $bill->accountnumber; ?></p>
     </div>
 
     <?php if ( ! empty( $bill->virtualcode ) ) : ?>
     <div class="row">
-      <h3>Virtuaaliviivakoodi</h3>
+      <h3>{{ __('dashboard.virtualcode') }}</h3>
       <p class="able-to-copy" data-copy-to-clipboard="<?php echo $bill->virtualcode; ?>"><?php echo $bill->virtualcode; ?></p>
     </div>
     <?php endif; ?>
 
     <div class="row">
-      <h3>Viitenumero</h3>
+      <h3>{{ __('dashboard.refnumber') }}</h3>
       <p class="able-to-copy" data-copy-to-clipboard="<?php echo $bill->refnumber; ?>"><?php echo $bill->refnumber; ?></p>
     </div>
 
     <div class="row">
-      <h3>Tuote</h3>
+      <h3>{{ __('dashboard.product') }}</h3>
       <p class="able-to-copy" data-copy-to-clipboard="<?php echo $bill->description; ?>"><?php echo $bill->description; ?></p>
     </div>
 
     <footer class="modal-footer">
       <div class="row">
-        <h3>Yhteensä</h3>
+        <h3>{{ __('dashboard.totalamount') }}</h3>
         <p class="amount">&euro; <span class="formatted-amount able-to-copy" data-original-amount="<?php echo $bill->amount; ?>" data-copy-to-clipboard="<?php echo $formatted_amount; ?>"><?php echo $formatted_amount; ?></span></p>
       </div>
 
       <div class="row">
-        <h3>Eräpäivä</h3>
+        <h3>{{ __('dashboard.duedate') }}</h3>
         <p class="due-date formatted-duedate able-to-copy" data-original-date="<?php echo $bill->duedate; ?>" data-balloon="<?php echo $local_date; ?>" data-copy-to-clipboard="<?php echo $formatted_date; ?>" data-balloon-pos="up"><?php echo $bill->duedate; ?></p>
       </div>
     </footer>
@@ -409,7 +409,7 @@ if ( '0' == $bill->paid && $user_id == $bill->userid ) :
       <span class="mark-as-paid" data-id="<?php echo $bill->id; ?>"><?php echo file_get_contents( '../public/svg/dashboard/check.svg' ); ?></span>
 
       <?php if ( 'Osuuspankki' === Auth::user()->ebillprovider && 'E-lasku' === $bill->type ) : ?>
-        <a target="_blank" href="https://www.op.fi" class="op-ebill"><?php echo file_get_contents( '../public/svg/dashboard/pay.svg' ); ?>Maksa OP E-lasku</a>
+        <a target="_blank" href="https://www.op.fi" class="op-ebill"><?php echo file_get_contents( '../public/svg/dashboard/pay.svg' ); ?>{{ __('dashboard.op_ebill') }}</a>
       <?php endif; ?>
     </div>
   </div>
@@ -418,5 +418,10 @@ if ( '0' == $bill->paid && $user_id == $bill->userid ) :
 endif;
 endforeach;
 ?>
+
+<script>
+// Set moment.js to current language
+moment.locale('{{ Config::get('app.locale') }}');
+</script>
 
 @endsection

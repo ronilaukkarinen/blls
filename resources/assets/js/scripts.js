@@ -124,9 +124,6 @@ $(document).ready(function() {
     });
   };
 
-  // Set moment.js to Finnish language
-  moment.locale('fi');
-
   // Run functions
   formatDate(duedates);
   colorAmounts(amounts);

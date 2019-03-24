@@ -11,5 +11,6 @@ return [
     'date' => 'Päivämäärä',
     'description' => 'Kuvaus',
     'amount' => 'Määrä',
-    'file' => 'Tiedosto'
+    'file' => 'Tiedosto',
+    'ebillingprovider' => 'E-laskupalvelun tarjoaja'
 ];
