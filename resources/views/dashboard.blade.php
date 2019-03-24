@@ -169,11 +169,17 @@
               foreach ( $subscriptions as $sub) :
 
                 // Variables
-                // If day has passed, let's get next month
-                if ( date( 'd' ) > $sub->day ) :
+                // Get day from inserted date
+                $date_inserted = new \DateTime($sub->date);
+                $timestamp = $date_inserted->format('Y-m-d') . ' 00:00:00';
+                $timestamp_day = $date_inserted->format('d');
+                $timestamp_month = $date_inserted->format('m');
+
+                // If day has passed in this month, let's get next month
+                if ( date( 'd' ) > $sub->day && date( 'm' ) == $timestamp_month ) :
                   $relative_month = date( 'm', strtotime('+1 month') );
                 else :
-                  $relative_month = date( 'm' );
+                  $relative_month = $timestamp_month;
                 endif;
 
                 $old_date = date( 'Y-' ) . $relative_month . '-' . str_pad($sub->day, 2, '0', STR_PAD_LEFT) . ' ' . date( 'H:i:s' );
@@ -275,11 +281,17 @@
             foreach ( $subscriptions as $subscription ) :
 
               // Variables
-              // If day has passed, let's get next month
-              if ( date( 'd' ) > $subscription->day ) :
+              // Get day from inserted date
+              $date_inserted = new \DateTime($subscription->date);
+              $timestamp = $date_inserted->format('Y-m-d') . ' 00:00:00';
+              $timestamp_day = $date_inserted->format('d');
+              $timestamp_month = $date_inserted->format('m');
+
+              // If day has passed in this month, let's get next month
+              if ( date( 'd' ) > $subscription->day && date( 'm' ) == $timestamp_month ) :
                 $relative_month = date( 'm', strtotime('+1 month') );
               else :
-                $relative_month = date( 'm' );
+                $relative_month = $timestamp_month;
               endif;
 
               $old_date = date( 'Y-' ) . $relative_month . '-' . str_pad($subscription->day, 2, '0', STR_PAD_LEFT) . ' ' . date( 'H:i:s' );
