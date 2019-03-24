@@ -18,10 +18,10 @@ $(document).ready(function() {
   // Edit subscription
   $(document).on('click', '#update-subscription', function() {
     var edit_id = $(this).attr('data-id');
-    var subscription_biller = $('#subscription_biller').val();
-    var subscription_amount = $('#subscription_amount').val();
-    var subscription_date = $('#subscription_date').val();
-    var subscription_plan = $('#subscription_plan').val();
+    var subscription_biller = $('.modal-subscription-' + edit_id + ' #subscription_biller').val();
+    var subscription_amount = $('.modal-subscription-' + edit_id + ' #subscription_amount').val();
+    var subscription_date = $('.modal-subscription-' + edit_id + ' #subscription_date').val();
+    var subscription_plan = $('.modal-subscription-' + edit_id + ' #subscription_plan').val();
 
     // Close other possible modals
     $('body').removeClass('modal-opened');
@@ -35,9 +35,11 @@ $(document).ready(function() {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
       data: {
+        'update': 1,
+        'id': edit_id,
         'subscription_biller': subscription_biller,
         'subscription_amount': subscription_amount,
-        'subscription_duedate': subscription_duedate,
+        'subscription_date': subscription_date,
         'subscription_plan': subscription_plan
       },
       success: function(response) {
@@ -71,10 +73,12 @@ $(document).ready(function() {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
       data: {
-        'subscription_active': '0',
+        'update': 1,
+        'id': edit_id,
+        'subscription_active': 0,
         'subscription_biller': subscription_biller,
         'subscription_amount': subscription_amount,
-        'subscription_duedate': subscription_duedate,
+        'subscription_date': subscription_date,
         'subscription_plan': subscription_plan
       },
       success: function(response) {
@@ -108,7 +112,9 @@ $(document).ready(function() {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
       data: {
-        'subscription_active': '1',
+        'update': 1,
+        'id': edit_id,
+        'subscription_active': 1,
         'subscription_biller': subscription_biller,
         'subscription_amount': subscription_amount,
         'subscription_date': subscription_date,
@@ -145,6 +151,7 @@ $(document).ready(function() {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
       data: {
+        'save': 1,
         'subscription_biller': subscription_biller,
         'subscription_amount': subscription_amount,
         'subscription_date': subscription_date,

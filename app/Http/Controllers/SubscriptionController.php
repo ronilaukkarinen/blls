@@ -84,12 +84,12 @@ class SubscriptionController extends Controller {
     $stylish_date = date( 'd/m/Y', $old_date_timestamp );
     setlocale( LC_TIME, "fi_FI" );
     $formatted_amount = str_replace( '.', ',', $request->subscription_amount );
-    $biller = strtolower( $request->subscription_biller );
+    $subscription_biller = strtolower( $request->subscription_biller );
 
     // Print results
-    echo '<div class="item item-' . $biller . '">
+    echo '<div class="item item-' . $subscription_biller . '">
     <div class="logo">
-      ' . file_get_contents( "svg/subscriptions/{$biller}.svg" ) . '
+      ' . file_get_contents( "svg/subscriptions/{$subscription_biller}.svg" ) . '
 
         <div class="details">
           <span class="biller">' . $request->subscription_biller . '</span>
@@ -122,7 +122,7 @@ class SubscriptionController extends Controller {
       'date' => $date_to_db,
       'plan' => $request->subscription_plan,
       'userid' => Auth::id(),
-      'active' => $request->active,
+      'active' => $request->subscription_active,
     ]);
 
     /// Variables
@@ -136,7 +136,7 @@ class SubscriptionController extends Controller {
 
     // Print results
     if ( 0 == $request->subscription_active ) : $activeclass = ' inactive'; else : $activeclass = ' active'; endif;
-    echo '<div class="item item-' . $biller . '' . $activeclass . '">
+    echo '<div class="item item-' . $subscription_biller . '' . $activeclass . '">
     <div class="logo">
       ' . file_get_contents( "svg/subscriptions/{$subscription_biller}.svg" ) . '
 
