@@ -24,7 +24,7 @@ return [
     'submit' => 'Lisää',
     'update' => 'Päivitä',
     'actions' => 'Toiminnot',
-    'subscriptions' => 'Kuukausimaksulliset palvelut',
+    'subscriptions' => 'Kuukausimaksut',
     'newsubscription' => 'Uusi kuukausimaksu',
     'subscription_description' => 'Tuotepaketin nimi tai muu selite',
     'editsubscription' => 'Muokkaa kuukausimaksua',
