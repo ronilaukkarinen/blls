@@ -174,10 +174,10 @@
                 $biller = strtolower( $sub->biller );
 
                 // Check if not paid and if owned by current user
-                if ( '1' == $sub->active && $user_id == $sub->userid ) :
+                if ( $user_id == $sub->userid ) :
                   ?>
 
-                  <div class="item item-<?php echo $biller; ?> item-<?php echo $sub->id; ?><?php if ('1' === $sub->active) : ?> inactive<?php endif; ?>" data-id="<?php echo $sub->id; ?>">
+                  <div class="item item-<?php echo $biller; ?> item-<?php echo $sub->id; ?><?php if ('1' != $sub->active) : ?> inactive<?php endif; ?>" data-id="<?php echo $sub->id; ?>">
                     <div class="logo">
                       <?php echo file_get_contents( "svg/subscriptions/{$biller}.svg" ); ?>
 
@@ -215,27 +215,27 @@
                   </header>
 
                   <div class="row">
-                    <label for="biller-subscription">Tuote</label>
-                    <select name="biller-subscription" id="biller-subscription">
+                    <label for="subscription_biller">Tuote</label>
+                    <select name="subscription_biller" id="subscription_biller">
                       <option value="Spotify">Spotify</option>
                       <option value="Netflix">Netflix</option>
                     </select>
                   </div>
 
                   <div class="row">
-                    <label for="plan-subscription">Tuotepaketin nimi tai muu selite</label>
-                    <input type="text" name="plan-subscription" id="plan-subscription" placeholder="Esim. Family">
+                    <label for="subscription_plan">Tuotepaketin nimi tai muu selite</label>
+                    <input type="text" name="subscription_plan" id="subscription_plan" placeholder="Esim. Family">
                   </div>
 
                   <footer class="modal-footer">
                     <div class="row">
                       <label for="amount">Yhteensä</label>
-                      <span class="flex amount">&euro; <input type="text" name="amount-subscription" id="amount-subscription" placeholder="100"></span>
+                      <span class="flex amount">&euro; <input type="text" name="subscription_amount" id="subscription_amount" placeholder="100"></span>
                     </div>
 
                     <div class="row">
-                      <label for="duedate-subscription">Eräpäivä</label>
-                      <input type="text" name="duedate-subscription" id="duedate-subscription" class="due-date-subscription" placeholder="{{ date('d.m.Y') }}">
+                      <label for="subscription_date">Eräpäivä</label>
+                      <input type="text" name="subscription_date" id="subscription_date" class="due-date-subscription" placeholder="{{ date('d.m.Y') }}">
                     </div>
                   </footer>
 
@@ -279,32 +279,32 @@
                   </header>
 
                   <div class="row">
-                    <label for="biller-subscription">Tuote</label>
-                    <select name="biller-subscription" id="biller-subscription">
+                    <label for="subscription_biller">Tuote</label>
+                    <select name="subscription_biller" id="subscription_biller">
                       <option value="<?php echo $subscription->biller; ?>"><?php echo $subscription->biller; ?></option>
                     </select>
                   </div>
 
                   <div class="row">
-                    <label for="plan-subscription">Tuotepaketin nimi tai muu selite</label>
-                    <input type="text" name="plan-subscription" id="plan-subscription" placeholder="Esim. Family" value="<?php echo $subscription->plan; ?>">
+                    <label for="subscription_plan">Tuotepaketin nimi tai muu selite</label>
+                    <input type="text" name="subscription_plan" id="subscription_plan" placeholder="Esim. Family" value="<?php echo $subscription->plan; ?>">
                   </div>
 
                   <footer class="modal-footer">
                     <div class="row">
                       <label for="amount">Yhteensä</label>
-                      <span class="flex amount">&euro; <input type="text" name="amount-subscription" id="amount-subscription" placeholder="100" value="<?php echo $formatted_amount; ?>"></span>
+                      <span class="flex amount">&euro; <input type="text" name="subscription_amount" id="subscription_amount" placeholder="100" value="<?php echo $formatted_amount; ?>"></span>
                     </div>
 
                     <div class="row">
-                      <label for="duedate-subscription">Eräpäivä</label>
-                      <input type="text" name="duedate-subscription" id="duedate-subscription" class="due-date-subscription" placeholder="{{ date('d.m.Y') }}" value="<?php echo $formatted_date; ?>">
+                      <label for="subscription_date">Eräpäivä</label>
+                      <input type="text" name="subscription_date" id="subscription_date" class="subscription_date" placeholder="{{ date('d.m.Y') }}" value="<?php echo $formatted_date; ?>">
                     </div>
                   </footer>
 
                   <div class="row actions">
                     <button type="button" id="update-subscription" data-id="<?php echo $subscription->id; ?>">Päivitä</button>
-                    <button type="button" id="make-inactive" data-id="<?php echo $subscription->id; ?>">Poista käytöstä</button>
+                    <?php if ('1' == $subscription->active) : ?><button type="button" id="make-inactive" data-id="<?php echo $subscription->id; ?>">Poista käytöstä</button><?php else : ?><button type="button" id="make-active" data-id="<?php echo $subscription->id; ?>">Ota käyttöön</button><?php endif; ?>
                   </div>
                 </form>
 

@@ -18,14 +18,14 @@ $(document).ready(function() {
   // Edit subscription
   $(document).on('click', '#update-subscription', function() {
     var edit_id = $(this).attr('data-id');
-    var biller_subscription = $('#biller-subscription').val();
-    var amount_subscription = $('#amount-subscription').val();
-    var duedate_subscription = $('#duedate-subscription').val();
-    var plan_subscription = $('#plan-subscription').val();
+    var subscription_biller = $('#subscription_biller').val();
+    var subscription_amount = $('#subscription_amount').val();
+    var subscription_date = $('#subscription_date').val();
+    var subscription_plan = $('#subscription_plan').val();
 
     // Close other possible modals
     $('body').removeClass('modal-opened');
-    $('.modal-bill').removeClass('show');
+    $('.modal').removeClass('show');
 
     $.ajax({
       url: 'editsubscription',
@@ -35,19 +35,18 @@ $(document).ready(function() {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
       data: {
-        'update': 1,
-        'biller_subscription': biller_subscription,
-        'amount_subscription': amount_subscription,
-        'duedate_subscription': duedate_subscription,
-        'plan_subscription': plan_subscription
+        'subscription_biller': subscription_biller,
+        'subscription_amount': subscription_amount,
+        'subscription_duedate': subscription_duedate,
+        'subscription_plan': subscription_plan
       },
       success: function(response) {
         $('.item-' + edit_id).replaceWith(response);
 
         // Reload page
-        setTimeout(function() {
-         location.reload();
-       }, 50);
+       //  setTimeout(function() {
+       //   location.reload();
+       // }, 50);
       }
     });
   });
@@ -55,29 +54,28 @@ $(document).ready(function() {
   // Make subscription inactive
   $(document).on('click', '#make-inactive', function() {
     var edit_id = $(this).attr('data-id');
-    var biller_subscription = $('#biller-subscription').val();
-    var amount_subscription = $('#amount-subscription').val();
-    var duedate_subscription = $('#duedate-subscription').val();
-    var plan_subscription = $('#plan-subscription').val();
+    var subscription_biller = $('.modal-subscription-' + edit_id + ' #subscription_biller').val();
+    var subscription_amount = $('.modal-subscription-' + edit_id + ' #subscription_amount').val();
+    var subscription_date = $('.modal-subscription-' + edit_id + ' #subscription_date').val();
+    var subscription_plan = $('.modal-subscription-' + edit_id + ' #subscription_plan').val();
 
     // Close other possible modals
     $('body').removeClass('modal-opened');
-    $('.modal-bill').removeClass('show');
+    $('.modal').removeClass('show');
 
     $.ajax({
-      url: 'cancelsubscription',
+      url: 'handlesubscription',
       type: 'POST',
       dataType: 'html',
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
       data: {
-        'update': 1,
-        'biller_subscription': biller_subscription,
-        'amount_subscription': amount_subscription,
-        'duedate_subscription': duedate_subscription,
-        'plan_subscription': plan_subscription,
-        'active': 0
+        'subscription_active': '0',
+        'subscription_biller': subscription_biller,
+        'subscription_amount': subscription_amount,
+        'subscription_duedate': subscription_duedate,
+        'subscription_plan': subscription_plan
       },
       success: function(response) {
         $('.item-' + edit_id).replaceWith(response);
@@ -90,22 +88,54 @@ $(document).ready(function() {
     });
   });
 
-  // Cancel editing
-  $('.item').on('click', '.save-action', function() {
-    $(this).parent().parent().removeClass('edit-mode');
+  // Make subscription active
+  $(document).on('click', '#make-active', function() {
+    var edit_id = $(this).attr('data-id');
+    var subscription_biller = $('.modal-subscription-' + edit_id + ' #subscription_biller').val();
+    var subscription_amount = $('.modal-subscription-' + edit_id + ' #subscription_amount').val();
+    var subscription_date = $('.modal-subscription-' + edit_id + ' #subscription_date').val();
+    var subscription_plan = $('.modal-subscription-' + edit_id + ' #subscription_plan').val();
+
+    // Close other possible modals
+    $('body').removeClass('modal-opened');
+    $('.modal').removeClass('show');
+
+    $.ajax({
+      url: 'handlesubscription',
+      type: 'POST',
+      dataType: 'html',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      data: {
+        'subscription_active': '1',
+        'subscription_biller': subscription_biller,
+        'subscription_amount': subscription_amount,
+        'subscription_date': subscription_date,
+        'subscription_plan': subscription_plan
+      },
+      success: function(response) {
+        $('.item-' + edit_id).replaceWith(response);
+
+        // Reload page
+       //  setTimeout(function() {
+       //   location.reload();
+       // }, 50);
+      }
+    });
   });
 
-  // Save bill to database
+  // Save subscription to database
   $(document).on('click', '#submit-subscription', function() {
 
     // Close modals
     $('body').removeClass('modal-opened');
     $('.modal').removeClass('show');
 
-    var biller_subscription = $('#biller-subscription').val();
-    var amount_subscription = $('#amount-subscription').val();
-    var duedate_subscription = $('#duedate-subscription').val();
-    var plan_subscription = $('#plan-subscription').val();
+    var subscription_biller = $('.modal-subscription-new #subscription_biller').val();
+    var subscription_amount = $('.modal-subscription-new #subscription_amount').val();
+    var subscription_date = $('.modal-subscription-new #subscription_date').val();
+    var subscription_plan = $('.modal-subscription-new #subscription_plan').val();
 
     $.ajax({
       url: 'addsubscription',
@@ -115,17 +145,12 @@ $(document).ready(function() {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
       data: {
-        'biller_subscription': biller_subscription,
-        'amount_subscription': amount_subscription,
-        'duedate_subscription': duedate_subscription,
-        'plan_subscription': plan_subscription
+        'subscription_biller': subscription_biller,
+        'subscription_amount': subscription_amount,
+        'subscription_date': subscription_date,
+        'subscription_plan': subscription_plan
       },
       success: function(response) {
-        $('#biller-subscription').val('');
-        $('#amount-subscription').val('');
-        $('#plan-subscription').val('');
-        $('#duedate-subscription').val('');
-
         // Add to row
         $('.items-subscriptions > .item:last').after(response);
 
