@@ -101,7 +101,14 @@
           <?php
             if ( 0 === $balance ) :
             ?>
-            InboxZero
+            <div class="inbox-zero">
+
+              <div class="freedom">
+                <?php echo file_get_contents( 'svg/inboxzero/gamepad.svg' ); ?>
+                <p class="punchline">You're all done!<br />Go play, you deserve it!</p>
+              </div>
+
+            </div>
           <?php else : ?>
 
             <table class="bills-list" border="0" cellpadding="0" cellspacing="0">
