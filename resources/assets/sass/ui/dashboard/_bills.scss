@@ -7,6 +7,23 @@
     padding: 2rem;
     margin-bottom: 5rem;
 
+    @media(max-width: 660px) {
+      flex-wrap: wrap;
+
+      .item-col {
+        width: 100%;
+        margin-bottom: 2rem;
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+      }
+
+      h2 {
+        margin: 0;
+      }
+    }
+
     .amount {
       margin: 0;
       font-weight: 500;
