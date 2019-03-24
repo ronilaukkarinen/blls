@@ -31,7 +31,12 @@ class BillController extends Controller {
     ->where('userid', Auth::user()->id)
     ->get();
 
-    return view( 'dashboard', compact('balance', 'bills', 'subscriptions') );
+    $balance_subscriptions = DB::table('subscriptions')
+    ->where('userid', Auth::user()->id)
+    ->where('active', '1')
+    ->sum('amount');
+
+    return view( 'dashboard', compact('balance', 'bills', 'subscriptions', 'balance_subscriptions') );
   }
 
   // Add bill

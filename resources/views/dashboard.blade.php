@@ -15,10 +15,15 @@
               <p class="amount">&euro; <span class="sum total-amount formatted-amount">{{ str_replace( '.', ',', $balance ) }}</span></p>
             </div>
 
-            <!-- <div class="item-col month-next">
-              <h2 class="title-small">Ensi kuussa</h2>
-              <p class="amount color-high">684,15 €</p>
-            </div> -->
+            <div class="item-col month-next">
+              <h2 class="title-small">Kuukausimaksut</h2>
+              <p class="amount color-high">&euro; <span class="sum total-amount formatted-amount">{{ str_replace( '.', ',', $balance_subscriptions ) }}</span></p>
+            </div>
+
+            <div class="item-col month-next">
+              <h2 class="title-small">Kaikki</h2>
+              <p class="amount color-high">&euro; <span class="sum total-amount formatted-amount">{{ str_replace( '.', ',', $balance_subscriptions + $balance ) }}</span></p>
+            </div>
           </div>
 
           <h1>{{ __('dashboard.unpaidbills') }} <span class="add-new add-new-bill"><?php echo file_get_contents( 'svg/dashboard/plus.svg' ); ?></span></h1>
