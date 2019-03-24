@@ -44,11 +44,6 @@ $(document).ready(function() {
       },
       success: function(response) {
         $('.item-' + edit_id).replaceWith(response);
-
-        // Reload page
-       //  setTimeout(function() {
-       //   location.reload();
-       // }, 50);
       }
     });
   });

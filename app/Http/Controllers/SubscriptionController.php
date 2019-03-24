@@ -111,7 +111,7 @@ class SubscriptionController extends Controller {
     $subscription_biller = strtolower( $request->subscription_biller );
 
     // Print results
-    echo '<div class="item item-' . $subscription_biller . '">
+    echo '<div class="item item-' . $subscription_biller . ' item-' . $request->id . '" data-id="' . $request->id . '">
     <div class="logo">
       ' . file_get_contents( "svg/subscriptions/{$subscription_biller}.svg" ) . '
 
@@ -180,7 +180,7 @@ class SubscriptionController extends Controller {
 
     // Print results
     if ( 0 == $request->subscription_active ) : $activeclass = ' inactive'; else : $activeclass = ' active'; endif;
-    echo '<div class="item item-' . $subscription_biller . '' . $activeclass . '">
+    echo '<div class="item item-' . $subscription_biller . '' . $activeclass . '" item-' . $request->id . '" data-id="' . $request->id . '">
     <div class="logo">
       ' . file_get_contents( "svg/subscriptions/{$subscription_biller}.svg" ) . '
 
