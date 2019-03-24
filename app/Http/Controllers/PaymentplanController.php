@@ -77,7 +77,7 @@ class PaymentplanController extends Controller {
     // Print results
     echo '<div class="items items-playmentplans">
 
-    <div class="item">
+    <div class="item item-' . $request->id . '" data-id="' . $request->id . '">
     <h2>' . $request->paymentplan_name . '</h2>
 
     <div class="progress-bar">
