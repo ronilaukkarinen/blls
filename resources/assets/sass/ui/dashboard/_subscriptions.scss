@@ -1,5 +1,9 @@
 // Subscriptions
 .column-subscriptions {
+  @media(max-width: 1020px) {
+    margin-bottom: 5rem;
+  }
+
   .item {
     color: #fff;
     display: flex;

@@ -34,4 +34,5 @@ return [
     'op_ebill' => 'Pay OP E-bill',
     'subscription_month_day' => 'Day of the month',
     'remove' => 'Remove',
+    'paymentplans' => 'Payment plans',
 ];

@@ -1,0 +1,52 @@
+.items-playmentplans {
+  h2 {
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin: 0 0 1rem;
+  }
+
+  .item:hover {
+    cursor: pointer;
+
+    .progress {
+      height: 23px;
+      padding: 3px 6px;
+    }
+
+    .progress p {
+      opacity: 1;
+    }
+  }
+
+  .progress-bar {
+    border-radius: .5rem;
+    background: #eeeef6;
+    transition: all .22s;
+
+    .progress {
+      background: $color-main;
+      border-radius: .5rem;
+      height: 5px;
+      transition: all .22s;
+
+      &.low {
+        background: $color-main;
+      }
+
+      &.medium {
+        background: $color-medium-alt;
+      }
+
+      &.high {
+        background: $color-low;
+      }
+    }
+
+    p {
+      color: #fff;
+      font-size: 11px;
+      opacity: 0;
+      transition: all .22s;
+    }
+  }
+}

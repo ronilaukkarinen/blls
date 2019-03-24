@@ -34,4 +34,5 @@ return [
     'op_ebill' => 'Maksa OP E-lasku',
     'subscription_month_day' => 'Maksupäivä',
     'remove' => 'Poista',
+    'paymentplans' => 'Maksusopimukset',
 ];

@@ -4,6 +4,14 @@
 
 @section('body')
 
+<?php
+// Set locale
+$lang = Config::get('app.locale');
+
+if ( 'fi' == $lang ) :
+  setlocale( LC_TIME, 'fi_FI.UTF8' );
+endif;
+?>
       <section class="dashboard-content">
 
         <div class="column-bills">
@@ -134,7 +142,6 @@
               $old_date_timestamp = strtotime( $old_date );
               $formatted_date = date( 'd.m.Y', $old_date_timestamp );
               $stylish_date = date( 'd/m/Y', $old_date_timestamp );
-              setlocale( LC_TIME, "fi_FI" );
               $local_date = strftime( "%e. %Bta %Y", $old_date_timestamp );
               $formatted_amount = str_replace( '.', ',', $bill->amount );
               $user_id = Auth::id();
@@ -193,7 +200,6 @@
                 $old_date_timestamp = strtotime( $old_date );
                 $formatted_date = date( 'd.m.Y', $old_date_timestamp );
                 $stylish_date = date( 'd/m/Y', $old_date_timestamp );
-                setlocale( LC_TIME, "fi_FI" );
                 $formatted_amount = str_replace( '.', ',', $sub->amount );
                 $user_id = Auth::id();
                 $biller = strtolower( $sub->biller );
@@ -364,7 +370,37 @@
             endif;
             endforeach; ?>
 
+          </div>
 
+          <div class="column column-payment-plans">
+            <h1>{{ __('dashboard.paymentplans') }} <span class="add-new add-new-paymentplan"><?php echo file_get_contents( 'svg/dashboard/plus.svg' ); ?></span></h1>
+
+            <div class="items items-playmentplans">
+
+              <div class="item">
+                <h2>Kobo Aura One</h2>
+
+                <div class="progress-bar">
+                  <?php
+                    $months_total = 23;
+                    $months_paid = 10;
+                    $percent = round( ( $months_paid / $months_total ) * 100 );
+
+                    if ( $percent < 40 ) :
+                      $percent_class = ' low';
+                    elseif ( $percent > 40 ) :
+                      $percent_class = ' medium';
+                    else :
+                      $percent_class = ' high';
+                    endif;
+                  ?>
+                  <div class="progress<?php echo $percent_class; ?>" style="width: <?php echo $percent; ?>%;">
+                    <p><?php echo $months_paid; ?> paid of total <?php echo $months_total; ?> rounds. (<?php echo $percent; ?>%)</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
 
           </div>
 

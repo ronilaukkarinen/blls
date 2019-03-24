@@ -136,7 +136,10 @@
   display: block;
   background: #fff;
   border-radius: .5rem;
-  margin-bottom: 5rem;
+
+  @media(max-width: 1020px) {
+    margin-bottom: 5rem;
+  }
 
   table {
     border-radius: .5rem;
