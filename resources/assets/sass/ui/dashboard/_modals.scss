@@ -15,6 +15,21 @@
   &.modal-subscription .actions {
     display: flex;
     justify-content: space-between;
+
+    #remove-subscription:hover {
+      border-color: transparent;
+
+      svg,
+      path {
+        stroke: $color-high;
+      }
+    }
+
+    #make-active,
+    #make-inactive {
+      margin-left: auto;
+      margin-right: 1rem;
+    }
   }
 
   @media (max-width: 480px) {

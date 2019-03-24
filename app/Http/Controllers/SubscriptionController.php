@@ -130,6 +130,14 @@ class SubscriptionController extends Controller {
     </div>';
   }
 
+  // Remove Subscription
+  public function removeSubscription(Request $request) {
+    DB::table('subscriptions')
+    ->where('userid', Auth::user()->id)
+    ->where('id', $request->id)
+    ->delete();
+  }
+
   // Cancel Subscription
   public function handleSubscription(Request $request) {
 

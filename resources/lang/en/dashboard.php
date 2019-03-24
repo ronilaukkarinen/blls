@@ -33,4 +33,5 @@ return [
     'makeactive' => 'Subscribe again',
     'op_ebill' => 'Pay OP E-bill',
     'subscription_month_day' => 'Day of the month',
+    'remove' => 'Remove',
 ];

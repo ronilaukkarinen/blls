@@ -10,7 +10,8 @@ $focus-background-color: #f9bf47;
 $focus-outline-color: #f9bf47;
 $focus-text-color: #000;
 
-input:focus {
+input:focus,
+button:focus {
   outline: none;
 }
 

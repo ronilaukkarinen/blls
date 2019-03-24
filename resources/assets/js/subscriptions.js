@@ -53,6 +53,32 @@ $(document).ready(function() {
     });
   });
 
+  // Remove subscription
+  $(document).on('click', '#remove-subscription', function() {
+    var edit_id = $(this).attr('data-id');
+
+    // Close other possible modals
+    $('body').removeClass('modal-opened');
+    $('.modal').removeClass('show');
+
+    // Fade out
+    $('.item-' + edit_id).fadeOut();
+
+    $.ajax({
+      url: 'removesubscription',
+      type: 'POST',
+      dataType: 'html',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      data: {
+        'id': edit_id
+      },
+      success: function(response) {
+      }
+    });
+  });
+
   // Make subscription inactive
   $(document).on('click', '#make-inactive', function() {
     var edit_id = $(this).attr('data-id');

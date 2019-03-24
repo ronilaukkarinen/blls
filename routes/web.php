@@ -20,6 +20,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     // Subscriptions
     Route::post('/addsubscription', 'SubscriptionController@addSubscription');
+    Route::post('/removesubscription', 'SubscriptionController@removeSubscription');
     Route::post('/editsubscription', 'SubscriptionController@editSubscription');
     Route::post('/handlesubscription', 'SubscriptionController@handleSubscription');
 
