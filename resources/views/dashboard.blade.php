@@ -375,16 +375,15 @@ endif;
           <div class="column column-payment-plans">
             <h1>{{ __('dashboard.paymentplans') }} <span class="add-new add-new-paymentplan"><?php echo file_get_contents( 'svg/dashboard/plus.svg' ); ?></span></h1>
 
+            <?php foreach ( $paymentplans as $paymentplan ) : ?>
             <div class="items items-playmentplans">
 
               <div class="item">
-                <h2>Kobo Aura One</h2>
+                <h2>{{ $paymentplan->name }}</h2>
 
                 <div class="progress-bar">
                   <?php
-                    $months_total = 23;
-                    $months_paid = 10;
-                    $percent = round( ( $months_paid / $months_total ) * 100 );
+                    $percent = round( ( $paymentplan->months_paid / $paymentplan->months_total ) * 100 );
 
                     if ( $percent < 40 ) :
                       $percent_class = ' low';
@@ -395,12 +394,13 @@ endif;
                     endif;
                   ?>
                   <div class="progress<?php echo $percent_class; ?>" style="width: <?php echo $percent; ?>%;">
-                    <p><?php echo $months_paid; ?> paid of total <?php echo $months_total; ?> rounds. (<?php echo $percent; ?>%)</p>
+                    <p><?php echo $paymentplan->months_paid; ?> paid of total <?php echo $paymentplan->months_total; ?> rounds. (<?php echo $percent; ?>%)</p>
                   </div>
                 </div>
               </div>
 
             </div>
+            <?php endforeach; ?>
 
           </div>
 

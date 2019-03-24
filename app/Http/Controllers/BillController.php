@@ -36,7 +36,11 @@ class BillController extends Controller {
     ->where('active', '1')
     ->sum('amount');
 
-    return view( 'dashboard', compact('balance', 'bills', 'subscriptions', 'balance_subscriptions') );
+    $paymentplans = DB::table('paymentplans')
+    ->where('userid', Auth::user()->id)
+    ->get();
+
+    return view( 'dashboard', compact( 'balance', 'bills', 'subscriptions', 'balance_subscriptions', 'paymentplans' ) );
   }
 
   // Add bill
