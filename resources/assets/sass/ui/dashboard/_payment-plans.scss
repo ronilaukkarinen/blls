@@ -5,12 +5,18 @@
     margin: 0 0 1rem;
   }
 
+  .item {
+    height: 73px;
+    overflow: hidden;
+  }
+
   .item:hover {
     cursor: pointer;
 
     .progress {
-      height: 23px;
-      padding: 3px 6px;
+      height: 19px;
+      padding: 1px 6px;
+      border-radius: .8rem;
     }
 
     .progress p {
@@ -19,18 +25,20 @@
 
     .progress-bar {
       background: darken(#eeeef6, 5%);
+      transform: translateY(-7px);
+      border-radius: .8rem;
     }
   }
 
   .progress-bar {
-    border-radius: .5rem;
+    border-radius: .7rem;
     background: #eeeef6;
     transition: all .22s;
     white-space: nowrap;
 
     .progress {
       background: $color-main;
-      border-radius: .5rem;
+      border-radius: .7rem;
       height: 5px;
       transition: all .22s;
       white-space: nowrap;
