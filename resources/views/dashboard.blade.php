@@ -490,6 +490,8 @@ foreach ( $paymentplans as $paymentplan ) :
 
           <div class="row actions">
             <button type="button" id="update-paymentplan" data-id="<?php echo $paymentplan->id; ?>">{{ __('dashboard.update') }}</button>
+
+            <button id="paid-button" class="mark-paymentplan-as-paid" data-id="<?php echo $paymentplan->id; ?>" data-balloon="{{ __('dashboard.markaspaid') }}" data-balloon-pos="up"><?php echo file_get_contents( '../public/svg/dashboard/check.svg' ); ?><span class="screen-reader-text">{{ __('dashboard.markaspaid') }}</span></button>
             <button type="button" class="remove-button" id="remove-paymentplan" data-id="<?php echo $paymentplan->id; ?>" data-balloon="{{ __('dashboard.removeforgood') }}" data-balloon-pos="up"><span class="screen-reader-text">{{ __('dashboard.remove') }}</span><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></button>
           </div>
         </form>

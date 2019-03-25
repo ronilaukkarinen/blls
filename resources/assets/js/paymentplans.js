@@ -109,4 +109,30 @@ $(document).on('click', '#remove-paymentplan', function() {
     });
   });
 
+// Mark as paid action
+$(document).on('click', '#paid-button', function(e) {
+  var id = $(this).attr('data-id');
+
+    // Close modals
+    $('body').removeClass('modal-opened');
+    $('.modal-bill').removeClass('show');
+
+    // Fade out row
+    $('.row-id-' + id).fadeOut();
+
+    $.ajax({
+      url: 'markppaid',
+      type: 'POST',
+      dataType: 'html',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      data: {
+        'id': id
+      },
+      success: function(response) {
+      }
+    });
+  });
+
 });

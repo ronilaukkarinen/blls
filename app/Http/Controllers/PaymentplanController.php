@@ -23,6 +23,7 @@ class PaymentplanController extends Controller {
       'months_paid' => $request->paymentplan_months_paid,
       'months_total' => $request->paymentplan_months_total,
       'created' => date('Y-m-d H:i:s'),
+      'paid' => 0,
     ]);
 
     // Percents and colors
@@ -61,6 +62,7 @@ class PaymentplanController extends Controller {
       'name' => $request->paymentplan_name,
       'months_paid' => $request->paymentplan_months_paid,
       'months_total' => $request->paymentplan_months_total,
+      'paid' => 0,
     ]);
 
     // Percents and colors
@@ -94,6 +96,20 @@ class PaymentplanController extends Controller {
     ->where('userid', Auth::user()->id)
     ->where('id', $request->id)
     ->delete();
+  }
+
+  // Mark as paid
+  public function markaPaymentplanasPaid(Request $request) {
+
+    // Update the bill in question
+    DB::table('paymentplans')
+      ->where('userid', Auth::user()->id)
+      ->where('id', $request->id)
+      ->where('paid', '0')
+      ->update([
+        'paid' => 1,
+        'datepaid' => date('Y-m-d H:i:s')
+    ]);
   }
 
 }
