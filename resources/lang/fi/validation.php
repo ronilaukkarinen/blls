@@ -1,9 +1,10 @@
 <?php
 
 return [
-    'required' => 'Can\'t be blank',
-    'confirmed' => 'Doesn\'t match',
+    'unique'  => 'Sähköpostiosoite on jo olemassa',
+    'required' => 'Kenttä vaaditaan',
+    'confirmed' => 'Ei mätsää',
     'max' => [
-        'string' => 'Can\'t be longer than :max characters'
+        'string' => 'Ei voi olla pidempi kuin :max merkkiä'
     ]
 ];

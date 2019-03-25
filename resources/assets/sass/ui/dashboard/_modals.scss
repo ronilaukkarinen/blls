@@ -12,6 +12,20 @@
   transition: all .33s;
   z-index: -99;
 
+  .btn-submit,
+  .btn-update {
+    order: 3;
+  }
+
+  .btn-markpaid {
+    order: 2;
+  }
+
+  .btn-remove,
+  .btn-makeinactive {
+    order: 1;
+  }
+
   &.modal-subscription .actions,
   &.modal-paymentplan .actions {
     display: flex;
@@ -30,8 +44,8 @@
     #make-inactive,
     .mark-as-paid,
     .mark-paymentplan-as-paid {
-      margin-left: auto;
-      margin-right: 1rem;
+      margin-right: auto;
+      margin-left: 1rem;
     }
   }
 

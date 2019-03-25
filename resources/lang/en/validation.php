@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'unique'  => 'Email already exists',
     'required' => 'Can\'t be blank',
     'confirmed' => 'Doesn\'t match',
     'max' => [

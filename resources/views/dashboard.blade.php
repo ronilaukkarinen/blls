@@ -102,8 +102,8 @@ endif;
 
               <div class="row actions">
                 <input type="hidden" class="user-id-input" value="{{ Auth::id() }}">
-                <button type="button" id="submit-button">{{ __('dashboard.submit') }}</button>
-                <button type="button" id="update-button" style="display: none;">{{ __('dashboard.update') }}</button>
+                <button type="button" id="submit-button" class="btn-submit">{{ __('dashboard.submit') }}</button>
+                <button type="button" id="update-button" class="btn-update" style="display: none;">{{ __('dashboard.update') }}</button>
               </div>
             </form>
 
@@ -359,8 +359,8 @@ endif;
                   </footer>
 
                   <div class="row actions">
-                    <button type="button" id="update-subscription" data-id="<?php echo $subscription->id; ?>">{{ __('dashboard.update') }}</button>
-                    <?php if ('1' == $subscription->active) : ?><button type="button" id="make-inactive" data-id="<?php echo $subscription->id; ?>">{{ __('dashboard.makeinactive') }}</button><?php else : ?><button type="button" id="make-active" data-id="<?php echo $subscription->id; ?>">{{ __('dashboard.makeactive') }}</button><?php endif; ?>
+                    <button type="button" class="btn-update" id="update-subscription" data-id="<?php echo $subscription->id; ?>">{{ __('dashboard.update') }}</button>
+                    <?php if ('1' == $subscription->active) : ?><button type="button" class="btn-makeinactive" id="make-inactive" data-id="<?php echo $subscription->id; ?>">{{ __('dashboard.makeinactive') }}</button><?php else : ?><button type="button" class="btn-makeactive" id="make-active" data-id="<?php echo $subscription->id; ?>">{{ __('dashboard.makeactive') }}</button><?php endif; ?>
                     <button type="button" class="remove-button" id="remove-subscription" data-id="<?php echo $subscription->id; ?>" data-balloon="{{ __('dashboard.removeforgood') }}" data-balloon-pos="up"><span class="screen-reader-text">{{ __('dashboard.remove') }}</span><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></button>
                   </div>
                 </form>
@@ -441,7 +441,7 @@ endif;
           </footer>
 
           <div class="row actions">
-            <button type="button" id="submit-paymentplan">{{ __('dashboard.submit') }}</button>
+            <button type="button" id="submit-paymentplan" class="btn-submit">{{ __('dashboard.submit') }}</button>
           </div>
         </form>
 
@@ -489,10 +489,10 @@ foreach ( $paymentplans as $paymentplan ) :
           </footer>
 
           <div class="row actions">
-            <button type="button" id="update-paymentplan" data-id="<?php echo $paymentplan->id; ?>">{{ __('dashboard.update') }}</button>
+            <button type="button" class="btn-update" id="update-paymentplan" data-id="<?php echo $paymentplan->id; ?>">{{ __('dashboard.update') }}</button>
 
-            <button id="paid-button" class="mark-paymentplan-as-paid" data-id="<?php echo $paymentplan->id; ?>" data-balloon="{{ __('dashboard.markaspaid') }}" data-balloon-pos="up"><?php echo file_get_contents( '../public/svg/dashboard/check.svg' ); ?><span class="screen-reader-text">{{ __('dashboard.markaspaid') }}</span></button>
-            <button type="button" class="remove-button" id="remove-paymentplan" data-id="<?php echo $paymentplan->id; ?>" data-balloon="{{ __('dashboard.removeforgood') }}" data-balloon-pos="up"><span class="screen-reader-text">{{ __('dashboard.remove') }}</span><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></button>
+            <button id="paid-button" class="mark-paymentplan-as-paid btn-markpaid" data-id="<?php echo $paymentplan->id; ?>" data-balloon="{{ __('dashboard.markaspaid') }}" data-balloon-pos="up"><?php echo file_get_contents( '../public/svg/dashboard/check.svg' ); ?><span class="screen-reader-text">{{ __('dashboard.markaspaid') }}</span></button>
+            <button type="button" class="remove-button btn-remove" id="remove-paymentplan" data-id="<?php echo $paymentplan->id; ?>" data-balloon="{{ __('dashboard.removeforgood') }}" data-balloon-pos="up"><span class="screen-reader-text">{{ __('dashboard.remove') }}</span><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></button>
           </div>
         </form>
 
