@@ -214,6 +214,11 @@
         }
       }
 
+      .edit:hover,
+      .mark-as-paid:hover {
+        border-color: transparent;
+      }
+
       .edit svg:hover {
         cursor: pointer;
         stroke: lighten($color-sherpablue, 40%);
