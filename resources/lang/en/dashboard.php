@@ -26,6 +26,7 @@ return [
     'description' => 'Description',
     'amount' => 'Amount',
     'duedate' => 'Due date',
+    'datepaid' => 'Date paid',
     'submit' => 'Submit',
     'update' => 'Update',
     'actions' => 'Actions',

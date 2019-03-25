@@ -26,6 +26,7 @@ return [
     'description' => 'Selite',
     'amount' => 'Summa',
     'duedate' => 'Eräpäivä',
+    'datepaid' => 'Maksettu',
     'submit' => 'Lisää',
     'update' => 'Päivitä',
     'actions' => 'Toiminnot',

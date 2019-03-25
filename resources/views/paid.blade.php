@@ -86,7 +86,7 @@ endif;
             </div>
 
             <div class="row">
-              <label for="duedate">{{ __('dashboard.duedate') }}</label>
+              <label for="duedate">{{ __('dashboard.datepaid') }}</label>
               <input type="text" name="duedate" id="duedate" class="due-date update-due-date" placeholder="{{ date('d.m.Y') }}">
             </div>
           </footer>
@@ -124,16 +124,16 @@ endif;
             <th class="row-type row-hidden">{{ __('dashboard.type') }}</th>
             <th class="row-description row-hidden">{{ __('dashboard.description') }}</th>
             <th class="row-amount row-hidden">{{ __('dashboard.amount') }}</th>
-            <th class="row-duedate row-hidden">{{ __('dashboard.duedate') }}</th>
+            <th class="row-duedate row-hidden">{{ __('dashboard.datepaid') }}</th>
             <th class="row-actions row-hidden">{{ __('dashboard.actions') }}</th>
           </tr>
 
           <?php
-              // List bills
+          // List bills
           foreach ( $bills as $bill) :
 
-              // Variables
-            $old_date = $bill->duedate;
+            // Variables
+            $old_date = $bill->datepaid;
             $old_date_timestamp = strtotime( $old_date );
             $formatted_date = date( 'd.m.Y', $old_date_timestamp );
             $stylish_date = date( 'd/m/Y', $old_date_timestamp );
@@ -153,8 +153,8 @@ endif;
                 <td data-heading="{{ __('dashboard.accountnumber') }}" class="able-to-copy row-hidden row-accountnumber accountnumber_text" data-copy-to-clipboard="<?php echo $bill->accountnumber; ?>"><?php echo $bill->accountnumber; ?></td>
                 <td data-heading="{{ __('dashboard.type') }}" class="row-type type_text"><?php echo $bill->type; ?></td>
                 <td data-heading="{{ __('dashboard.description') }}" class="row-description description_text"><?php echo $bill->description; ?></td>
-                <td data-heading="{{ __('dashboard.duedate') }}" class="formatted-duedate row-duedate duedate_text" data-balloon="<?php echo $local_date; ?>" data-copy-to-clipboard="<?php echo $formatted_date; ?>" data-balloon-pos="up"><?php echo $bill->duedate; ?></td>
-                <td data-heading="{{ __('dashboard.duedate') }} (original)" class="row-duedate-original row-hidden"><?php echo $bill->duedate; ?></td>
+                <td data-heading="{{ __('dashboard.datepaid') }}" class="formatted-duedate row-duedate duedate_text" data-balloon="<?php echo $local_date; ?>" data-copy-to-clipboard="<?php echo $formatted_date; ?>" data-balloon-pos="up"><?php echo $bill->datepaid; ?></td>
+                <td data-heading="{{ __('dashboard.datepaid') }} (original)" class="row-duedate-original row-hidden"><?php echo $bill->datepaid; ?></td>
                 <td data-heading="{{ __('dashboard.amount') }}" class="row-amount amount amount_text" data-copy-to-clipboard="<?php echo $formatted_amount; ?>"><span>&euro;</span> <span class="formatted-amount"><?php echo $formatted_amount; ?></span></td>
                 <td data-heading="{{ __('dashboard.actions') }}" class="row-actions row-hidden"><span class="delete" data-id="<?php echo $bill->id; ?>" ><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></span>
                   <span class="edit" data-id="<?php echo $bill->id; ?>"><?php echo file_get_contents( '../public/svg/dashboard/edit.svg' ); ?></span>
@@ -284,7 +284,7 @@ foreach ( $bills as $bill) :
 
 // Define formatted date
 $formatted_amount = str_replace( '.', ',', $bill->amount );
-$old_date = $bill->duedate;
+$old_date = $bill->datepaid;
 $old_date_timestamp = strtotime( $old_date );
 $local_date = strftime( "%e. %Bta %Y", $old_date_timestamp );
 $stylish_date = date( 'd/m/Y', $old_date_timestamp );
@@ -339,8 +339,8 @@ if ( '1' == $bill->paid && Auth::id() == $bill->userid ) :
       </div>
 
       <div class="row">
-        <h3>{{ __('dashboard.duedate') }}</h3>
-        <p class="due-date formatted-duedate able-to-copy" data-original-date="<?php echo $bill->duedate; ?>" data-balloon="<?php echo $local_date; ?>" data-copy-to-clipboard="<?php echo $formatted_date; ?>" data-balloon-pos="up"><?php echo $bill->duedate; ?></p>
+        <h3>{{ __('dashboard.datepaid') }}</h3>
+        <p class="due-date formatted-duedate able-to-copy" data-original-date="<?php echo $bill->datepaid; ?>" data-balloon="<?php echo $local_date; ?>" data-copy-to-clipboard="<?php echo $formatted_date; ?>" data-balloon-pos="up"><?php echo $bill->datepaid; ?></p>
       </div>
     </footer>
 
