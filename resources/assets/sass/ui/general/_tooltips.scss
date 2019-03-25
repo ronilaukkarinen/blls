@@ -88,6 +88,11 @@ button[data-balloon] {
   transform-origin: top;
 }
 
+.actions button[data-balloon][data-balloon-pos="up"]:after,
+.actions button[data-balloon][data-balloon-pos="up"]:before {
+  left: 45%;
+}
+
 [data-balloon][data-balloon-pos="up"]:hover:after,
 [data-balloon][data-balloon-pos="up"][data-balloon-visible]:after {
   transform: translate(-50%, 0);

@@ -34,6 +34,7 @@ return [
     'op_ebill' => 'Maksa OP E-lasku',
     'subscription_month_day' => 'Maksupäivä',
     'remove' => 'Poista',
+    'removeforgood' => 'Poista pysyvästi',
     'paymentplans' => 'Maksusopimukset',
     'newpaymentplan' => 'Uusi maksusopimus',
     'paymentplanname' => 'Maksusopimuksen nimi',
@@ -42,4 +43,6 @@ return [
     'paidoftotal' => 'maksettu',
     'rounds' => 'maksukerrasta',
     'editpaymentplan' => 'Muokkaa maksusopimusta',
+    'markaspaid' => 'Merkitse maksetuksi',
+    'edit' => 'Muokkaa',
 ];

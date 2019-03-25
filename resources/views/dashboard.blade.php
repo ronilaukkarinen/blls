@@ -361,7 +361,7 @@ endif;
                   <div class="row actions">
                     <button type="button" id="update-subscription" data-id="<?php echo $subscription->id; ?>">{{ __('dashboard.update') }}</button>
                     <?php if ('1' == $subscription->active) : ?><button type="button" id="make-inactive" data-id="<?php echo $subscription->id; ?>">{{ __('dashboard.makeinactive') }}</button><?php else : ?><button type="button" id="make-active" data-id="<?php echo $subscription->id; ?>">{{ __('dashboard.makeactive') }}</button><?php endif; ?>
-                    <button type="button" class="remove-button" id="remove-subscription" data-id="<?php echo $subscription->id; ?>"><span class="screen-reader-text">{{ __('dashboard.remove') }}</span><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></button>
+                    <button type="button" class="remove-button" id="remove-subscription" data-id="<?php echo $subscription->id; ?>" data-balloon="{{ __('dashboard.removeforgood') }}" data-balloon-pos="up"><span class="screen-reader-text">{{ __('dashboard.remove') }}</span><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></button>
                   </div>
                 </form>
 
@@ -490,7 +490,7 @@ foreach ( $paymentplans as $paymentplan ) :
 
           <div class="row actions">
             <button type="button" id="update-paymentplan" data-id="<?php echo $paymentplan->id; ?>">{{ __('dashboard.update') }}</button>
-            <button type="button" class="remove-button" id="remove-paymentplan" data-id="<?php echo $paymentplan->id; ?>"><span class="screen-reader-text">{{ __('dashboard.remove') }}</span><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></button>
+            <button type="button" class="remove-button" id="remove-paymentplan" data-id="<?php echo $paymentplan->id; ?>" data-balloon="{{ __('dashboard.removeforgood') }}" data-balloon-pos="up"><span class="screen-reader-text">{{ __('dashboard.remove') }}</span><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></button>
           </div>
         </form>
 
@@ -571,8 +571,8 @@ if ( '0' == $bill->paid && $user_id == $bill->userid ) :
     </footer>
 
     <div class="row actions">
-      <button class="edit" data-id="<?php echo $bill->id; ?>"><?php echo file_get_contents( '../public/svg/dashboard/edit.svg' ); ?></button>
-      <button class="mark-as-paid" data-id="<?php echo $bill->id; ?>"><?php echo file_get_contents( '../public/svg/dashboard/check.svg' ); ?></button>
+      <button class="edit" data-id="<?php echo $bill->id; ?>" data-balloon="{{ __('dashboard.edit') }}" data-balloon-pos="up"><?php echo file_get_contents( '../public/svg/dashboard/edit.svg' ); ?></button>
+      <button class="mark-as-paid" data-id="<?php echo $bill->id; ?>" data-balloon="{{ __('dashboard.markaspaid') }}" data-balloon-pos="up"><?php echo file_get_contents( '../public/svg/dashboard/check.svg' ); ?><span class="screen-reader-text">{{ __('dashboard.markaspaid') }}</span></button>
 
       <?php if ( 'Osuuspankki' === Auth::user()->ebillprovider && 'E-lasku' === $bill->type ) : ?>
         <a target="_blank" href="https://www.op.fi" class="op-ebill"><?php echo file_get_contents( '../public/svg/dashboard/pay.svg' ); ?>{{ __('dashboard.op_ebill') }}</a>

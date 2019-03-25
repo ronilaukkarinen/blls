@@ -34,6 +34,7 @@ return [
     'op_ebill' => 'Pay OP E-bill',
     'subscription_month_day' => 'Day of the month',
     'remove' => 'Remove',
+    'removeforgood' => 'Remove for good',
     'paymentplans' => 'Payment plans',
     'newpaymentplan' => 'New payment plan',
     'paymentplanname' => 'Payment plan name',
@@ -42,4 +43,6 @@ return [
     'paidoftotal' => 'paid of total',
     'rounds' => 'rounds',
     'editpaymentplan' => 'Edit payment plan',
+    'markaspaid' => 'Mark as paid',,
+    'edit' => 'Edit',
 ];
