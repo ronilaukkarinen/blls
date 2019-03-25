@@ -26,6 +26,7 @@
 
         <ul class="navigation-menu">
           <li><a href="/settings" data-balloon="{{ __('dashboard.settings') }}" data-balloon-pos="right"><span class="screen-reader-text">{{ __('dashboard.settings') }}</span><?php echo file_get_contents( 'svg/dashboard/settings.svg' ); ?></a></li>
+          <li><a href="/paid" data-balloon="{{ __('dashboard.paidpage') }}" data-balloon-pos="right"><span class="screen-reader-text">{{ __('dashboard.paidpage') }}</span><?php echo file_get_contents( 'svg/dashboard/check.svg' ); ?></a></li>
           <li><a href="/logout" data-balloon="{{ __('dashboard.log_out') }}" data-balloon-pos="right"><span class="screen-reader-text">{{ __('dashboard.log_out') }}</span><?php echo file_get_contents( 'svg/dashboard/logout.svg' ); ?></a></li>
         </ul>
       </aside>

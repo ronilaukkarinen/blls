@@ -3,6 +3,7 @@ return [
     'app_name' => 'Bills.io',
     'settings' => 'Asetukset',
     'log_out' => 'Kirjaudu ulos',
+    'paidpage' => 'Katso maksetut',
     'summary' => 'Tilanne',
     'total' => 'Laskuja maksettavana yhteensä',
     'subscriptiontotal' => 'Kuukausimaksut',

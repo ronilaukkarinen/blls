@@ -3,6 +3,7 @@ return [
     'app_name' => 'Bills.io',
     'settings' => 'Settings',
     'log_out' => 'Log out',
+    'paidpage' => 'View paid',
     'summary' => 'Summary',
     'total' => 'Total amount due',
     'subscriptiontotal' => 'Monthly costs',
