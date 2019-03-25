@@ -13,7 +13,7 @@ Route::post('/register', 'RegisterController@store');
 Route::group(['middleware' => ['auth']], function () {
 
     // Bills
-    Route::get('/dashboard/', 'BillController@showBills')->name('dashboard');
+    Route::get('/dashboard', 'BillController@showBills')->name('dashboard');
     Route::post('/addbill', 'BillController@addBill');
     Route::post('/editbill', 'BillController@editBill');
     Route::post('/markaspaid', 'BillController@markasPaid');
@@ -30,6 +30,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/editpaymentplan', 'PaymentplanController@editPaymentplan');
     Route::post('/removepaymentplan', 'PaymentplanController@removePaymentplan');
     Route::post('/markppaid', 'PaymentplanController@markaPaymentplanasPaid');
+
+    // Paid page
+    Route::get('/paid', 'PaidController@showPaid')->name('paid');
 
     // Settings
     Route::name('settings.')->group(function () {

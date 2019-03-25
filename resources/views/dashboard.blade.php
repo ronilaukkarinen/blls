@@ -379,7 +379,10 @@ endif;
             <h1>{{ __('dashboard.paymentplans') }} <span class="add-new add-new-paymentplan"><?php echo file_get_contents( 'svg/dashboard/plus.svg' ); ?></span></h1>
 
             <div class="items items-playmentplans">
-            <?php foreach ( $paymentplans as $paymentplan ) : ?>
+            <?php foreach ( $paymentplans as $paymentplan ) :
+              // Check if owned by current user and not paid
+              if ( '0' == $paymentplan->paid && $user_id == $paymentplan->userid ) :
+            ?>
 
               <div class="item item-<?php echo $paymentplan->id; ?>" data-id="<?php echo $paymentplan->id; ?>">
                 <h2>{{ $paymentplan->name }}</h2>
@@ -401,7 +404,9 @@ endif;
                   </div>
                 </div>
               </div>
-            <?php endforeach; ?>
+            <?php
+            endif;
+            endforeach; ?>
             </div>
 
           </div>
@@ -454,8 +459,8 @@ foreach ( $paymentplans as $paymentplan ) :
   // Variables
   $user_id = Auth::id();
 
-  // Check if owned by current user
-  if ( $user_id == $paymentplan->userid ) :
+  // Check if owned by current user and not paid
+  if ( '0' == $paymentplan->paid && $user_id == $paymentplan->userid ) :
     ?>
 
     <div class="modal modal-paymentplan modal-paymentplan-<?php echo $paymentplan->id; ?>">
