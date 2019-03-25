@@ -285,7 +285,6 @@ endif;
 
                   <div class="row actions">
                     <button type="button" id="submit-subscription">{{ __('dashboard.submit') }}</button>
-                    <button type="button" id="update-subscription" style="display: none;">{{ __('dashboard.update') }}</button>
                   </div>
                 </form>
 
@@ -362,7 +361,7 @@ endif;
                   <div class="row actions">
                     <button type="button" id="update-subscription" data-id="<?php echo $subscription->id; ?>">{{ __('dashboard.update') }}</button>
                     <?php if ('1' == $subscription->active) : ?><button type="button" id="make-inactive" data-id="<?php echo $subscription->id; ?>">{{ __('dashboard.makeinactive') }}</button><?php else : ?><button type="button" id="make-active" data-id="<?php echo $subscription->id; ?>">{{ __('dashboard.makeactive') }}</button><?php endif; ?>
-                    <button type="button" id="remove-subscription" data-id="<?php echo $subscription->id; ?>"><span class="screen-reader-text">{{ __('dashboard.remove') }}</span><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></button>
+                    <button type="button" class="remove-button" id="remove-subscription" data-id="<?php echo $subscription->id; ?>"><span class="screen-reader-text">{{ __('dashboard.remove') }}</span><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></button>
                   </div>
                 </form>
 
@@ -443,7 +442,6 @@ endif;
 
           <div class="row actions">
             <button type="button" id="submit-paymentplan">{{ __('dashboard.submit') }}</button>
-            <button type="button" id="update-paymentplan" style="display: none;">{{ __('dashboard.update') }}</button>
           </div>
         </form>
 
@@ -492,6 +490,7 @@ foreach ( $paymentplans as $paymentplan ) :
 
           <div class="row actions">
             <button type="button" id="update-paymentplan" data-id="<?php echo $paymentplan->id; ?>">{{ __('dashboard.update') }}</button>
+            <button type="button" class="remove-button" id="remove-paymentplan" data-id="<?php echo $paymentplan->id; ?>"><span class="screen-reader-text">{{ __('dashboard.remove') }}</span><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></button>
           </div>
         </form>
 

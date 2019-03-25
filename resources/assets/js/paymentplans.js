@@ -63,24 +63,50 @@ $(document).on('click', '#update-paymentplan', function() {
   $('body').removeClass('modal-opened');
   $('.modal').removeClass('show');
 
+  $.ajax({
+    url: 'editpaymentplan',
+    type: 'POST',
+    dataType: 'html',
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    data: {
+      'update': 1,
+      'id': edit_id,
+      'paymentplan_name': paymentplan_name,
+      'paymentplan_months_paid': paymentplan_months_paid,
+      'paymentplan_months_total': paymentplan_months_total
+    },
+    success: function(response) {
+      $('.item-' + edit_id).replaceWith(response);
+    }
+  });
+});
+
+// Remove paymentplan
+$(document).on('click', '#remove-paymentplan', function() {
+  var edit_id = $(this).attr('data-id');
+
+    // Close other possible modals
+    $('body').removeClass('modal-opened');
+    $('.modal').removeClass('show');
+
+    // Fade out
+    $('.item-' + edit_id).fadeOut();
+
     $.ajax({
-      url: 'editpaymentplan',
+      url: 'removepaymentplan',
       type: 'POST',
       dataType: 'html',
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
       data: {
-        'update': 1,
-        'id': edit_id,
-        'paymentplan_name': paymentplan_name,
-        'paymentplan_months_paid': paymentplan_months_paid,
-        'paymentplan_months_total': paymentplan_months_total
+        'id': edit_id
       },
       success: function(response) {
-        $('.item-' + edit_id).replaceWith(response);
-     }
-   });
+      }
+    });
   });
 
 });

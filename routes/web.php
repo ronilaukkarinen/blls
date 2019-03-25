@@ -27,6 +27,7 @@ Route::group(['middleware' => ['auth']], function () {
     // Payment plans
     Route::post('/addpaymentplan', 'PaymentplanController@addPaymentplan');
     Route::post('/editpaymentplan', 'PaymentplanController@editPaymentplan');
+    Route::post('/removepaymentplan', 'PaymentplanController@removePaymentplan');
 
     // Settings
     Route::name('settings.')->group(function () {

@@ -12,11 +12,12 @@
   transition: all .33s;
   z-index: -99;
 
-  &.modal-subscription .actions {
+  &.modal-subscription .actions,
+  &.modal-paymentplan .actions {
     display: flex;
     justify-content: space-between;
 
-    #remove-subscription:hover {
+    .remove-button:hover {
       border-color: transparent;
 
       svg,

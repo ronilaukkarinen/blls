@@ -88,4 +88,12 @@ class PaymentplanController extends Controller {
     </div>';
   }
 
+  // Remove payment plan
+  public function removePaymentplan(Request $request) {
+    DB::table('paymentplans')
+    ->where('userid', Auth::user()->id)
+    ->where('id', $request->id)
+    ->delete();
+  }
+
 }
