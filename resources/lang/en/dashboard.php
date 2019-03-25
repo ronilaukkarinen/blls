@@ -1,5 +1,8 @@
 <?php
 return [
+    'app_name' => 'Bills.io',
+    'settings' => 'Settings',
+    'log_out' => 'Log out',
     'summary' => 'Summary',
     'total' => 'Total amount due',
     'subscriptiontotal' => 'Monthly costs',

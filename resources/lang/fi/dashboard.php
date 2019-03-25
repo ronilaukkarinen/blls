@@ -1,5 +1,8 @@
 <?php
 return [
+    'app_name' => 'Bills.io',
+    'settings' => 'Asetukset',
+    'log_out' => 'Kirjaudu ulos',
     'summary' => 'Tilanne',
     'total' => 'Laskuja maksettavana yhteensä',
     'subscriptiontotal' => 'Kuukausimaksut',
