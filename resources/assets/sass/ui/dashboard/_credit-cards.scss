@@ -1,0 +1,225 @@
+.items-creditcards .item-creditcard .credit-card {
+  @include background-cover();
+  border-radius: 10px;
+  width: 275px;
+  height: 170px;
+  position: relative;
+
+  .name-on-card {
+    font-family: $font-alt;
+    text-transform: uppercase;
+    font-size: 15px;
+    color: #fff;
+  }
+
+  .numbers {
+    color: #fff;
+    letter-spacing: 1px;
+    font-size: 15px;
+
+    span {
+      font-size: 11px;
+      letter-spacing: 3px;
+      margin-right: 6px;
+    }
+  }
+
+  .expiration-date {
+    color: #fff;
+    letter-spacing: 4px;
+    font-size: 15px;
+  }
+
+  @media (max-width: 1655px) {
+    width: 200px;
+    height: 125px;
+
+    .numbers,
+    .expiration-date,
+    .name-on-card {
+      font-size: 11px;
+    }
+
+    .numbers span {
+      font-size: 9px;
+
+      b {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.credit-card.creditcard-banknorwegian {
+  background-color: #e10d41;
+  background-image: url('../images/creditcard-banknorwegian.png');
+  padding: 20px 22px;
+
+  .name-on-card,
+  .numbers,
+  .expiration-date {
+    position: absolute;
+    margin: 0;
+  }
+
+  .numbers {
+    top: 91px;
+    font-size: 18px;
+
+    b {
+      margin-right: 15px;
+    }
+
+    @media (max-width: 1655px) {
+      top: 65px;
+    }
+  }
+
+  .name-on-card {
+    bottom: 17px;
+    font-size: 13px;
+    letter-spacing: 1px;
+
+    @media (max-width: 1655px) {
+      bottom: 12px;
+      margin-left: -2px;
+    }
+  }
+
+  .expiration-date {
+    bottom: 34px;
+    left: 112px;
+    font-size: 13px;
+    letter-spacing: 3px;
+  }
+}
+
+.items-creditcards .item-creditcard .credit-card.creditcard-tuohi {
+  h2,
+  span,
+  b,
+  .name-on-card,
+  .numbers,
+  .expiration-date {
+    color: #706f74;
+  }
+}
+
+.credit-card.creditcard-tuohi {
+  background-color: #f8f7f2;
+  background-image: url('../images/creditcard-tuohi.png');
+  padding: 20px 22px;
+
+  .name-on-card,
+  .numbers,
+  .expiration-date {
+    position: absolute;
+    margin: 0;
+  }
+
+  .numbers {
+    top: 91px;
+    font-size: 18px;
+
+    b {
+      margin-right: 15px;
+    }
+
+    @media (max-width: 1655px) {
+      top: 70px;
+    }
+  }
+
+  .name-on-card {
+    bottom: 17px;
+    font-size: 13px;
+    letter-spacing: 1px;
+
+    @media (max-width: 1655px) {
+      bottom: 12px;
+      margin-left: -2px;
+    }
+  }
+
+  .expiration-date {
+    bottom: 28px;
+    left: 114px;
+    font-size: 13px;
+    letter-spacing: 3px;
+  }
+}
+
+.credit-card.creditcard-creditea {
+  background-color: #262625;
+  background-image: url('../images/creditcard-creditea.png');
+  padding: 20px 22px;
+
+  .name-on-card {
+    margin: 4px 0 30px;
+
+    @media (max-width: 1655px) {
+      margin-top: 0;
+    }
+  }
+
+  .numbers {
+    position: relative;
+    left: 2px;
+    top: -5px;
+
+    @media (max-width: 1655px) {
+      top: -15px;
+    }
+  }
+
+  .expiration-date {
+    position: absolute;
+    bottom: 24px;
+
+    @media (max-width: 1655px) {
+      bottom: 14px;
+    }
+  }
+}
+
+.item-creditcard {
+  display: flex;
+
+  .details {
+    height: 110px;
+    width: 100%;
+    overflow: visible;
+  }
+
+  .progress-bar {
+    width: 95%;
+  }
+
+  .col {
+    display: flex;
+    align-items: center;
+
+    &.col-creditcard {
+      margin-right: 3rem;
+
+      @media (min-width: 1655px) {
+        min-width: 275px;
+      }
+
+      @media (max-width: 1655px) {
+        min-width: 200px;
+      }
+    }
+
+    .creditor {
+      margin-top: 0;
+    }
+
+    .monthly-cut {
+      margin: 0 0 15px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+}
+

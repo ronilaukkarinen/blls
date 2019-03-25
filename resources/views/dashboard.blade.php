@@ -437,18 +437,161 @@ endif;
           <div class="column column-credit-cards">
             <h1>{{ __('dashboard.creditcards') }} <span class="add-new add-new-creditcard"><?php echo file_get_contents( 'svg/dashboard/plus.svg' ); ?></span></h1>
 
-            <div class="inbox-zero">
+<!--             <div class="inbox-zero">
 
               <div class="freedom freedom-fireworks">
                 <?php echo file_get_contents( 'svg/inboxzero/fireworks.svg' ); ?>
                 <p class="punchline">{{ __('dashboard.punchline_creditcard') }}<br />{{ __('dashboard.punchline_creditcard_after_br') }}</p>
               </div>
 
-            </div>
-
-<!--             <div class="items items-creditcards">
-              Credit cards here
             </div> -->
+
+            <div class="items items-creditcards">
+
+              <div class="item item-creditcard">
+
+                <div class="col col-creditcard">
+
+                  <div class="credit-card creditcard-creditea">
+                    <h3 class="name-on-card">Roni Laukkarinen</h3>
+                    <div class="numbers">
+                      <span><b>●●●●</b> <b>●●●●</b> <b>●●●●</b></span> 1688
+                    </div>
+                    <div class="expiration-date">
+                      03/21
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="col">
+
+                  <div class="details">
+                    <h2 class="title-larger creditor">Creditea</h2>
+                    <h2 class="title-small">Kuukausilyhennys</h2>
+                    <p class="monthly-cut"><span class="amount">&euro; <span class="formatted-amount">7,73</span></span> / kuukaudessa</p>
+
+                    <div class="progress-bar">
+                      <?php
+                      $paid = '700';
+                      $total = '1000';
+                      $percent = round( ( $paid / $total ) * 100 );
+
+                      if ( $percent < 40 ) :
+                        $percent_class = ' low';
+                      elseif ( $percent > 40 ) :
+                        $percent_class = ' medium';
+                      else :
+                        $percent_class = ' high';
+                      endif;
+                      ?>
+                      <div class="progress<?php echo $percent_class; ?>" style="width: <?php echo $percent; ?>%;">
+                        <p><?php echo $paid; ?> {{ __('dashboard.paidoftotal') }} <?php echo $total; ?> {{ __('dashboard.wholecredit') }}. (<?php echo $percent; ?>%)</p>
+                      </div>
+                    </div>
+
+                  </div>
+
+              </div>
+
+            </div><!-- .item -->
+
+             <div class="item item-creditcard">
+
+                <div class="col col-creditcard">
+
+                  <div class="credit-card creditcard-banknorwegian">
+                    <h3 class="name-on-card">Roni Laukkarinen</h3>
+                    <div class="numbers">
+                      <span><b>●●●●</b> <b>●●●●</b> <b>●●●●</b></span> 1688
+                    </div>
+                    <div class="expiration-date">
+                      03/21
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="col">
+
+                  <div class="details">
+                    <h2 class="title-larger creditor">Bank Norwegian</h2>
+                    <h2 class="title-small">Kuukausilyhennys</h2>
+                    <p class="monthly-cut"><span class="amount">&euro; <span class="formatted-amount">123,73</span></span> / kuukaudessa</p>
+
+                    <div class="progress-bar">
+                      <?php
+                      $paid = '200';
+                      $total = '3000';
+                      $percent = round( ( $paid / $total ) * 100 );
+
+                      if ( $percent < 40 ) :
+                        $percent_class = ' low';
+                      elseif ( $percent > 40 ) :
+                        $percent_class = ' medium';
+                      else :
+                        $percent_class = ' high';
+                      endif;
+                      ?>
+                      <div class="progress<?php echo $percent_class; ?>" style="width: <?php echo $percent; ?>%;">
+                        <p><?php echo $paid; ?> {{ __('dashboard.paidoftotal') }} <?php echo $total; ?> {{ __('dashboard.wholecredit') }}. (<?php echo $percent; ?>%)</p>
+                      </div>
+                    </div>
+
+                  </div>
+
+              </div>
+
+              </div><!-- .item -->
+
+              <div class="item item-creditcard">
+
+                <div class="col col-creditcard">
+
+                  <div class="credit-card creditcard-tuohi">
+                    <h3 class="name-on-card">Roni Laukkarinen</h3>
+                    <div class="numbers">
+                      <span><b>●●●●</b> <b>●●●●</b> <b>●●●●</b></span> 1688
+                    </div>
+                    <div class="expiration-date">
+                      04/23
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="col">
+
+                  <div class="details">
+                    <h2 class="title-larger creditor">Tuohi</h2>
+                    <h2 class="title-small">Kuukausilyhennys</h2>
+                    <p class="monthly-cut"><span class="amount">&euro; <span class="formatted-amount">76,83</span></span> / kuukaudessa</p>
+
+                    <div class="progress-bar">
+                      <?php
+                      $paid = '300';
+                      $total = '2000';
+                      $percent = round( ( $paid / $total ) * 100 );
+
+                      if ( $percent < 40 ) :
+                        $percent_class = ' low';
+                      elseif ( $percent > 40 ) :
+                        $percent_class = ' medium';
+                      else :
+                        $percent_class = ' high';
+                      endif;
+                      ?>
+                      <div class="progress<?php echo $percent_class; ?>" style="width: <?php echo $percent; ?>%;">
+                        <p><?php echo $paid; ?> {{ __('dashboard.paidoftotal') }} <?php echo $total; ?> {{ __('dashboard.wholecredit') }}. (<?php echo $percent; ?>%)</p>
+                      </div>
+                    </div>
+
+                  </div>
+
+              </div>
+
+            </div><!-- .item -->
+
           </div>
 
       </section><!-- Dashboard ends! -->

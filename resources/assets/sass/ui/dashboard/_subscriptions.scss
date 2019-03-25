@@ -11,6 +11,10 @@
     overflow: hidden;
     border: 0;
 
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
     input {
       display: none;
       font-size: 14px;

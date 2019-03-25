@@ -1802,6 +1802,10 @@ button[data-balloon] {
   border: 0;
 }
 
+.column-subscriptions .item:last-of-type {
+  margin-bottom: 0;
+}
+
 .column-subscriptions .item input {
   display: none;
   font-size: 14px;
@@ -2057,21 +2061,21 @@ button[data-balloon] {
   overflow: hidden;
 }
 
-.items-playmentplans .item:hover {
+.item:hover {
   cursor: pointer;
 }
 
-.items-playmentplans .item:hover .progress {
+.item:hover .progress {
   height: 19px;
   padding: 1px 6px;
   border-radius: .2rem;
 }
 
-.items-playmentplans .item:hover .progress p {
+.item:hover .progress p {
   opacity: 1;
 }
 
-.items-playmentplans .item:hover .progress-bar {
+.item:hover .progress-bar {
   background: #dddded;
   -webkit-transform: translateY(-5px);
   -ms-transform: translateY(-5px);
@@ -2079,7 +2083,7 @@ button[data-balloon] {
   border-radius: .2rem;
 }
 
-.items-playmentplans .progress-bar {
+.progress-bar {
   border-radius: .7rem;
   background: #eeeef6;
   -webkit-transition: all .22s;
@@ -2088,7 +2092,7 @@ button[data-balloon] {
   white-space: nowrap;
 }
 
-.items-playmentplans .progress-bar .progress {
+.progress-bar .progress {
   background: #dc3651;
   border-radius: .7rem;
   height: 5px;
@@ -2098,19 +2102,19 @@ button[data-balloon] {
   white-space: nowrap;
 }
 
-.items-playmentplans .progress-bar .progress.low {
+.progress-bar .progress.low {
   background: #dc3651;
 }
 
-.items-playmentplans .progress-bar .progress.medium {
+.progress-bar .progress.medium {
   background: #12cdd6;
 }
 
-.items-playmentplans .progress-bar .progress.high {
+.progress-bar .progress.high {
   background: #2ecc71;
 }
 
-.items-playmentplans .progress-bar p {
+.progress-bar p {
   color: #fff;
   font-size: 11px;
   opacity: 0;
@@ -2118,6 +2122,258 @@ button[data-balloon] {
   -o-transition: all .22s;
   transition: all .22s;
   white-space: nowrap;
+}
+
+.items-creditcards .item-creditcard .credit-card {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 10px;
+  width: 275px;
+  height: 170px;
+  position: relative;
+}
+
+.items-creditcards .item-creditcard .credit-card .name-on-card {
+  font-family: 'Graphik', 'Helvetica Neue', Helvetica, sans-serif;
+  text-transform: uppercase;
+  font-size: 15px;
+  color: #fff;
+}
+
+.items-creditcards .item-creditcard .credit-card .numbers {
+  color: #fff;
+  letter-spacing: 1px;
+  font-size: 15px;
+}
+
+.items-creditcards .item-creditcard .credit-card .numbers span {
+  font-size: 11px;
+  letter-spacing: 3px;
+  margin-right: 6px;
+}
+
+.items-creditcards .item-creditcard .credit-card .expiration-date {
+  color: #fff;
+  letter-spacing: 4px;
+  font-size: 15px;
+}
+
+@media (max-width: 1655px) {
+  .items-creditcards .item-creditcard .credit-card {
+    width: 200px;
+    height: 125px;
+  }
+
+  .items-creditcards .item-creditcard .credit-card .numbers,
+  .items-creditcards .item-creditcard .credit-card .expiration-date,
+  .items-creditcards .item-creditcard .credit-card .name-on-card {
+    font-size: 11px;
+  }
+
+  .items-creditcards .item-creditcard .credit-card .numbers span {
+    font-size: 9px;
+  }
+
+  .items-creditcards .item-creditcard .credit-card .numbers span b {
+    margin-right: 0;
+  }
+}
+
+.credit-card.creditcard-banknorwegian {
+  background-color: #e10d41;
+  background-image: url('../images/creditcard-banknorwegian.png');
+  padding: 20px 22px;
+}
+
+.credit-card.creditcard-banknorwegian .name-on-card,
+.credit-card.creditcard-banknorwegian .numbers,
+.credit-card.creditcard-banknorwegian .expiration-date {
+  position: absolute;
+  margin: 0;
+}
+
+.credit-card.creditcard-banknorwegian .numbers {
+  top: 91px;
+  font-size: 18px;
+}
+
+.credit-card.creditcard-banknorwegian .numbers b {
+  margin-right: 15px;
+}
+
+@media (max-width: 1655px) {
+  .credit-card.creditcard-banknorwegian .numbers {
+    top: 65px;
+  }
+}
+
+.credit-card.creditcard-banknorwegian .name-on-card {
+  bottom: 17px;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 1655px) {
+  .credit-card.creditcard-banknorwegian .name-on-card {
+    bottom: 12px;
+    margin-left: -2px;
+  }
+}
+
+.credit-card.creditcard-banknorwegian .expiration-date {
+  bottom: 34px;
+  left: 112px;
+  font-size: 13px;
+  letter-spacing: 3px;
+}
+
+.items-creditcards .item-creditcard .credit-card.creditcard-tuohi h2,
+.items-creditcards .item-creditcard .credit-card.creditcard-tuohi span,
+.items-creditcards .item-creditcard .credit-card.creditcard-tuohi b,
+.items-creditcards .item-creditcard .credit-card.creditcard-tuohi .name-on-card,
+.items-creditcards .item-creditcard .credit-card.creditcard-tuohi .numbers,
+.items-creditcards .item-creditcard .credit-card.creditcard-tuohi .expiration-date {
+  color: #706f74;
+}
+
+.credit-card.creditcard-tuohi {
+  background-color: #f8f7f2;
+  background-image: url('../images/creditcard-tuohi.png');
+  padding: 20px 22px;
+}
+
+.credit-card.creditcard-tuohi .name-on-card,
+.credit-card.creditcard-tuohi .numbers,
+.credit-card.creditcard-tuohi .expiration-date {
+  position: absolute;
+  margin: 0;
+}
+
+.credit-card.creditcard-tuohi .numbers {
+  top: 91px;
+  font-size: 18px;
+}
+
+.credit-card.creditcard-tuohi .numbers b {
+  margin-right: 15px;
+}
+
+@media (max-width: 1655px) {
+  .credit-card.creditcard-tuohi .numbers {
+    top: 70px;
+  }
+}
+
+.credit-card.creditcard-tuohi .name-on-card {
+  bottom: 17px;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 1655px) {
+  .credit-card.creditcard-tuohi .name-on-card {
+    bottom: 12px;
+    margin-left: -2px;
+  }
+}
+
+.credit-card.creditcard-tuohi .expiration-date {
+  bottom: 28px;
+  left: 114px;
+  font-size: 13px;
+  letter-spacing: 3px;
+}
+
+.credit-card.creditcard-creditea {
+  background-color: #262625;
+  background-image: url('../images/creditcard-creditea.png');
+  padding: 20px 22px;
+}
+
+.credit-card.creditcard-creditea .name-on-card {
+  margin: 4px 0 30px;
+}
+
+@media (max-width: 1655px) {
+  .credit-card.creditcard-creditea .name-on-card {
+    margin-top: 0;
+  }
+}
+
+.credit-card.creditcard-creditea .numbers {
+  position: relative;
+  left: 2px;
+  top: -5px;
+}
+
+@media (max-width: 1655px) {
+  .credit-card.creditcard-creditea .numbers {
+    top: -15px;
+  }
+}
+
+.credit-card.creditcard-creditea .expiration-date {
+  position: absolute;
+  bottom: 24px;
+}
+
+@media (max-width: 1655px) {
+  .credit-card.creditcard-creditea .expiration-date {
+    bottom: 14px;
+  }
+}
+
+.item-creditcard {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.item-creditcard .details {
+  height: 110px;
+  width: 100%;
+  overflow: visible;
+}
+
+.item-creditcard .progress-bar {
+  width: 95%;
+}
+
+.item-creditcard .col {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.item-creditcard .col.col-creditcard {
+  margin-right: 30px;
+  margin-right: 3rem;
+}
+
+@media (min-width: 1655px) {
+  .item-creditcard .col.col-creditcard {
+    min-width: 275px;
+  }
+}
+
+@media (max-width: 1655px) {
+  .item-creditcard .col.col-creditcard {
+    min-width: 200px;
+  }
+}
+
+.item-creditcard .col .creditor {
+  margin-top: 0;
+}
+
+.item-creditcard .col .monthly-cut {
+  margin: 0 0 15px;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .modal {

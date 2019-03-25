@@ -64,4 +64,5 @@ return [
     'paidbills' => 'Paid bills',
     'markunpaid' => 'Mark as unpaid',
     'creditcards' => 'Credit cards',
+    'wholecredit' => 'sum of the whole credit',
 ];

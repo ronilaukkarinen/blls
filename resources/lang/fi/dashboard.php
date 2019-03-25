@@ -64,4 +64,5 @@ return [
     'paidbills' => 'Maksetut laskut',
     'markunpaid' => 'Palauta maksuihin',
     'creditcards' => 'Luottokortit',
+    'wholecredit' => 'summan kokonaisluotosta',
 ];
