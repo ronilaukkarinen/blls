@@ -9,21 +9,42 @@
   .freedom {
     text-align: center;
     max-width: 30rem;
-    opacity: .7;
+    opacity: .6;
     filter: saturate(50%);
+
+    &.freedom-tada svg {
+      margin-right: -25px;
+    }
+
+    &.freedom-calendar svg {
+      width: 80px;
+      height: 80px;
+    }
+
+    svg {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 20px;
+      margin-top: 20px;
+
+      path {
+        fill: #2d404e;
+      }
+    }
 
     @media (max-width: 500px) {
       svg {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
       }
     }
   }
 
   .punchline {
+    font-family: $font-alt;
     font-size: 1.5rem;
     color: #2d404e;
-    font-weight: 600;
+    font-weight: 500;
     margin: 0 0 2.5rem;
     max-width: 25rem;
   }
@@ -60,6 +81,7 @@
     }
 
     @media (max-width: 560px) {
+      min-width: 220px;
       margin-bottom: 5rem;
       margin-right: 0;
 

@@ -47,6 +47,12 @@ return [
     'paidoftotal' => 'paid of total',
     'rounds' => 'rounds',
     'editpaymentplan' => 'Edit payment plan',
-    'markaspaid' => 'Mark as paid',,
+    'markaspaid' => 'Mark as paid',
     'edit' => 'Edit',
+    'punchline_all_done' => 'You\'re all done!',
+    'punchline_all_done_after_br' => 'Have fun, you deserve it!',
+    'punchline_beer' => 'Grab a beer!',
+    'punchline_beer_after_br' => 'You can afford it!',
+    'punchline_calendar' => 'No plans, yay!',
+    'punchline_calendar_after_br' => 'Unlimited time and money!',
 ];

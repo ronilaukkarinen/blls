@@ -49,4 +49,10 @@ return [
     'editpaymentplan' => 'Muokkaa maksusopimusta',
     'markaspaid' => 'Merkitse maksetuksi',
     'edit' => 'Muokkaa',
+    'punchline_all_done' => 'Ei laskuja!',
+    'punchline_all_done_after_br' => 'Nauti vapaudesta!',
+    'punchline_beer' => 'Ota olut!',
+    'punchline_beer_after_br' => 'Sinulla on siihen varaa!',
+    'punchline_calendar' => 'Ei maksuja, jee!',
+    'punchline_calendar_after_br' => 'Loputonta aikaa ja rahaa!',
 ];

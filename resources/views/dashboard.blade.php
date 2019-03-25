@@ -115,9 +115,9 @@ endif;
             ?>
             <div class="inbox-zero">
 
-              <div class="freedom">
-                <?php echo file_get_contents( 'svg/inboxzero/gamepad.svg' ); ?>
-                <p class="punchline">You're all done!<br />Go play, you deserve it!</p>
+              <div class="freedom freedom-tada">
+                <?php echo file_get_contents( 'svg/inboxzero/tada.svg' ); ?>
+                <p class="punchline">{{ __('dashboard.punchline_all_done') }}<br />{{ __('dashboard.punchline_all_done_after_br') }}</p>
               </div>
 
             </div>
@@ -141,17 +141,18 @@ endif;
               // List bills
               foreach ( $bills as $bill) :
 
-              // Variables
-              $old_date = $bill->duedate;
-              $old_date_timestamp = strtotime( $old_date );
-              $formatted_date = date( 'd.m.Y', $old_date_timestamp );
-              $stylish_date = date( 'd/m/Y', $old_date_timestamp );
-              $local_date = strftime( "%e. %Bta %Y", $old_date_timestamp );
-              $formatted_amount = str_replace( '.', ',', $bill->amount );
-              $user_id = Auth::id();
-
               // Check if not paid and if owned by current user
               if ( '0' == $bill->paid && $user_id == $bill->userid ) :
+
+                // Variables
+                $old_date = $bill->duedate;
+                $old_date_timestamp = strtotime( $old_date );
+                $formatted_date = date( 'd.m.Y', $old_date_timestamp );
+                $stylish_date = date( 'd/m/Y', $old_date_timestamp );
+                $local_date = strftime( "%e. %Bta %Y", $old_date_timestamp );
+                $formatted_amount = str_replace( '.', ',', $bill->amount );
+                $user_id = Auth::id();
+
                 ?>
                 <tr class="row-clickable row-id-<?php echo $bill->id; ?>" data-row-id="<?php echo $bill->id; ?>">
 
@@ -180,6 +181,17 @@ endif;
 
           <div class="column column-subscriptions">
             <h1>{{ __('dashboard.subscriptions') }} <span class="add-new add-new-subscription"><?php echo file_get_contents( 'svg/dashboard/plus.svg' ); ?></span></h1>
+
+            <?php if ( 0 == count( $subscriptions ) ) : ?>
+              <div class="inbox-zero">
+
+                <div class="freedom freedom-beer">
+                  <?php echo file_get_contents( 'svg/inboxzero/beer.svg' ); ?>
+                  <p class="punchline">{{ __('dashboard.punchline_beer') }}<br />{{ __('dashboard.punchline_beer_after_br') }}</p>
+                </div>
+
+              </div>
+            <?php else : ?>
 
             <div class="items-subscriptions">
               <?php
@@ -235,6 +247,7 @@ endif;
               endforeach;
               ?>
             </div>
+            <?php endif; ?>
 
             <div class="modal modal-subscription modal-subscription-new">
 
@@ -245,7 +258,7 @@ endif;
                   <header class="modal-header">
                     <div>
                       <h2 class="subscription-title">{{ __('dashboard.newsubscription') }}</h2>
-                      <h3 class="date"><?php echo $stylish_date; ?></h3>
+                      <h3 class="date"><?php echo date( 'd/m/Y'); ?></h3>
                     </div>
                   </header>
 
@@ -378,6 +391,17 @@ endif;
           <div class="column column-payment-plans">
             <h1>{{ __('dashboard.paymentplans') }} <span class="add-new add-new-paymentplan"><?php echo file_get_contents( 'svg/dashboard/plus.svg' ); ?></span></h1>
 
+            <?php if ( 0 == count( $subscriptions ) ) : ?>
+              <div class="inbox-zero">
+
+                <div class="freedom freedom-calendar">
+                  <?php echo file_get_contents( 'svg/inboxzero/calendar.svg' ); ?>
+                  <p class="punchline">{{ __('dashboard.punchline_calendar') }}<br />{{ __('dashboard.punchline_calendar_after_br') }}</p>
+                </div>
+
+              </div>
+            <?php else : ?>
+
             <div class="items items-playmentplans">
             <?php foreach ( $paymentplans as $paymentplan ) :
               // Check if owned by current user and not paid
@@ -408,6 +432,7 @@ endif;
             endif;
             endforeach; ?>
             </div>
+          <?php endif; ?>
 
           </div>
 

@@ -1393,23 +1393,44 @@ button[data-balloon] {
   text-align: center;
   max-width: 300px;
   max-width: 30rem;
-  opacity: .7;
+  opacity: .6;
   -webkit-filter: saturate(50%);
   filter: saturate(50%);
 }
 
+.inbox-zero .freedom.freedom-tada svg {
+  margin-right: -25px;
+}
+
+.inbox-zero .freedom.freedom-calendar svg {
+  width: 80px;
+  height: 80px;
+}
+
+.inbox-zero .freedom svg {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.inbox-zero .freedom svg path {
+  fill: #2d404e;
+}
+
 @media (max-width: 500px) {
   .inbox-zero .freedom svg {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
   }
 }
 
 .inbox-zero .punchline {
+  font-family: 'Graphik', 'Helvetica Neue', Helvetica, sans-serif;
   font-size: 15px;
   font-size: 1.5rem;
   color: #2d404e;
-  font-weight: 600;
+  font-weight: 500;
   margin: 0 0 25px;
   margin: 0 0 2.5rem;
   max-width: 250px;
@@ -1460,6 +1481,7 @@ button[data-balloon] {
 
 @media (max-width: 560px) {
   .dashboard-content .column {
+    min-width: 220px;
     margin-bottom: 5rem;
     margin-right: 0;
   }
