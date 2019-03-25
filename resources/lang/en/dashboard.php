@@ -39,6 +39,7 @@ return [
     'makeactive' => 'Subscribe again',
     'op_ebill' => 'Pay OP E-bill',
     'subscription_month_day' => 'Day of the month',
+    'renewaldate' => 'Renewal date',
     'remove' => 'Remove',
     'removeforgood' => 'Remove for good',
     'paymentplans' => 'Payment plans',
@@ -57,7 +58,10 @@ return [
     'punchline_beer_after_br' => 'You can afford it!',
     'punchline_calendar' => 'No plans, yay!',
     'punchline_calendar_after_br' => 'Unlimited time and money!',
+    'punchline_creditcard' => 'No credit card debt!',
+    'punchline_creditcard_after_br' => 'Keep it that way!',
     'totalpaid' => 'Total amount paid',
     'paidbills' => 'Paid bills',
     'markunpaid' => 'Mark as unpaid',
+    'creditcards' => 'Credit cards',
 ];

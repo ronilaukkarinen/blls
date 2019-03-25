@@ -39,6 +39,7 @@ return [
     'makeactive' => 'Ota käyttöön',
     'op_ebill' => 'Maksa OP E-lasku',
     'subscription_month_day' => 'Maksupäivä',
+    'renewaldate' => 'Maksupäivä',
     'remove' => 'Poista',
     'removeforgood' => 'Poista pysyvästi',
     'paymentplans' => 'Maksusopimukset',
@@ -57,7 +58,10 @@ return [
     'punchline_beer_after_br' => 'Sinulla on siihen varaa!',
     'punchline_calendar' => 'Ei maksuja, jee!',
     'punchline_calendar_after_br' => 'Loputonta aikaa ja rahaa!',
+    'punchline_creditcard' => 'Ei luottokorttivelkaa!',
+    'punchline_creditcard_after_br' => 'Pidä toi!',
     'totalpaid' => 'Maksettu yhteensä',
     'paidbills' => 'Maksetut laskut',
     'markunpaid' => 'Palauta maksuihin',
+    'creditcards' => 'Luottokortit',
 ];

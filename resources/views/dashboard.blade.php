@@ -289,7 +289,7 @@ endif;
                     </div>
 
                     <div class="row">
-                      <label for="subscription_month_day">{{ __('dashboard.subscription_month_day') }}</label>
+                      <label for="subscription_month_day">{{ __('dashboard.renewaldate') }}</label>
                       <input type="text" name="subscription_month_day" id="subscription_month_day" class="due-date-subscription" placeholder="{{ date('d.m.Y') }}">
                     </div>
                   </footer>
@@ -432,10 +432,26 @@ endif;
             endforeach; ?>
             </div>
           <?php endif; ?>
-
           </div>
 
-      </section>
+          <div class="column column-credit-cards">
+            <h1>{{ __('dashboard.creditcards') }} <span class="add-new add-new-creditcard"><?php echo file_get_contents( 'svg/dashboard/plus.svg' ); ?></span></h1>
+
+            <div class="inbox-zero">
+
+              <div class="freedom freedom-fireworks">
+                <?php echo file_get_contents( 'svg/inboxzero/fireworks.svg' ); ?>
+                <p class="punchline">{{ __('dashboard.punchline_creditcard') }}<br />{{ __('dashboard.punchline_creditcard_after_br') }}</p>
+              </div>
+
+            </div>
+
+<!--             <div class="items items-creditcards">
+              Credit cards here
+            </div> -->
+          </div>
+
+      </section><!-- Dashboard ends! -->
 
     </div>
 

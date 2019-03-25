@@ -1528,11 +1528,6 @@ button[data-balloon] {
   cursor: pointer;
 }
 
-.column-credit-cards,
-.column-friend-loans {
-  display: none;
-}
-
 .dashboard-content .status {
   display: -webkit-box;
   display: -ms-flexbox;
