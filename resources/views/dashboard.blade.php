@@ -217,7 +217,7 @@ endif;
                       <?php echo file_get_contents( "svg/subscriptions/{$biller}.svg" ); ?>
 
                       <div class="details">
-                        <span class="biller"><?php echo $sub->biller; ?></span>
+                        <span class="biller"><?php if ( 'playstation' == $biller ) : echo 'PlayStation™ Network'; else : echo $sub->biller; endif; ?></span>
                         <span class="type"><?php echo $sub->plan; ?></span>
                       </div>
                     </div>
