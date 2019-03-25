@@ -16,7 +16,7 @@
     .progress {
       height: 19px;
       padding: 1px 6px;
-      border-radius: .8rem;
+      border-radius: .2rem;
     }
 
     .progress p {
@@ -25,8 +25,8 @@
 
     .progress-bar {
       background: darken(#eeeef6, 5%);
-      transform: translateY(-7px);
-      border-radius: .8rem;
+      transform: translateY(-5px);
+      border-radius: .2rem;
     }
   }
 
