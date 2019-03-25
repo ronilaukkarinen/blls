@@ -17,6 +17,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/addbill', 'BillController@addBill');
     Route::post('/editbill', 'BillController@editBill');
     Route::post('/markaspaid', 'BillController@markasPaid');
+    Route::post('/markasunpaid', 'BillController@markasunPaid');
     Route::post('/removebill', 'BillController@removeBill');
 
     // Subscriptions
@@ -30,6 +31,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/editpaymentplan', 'PaymentplanController@editPaymentplan');
     Route::post('/removepaymentplan', 'PaymentplanController@removePaymentplan');
     Route::post('/markppaid', 'PaymentplanController@markaPaymentplanasPaid');
+    Route::post('/markpunpaid', 'PaymentplanController@markaPaymentplanasunPaid');
 
     // Paid page
     Route::get('/paid', 'PaidController@showPaid')->name('paid');

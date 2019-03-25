@@ -112,4 +112,17 @@ class PaymentplanController extends Controller {
     ]);
   }
 
+  // Mark as unpaid
+  public function markaPaymentplanasunPaid(Request $request) {
+
+    // Update the bill in question
+    DB::table('paymentplans')
+      ->where('userid', Auth::user()->id)
+      ->where('id', $request->id)
+      ->where('paid', '1')
+      ->update([
+        'paid' => 0,
+    ]);
+  }
+
 }

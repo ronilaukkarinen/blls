@@ -146,6 +146,10 @@
   background: #fff;
   border-radius: .5rem;
 
+  &.column-bills-paid {
+    margin-bottom: 5rem;
+  }
+
   table {
     border-radius: .5rem;
     border: 1px solid $color-darkgrey;

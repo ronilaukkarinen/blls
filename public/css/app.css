@@ -1463,6 +1463,16 @@ button[data-balloon] {
   margin-top: 0;
 }
 
+.dashboard-content .column-fullwidth {
+  width: 100%;
+  margin-bottom: 50px;
+  margin-bottom: 5rem;
+}
+
+.dashboard-content .column-fullwidth:last-of-type {
+  margin-bottom: 0;
+}
+
 .dashboard-content .column {
   width: 40%;
   margin-right: 50px;
@@ -1690,6 +1700,11 @@ button[data-balloon] {
   display: block;
   background: #fff;
   border-radius: .5rem;
+}
+
+.column-bills.column-bills-paid {
+  margin-bottom: 50px;
+  margin-bottom: 5rem;
 }
 
 .column-bills table {
@@ -2140,14 +2155,15 @@ button[data-balloon] {
   order: 3;
 }
 
-.modal .btn-markpaid {
+.modal .btn-markpaid,
+.modal .btn-makeinactive,
+.modal .btn-makeactive {
   -webkit-box-ordinal-group: 3;
   -ms-flex-order: 2;
   order: 2;
 }
 
-.modal .btn-remove,
-.modal .btn-makeinactive {
+.modal .btn-remove {
   -webkit-box-ordinal-group: 2;
   -ms-flex-order: 1;
   order: 1;
@@ -2188,10 +2204,14 @@ button[data-balloon] {
 .modal.modal-subscription .actions #make-inactive,
 .modal.modal-subscription .actions .mark-as-paid,
 .modal.modal-subscription .actions .mark-paymentplan-as-paid,
+.modal.modal-subscription .actions .mark-as-unpaid,
+.modal.modal-subscription .actions .mark-paymentplan-as-unpaid,
 .modal.modal-paymentplan .actions #make-active,
 .modal.modal-paymentplan .actions #make-inactive,
 .modal.modal-paymentplan .actions .mark-as-paid,
-.modal.modal-paymentplan .actions .mark-paymentplan-as-paid {
+.modal.modal-paymentplan .actions .mark-paymentplan-as-paid,
+.modal.modal-paymentplan .actions .mark-as-unpaid,
+.modal.modal-paymentplan .actions .mark-paymentplan-as-unpaid {
   margin-right: auto;
   margin-left: 10px;
   margin-left: 1rem;
@@ -2531,6 +2551,8 @@ button[data-balloon] {
 .modal .row.actions .edit:hover,
 .modal .row.actions .mark-as-paid:hover,
 .modal .row.actions .mark-paymentplan-as-paid:hover,
+.modal .row.actions .mark-as-unpaid:hover,
+.modal .row.actions .mark-paymentplan-as-unpaid:hover,
 .modal .row.actions .remove-button:hover {
   border-color: transparent;
 }
@@ -2545,13 +2567,17 @@ button[data-balloon] {
 }
 
 .modal .row.actions .mark-paymentplan-as-paid svg:hover,
-.modal .row.actions .mark-as-paid svg:hover {
+.modal .row.actions .mark-as-paid svg:hover,
+.modal .row.actions .mark-as-unpaid svg:hover,
+.modal .row.actions .mark-paymentplan-as-unpaid svg:hover {
   cursor: pointer;
   stroke: #2ecc71;
 }
 
 .modal .row.actions .mark-paymentplan-as-paid svg:hover path,
-.modal .row.actions .mark-as-paid svg:hover path {
+.modal .row.actions .mark-as-paid svg:hover path,
+.modal .row.actions .mark-as-unpaid svg:hover path,
+.modal .row.actions .mark-paymentplan-as-unpaid svg:hover path {
   stroke: #2ecc71;
 }
 

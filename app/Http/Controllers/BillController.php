@@ -120,6 +120,19 @@ class BillController extends Controller {
     ]);
   }
 
+  // Mark bill as unpaid
+  public function markasunPaid(Request $request) {
+
+    // Update the bill in question
+    DB::table('bills')
+      ->where('userid', Auth::user()->id)
+      ->where('id', $request->id)
+      ->where('paid', '1')
+      ->update([
+        'paid' => 0,
+    ]);
+  }
+
   // Remove bill
   public function removeBill(Request $request) {
     DB::table('bills')

@@ -17,12 +17,13 @@
     order: 3;
   }
 
-  .btn-markpaid {
+  .btn-markpaid,
+  .btn-makeinactive,
+  .btn-makeactive {
     order: 2;
   }
 
-  .btn-remove,
-  .btn-makeinactive {
+  .btn-remove {
     order: 1;
   }
 
@@ -52,7 +53,9 @@
     #make-active,
     #make-inactive,
     .mark-as-paid,
-    .mark-paymentplan-as-paid {
+    .mark-paymentplan-as-paid,
+    .mark-as-unpaid,
+    .mark-paymentplan-as-unpaid {
       margin-right: auto;
       margin-left: 1rem;
     }
@@ -242,6 +245,8 @@
       .edit:hover,
       .mark-as-paid:hover,
       .mark-paymentplan-as-paid:hover,
+      .mark-as-unpaid:hover,
+      .mark-paymentplan-as-unpaid:hover,
       .remove-button:hover {
         border-color: transparent;
       }
@@ -256,7 +261,9 @@
       }
 
       .mark-paymentplan-as-paid svg:hover,
-      .mark-as-paid svg:hover {
+      .mark-as-paid svg:hover,
+      .mark-as-unpaid svg:hover,
+      .mark-paymentplan-as-unpaid svg:hover {
         cursor: pointer;
         stroke: $color-success;
 

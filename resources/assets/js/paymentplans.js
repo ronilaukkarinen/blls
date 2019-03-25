@@ -94,23 +94,6 @@ $(document).on('click', '#remove-paymentplan', function() {
     // Fade out
     $('.item-' + edit_id).fadeOut();
 
-    // Reinitialize masonry layout
-    setTimeout(function() {
-      // Masonry layout settings
-      var packeryOptions = {
-        itemSelector: '.column',
-        gutter: 50
-      };
-
-      // Initialize Packery
-      var $grid = $('.dashboard-content').packery( packeryOptions );
-      var isActive = true;
-
-      if ( window.innerWidth > 560 ) {
-        $grid.packery( packeryOptions );
-      }
-    }, 300);
-
     $.ajax({
       url: 'removepaymentplan',
       type: 'POST',
@@ -126,8 +109,8 @@ $(document).on('click', '#remove-paymentplan', function() {
     });
   });
 
-// Mark as paid action
-$(document).on('click', '#paid-button', function(e) {
+  // Mark as paid action
+  $(document).on('click', '#paid-button', function(e) {
   var id = $(this).attr('data-id');
 
     // Close modals
@@ -137,25 +120,34 @@ $(document).on('click', '#paid-button', function(e) {
     // Fade out row
     $('.row-id-' + id).fadeOut();
 
-    // Reinitialize masonry layout
-    setTimeout(function() {
-      // Masonry layout settings
-      var packeryOptions = {
-        itemSelector: '.column',
-        gutter: 50
-      };
-
-      // Initialize Packery
-      var $grid = $('.dashboard-content').packery( packeryOptions );
-      var isActive = true;
-
-      if ( window.innerWidth > 560 ) {
-        $grid.packery( packeryOptions );
-      }
-    }, 300);
-
     $.ajax({
       url: 'markppaid',
+      type: 'POST',
+      dataType: 'html',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      data: {
+        'id': id
+      },
+      success: function(response) {
+      }
+    });
+  });
+
+  // Mark as unpaid action
+  $(document).on('click', '#unpaid-button', function(e) {
+  var id = $(this).attr('data-id');
+
+    // Close modals
+    $('body').removeClass('modal-opened');
+    $('.modal-bill').removeClass('show');
+
+    // Fade out row
+    $('.row-id-' + id).fadeOut();
+
+    $.ajax({
+      url: 'markpunpaid',
       type: 'POST',
       dataType: 'html',
       headers: {

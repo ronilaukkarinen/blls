@@ -17,6 +17,7 @@ return [
     'virtualcode' => 'Virtuaaliviivakoodi',
     'refnumber' => 'Viitenumero',
     'product' => 'Tuote',
+    'productdesc' => 'Tuotteen tai palvelun nimi',
     'type' => 'Laskun tyyppi',
     'ebill' => 'E-lasku',
     'emailbill' => 'Sähköpostilasku',
@@ -55,4 +56,7 @@ return [
     'punchline_beer_after_br' => 'Sinulla on siihen varaa!',
     'punchline_calendar' => 'Ei maksuja, jee!',
     'punchline_calendar_after_br' => 'Loputonta aikaa ja rahaa!',
+    'totalpaid' => 'Maksettu yhteensä',
+    'paidbills' => 'Maksetut laskut',
+    'markunpaid' => 'Palauta maksuihin',
 ];

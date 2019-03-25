@@ -7,7 +7,7 @@ $(document).ready(function() {
   };
 
   // Initialize Packery
-  var $grid = $('.dashboard-content').packery( packeryOptions );
+  var $grid = $('.dashboard-content-grid').packery( packeryOptions );
   var isActive = true;
 
   if ( window.innerWidth > 560 ) {

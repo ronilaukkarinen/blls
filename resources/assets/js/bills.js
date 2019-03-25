@@ -74,23 +74,6 @@ $(document).ready(function() {
     // Fade out row
     $('.row-id-' + remove_id).fadeOut();
 
-    // Reinitialize masonry layout
-    setTimeout(function() {
-      // Masonry layout settings
-      var packeryOptions = {
-        itemSelector: '.column',
-        gutter: 50
-      };
-
-      // Initialize Packery
-      var $grid = $('.dashboard-content').packery( packeryOptions );
-      var isActive = true;
-
-      if ( window.innerWidth > 560 ) {
-        $grid.packery( packeryOptions );
-      }
-    }, 300);
-
     // Update total
     var amount_to_be_substracted = $('.modal-bill-' + remove_id + ' .formatted-amount').attr('data-original-amount');
     var currenttotal_substraction = $('.total-amount').text();
@@ -229,25 +212,34 @@ $(document).ready(function() {
     // Fade out row
     $('.row-id-' + id).fadeOut();
 
-    // Reinitialize masonry layout
-    setTimeout(function() {
-      // Masonry layout settings
-      var packeryOptions = {
-        itemSelector: '.column',
-        gutter: 50
-      };
-
-      // Initialize Packery
-      var $grid = $('.dashboard-content').packery( packeryOptions );
-      var isActive = true;
-
-      if ( window.innerWidth > 560 ) {
-        $grid.packery( packeryOptions );
-      }
-    }, 300);
-
     $.ajax({
       url: 'markaspaid',
+      type: 'POST',
+      dataType: 'html',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      data: {
+        'id': id
+      },
+      success: function(response) {
+      }
+    });
+  });
+
+  // Mark as unpaid action
+  $(document).on('click', '.mark-as-unpaid', function() {
+    var id = $(this).attr('data-id');
+
+    // Close modals
+    $('body').removeClass('modal-opened');
+    $('.modal-bill').removeClass('show');
+
+    // Fade out row
+    $('.row-id-' + id).fadeOut();
+
+    $.ajax({
+      url: 'markasunpaid',
       type: 'POST',
       dataType: 'html',
       headers: {

@@ -16,7 +16,7 @@ if ( 'local' == App::environment() ) :
   setlocale( LC_TIME, 'fi_FI' );
 endif;
 ?>
-      <section class="dashboard-content">
+      <section class="dashboard-content dashboard-content-grid">
 
         <div class="column column-bills">
           <h1>{{ __('dashboard.summary') }}</h1>
@@ -56,7 +56,7 @@ endif;
 
               <div class="row biller">
                 <label for="biller">{{ __('dashboard.biller') }}</label>
-                <input type="text" name="biller" id="biller" class="biller-label" placeholder="Saaja">
+                <input type="text" name="biller" id="biller" class="biller-label" placeholder="{{ __('dashboard.biller') }}">
               </div>
 
               <div class="row">
@@ -76,7 +76,7 @@ endif;
 
               <div class="row">
                 <label for="description">{{ __('dashboard.product') }}</label>
-                <input type="text" name="description" id="description" placeholder="Tuotteen tai palvelun nimi">
+                <input type="text" name="description" id="description" placeholder="{{ __('dashboard.productdesc') }}">
               </div>
 
               <div class="row">
@@ -142,7 +142,7 @@ endif;
               foreach ( $bills as $bill) :
 
               // Check if not paid and if owned by current user
-              if ( '0' == $bill->paid && $user_id == $bill->userid ) :
+              if ( '0' == $bill->paid && Auth::id() == $bill->userid ) :
 
                 // Variables
                 $old_date = $bill->duedate;
@@ -151,7 +151,6 @@ endif;
                 $stylish_date = date( 'd/m/Y', $old_date_timestamp );
                 $local_date = strftime( "%e. %Bta %Y", $old_date_timestamp );
                 $formatted_amount = str_replace( '.', ',', $bill->amount );
-                $user_id = Auth::id();
 
                 ?>
                 <tr class="row-clickable row-id-<?php echo $bill->id; ?>" data-row-id="<?php echo $bill->id; ?>">
@@ -217,11 +216,10 @@ endif;
                 $formatted_date = date( 'd.m.Y', $old_date_timestamp );
                 $stylish_date = date( 'd/m/Y', $old_date_timestamp );
                 $formatted_amount = str_replace( '.', ',', $sub->amount );
-                $user_id = Auth::id();
                 $biller = strtolower( $sub->biller );
 
                 // Check if not paid and if owned by current user
-                if ( $user_id == $sub->userid ) :
+                if ( Auth::id() == $sub->userid ) :
                   ?>
 
                   <div class="item item-<?php echo $biller; ?> item-<?php echo $sub->id; ?><?php if ('1' != $sub->active) : ?> inactive<?php endif; ?>" data-id="<?php echo $sub->id; ?>">
@@ -331,7 +329,7 @@ endif;
               $formatted_date = date( 'd.m.Y', $old_date_timestamp );
 
               // Check if not paid and if owned by current user
-              if ( $user_id == $subscription->userid ) :
+              if ( Auth::id() == $subscription->userid ) :
                 ?>
 
               <div class="modal modal-subscription modal-subscription-<?php echo $subscription->id; ?>">
@@ -391,7 +389,7 @@ endif;
           <div class="column column-payment-plans">
             <h1>{{ __('dashboard.paymentplans') }} <span class="add-new add-new-paymentplan"><?php echo file_get_contents( 'svg/dashboard/plus.svg' ); ?></span></h1>
 
-            <?php if ( 0 == count( $subscriptions ) ) : ?>
+            <?php if ( 0 == count( $paymentplans ) ) : ?>
               <div class="inbox-zero">
 
                 <div class="freedom freedom-calendar">
@@ -404,8 +402,9 @@ endif;
 
             <div class="items items-playmentplans">
             <?php foreach ( $paymentplans as $paymentplan ) :
+
               // Check if owned by current user and not paid
-              if ( '0' == $paymentplan->paid && $user_id == $paymentplan->userid ) :
+              if ( '0' == $paymentplan->paid && Auth::id() == $paymentplan->userid ) :
             ?>
 
               <div class="item item-<?php echo $paymentplan->id; ?>" data-id="<?php echo $paymentplan->id; ?>">
@@ -481,11 +480,8 @@ endif;
 // Payment plan modals
 foreach ( $paymentplans as $paymentplan ) :
 
-  // Variables
-  $user_id = Auth::id();
-
   // Check if owned by current user and not paid
-  if ( '0' == $paymentplan->paid && $user_id == $paymentplan->userid ) :
+  if ( '0' == $paymentplan->paid && Auth::id() == $paymentplan->userid ) :
     ?>
 
     <div class="modal modal-paymentplan modal-paymentplan-<?php echo $paymentplan->id; ?>">
@@ -548,7 +544,7 @@ $local_date = strftime( "%e. %Bta %Y", $old_date_timestamp );
 $stylish_date = date( 'd/m/Y', $old_date_timestamp );
 
 // Check if not paid and if owned by current user
-if ( '0' == $bill->paid && $user_id == $bill->userid ) :
+if ( '0' == $bill->paid && Auth::id() == $bill->userid ) :
 ?>
 
 <div class="modal modal-bill modal-bill-<?php echo $bill->id; ?>">

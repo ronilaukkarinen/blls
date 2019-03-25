@@ -59,23 +59,6 @@ $(document).ready(function() {
     // Fade out
     $('.item-' + edit_id).fadeOut();
 
-    // Reinitialize masonry layout
-    setTimeout(function() {
-      // Masonry layout settings
-      var packeryOptions = {
-        itemSelector: '.column',
-        gutter: 50
-      };
-
-      // Initialize Packery
-      var $grid = $('.dashboard-content').packery( packeryOptions );
-      var isActive = true;
-
-      if ( window.innerWidth > 560 ) {
-        $grid.packery( packeryOptions );
-      }
-    }, 300);
-
     $.ajax({
       url: 'removesubscription',
       type: 'POST',

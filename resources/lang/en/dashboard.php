@@ -17,6 +17,7 @@ return [
     'virtualcode' => 'Virtual code',
     'refnumber' => 'Reference number',
     'product' => 'Product',
+    'productdesc' => 'The name of the product or service',
     'type' => 'Type of the bill',
     'ebill' => 'E-bill',
     'emailbill' => 'E-mail bill',
@@ -55,4 +56,7 @@ return [
     'punchline_beer_after_br' => 'You can afford it!',
     'punchline_calendar' => 'No plans, yay!',
     'punchline_calendar_after_br' => 'Unlimited time and money!',
+    'totalpaid' => 'Total amount paid',
+    'paidbills' => 'Paid bills',
+    'markunpaid' => 'Mark as unpaid',
 ];
