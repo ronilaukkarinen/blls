@@ -74,6 +74,23 @@ $(document).ready(function() {
     // Fade out row
     $('.row-id-' + remove_id).fadeOut();
 
+    // Reinitialize masonry layout
+    setTimeout(function() {
+      // Masonry layout settings
+      var packeryOptions = {
+        itemSelector: '.column',
+        gutter: 50
+      };
+
+      // Initialize Packery
+      var $grid = $('.dashboard-content').packery( packeryOptions );
+      var isActive = true;
+
+      if ( window.innerWidth > 560 ) {
+        $grid.packery( packeryOptions );
+      }
+    }, 300);
+
     // Update total
     var amount_to_be_substracted = $('.modal-bill-' + remove_id + ' .formatted-amount').attr('data-original-amount');
     var currenttotal_substraction = $('.total-amount').text();
@@ -211,6 +228,23 @@ $(document).ready(function() {
 
     // Fade out row
     $('.row-id-' + id).fadeOut();
+
+    // Reinitialize masonry layout
+    setTimeout(function() {
+      // Masonry layout settings
+      var packeryOptions = {
+        itemSelector: '.column',
+        gutter: 50
+      };
+
+      // Initialize Packery
+      var $grid = $('.dashboard-content').packery( packeryOptions );
+      var isActive = true;
+
+      if ( window.innerWidth > 560 ) {
+        $grid.packery( packeryOptions );
+      }
+    }, 300);
 
     $.ajax({
       url: 'markaspaid',
