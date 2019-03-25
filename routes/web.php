@@ -17,6 +17,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/addbill', 'BillController@addBill');
     Route::post('/editbill', 'BillController@editBill');
     Route::post('/markaspaid', 'BillController@markasPaid');
+    Route::post('/removebill', 'BillController@removeBill');
 
     // Subscriptions
     Route::post('/addsubscription', 'SubscriptionController@addSubscription');

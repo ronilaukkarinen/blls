@@ -7,8 +7,12 @@
     padding: 2rem;
     margin-bottom: 5rem;
 
-    @media(max-width: 660px) {
-      flex-wrap: wrap;
+    .item-col {
+      white-space: nowrap;
+    }
+
+    @media (max-width: 1350px) {
+      display: block;
 
       .item-col {
         width: 100%;
@@ -130,21 +134,19 @@
 }
 
 .column-bills {
-  max-width: 55rem;
   width: 100%;
   overflow: visible;
   display: block;
   background: #fff;
   border-radius: .5rem;
 
-  @media(max-width: 1020px) {
-    margin-bottom: 5rem;
-  }
-
   table {
     border-radius: .5rem;
     border: 1px solid $color-darkgrey;
-    max-width: 55rem;
+
+    @media (min-width: 560px) {
+      width: calc(38.5vw - 1px);
+    }
 
     @media (max-width: 660px) {
       max-width: 50rem;

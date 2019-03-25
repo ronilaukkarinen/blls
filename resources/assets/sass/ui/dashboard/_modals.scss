@@ -26,6 +26,15 @@
     order: 1;
   }
 
+  .row.actions .remove-button:hover {
+    border-color: transparent;
+
+    svg,
+    path {
+      stroke: $color-high;
+    }
+  }
+
   &.modal-subscription .actions,
   &.modal-paymentplan .actions {
     display: flex;
@@ -232,7 +241,8 @@
 
       .edit:hover,
       .mark-as-paid:hover,
-      .mark-paymentplan-as-paid:hover {
+      .mark-paymentplan-as-paid:hover,
+      .remove-button:hover {
         border-color: transparent;
       }
 

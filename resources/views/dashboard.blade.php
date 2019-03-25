@@ -18,7 +18,7 @@ endif;
 ?>
       <section class="dashboard-content">
 
-        <div class="column-bills">
+        <div class="column column-bills">
           <h1>{{ __('dashboard.summary') }}</h1>
 
           <div class="items status">
@@ -361,7 +361,7 @@ endif;
                   <div class="row actions">
                     <button type="button" class="btn-update" id="update-subscription" data-id="<?php echo $subscription->id; ?>">{{ __('dashboard.update') }}</button>
                     <?php if ('1' == $subscription->active) : ?><button type="button" class="btn-makeinactive" id="make-inactive" data-id="<?php echo $subscription->id; ?>">{{ __('dashboard.makeinactive') }}</button><?php else : ?><button type="button" class="btn-makeactive" id="make-active" data-id="<?php echo $subscription->id; ?>">{{ __('dashboard.makeactive') }}</button><?php endif; ?>
-                    <button type="button" class="remove-button" id="remove-subscription" data-id="<?php echo $subscription->id; ?>" data-balloon="{{ __('dashboard.removeforgood') }}" data-balloon-pos="up"><span class="screen-reader-text">{{ __('dashboard.remove') }}</span><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></button>
+                    <button type="button" class="btn-remove remove-button" id="remove-subscription" data-id="<?php echo $subscription->id; ?>" data-balloon="{{ __('dashboard.removeforgood') }}" data-balloon-pos="up"><span class="screen-reader-text">{{ __('dashboard.removeforgood') }}</span><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></button>
                   </div>
                 </form>
 
@@ -492,7 +492,7 @@ foreach ( $paymentplans as $paymentplan ) :
             <button type="button" class="btn-update" id="update-paymentplan" data-id="<?php echo $paymentplan->id; ?>">{{ __('dashboard.update') }}</button>
 
             <button id="paid-button" class="mark-paymentplan-as-paid btn-markpaid" data-id="<?php echo $paymentplan->id; ?>" data-balloon="{{ __('dashboard.markaspaid') }}" data-balloon-pos="up"><?php echo file_get_contents( '../public/svg/dashboard/check.svg' ); ?><span class="screen-reader-text">{{ __('dashboard.markaspaid') }}</span></button>
-            <button type="button" class="remove-button btn-remove" id="remove-paymentplan" data-id="<?php echo $paymentplan->id; ?>" data-balloon="{{ __('dashboard.removeforgood') }}" data-balloon-pos="up"><span class="screen-reader-text">{{ __('dashboard.remove') }}</span><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></button>
+            <button type="button" class="remove-button btn-remove" id="remove-paymentplan" data-id="<?php echo $paymentplan->id; ?>" data-balloon="{{ __('dashboard.removeforgood') }}" data-balloon-pos="up"><span class="screen-reader-text">{{ __('dashboard.removeforgood') }}</span><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></button>
           </div>
         </form>
 
@@ -573,6 +573,7 @@ if ( '0' == $bill->paid && $user_id == $bill->userid ) :
     </footer>
 
     <div class="row actions">
+      <button type="button" class="btn-remove remove-button" id="remove-bill" data-id="<?php echo $bill->id; ?>" data-balloon="{{ __('dashboard.removeforgood') }}" data-balloon-pos="up"><span class="screen-reader-text">{{ __('dashboard.removeforgood') }}</span><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></button>
       <button class="edit" data-id="<?php echo $bill->id; ?>" data-balloon="{{ __('dashboard.edit') }}" data-balloon-pos="up"><?php echo file_get_contents( '../public/svg/dashboard/edit.svg' ); ?></button>
       <button class="mark-as-paid" data-id="<?php echo $bill->id; ?>" data-balloon="{{ __('dashboard.markaspaid') }}" data-balloon-pos="up"><?php echo file_get_contents( '../public/svg/dashboard/check.svg' ); ?><span class="screen-reader-text">{{ __('dashboard.markaspaid') }}</span></button>
 

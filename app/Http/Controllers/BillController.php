@@ -120,4 +120,12 @@ class BillController extends Controller {
     ]);
   }
 
+  // Remove bill
+  public function removeBill(Request $request) {
+    DB::table('bills')
+    ->where('userid', Auth::user()->id)
+    ->where('id', $request->id)
+    ->delete();
+  }
+
 }
