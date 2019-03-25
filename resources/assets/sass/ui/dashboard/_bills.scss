@@ -149,14 +149,6 @@
   table {
     border-radius: .5rem;
     border: 1px solid $color-darkgrey;
-
-    @media (min-width: 560px) {
-      width: calc(38.5vw - 1px);
-    }
-
-    @media (max-width: 660px) {
-      max-width: 50rem;
-    }
   }
 
   td {

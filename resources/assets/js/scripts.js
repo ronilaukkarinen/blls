@@ -3,7 +3,7 @@ $(document).ready(function() {
   // Masonry layout settings
   var packeryOptions = {
     itemSelector: '.column',
-    gutter: 50
+    gutter: 0
   };
 
   // Initialize Packery

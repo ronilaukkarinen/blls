@@ -744,8 +744,7 @@ body th {
 }
 
 body table {
-  width: 90vw;
-  max-width: 100vw;
+  width: 100%;
   border: 0;
 }
 
@@ -1428,6 +1427,8 @@ button[data-balloon] {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
   }
 }
 
@@ -1443,9 +1444,14 @@ button[data-balloon] {
 
 .dashboard-content .column {
   width: 40%;
+  margin-right: 50px;
+  margin-right: 5rem;
+  margin-bottom: 50px;
+  margin-bottom: 5rem;
+  min-width: 464px;
 }
 
-@media (max-width: 1219px) {
+@media (max-width: 1213px) {
   .dashboard-content .column {
     width: 100%;
     max-width: 464px;
@@ -1455,6 +1461,7 @@ button[data-balloon] {
 @media (max-width: 560px) {
   .dashboard-content .column {
     margin-bottom: 5rem;
+    margin-right: 0;
   }
 
   .dashboard-content .column:last-of-type {
@@ -1666,18 +1673,6 @@ button[data-balloon] {
 .column-bills table {
   border-radius: .5rem;
   border: 1px solid #dae0e5;
-}
-
-@media (min-width: 560px) {
-  .column-bills table {
-    width: calc(38.5vw - 1px);
-  }
-}
-
-@media (max-width: 660px) {
-  .column-bills table {
-    max-width: 50rem;
-  }
 }
 
 .column-bills td {
