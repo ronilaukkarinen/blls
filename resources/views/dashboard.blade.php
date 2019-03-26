@@ -437,7 +437,7 @@ endif;
           <div class="column column-credit-cards">
             <h1>{{ __('dashboard.creditcards') }} <span class="add-new add-new-credit-card"><?php echo file_get_contents( 'svg/dashboard/plus.svg' ); ?></span></h1>
 
-            <?php if ( 0 == count( $subscriptions ) ) : ?>
+            <?php if ( 0 == count( $creditcards ) ) : ?>
               <div class="inbox-zero">
 
                 <div class="freedom freedom-fireworks">
