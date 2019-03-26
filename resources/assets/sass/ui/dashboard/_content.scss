@@ -81,6 +81,11 @@
     margin-right: 5rem;
     margin-bottom: 5rem;
 
+    // Disable masonry by force
+    @media (max-width: 1024px) {
+      position: static !important;
+    }
+
     // Minimum width for the table
     min-width: 464px;
 

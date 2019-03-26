@@ -447,35 +447,34 @@ endif;
             </div> -->
 
             <div class="items items-creditcards">
+            <?php
+            // List credit cards
+            foreach ( $creditcards as $creditcard) :
+            ?>
 
-              <div class="item item-creditcard">
+            <div class="item item-creditcard" data-id="<?php echo $creditcard->id; ?>">
+              <div class="col col-creditcard">
 
-                <div class="col col-creditcard">
-
-                  <div class="credit-card creditcard-creditea">
-                    <h3 class="name-on-card">Roni Laukkarinen</h3>
-                    <div class="numbers">
-                      <span><b>●●●●</b> <b>●●●●</b> <b>●●●●</b></span> 1688
-                    </div>
-                    <div class="expiration-date">
-                      03/21
-                    </div>
+                <div class="credit-card credit-card-<?php echo trim( preg_replace( '/[^a-z0-9-]+/', '-', strtolower( $creditcard->creditor ) ), '-'); ?>">
+                  <h3 class="name-on-card"><?php echo Auth::user()->name; ?></h3>
+                  <div class="numbers">
+                    <span><b>●●●●</b> <b>●●●●</b> <b>●●●●</b></span> <?php echo $creditcard->lastfourdigits; ?>
                   </div>
-
+                  <div class="expiration-date">
+                    <?php echo $creditcard->expirationdate; ?>
+                  </div>
                 </div>
+              </div>
 
-                <div class="col">
+              <div class="col col-details">
+                <div class="details">
+                  <h2 class="title-larger creditor"><?php echo $creditcard->creditor; ?></h2>
+                  <h3 class="title-small">{{ __('dashboard.monthlycut') }}</h3>
+                  <p class="monthly-cut"><span class="amount">&euro; <span class="formatted-amount"><?php echo str_replace( '.', ',', $creditcard->monthlyamount ); ?></span></span> / {{ __('dashboard.permonth') }}</p>
 
-                  <div class="details">
-                    <h2 class="title-larger creditor">Creditea</h2>
-                    <h2 class="title-small">Kuukausilyhennys</h2>
-                    <p class="monthly-cut"><span class="amount">&euro; <span class="formatted-amount">7,73</span></span> / kuukaudessa</p>
-
-                    <div class="progress-bar">
+                  <div class="progress-bar">
                       <?php
-                      $paid = '700';
-                      $total = '1000';
-                      $percent = round( ( $paid / $total ) * 100 );
+                      $percent = round( ( $creditcard->amount_paid / $creditcard->amount_total ) * 100 );
 
                       if ( $percent < 40 ) :
                         $percent_class = ' low';
@@ -486,113 +485,16 @@ endif;
                       endif;
                       ?>
                       <div class="progress<?php echo $percent_class; ?>" style="width: <?php echo $percent; ?>%;">
-                        <p><?php echo $paid; ?> {{ __('dashboard.paidoftotal') }} <?php echo $total; ?> {{ __('dashboard.wholecredit') }}. (<?php echo $percent; ?>%)</p>
+                        <p><?php echo $creditcard->amount_paid; ?> {{ __('dashboard.paidoftotal') }} <?php echo $creditcard->amount_total; ?> {{ __('dashboard.wholecredit') }}. (<?php echo $percent; ?>%)</p>
                       </div>
                     </div>
-
-                  </div>
-
-              </div>
-
-            </div><!-- .item -->
-
-             <div class="item item-creditcard">
-
-                <div class="col col-creditcard">
-
-                  <div class="credit-card creditcard-banknorwegian">
-                    <h3 class="name-on-card">Roni Laukkarinen</h3>
-                    <div class="numbers">
-                      <span><b>●●●●</b> <b>●●●●</b> <b>●●●●</b></span> 1688
-                    </div>
-                    <div class="expiration-date">
-                      03/21
-                    </div>
-                  </div>
-
                 </div>
-
-                <div class="col">
-
-                  <div class="details">
-                    <h2 class="title-larger creditor">Bank Norwegian</h2>
-                    <h2 class="title-small">Kuukausilyhennys</h2>
-                    <p class="monthly-cut"><span class="amount">&euro; <span class="formatted-amount">123,73</span></span> / kuukaudessa</p>
-
-                    <div class="progress-bar">
-                      <?php
-                      $paid = '200';
-                      $total = '3000';
-                      $percent = round( ( $paid / $total ) * 100 );
-
-                      if ( $percent < 40 ) :
-                        $percent_class = ' low';
-                      elseif ( $percent > 40 ) :
-                        $percent_class = ' medium';
-                      else :
-                        $percent_class = ' high';
-                      endif;
-                      ?>
-                      <div class="progress<?php echo $percent_class; ?>" style="width: <?php echo $percent; ?>%;">
-                        <p><?php echo $paid; ?> {{ __('dashboard.paidoftotal') }} <?php echo $total; ?> {{ __('dashboard.wholecredit') }}. (<?php echo $percent; ?>%)</p>
-                      </div>
-                    </div>
-
-                  </div>
-
               </div>
 
-              </div><!-- .item -->
+            </div>
 
-              <div class="item item-creditcard">
-
-                <div class="col col-creditcard">
-
-                  <div class="credit-card creditcard-tuohi">
-                    <h3 class="name-on-card">Roni Laukkarinen</h3>
-                    <div class="numbers">
-                      <span><b>●●●●</b> <b>●●●●</b> <b>●●●●</b></span> 1688
-                    </div>
-                    <div class="expiration-date">
-                      04/23
-                    </div>
-                  </div>
-
-                </div>
-
-                <div class="col">
-
-                  <div class="details">
-                    <h2 class="title-larger creditor">Tuohi</h2>
-                    <h2 class="title-small">Kuukausilyhennys</h2>
-                    <p class="monthly-cut"><span class="amount">&euro; <span class="formatted-amount">76,83</span></span> / kuukaudessa</p>
-
-                    <div class="progress-bar">
-                      <?php
-                      $paid = '300';
-                      $total = '2000';
-                      $percent = round( ( $paid / $total ) * 100 );
-
-                      if ( $percent < 40 ) :
-                        $percent_class = ' low';
-                      elseif ( $percent > 40 ) :
-                        $percent_class = ' medium';
-                      else :
-                        $percent_class = ' high';
-                      endif;
-                      ?>
-                      <div class="progress<?php echo $percent_class; ?>" style="width: <?php echo $percent; ?>%;">
-                        <p><?php echo $paid; ?> {{ __('dashboard.paidoftotal') }} <?php echo $total; ?> {{ __('dashboard.wholecredit') }}. (<?php echo $percent; ?>%)</p>
-                      </div>
-                    </div>
-
-                  </div>
-
-              </div>
-
-            </div><!-- .item -->
-
-          </div>
+            <?php endforeach; ?>
+            </div>
 
       </section><!-- Dashboard ends! -->
 

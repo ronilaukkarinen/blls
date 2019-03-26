@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+  if ( window.innerWidth > 600 ) {
   // Masonry layout settings
   var packeryOptions = {
     itemSelector: '.column',
@@ -21,6 +22,7 @@ $(document).ready(function() {
       $grid.packery('destroy');
     }
   });
+  }
 
   // Remove spaces from inputs if any key or click is pressed
   $('#refnumber, #accountnumber, #billnumber, #amount').keyup(function() {

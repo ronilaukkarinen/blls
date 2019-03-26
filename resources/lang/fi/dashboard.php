@@ -65,4 +65,6 @@ return [
     'markunpaid' => 'Palauta maksuihin',
     'creditcards' => 'Luottokortit',
     'wholecredit' => 'summan kokonaisluotosta',
+    'monthlycut' => 'Kuukausilyhennys',
+    'permonth' => 'kuukaudessa',
 ];

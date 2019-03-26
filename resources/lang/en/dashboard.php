@@ -65,4 +65,6 @@ return [
     'markunpaid' => 'Mark as unpaid',
     'creditcards' => 'Credit cards',
     'wholecredit' => 'sum of the whole credit',
+    'monthlycut' => 'Monthly amount to be paid',
+    'permonth' => 'per month',
 ];
