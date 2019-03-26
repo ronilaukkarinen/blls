@@ -67,4 +67,11 @@ return [
     'wholecredit' => 'summan kokonaisluotosta',
     'monthlycut' => 'Kuukausilyhennys',
     'permonth' => 'kuukaudessa',
+    'creditor' => 'Luotonantaja',
+    'newcreditcard' => 'Uusi luottokortti',
+    'expirationdate' => 'Kortin erääntymispäivä ja -kuukausi',
+    'lastfourdigits' => 'Viimeiset neljä numeroa',
+    'creditcard_amount_total' => 'Koko luotto',
+    'creditcard_amount_paid' => 'Maksettu luotto',
+    'creditcard' => 'Luottokortti',
 ];

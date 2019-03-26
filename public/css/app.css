@@ -2435,6 +2435,45 @@ button[data-balloon] {
   z-index: -99;
 }
 
+.modal .amount-big {
+  font-family: 'Graphik', 'Helvetica Neue', Helvetica, sans-serif;
+  font-size: 22px;
+  font-size: 2.2rem;
+  font-weight: 500;
+}
+
+.modal .amount-big::-webkit-input-placeholder {
+  font-family: 'Graphik', 'Helvetica Neue', Helvetica, sans-serif;
+  font-size: 22px;
+  font-size: 2.2rem;
+  font-weight: 500;
+  opacity: 1;
+}
+
+.modal .amount-big:-ms-input-placeholder {
+  font-family: 'Graphik', 'Helvetica Neue', Helvetica, sans-serif;
+  font-size: 22px;
+  font-size: 2.2rem;
+  font-weight: 500;
+  opacity: 1;
+}
+
+.modal .amount-big::-ms-input-placeholder {
+  font-family: 'Graphik', 'Helvetica Neue', Helvetica, sans-serif;
+  font-size: 22px;
+  font-size: 2.2rem;
+  font-weight: 500;
+  opacity: 1;
+}
+
+.modal .amount-big::placeholder {
+  font-family: 'Graphik', 'Helvetica Neue', Helvetica, sans-serif;
+  font-size: 22px;
+  font-size: 2.2rem;
+  font-weight: 500;
+  opacity: 1;
+}
+
 .modal .btn-submit,
 .modal .btn-update {
   -webkit-box-ordinal-group: 4;

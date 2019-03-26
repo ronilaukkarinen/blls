@@ -193,7 +193,8 @@ gulp.task('js', function() {
           'resources/assets/js/scripts.js',
           'resources/assets/js/bills.js',
           'resources/assets/js/subscriptions.js',
-          'resources/assets/js/paymentplans.js'
+          'resources/assets/js/paymentplans.js',
+          'resources/assets/js/creditcards.js'
         ])
         .pipe(concat('app.js'))
         .pipe(uglify({

@@ -218,9 +218,9 @@ endif;
                 $formatted_amount = str_replace( '.', ',', $sub->amount );
                 $biller = strtolower( $sub->biller );
 
-                // Check if not paid and if owned by current user
+                // Check if owned by current user
                 if ( Auth::id() == $sub->userid ) :
-                  ?>
+                ?>
 
                   <div class="item item-<?php echo $biller; ?> item-<?php echo $sub->id; ?><?php if ('1' != $sub->active) : ?> inactive<?php endif; ?>" data-id="<?php echo $sub->id; ?>">
                     <div class="logo">
@@ -328,9 +328,9 @@ endif;
               $stylish_date = date( 'd/m/Y', $old_date_timestamp );
               $formatted_date = date( 'd.m.Y', $old_date_timestamp );
 
-              // Check if not paid and if owned by current user
+              // Check if owned by current user
               if ( Auth::id() == $subscription->userid ) :
-                ?>
+              ?>
 
               <div class="modal modal-subscription modal-subscription-<?php echo $subscription->id; ?>">
 
@@ -435,7 +435,7 @@ endif;
           </div>
 
           <div class="column column-credit-cards">
-            <h1>{{ __('dashboard.creditcards') }} <span class="add-new add-new-creditcard"><?php echo file_get_contents( 'svg/dashboard/plus.svg' ); ?></span></h1>
+            <h1>{{ __('dashboard.creditcards') }} <span class="add-new add-new-credit-card"><?php echo file_get_contents( 'svg/dashboard/plus.svg' ); ?></span></h1>
 
 <!--             <div class="inbox-zero">
 
@@ -498,7 +498,128 @@ endif;
 
       </section><!-- Dashboard ends! -->
 
-    </div>
+      <?php
+      // Credit card modals
+      foreach ( $creditcards as $creditcard) :
+
+        // Check if owned by current user
+        if ( Auth::id() == $creditcard->userid ) :
+      ?>
+
+        <div class="modal modal-credit-card modal-credit-card-<?php echo $creditcard->id; ?>">
+
+          <div class="modal-overlay"></div>
+          <div class="modal-content">
+
+            <form class="credit-card-form">
+              <header class="modal-header">
+                <div>
+                  <h2 class="credit-card-title"><?php echo $creditcard->creditor; ?></h2>
+                  <h3 class="date"><?php echo date( 'd/m/Y' ); ?></h3>
+                </div>
+              </header>
+
+              <div class="row">
+                <label for="creditor">{{ __('dashboard.creditor') }}</label>
+                <select name="creditor" id="creditor">
+                  <option value="<?php echo $creditcard->creditor; ?>"><?php echo $creditcard->creditor; ?></option>
+                </select>
+              </div>
+
+              <div class="row">
+                <label for="expirationdate">{{ __('dashboard.expirationdate') }}</label>
+                <input type="text" name="expirationdate" id="expirationdate" value="<?php echo $creditcard->expirationdate; ?>" placeholder="<?php echo date( 'm/Y' ); ?>">
+              </div>
+
+              <div class="row">
+                <label for="lastfourdigits">{{ __('dashboard.lastfourdigits') }}</label>
+                <input type="text" name="lastfourdigits" id="lastfourdigits" value="<?php echo $creditcard->lastfourdigits; ?>" placeholder="1234">
+              </div>
+
+              <div class="row">
+                <label for="monthlycut">{{ __('dashboard.monthlycut') }}</label>
+                <input class="amount-big" type="text" name="monthlycut" id="monthlycut" value="<?php echo $creditcard->monthlyamount; ?>" placeholder="100">
+              </div>
+
+              <footer class="modal-footer">
+                <div class="row">
+                  <label for="creditcard_amount_paid">{{ __('dashboard.creditcard_amount_paid') }}</label>
+                  <span class="flex amount"><input type="text" name="creditcard_amount_paid" id="creditcard_amount_paid" placeholder="500" value="<?php echo $creditcard->amount_paid; ?>"></span>
+                </div>
+
+                <div class="row">
+                  <label for="creditcard_amount_total">{{ __('dashboard.creditcard_amount_total') }}</label>
+                  <span class="flex amount"><input type="text" name="creditcard_amount_total" id="creditcard_amount_total" placeholder="1000" value="<?php echo $creditcard->amount_total; ?>"></span>
+                </div>
+              </footer>
+
+              <div class="row actions">
+                <button type="button" id="update-credit-card" class="btn-update">{{ __('dashboard.update') }}</button>
+              </div>
+            </form>
+
+          </div>
+
+        <?php
+        endif;
+        endforeach;
+        ?>
+
+    <div class="modal modal-credit-card modal-credit-card-new">
+
+      <div class="modal-overlay"></div>
+      <div class="modal-content">
+
+        <form class="credit-card-form">
+          <header class="modal-header">
+            <div>
+              <h2 class="credit-card-title">{{ __('dashboard.newcreditcard') }}</h2>
+              <h3 class="date"><?php echo date( 'd/m/Y' ); ?></h3>
+            </div>
+          </header>
+
+          <div class="row">
+            <label for="creditor">{{ __('dashboard.creditor') }}</label>
+            <select name="creditor" id="creditor">
+              <option value="Creditea">Creditea</option>
+              <option value="Bank Norwegian">Bank Norwegian</option>
+              <option value="Tuohi">Tuohi</option>
+            </select>
+          </div>
+
+          <div class="row">
+            <label for="expirationdate">{{ __('dashboard.expirationdate') }}</label>
+            <input type="text" name="expirationdate" id="expirationdate" placeholder="<?php echo date( 'm/Y' ); ?>">
+          </div>
+
+          <div class="row">
+            <label for="lastfourdigits">{{ __('dashboard.lastfourdigits') }}</label>
+            <input type="text" name="lastfourdigits" id="lastfourdigits" placeholder="1234">
+          </div>
+
+          <div class="row">
+            <label for="monthlycut">{{ __('dashboard.monthlycut') }}</label>
+            <input class="amount-big" type="text" name="monthlycut" id="monthlycut" placeholder="100">
+          </div>
+
+          <footer class="modal-footer">
+            <div class="row">
+              <label for="creditcard_amount_paid">{{ __('dashboard.creditcard_amount_paid') }}</label>
+              <span class="flex amount"><input type="text" name="creditcard_amount_paid" id="creditcard_amount_paid" placeholder="500"></span>
+            </div>
+
+            <div class="row">
+              <label for="creditcard_amount_total">{{ __('dashboard.creditcard_amount_total') }}</label>
+              <span class="flex amount"><input type="text" name="creditcard_amount_total" id="creditcard_amount_total" placeholder="1000"></span>
+            </div>
+          </footer>
+
+          <div class="row actions">
+            <button type="button" id="submit-credit-card" class="btn-submit">{{ __('dashboard.submit') }}</button>
+          </div>
+        </form>
+
+      </div>
 
     <div class="modal modal-paymentplan modal-paymentplan-new">
 

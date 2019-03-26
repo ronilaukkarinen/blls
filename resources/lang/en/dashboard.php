@@ -67,4 +67,11 @@ return [
     'wholecredit' => 'sum of the whole credit',
     'monthlycut' => 'Monthly amount to be paid',
     'permonth' => 'per month',
+    'creditor' => 'Creditor',
+    'newcreditcard' => 'New credit card',
+    'expirationdate' => 'Card expiration date',
+    'lastfourdigits' => 'Last four digits',
+    'creditcard_amount_total' => 'Total amount',
+    'creditcard_amount_paid' => 'Paid amount',
+    'creditcard' => 'Credit card',
 ];
