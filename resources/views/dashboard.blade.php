@@ -417,9 +417,9 @@ endif;
 
                     if ( $percent < 40 ) :
                       $percent_class = ' low';
-                    elseif ( $percent > 40 ) :
+                    elseif ( $percent > 40 && $percent < 60 ) :
                       $percent_class = ' medium';
-                    else :
+                    elseif ( $percent > 40 && $percent > 60 ) :
                       $percent_class = ' high';
                     endif;
                   ?>
@@ -484,9 +484,9 @@ endif;
 
                       if ( $percent < 40 ) :
                         $percent_class = ' low';
-                      elseif ( $percent > 40 ) :
+                      elseif ( $percent > 40 && $percent < 60 ) :
                         $percent_class = ' medium';
-                      else :
+                      elseif ( $percent > 40 && $percent > 60 ) :
                         $percent_class = ' high';
                       endif;
                       ?>
