@@ -33,6 +33,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/markppaid', 'PaymentplanController@markaPaymentplanasPaid');
     Route::post('/markpunpaid', 'PaymentplanController@markaPaymentplanasunPaid');
 
+    // Credit cards
+    Route::post('/addcreditcard', 'CreditcardController@addCreditcard');
+
     // Paid page
     Route::get('/paid', 'PaidController@showPaid')->name('paid');
 

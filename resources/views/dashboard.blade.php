@@ -437,14 +437,16 @@ endif;
           <div class="column column-credit-cards">
             <h1>{{ __('dashboard.creditcards') }} <span class="add-new add-new-credit-card"><?php echo file_get_contents( 'svg/dashboard/plus.svg' ); ?></span></h1>
 
-<!--             <div class="inbox-zero">
+            <?php if ( 0 == count( $subscriptions ) ) : ?>
+              <div class="inbox-zero">
 
-              <div class="freedom freedom-fireworks">
-                <?php echo file_get_contents( 'svg/inboxzero/fireworks.svg' ); ?>
-                <p class="punchline">{{ __('dashboard.punchline_creditcard') }}<br />{{ __('dashboard.punchline_creditcard_after_br') }}</p>
+                <div class="freedom freedom-fireworks">
+                  <?php echo file_get_contents( 'svg/inboxzero/fireworks.svg' ); ?>
+                  <p class="punchline">{{ __('dashboard.punchline_creditcard') }}<br />{{ __('dashboard.punchline_creditcard_after_br') }}</p>
+                </div>
+
               </div>
-
-            </div> -->
+            <?php else : ?>
 
             <div class="items items-creditcards">
             <?php
@@ -495,6 +497,7 @@ endif;
 
             <?php endforeach; ?>
             </div>
+            <?php endif; ?>
 
       </section><!-- Dashboard ends! -->
 
@@ -544,12 +547,12 @@ endif;
               <footer class="modal-footer">
                 <div class="row">
                   <label for="creditcard_amount_paid">{{ __('dashboard.creditcard_amount_paid') }}</label>
-                  <span class="flex amount"><input type="text" name="creditcard_amount_paid" id="creditcard_amount_paid" placeholder="500" value="<?php echo $creditcard->amount_paid; ?>"></span>
+                  <span class="amount"><input type="text" name="creditcard_amount_paid" id="creditcard_amount_paid" placeholder="500" value="<?php echo $creditcard->amount_paid; ?>"></span>
                 </div>
 
                 <div class="row">
                   <label for="creditcard_amount_total">{{ __('dashboard.creditcard_amount_total') }}</label>
-                  <span class="flex amount"><input type="text" name="creditcard_amount_total" id="creditcard_amount_total" placeholder="1000" value="<?php echo $creditcard->amount_total; ?>"></span>
+                  <span class="amount"><input type="text" name="creditcard_amount_total" id="creditcard_amount_total" placeholder="1000" value="<?php echo $creditcard->amount_total; ?>"></span>
                 </div>
               </footer>
 
@@ -605,12 +608,12 @@ endif;
           <footer class="modal-footer">
             <div class="row">
               <label for="creditcard_amount_paid">{{ __('dashboard.creditcard_amount_paid') }}</label>
-              <span class="flex amount"><input type="text" name="creditcard_amount_paid" id="creditcard_amount_paid" placeholder="500"></span>
+              <span class="amount"><input type="text" name="creditcard_amount_paid" id="creditcard_amount_paid" placeholder="500"></span>
             </div>
 
             <div class="row">
               <label for="creditcard_amount_total">{{ __('dashboard.creditcard_amount_total') }}</label>
-              <span class="flex amount"><input type="text" name="creditcard_amount_total" id="creditcard_amount_total" placeholder="1000"></span>
+              <span class="amount"><input type="text" name="creditcard_amount_total" id="creditcard_amount_total" placeholder="1000"></span>
             </div>
           </footer>
 

@@ -15,7 +15,7 @@ $(document).ready(function() {
     $('.modal-paymentplan-' + row_id).addClass('show');
   });
 
-  // Save subscription to database
+  // Save payment plan to database
   $(document).on('click', '#submit-paymentplan', function() {
 
     // Close modals
