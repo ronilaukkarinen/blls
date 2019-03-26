@@ -43,6 +43,21 @@ tr:hover .row-amount span {
   opacity: 1;
 }
 
+.row-type,
+.row-refnumber,
+.row-description {
+  color: rgba(#000, .3);
+  transition: all .22s;
+}
+
+tr:hover {
+  .row-type,
+  .row-refnumber,
+  .row-description {
+    color: rgba(#000, .8);
+  }
+}
+
 tr:hover .past {
   opacity: 1;
   filter: saturate(100%);

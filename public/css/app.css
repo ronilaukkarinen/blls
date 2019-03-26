@@ -630,6 +630,21 @@ tr:hover .row-amount span {
   opacity: 1;
 }
 
+.row-type,
+.row-refnumber,
+.row-description {
+  color: rgba(0, 0, 0, .3);
+  -webkit-transition: all .22s;
+  -o-transition: all .22s;
+  transition: all .22s;
+}
+
+tr:hover .row-type,
+tr:hover .row-refnumber,
+tr:hover .row-description {
+  color: rgba(0, 0, 0, .8);
+}
+
 tr:hover .past,
 tr:hover .row-duedate.past {
   opacity: 1;
