@@ -452,9 +452,12 @@ endif;
             <?php
             // List credit cards
             foreach ( $creditcards as $creditcard) :
+
+            // Check if owned by current user
+            if ( Auth::id() == $creditcard->userid ) :
             ?>
 
-            <div class="item item-creditcard" data-id="<?php echo $creditcard->id; ?>">
+            <div class="item item-<?php echo $creditcard->id; ?> item-creditcard" data-id="<?php echo $creditcard->id; ?>">
               <div class="col col-creditcard">
 
                 <div class="credit-card credit-card-<?php echo trim( preg_replace( '/[^a-z0-9-]+/', '-', strtolower( $creditcard->creditor ) ), '-'); ?>">
@@ -495,7 +498,9 @@ endif;
 
             </div>
 
-            <?php endforeach; ?>
+            <?php
+            endif;
+            endforeach; ?>
             </div>
             <?php endif; ?>
 
@@ -505,8 +510,8 @@ endif;
       // Credit card modals
       foreach ( $creditcards as $creditcard) :
 
-        // Check if owned by current user
-        if ( Auth::id() == $creditcard->userid ) :
+      // Check if owned by current user
+      if ( Auth::id() == $creditcard->userid ) :
       ?>
 
         <div class="modal modal-credit-card modal-credit-card-<?php echo $creditcard->id; ?>">
@@ -557,7 +562,7 @@ endif;
               </footer>
 
               <div class="row actions">
-                <button type="button" id="update-credit-card" class="btn-update">{{ __('dashboard.update') }}</button>
+                <button type="button" id="update-credit-card" class="btn-update" data-id="<?php echo $creditcard->id; ?>">{{ __('dashboard.update') }}</button>
               </div>
             </form>
 

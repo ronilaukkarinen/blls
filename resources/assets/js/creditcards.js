@@ -55,4 +55,42 @@ $(document).ready(function() {
     });
   });
 
+  // Edit credit card
+  $(document).on('click', '#update-credit-card', function() {
+    var edit_id = $(this).attr('data-id');
+
+    var creditor = $('.modal-credit-card-' + edit_id + ' #creditor').val();
+    var expirationdate = $('.modal-credit-card-' + edit_id + ' #expirationdate').val();
+    var lastfourdigits = $('.modal-credit-card-' + edit_id + ' #lastfourdigits').val();
+    var monthlyamount = $('.modal-credit-card-' + edit_id + ' #monthlycut').val();
+    var creditcard_amount_paid = $('.modal-credit-card-' + edit_id + ' #creditcard_amount_paid').val();
+    var creditcard_amount_total = $('.modal-credit-card-' + edit_id + ' #creditcard_amount_total').val();
+
+    // Close other possible modals
+    $('body').removeClass('modal-opened');
+    $('.modal').removeClass('show');
+
+    $.ajax({
+      url: 'editcreditcard',
+      type: 'POST',
+      dataType: 'html',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      data: {
+        'update': 1,
+        'id': edit_id,
+        'creditor': creditor,
+        'expirationdate': expirationdate,
+        'lastfourdigits': lastfourdigits,
+        'monthlyamount': monthlyamount,
+        'creditcard_amount_paid': creditcard_amount_paid,
+        'creditcard_amount_total': creditcard_amount_total
+      },
+      success: function(response) {
+        $('.item-' + edit_id).replaceWith(response);
+      }
+    });
+  });
+
 });
