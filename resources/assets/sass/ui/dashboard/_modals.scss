@@ -50,7 +50,8 @@
   }
 
   &.modal-subscription .actions,
-  &.modal-paymentplan .actions {
+  &.modal-paymentplan .actions,
+  &.modal-credit-card .actions {
     display: flex;
     justify-content: space-between;
 

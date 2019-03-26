@@ -93,4 +93,30 @@ $(document).ready(function() {
     });
   });
 
+  // Remove credit card
+  $(document).on('click', '#remove-credit-card', function() {
+  var edit_id = $(this).attr('data-id');
+
+    // Close other possible modals
+    $('body').removeClass('modal-opened');
+    $('.modal').removeClass('show');
+
+    // Fade out
+    $('.item-' + edit_id).fadeOut();
+
+    $.ajax({
+      url: 'removecreditcard',
+      type: 'POST',
+      dataType: 'html',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      data: {
+        'id': edit_id
+      },
+      success: function(response) {
+      }
+    });
+  });
+
 });

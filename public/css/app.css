@@ -2505,7 +2505,8 @@ button[data-balloon] {
 }
 
 .modal.modal-subscription .actions,
-.modal.modal-paymentplan .actions {
+.modal.modal-paymentplan .actions,
+.modal.modal-credit-card .actions {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2515,14 +2516,17 @@ button[data-balloon] {
 }
 
 .modal.modal-subscription .actions .remove-button:hover,
-.modal.modal-paymentplan .actions .remove-button:hover {
+.modal.modal-paymentplan .actions .remove-button:hover,
+.modal.modal-credit-card .actions .remove-button:hover {
   border-color: transparent;
 }
 
 .modal.modal-subscription .actions .remove-button:hover svg,
 .modal.modal-subscription .actions .remove-button:hover path,
 .modal.modal-paymentplan .actions .remove-button:hover svg,
-.modal.modal-paymentplan .actions .remove-button:hover path {
+.modal.modal-paymentplan .actions .remove-button:hover path,
+.modal.modal-credit-card .actions .remove-button:hover svg,
+.modal.modal-credit-card .actions .remove-button:hover path {
   stroke: #e36073;
 }
 
@@ -2537,7 +2541,13 @@ button[data-balloon] {
 .modal.modal-paymentplan .actions .mark-as-paid,
 .modal.modal-paymentplan .actions .mark-paymentplan-as-paid,
 .modal.modal-paymentplan .actions .mark-as-unpaid,
-.modal.modal-paymentplan .actions .mark-paymentplan-as-unpaid {
+.modal.modal-paymentplan .actions .mark-paymentplan-as-unpaid,
+.modal.modal-credit-card .actions #make-active,
+.modal.modal-credit-card .actions #make-inactive,
+.modal.modal-credit-card .actions .mark-as-paid,
+.modal.modal-credit-card .actions .mark-paymentplan-as-paid,
+.modal.modal-credit-card .actions .mark-as-unpaid,
+.modal.modal-credit-card .actions .mark-paymentplan-as-unpaid {
   margin-right: auto;
   margin-left: 10px;
   margin-left: 1rem;

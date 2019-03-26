@@ -563,6 +563,7 @@ endif;
 
               <div class="row actions">
                 <button type="button" id="update-credit-card" class="btn-update" data-id="<?php echo $creditcard->id; ?>">{{ __('dashboard.update') }}</button>
+                <button type="button" class="remove-button btn-remove" id="remove-credit-card" data-id="<?php echo $creditcard->id; ?>" data-balloon="{{ __('dashboard.removeforgood') }}" data-balloon-pos="up"><span class="screen-reader-text">{{ __('dashboard.removeforgood') }}</span><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></button>
               </div>
             </form>
 

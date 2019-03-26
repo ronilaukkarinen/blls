@@ -56,35 +56,42 @@ class CreditcardController extends Controller {
 
     // Print results
     echo '<div class="item item-creditcard" data-id="' . $request->id . '">
-    <div class="col col-creditcard">
+      <div class="col col-creditcard">
 
-    <div class="credit-card credit-card-' . trim( preg_replace( '/[^a-z0-9-]+/', '-', strtolower( $request->creditor ) ), '-') . '">
-      <h3 class="name-on-card">' . Auth::user()->name . '</h3>
-      <div class="numbers">
-        <span><b>●●●●</b> <b>●●●●</b> <b>●●●●</b></span> ' . $request->lastfourdigits . '
-      </div>
-      <div class="expiration-date">
-        ' . $request->expirationdate . '
-      </div>
-    </div>
-  </div>
-
-  <div class="col col-details">
-    <div class="details">
-      <h2 class="title-larger creditor">' . $request->creditor . '</h2>
-      <h3 class="title-small">' . __('dashboard.monthlycut') . '</h3>
-      <p class="monthly-cut"><span class="amount">&euro; <span class="formatted-amount">' . str_replace( '.', ',', $request->monthlyamount ) . '</span></span> / ' . __('dashboard.permonth') . '</p>
-
-      <div class="progress-bar">
-        <div class="progress' . $percent_class . '" style="width: ' . $percent . '%;">
-          <p>' . $request->creditcard_amount_paid . ' ' . __('dashboard.paidoftotal') . ' ' . $request->creditcard_amount_total . ' ' . __('dashboard.wholecredit') . '. (' . $percent . '%)</p>
+      <div class="credit-card credit-card-' . trim( preg_replace( '/[^a-z0-9-]+/', '-', strtolower( $request->creditor ) ), '-') . '">
+        <h3 class="name-on-card">' . Auth::user()->name . '</h3>
+        <div class="numbers">
+          <span><b>●●●●</b> <b>●●●●</b> <b>●●●●</b></span> ' . $request->lastfourdigits . '
+        </div>
+        <div class="expiration-date">
+          ' . $request->expirationdate . '
         </div>
       </div>
     </div>
-  </div>
 
-</div>';
+    <div class="col col-details">
+      <div class="details">
+        <h2 class="title-larger creditor">' . $request->creditor . '</h2>
+        <h3 class="title-small">' . __('dashboard.monthlycut') . '</h3>
+        <p class="monthly-cut"><span class="amount">&euro; <span class="formatted-amount">' . str_replace( '.', ',', $request->monthlyamount ) . '</span></span> / ' . __('dashboard.permonth') . '</p>
 
+        <div class="progress-bar">
+          <div class="progress' . $percent_class . '" style="width: ' . $percent . '%;">
+            <p>' . $request->creditcard_amount_paid . ' ' . __('dashboard.paidoftotal') . ' ' . $request->creditcard_amount_total . ' ' . __('dashboard.wholecredit') . '. (' . $percent . '%)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>';
+  }
+
+  // Remove credit card
+  public function removeCreditcard(Request $request) {
+    DB::table('creditcards')
+    ->where('userid', Auth::user()->id)
+    ->where('id', $request->id)
+    ->delete();
   }
 
 }
