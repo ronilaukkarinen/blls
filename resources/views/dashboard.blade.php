@@ -139,7 +139,7 @@ endif;
 
             <?php
               // List bills
-              foreach ( $bills as $bill) :
+              foreach ( $bills as $bill ) :
 
               // Check if not paid and if owned by current user
               if ( '0' == $bill->paid && Auth::id() == $bill->userid ) :
@@ -389,7 +389,8 @@ endif;
           <div class="column column-payment-plans">
             <h1>{{ __('dashboard.paymentplans') }} <span class="add-new add-new-paymentplan"><?php echo file_get_contents( 'svg/dashboard/plus.svg' ); ?></span></h1>
 
-            <?php if ( 0 == count( $paymentplans ) ) : ?>
+            <?php
+            if ( 0 == count( $paymentplans ) ) : ?>
               <div class="inbox-zero">
 
                 <div class="freedom freedom-calendar">
@@ -400,11 +401,11 @@ endif;
               </div>
             <?php else : ?>
 
-            <div class="items items-playmentplans">
+            <div class="items items-paymentplans">
             <?php foreach ( $paymentplans as $paymentplan ) :
 
-              // Check if owned by current user and not paid
-              if ( '0' == $paymentplan->paid && Auth::id() == $paymentplan->userid ) :
+            // Check if owned by current user and not paid
+            if ( '0' == $paymentplan->paid && Auth::id() == $paymentplan->userid ) :
             ?>
 
               <div class="item item-<?php echo $paymentplan->id; ?>" data-id="<?php echo $paymentplan->id; ?>">
@@ -673,7 +674,7 @@ foreach ( $paymentplans as $paymentplan ) :
 
   // Check if owned by current user and not paid
   if ( '0' == $paymentplan->paid && Auth::id() == $paymentplan->userid ) :
-    ?>
+  ?>
 
     <div class="modal modal-paymentplan modal-paymentplan-<?php echo $paymentplan->id; ?>">
 
@@ -725,7 +726,7 @@ endforeach; ?>
 
 <?php
 // Bill modals
-foreach ( $bills as $bill) :
+foreach ( $bills as $bill ) :
 
 // Define formatted date
 $formatted_amount = str_replace( '.', ',', $bill->amount );

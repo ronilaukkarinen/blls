@@ -183,7 +183,7 @@ endif;
         </div>
         <?php else : ?>
 
-          <div class="items items-playmentplans">
+          <div class="items items-paymentplans">
             <?php foreach ( $paymentplans as $paymentplan ) :
 
               // Check if owned by current user and not paid

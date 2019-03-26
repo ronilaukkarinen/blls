@@ -38,7 +38,7 @@ class PaymentplanController extends Controller {
     endif;
 
     // Print results
-    echo '<div class="items items-playmentplans">
+    echo '<div class="items items-paymentplans">
 
     <div class="item">
     <h2>' . $request->paymentplan_name . '</h2>
@@ -77,7 +77,7 @@ class PaymentplanController extends Controller {
     endif;
 
     // Print results
-    echo '<div class="items items-playmentplans">
+    echo '<div class="items items-paymentplans">
 
     <div class="item item-' . $request->id . '" data-id="' . $request->id . '">
     <h2>' . $request->paymentplan_name . '</h2>

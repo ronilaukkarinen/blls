@@ -8,7 +8,7 @@ $(document).ready(function() {
   });
 
   // Open modal when clicking single items
-  $('.items-playmentplans').on('click', '.item', function() {
+  $('.items-paymentplans').on('click', '.item', function() {
     row_id = $(this).attr('data-id');
     $('body').addClass('modal-opened');
     var $div = $('.modal-paymentplan-' + row_id).appendTo('body').hide().fadeIn('fast');

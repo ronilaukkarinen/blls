@@ -12,6 +12,10 @@
     opacity: .6;
     filter: saturate(50%);
 
+    &.freedom-fireworks svg {
+      margin-top: 30px;
+    }
+
     &.freedom-tada svg {
       margin-right: -25px;
     }

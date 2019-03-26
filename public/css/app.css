@@ -1413,6 +1413,10 @@ button[data-balloon] {
   filter: saturate(50%);
 }
 
+.inbox-zero .freedom.freedom-fireworks svg {
+  margin-top: 30px;
+}
+
 .inbox-zero .freedom.freedom-tada svg {
   margin-right: -25px;
 }
@@ -2069,7 +2073,7 @@ button[data-balloon] {
   border-color: #bfc7cf;
 }
 
-.items-playmentplans h2 {
+.items-paymentplans h2 {
   font-size: 14px;
   font-size: 1.4rem;
   font-weight: 500;
@@ -2077,7 +2081,7 @@ button[data-balloon] {
   margin: 0 0 1rem;
 }
 
-.items-playmentplans .item {
+.items-paymentplans .item {
   height: 73px;
   overflow: hidden;
 }
