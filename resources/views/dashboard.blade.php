@@ -51,17 +51,17 @@ endif;
                     <h3 class="date"><?php echo date( 'd/m/Y' ); ?></h3>
                 </div>
 
-                <span class="bill-number">#<label for="billnumber" class="screen-reader-text">{{ __('dashboard.billnumber') }}</label><input type="text" name="billnumber" id="billnumber" class="bill-number" placeholder="183411639682"></span>
+                <span class="bill-number">#<label for="billnumber" class="screen-reader-text">{{ __('dashboard.billnumber') }}</label><input type="text" name="billnumber" id="billnumber" class="bill-number" placeholder="183411639682" required></span>
               </header>
 
               <div class="row biller">
                 <label for="biller">{{ __('dashboard.biller') }}</label>
-                <input type="text" name="biller" id="biller" class="biller-label" placeholder="{{ __('dashboard.biller') }}">
+                <input type="text" name="biller" id="biller" class="biller-label" placeholder="{{ __('dashboard.biller') }}" required>
               </div>
 
               <div class="row">
                 <label for="accountnumber">{{ __('dashboard.accountnumber') }}</label>
-                <input type="text" name="accountnumber" id="accountnumber" placeholder="FI0000000000000000">
+                <input type="text" name="accountnumber" id="accountnumber" placeholder="FI0000000000000000" required>
               </div>
 
               <div class="row">
@@ -71,7 +71,7 @@ endif;
 
               <div class="row">
                 <label for="refnumber">{{ __('dashboard.refnumber') }}</label>
-                <input type="text" name="refnumber" id="refnumber" placeholder="10001957104320605">
+                <input type="text" name="refnumber" id="refnumber" placeholder="10001957104320605" required>
               </div>
 
               <div class="row">
@@ -91,12 +91,12 @@ endif;
               <footer class="modal-footer">
                 <div class="row">
                   <label for="amount">{{ __('dashboard.totalamount') }}</label>
-                  <span class="flex amount">&euro; <input type="text" name="amount" id="amount" placeholder="100"></span>
+                  <span class="flex amount">&euro; <input type="text" name="amount" id="amount" placeholder="100" required></span>
                 </div>
 
                 <div class="row">
                   <label for="duedate">{{ __('dashboard.duedate') }}</label>
-                  <input type="text" name="duedate" id="duedate" class="due-date datepicker update-due-date" placeholder="{{ date('d.m.Y') }}">
+                  <input type="text" name="duedate" id="duedate" class="due-date datepicker update-due-date" placeholder="{{ date('d.m.Y') }}" required>
                 </div>
               </footer>
 
