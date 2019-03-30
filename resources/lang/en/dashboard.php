@@ -74,4 +74,6 @@ return [
     'creditcard_amount_total' => 'Total amount',
     'creditcard_amount_paid' => 'Paid amount',
     'creditcard' => 'Credit card',
+    'cleartext' => 'Clear',
+    'now' => 'Today'
 ];

@@ -96,7 +96,7 @@ endif;
 
                 <div class="row">
                   <label for="duedate">{{ __('dashboard.duedate') }}</label>
-                  <input type="text" name="duedate" id="duedate" class="due-date update-due-date" placeholder="{{ date('d.m.Y') }}">
+                  <input type="text" name="duedate" id="duedate" class="due-date datepicker update-due-date" placeholder="{{ date('d.m.Y') }}">
                 </div>
               </footer>
 
@@ -290,7 +290,7 @@ endif;
 
                     <div class="row">
                       <label for="subscription_month_day">{{ __('dashboard.renewaldate') }}</label>
-                      <input type="text" name="subscription_month_day" id="subscription_month_day" class="due-date-subscription" placeholder="{{ date('d.m.Y') }}">
+                      <input type="text" name="subscription_month_day" id="subscription_month_day" class="due-date-subscription datepicker" placeholder="{{ date('d.m.Y') }}">
                     </div>
                   </footer>
 
@@ -365,7 +365,7 @@ endif;
 
                     <div class="row">
                       <label for="subscription_month_day">{{ __('dashboard.subscription_month_day') }}</label>
-                      <input type="text" name="subscription_month_day" id="subscription_month_day" class="subscription_month_day" placeholder="{{ date('d.m.Y') }}" value="<?php echo $formatted_date; ?>">
+                      <input type="text" name="subscription_month_day" id="subscription_month_day" class="subscription_month_day datepicker" placeholder="{{ date('d.m.Y') }}" value="<?php echo $formatted_date; ?>">
                     </div>
                   </footer>
 
@@ -537,7 +537,7 @@ endif;
 
               <div class="row">
                 <label for="expirationdate">{{ __('dashboard.expirationdate') }}</label>
-                <input type="text" name="expirationdate" id="expirationdate" value="<?php echo $creditcard->expirationdate; ?>" placeholder="<?php echo date( 'm/Y' ); ?>">
+                <input type="text" class="datepicker-expirationdate" name="expirationdate" id="expirationdate" value="<?php echo $creditcard->expirationdate; ?>" placeholder="<?php echo date( 'm/Y' ); ?>">
               </div>
 
               <div class="row">
@@ -599,7 +599,7 @@ endif;
 
           <div class="row">
             <label for="expirationdate">{{ __('dashboard.expirationdate') }}</label>
-            <input type="text" name="expirationdate" id="expirationdate" placeholder="<?php echo date( 'm/Y' ); ?>">
+            <input type="text" class="datepicker-expirationdate" name="expirationdate" id="expirationdate" placeholder="<?php echo date( 'm/Y' ); ?>">
           </div>
 
           <div class="row">
@@ -809,6 +809,22 @@ endforeach;
 <script>
 // Set moment.js to current language
 moment.locale('{{ Config::get('app.locale') }}');
+
+$(document).ready(function() {
+  // Datepickers
+  $('.datepicker').bootstrapMaterialDatePicker({
+    lang: '{{ Config::get('app.locale') }}',
+    clearText: '{{ __('dashboard.cleartext') }}',
+    nowText: '{{ __('dashboard.now') }}',
+    time: false,
+    weekStart: 1,
+    format: 'DD.MM.YYYY',
+    clearButton: false,
+    switchOnClick: true,
+    nowButton: false
+  });
+});
+
 </script>
 
 @endsection
