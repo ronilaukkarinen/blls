@@ -48,6 +48,35 @@ $(document).ready(function() {
     });
   });
 
+  // If original date is in the past, update the next month to database (emulate the "recurring" feature)
+  $('.subscription-due').each(function() {
+    var originaldate = $(this).attr('data-original-date');
+    var thisId = $(this).attr('data-id');
+    var now = Date.now();
+    var d = moment(originaldate, "YYYY-MM-DD H:i:s");
+
+    if (d < now) {
+    // Update subscription date to database
+
+    $.ajax({
+      url: 'updatesubscriptiondate',
+      type: 'POST',
+      dataType: 'html',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      data: {
+        'update': 1,
+        'id': thisId,
+        'subscription_date': originaldate
+      },
+      success: function(response) {
+      }
+    });
+
+    }
+  });
+
   // Remove subscription
   $(document).on('click', '#remove-subscription', function() {
     var edit_id = $(this).attr('data-id');

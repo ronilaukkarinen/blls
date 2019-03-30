@@ -130,6 +130,33 @@ class SubscriptionController extends Controller {
     </div>';
   }
 
+  // Edit Subscription
+  public function updateSubscriptionDate(Request $request) {
+
+    // Get day from inserted date
+    $date_inserted = new \DateTime($request->subscription_date);
+    $timestamp = $date_inserted->format('Y-m-d') . ' 00:00:00';
+    $timestamp_day = $date_inserted->format('d');
+    $timestamp_month = $date_inserted->format('m');
+
+    // If day has passed, let's get next month
+    if ( date( 'd' ) > $timestamp_day && $timestamp_month == date( 'm' ) ) :
+      $relative_month = date( 'm', strtotime('+1 month') );
+    else :
+      $relative_month = $timestamp_month;
+    endif;
+
+    $timestamp = $date_inserted->format('Y-' . $relative_month . '-d') . ' 00:00:00';
+
+    // Define stuff that we will edit
+    DB::table('subscriptions')
+    ->where('userid', Auth::user()->id)
+    ->where('id', $request->id)
+    ->update([
+      'date' => $timestamp,
+    ]);
+  }
+
   // Remove Subscription
   public function removeSubscription(Request $request) {
     DB::table('subscriptions')

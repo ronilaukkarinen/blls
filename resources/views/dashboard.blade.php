@@ -235,7 +235,7 @@ endif;
                     <div class="content">
                       <ul>
                         <li class="amount">&euro; <span class="value"><?php echo $formatted_amount; ?></span></li>
-                        <li class="subscription-due"><span class="value formatted-duedate" data-copy-to-clipboard="<?php echo $formatted_date; ?>"><?php echo $old_date; ?></span></li>
+                        <li class="subscription-due" data-id="<?php echo $sub->id; ?>" data-original-date="<?php echo $sub->date; ?>"><span class="value formatted-duedate" data-copy-to-clipboard="<?php echo $formatted_date; ?>"><?php echo $old_date; ?></span></li>
                       </ul>
                     </div>
                   </div>

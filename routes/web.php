@@ -25,6 +25,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/removesubscription', 'SubscriptionController@removeSubscription');
     Route::post('/editsubscription', 'SubscriptionController@editSubscription');
     Route::post('/handlesubscription', 'SubscriptionController@handleSubscription');
+    Route::post('/updatesubscriptiondate', 'SubscriptionController@updateSubscriptionDate');
 
     // Payment plans
     Route::post('/addpaymentplan', 'PaymentplanController@addPaymentplan');
