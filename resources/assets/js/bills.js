@@ -205,9 +205,9 @@ $(document).ready(function() {
     $('.modal-bill').removeClass('show');
 
     // Update total
-    var currenttotal_substraction = $('.total-amount').text();
-    var newtotal_substraction = parseFloat(currenttotal_substraction).toFixed(2) - parseFloat(amount_to_be_substracted).toFixed(2);
-    $('.total-amount').html(newtotal_substraction);
+    var current_total_amount = $('.amount-updatable').attr('data-amount');
+    sum = Number(current_total_amount) - Number(amount_to_be_substracted);
+    $('.amount-updatable').html(sum);
 
     // Fade out row
     $('.row-id-' + id).fadeOut();
