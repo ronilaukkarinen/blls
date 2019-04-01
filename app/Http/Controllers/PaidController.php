@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Recurring;
 use Auth;
 use Bills;
 use DB;

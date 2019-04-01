@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use Auth;
-use Bills;
-use DB;
 
-class DashboardController extends Controller {
+class SupportController extends Controller {
   public function __invoke() {
-    return view('dashboard');
+    return view('support');
   }
 }

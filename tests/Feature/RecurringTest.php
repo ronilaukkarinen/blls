@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Recurring;
 use App\Space;
 use App\User;
 use Tests\TestCase;

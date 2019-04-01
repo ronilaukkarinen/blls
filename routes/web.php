@@ -39,6 +39,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/editcreditcard', 'CreditcardController@editCreditcard');
     Route::post('/removecreditcard', 'CreditcardController@removeCreditcard');
 
+    // Support page
+    Route::get('/support', 'SupportController@showPaid')->name('support');
+
     // Paid page
     Route::get('/paid', 'PaidController@showPaid')->name('paid');
 

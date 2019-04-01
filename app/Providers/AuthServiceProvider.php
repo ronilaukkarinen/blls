@@ -2,18 +2,8 @@
 
 namespace App\Providers;
 
-use App\Earning;
-use App\Import;
-use App\Policies\EarningPolicy;
-use App\Policies\ImportPolicy;
-use App\Policies\SpendingPolicy;
-use App\Policies\TagPolicy;
-use App\Spending;
-use App\Tag;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use App\Policies\RecurringPolicy;
-use App\Recurring;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -24,11 +14,6 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'App\Model' => 'App\Policies\ModelPolicy',
-        Earning::class => EarningPolicy::class,
-        Spending::class => SpendingPolicy::class,
-        Recurring::class => RecurringPolicy::class,
-        Tag::class => TagPolicy::class,
-        Import::class => ImportPolicy::class
     ];
 
     /**

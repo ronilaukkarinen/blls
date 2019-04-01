@@ -75,5 +75,6 @@ return [
     'creditcard_amount_paid' => 'Maksettu luotto',
     'creditcard' => 'Luottokortti',
     'cleartext' => 'Tyhjennä',
-    'now' => 'Tänään'
+    'now' => 'Tänään',
+    'support' => 'Tuki & ohjeet',
 ];
