@@ -40,7 +40,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/removecreditcard', 'CreditcardController@removeCreditcard');
 
     // Support page
-    Route::get('/support', 'SupportController@showPaid')->name('support');
+    Route::get('/support', 'SupportController')->name('support');
 
     // Paid page
     Route::get('/paid', 'PaidController@showPaid')->name('paid');
@@ -55,6 +55,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/settings/spaces', 'SettingsController@getSpaces')->name('spaces.index');
     });
 
+    // Spaces
     Route::get('/spaces/{id}', 'SpaceController');
 });
 

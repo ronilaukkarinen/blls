@@ -48,7 +48,7 @@ class RegisterController extends Controller {
 
         $user->spaces()->attach($space->id, ['role' => 'admin']);
 
-        Mail::to($user->email)->queue(new VerifyRegistration($user));
+        Mail::to($user->email)->send(new VerifyRegistration($user));
 
         return redirect()
             ->route('login')
