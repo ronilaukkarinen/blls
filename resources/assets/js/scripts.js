@@ -49,7 +49,7 @@ $(document).ready(function() {
   });
 
   // Make all commas dots in amounts
-  $('#amount').keyup(function() {
+  $('#amount, .amount-big').keyup(function() {
     $(this).val($(this).val().replace(',', '.'));
   });
 
