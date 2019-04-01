@@ -22,7 +22,7 @@ class PaidController extends Controller {
     ->sum('amount');
 
     $bills = DB::table('bills')
-    ->orderBy('duedate', 'asc')
+    ->orderBy('datepaid', 'desc')
     ->where('userid', Auth::user()->id)
     ->where('paid', '1')
     ->get();
