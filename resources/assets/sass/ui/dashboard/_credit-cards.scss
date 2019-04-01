@@ -1,3 +1,9 @@
+.items-creditcards .item {
+  @media(min-width: 1080px) {
+    width: calc(100% - 5rem);
+  }
+}
+
 .items-creditcards .item-creditcard .credit-card {
   @include background-cover();
   border-radius: 8px;

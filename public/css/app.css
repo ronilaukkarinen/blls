@@ -1177,7 +1177,7 @@ button[data-balloon] {
     .dashboard-content .column-fullwidth:last-of-type {
       margin-bottom: 0; }
   .dashboard-content .column {
-    width: 40%;
+    width: calc(50% - 5rem);
     margin-right: 50px;
     margin-right: 5rem;
     margin-bottom: 50px;
@@ -1422,6 +1422,9 @@ button[data-balloon] {
   transition: all .22s ease-in-out;
   overflow: hidden;
   border: 0; }
+  @media (min-width: 1080px) {
+    .column-subscriptions .item {
+      width: calc(100% - 5rem); } }
   .column-subscriptions .item:last-of-type {
     margin-bottom: 0; }
   .column-subscriptions .item input {
@@ -1639,6 +1642,10 @@ button[data-balloon] {
     -o-transition: all .22s;
     transition: all .22s;
     white-space: nowrap; }
+
+@media (min-width: 1080px) {
+  .items-creditcards .item {
+    width: calc(100% - 5rem); } }
 
 .items-creditcards .item-creditcard .credit-card {
   background-size: cover;
