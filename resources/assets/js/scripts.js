@@ -145,17 +145,17 @@ $(document).ready(function() {
     amount.each(function() {
       var formattedAmount = parseInt($(this).text());
 
-      if ((formattedAmount >= '0') && (formattedAmount <= '50')) {
+      if ((formattedAmount >= '0') && (formattedAmount <= '80')) {
         $(this).addClass('color-low');
         $(this).closest('.amount').addClass('color-low');
       }
 
-      else if ((formattedAmount >= '50') && (formattedAmount <= '70')) {
+      else if ((formattedAmount >= '80') && (formattedAmount <= '150')) {
         $(this).addClass('color-medium');
         $(this).closest('.amount').addClass('color-medium');
       }
 
-      else if ((formattedAmount >= '70')) {
+      else if ((formattedAmount >= '150')) {
         $(this).addClass('color-high');
         $(this).closest('.amount').addClass('color-high');
       }
