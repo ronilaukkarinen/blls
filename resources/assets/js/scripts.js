@@ -10,33 +10,32 @@ $(document).ready(function() {
 
  });
 
-  if ($('.items').is(':empty')){
-    $(this).append('Asd');
-  }
-
-  if ( window.innerWidth > 600 ) {
-  // Masonry layout settings
-  var packeryOptions = {
-    itemSelector: '.column',
-    gutter: 0
-  };
-
-  // Initialize Packery
-  var $grid = $('.dashboard-content-grid').packery( packeryOptions );
-  var isActive = true;
-
-  if ( window.innerWidth > 560 ) {
-    $grid.packery( packeryOptions );
+  // Masonry on bigger screens
+  if ( window.innerWidth > 1230 ) {
+    var macy = Macy({
+      container: '.dashboard-content-grid',
+      trueOrder: false,
+      waitForImages: false,
+      margin: 50,
+      columns: 2
+    });
   }
 
   $(window).resize(function() {
-    if ( window.innerWidth > 560 ) {
-      $grid.packery( packeryOptions );
+
+    if ( window.innerWidth > 1230 ) {
+      var macy = Macy({
+        container: '.dashboard-content-grid',
+        trueOrder: false,
+        waitForImages: false,
+        margin: 50,
+        columns: 2
+      });
     } else {
-      $grid.packery('destroy');
+      macy.remove();
     }
+
   });
-  }
 
   // Remove spaces from inputs if any key or click is pressed
   $('#refnumber, #accountnumber, #billnumber, #amount').keyup(function() {

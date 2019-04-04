@@ -55,22 +55,16 @@
 }
 
 .dashboard-content {
-  padding: 5rem;
+  padding: 0;
   width: 100%;
+  margin-top: 5rem;
+  margin-right: 5rem;
+  margin-left: 5rem;
 
-  @media (min-width: 560px) {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  @media(min-width: $container-ipad) {
-    table .formatted-duedate {
-      min-width: 243px;
-    }
-  }
-
-  @media (max-width: 760px) {
-    padding: 3rem;
+  @media (max-width: 1230px) {
+    margin-top: 3rem;
+    margin-right: 3rem;
+    margin-left: 3rem;
   }
 
   h1 {
@@ -87,22 +81,25 @@
   }
 
   .column {
-    width: calc(50% - 5rem);
-    margin-right: 5rem;
+    margin-right: 0;
     margin-bottom: 5rem;
 
+    @media (min-width: 560px) {
+      @include column(1/2, $cycle: 2);
+    }
+
+    @media(max-width: 560px) {
+      width: calc(100% - 5.9rem);
+    }
+
     // Disable masonry by force
-    @media (max-width: 1024px) {
+    @media (max-width: 1230px) {
       position: static !important;
+      float: none !important;
     }
 
     // Minimum width for the table
     min-width: 464px;
-
-    @media (max-width: 1213px) {
-      width: 100%;
-      max-width: 464px;
-    }
 
     @media (max-width: 560px) {
       min-width: 220px;

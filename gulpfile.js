@@ -189,7 +189,7 @@ gulp.task('js', function() {
         [
           'node_modules/jquery/dist/jquery.js',
           'resources/assets/js/moment-with-locales.js',
-          'resources/assets/js/packery.pkgd.min.js',
+          'resources/assets/js/macy.js',
           'resources/assets/js/scripts.js',
           'resources/assets/js/bills.js',
           'resources/assets/js/subscriptions.js',
