@@ -12,7 +12,7 @@
   <link rel="shortcut icon" href="images/favicon.png">
   <meta name="msapplication-TileColor" content="#2b5797">
   <meta name="msapplication-config" content="images/browserconfig.xml">
-  <meta name="theme-color" content="#1c2a45">
+  <meta name="theme-color" content="#1b3b62">
 
   <script src="/js/app.js"></script>
   <link rel="stylesheet" href="/css/app.css" />

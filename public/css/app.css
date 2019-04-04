@@ -1041,6 +1041,9 @@ button[data-balloon] {
   padding: 15px;
   padding: 1.5rem;
   height: 100%; }
+  @media (max-width: 560px) {
+    .dashboard-status-bar {
+      background: #1b3b62; } }
   .dashboard-status-bar header {
     margin-bottom: auto; }
     @media (max-width: 600px) {

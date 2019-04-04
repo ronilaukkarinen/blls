@@ -4,6 +4,10 @@
   padding: 1.5rem;
   height: 100%;
 
+  @media(max-width: 560px) {
+    background: $color-blueish;
+  }
+
   header {
     margin-bottom: auto;
 
