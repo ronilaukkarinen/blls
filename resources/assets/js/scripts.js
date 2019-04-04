@@ -15,19 +15,9 @@ $(document).ready(function() {
 
  });
 
-  // Masonry on bigger screens
-  if ( window.innerWidth > 1111 ) {
-    var macy = Macy({
-      container: '.dashboard-content-grid',
-      trueOrder: false,
-      waitForImages: false,
-      margin: 50,
-      columns: 2
-    });
-  }
+  if ( $('.dashboard-content-grid').length) {
 
-  $(window).resize(function() {
-
+    // Masonry on bigger screens
     if ( window.innerWidth > 1111 ) {
       var macy = Macy({
         container: '.dashboard-content-grid',
@@ -36,11 +26,25 @@ $(document).ready(function() {
         margin: 50,
         columns: 2
       });
-    } else {
-      macy.remove();
     }
 
-  });
+    $(window).resize(function() {
+
+      if ( window.innerWidth > 1111 ) {
+        var macy = Macy({
+          container: '.dashboard-content-grid',
+          trueOrder: false,
+          waitForImages: false,
+          margin: 50,
+          columns: 2
+        });
+      } else {
+        macy.remove();
+      }
+
+    });
+
+  }
 
   // Remove spaces from inputs if any key or click is pressed
   $('#refnumber, #accountnumber, #billnumber, #amount').keyup(function() {
