@@ -205,10 +205,6 @@
   }
 }
 
-.dashboard {
-  transition: all .33s;
-}
-
 .modal-opened {
   overflow: hidden;
 }
@@ -216,4 +212,5 @@
 .modal-opened .dashboard {
   filter: blur(8px);
   transform: scale(1.005);
+  transition: all .33s;
 }
