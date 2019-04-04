@@ -1172,11 +1172,10 @@ button[data-balloon] {
     .dashboard-content.opacity-on-load.fade-in {
       opacity: 1;
       visibility: visible; }
-  @media (max-width: 1230px) {
+  @media (max-width: 700px) {
     .dashboard-content {
-      margin-top: 3rem;
-      margin-right: 3rem;
-      margin-left: 3rem; } }
+      margin: 0;
+      padding: 3rem; } }
   .dashboard-content h1 {
     margin-top: 0; }
   .dashboard-content .column-fullwidth {
@@ -1213,8 +1212,8 @@ button[data-balloon] {
           clear: both; } }
     @media (max-width: 560px) {
       .dashboard-content .column {
-        width: calc(100% - 5.9rem); } }
-    @media (max-width: 1230px) {
+        width: 100%; } }
+    @media (max-width: 1111px) {
       .dashboard-content .column {
         position: static !important;
         float: none !important; } }

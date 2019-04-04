@@ -16,7 +16,7 @@ $(document).ready(function() {
  });
 
   // Masonry on bigger screens
-  if ( window.innerWidth > 1230 ) {
+  if ( window.innerWidth > 1111 ) {
     var macy = Macy({
       container: '.dashboard-content-grid',
       trueOrder: false,
@@ -28,7 +28,7 @@ $(document).ready(function() {
 
   $(window).resize(function() {
 
-    if ( window.innerWidth > 1230 ) {
+    if ( window.innerWidth > 1111 ) {
       var macy = Macy({
         container: '.dashboard-content-grid',
         trueOrder: false,
