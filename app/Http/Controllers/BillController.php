@@ -20,6 +20,17 @@ class BillController extends Controller {
     ->where('paid', '0')
     ->sum('amount');
 
+    $balance_overdue = DB::table('bills')
+    ->where('userid', Auth::user()->id)
+    ->where('paid', '0')
+    ->where('duedate', '<=', date('Y-m-d H:i:s') )
+    ->sum('amount');
+
+    $balance_subscriptions = DB::table('subscriptions')
+    ->where('userid', Auth::user()->id)
+    ->where('active', '1')
+    ->sum('amount');
+
     $bills = DB::table('bills')
     ->orderBy('duedate', 'asc')
     ->where('userid', Auth::user()->id)
@@ -31,11 +42,6 @@ class BillController extends Controller {
     ->where('userid', Auth::user()->id)
     ->get();
 
-    $balance_subscriptions = DB::table('subscriptions')
-    ->where('userid', Auth::user()->id)
-    ->where('active', '1')
-    ->sum('amount');
-
     $paymentplans = DB::table('paymentplans')
     ->where('userid', Auth::user()->id)
     ->get();
@@ -44,7 +50,7 @@ class BillController extends Controller {
     ->where('userid', Auth::user()->id)
     ->get();
 
-    return view( 'dashboard', compact( 'balance', 'bills', 'subscriptions', 'balance_subscriptions', 'paymentplans', 'creditcards' ) );
+    return view( 'dashboard', compact( 'balance', 'balance_overdue', 'balance_subscriptions', 'bills', 'subscriptions', 'paymentplans', 'creditcards' ) );
   }
 
   // Add bill

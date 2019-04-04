@@ -28,13 +28,13 @@ endif;
             </div>
 
             <div class="item-col">
-              <h2 class="title-small">{{ __('dashboard.subscriptiontotal') }}</h2>
-              <p class="amount">&euro; <span class="sum total-amount formatted-amount-high">{{ str_replace( '.', ',', $balance_subscriptions ) }}</span></p>
+              <h2 class="title-small">{{ __('dashboard.overdue') }}</h2>
+              <p class="amount">&euro; <span class="sum total-amount formatted-amount-high" data-amount="{{ str_replace( ',', '.', $balance ) }}">{{ str_replace( '.', ',', $balance_overdue ) }}</span></p>
             </div>
 
             <div class="item-col">
-              <h2 class="title-small">{{ __('dashboard.overalltotal') }}</h2>
-              <p class="amount">&euro; <span class="sum total-amount formatted-amount-high amount-updatable" data-amount="{{ str_replace( ',', '.', $balance ) }}">{{ str_replace( '.', ',', $balance_subscriptions + $balance ) }}</span></p>
+              <h2 class="title-small">{{ __('dashboard.subscriptiontotal') }}</h2>
+              <p class="amount">&euro; <span class="sum total-amount formatted-amount-high">{{ str_replace( '.', ',', $balance_subscriptions ) }}</span></p>
             </div>
           </div>
 

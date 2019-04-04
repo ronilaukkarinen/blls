@@ -77,4 +77,5 @@ return [
     'cleartext' => 'Clear',
     'now' => 'Today',
     'support' => 'Help & support',
+    'overdue' => 'Overdue',
 ];

@@ -77,4 +77,5 @@ return [
     'cleartext' => 'Tyhjennä',
     'now' => 'Tänään',
     'support' => 'Tuki & ohjeet',
+    'overdue' => 'Erääntyneet',
 ];
