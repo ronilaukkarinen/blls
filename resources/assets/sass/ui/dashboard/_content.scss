@@ -61,6 +61,17 @@
   margin-right: 5rem;
   margin-left: 5rem;
 
+  &.opacity-on-load {
+    transition: opacity 450ms ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+
+    &.fade-in {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
   @media (max-width: 1230px) {
     margin-top: 3rem;
     margin-right: 3rem;

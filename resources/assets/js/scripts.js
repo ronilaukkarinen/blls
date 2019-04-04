@@ -1,5 +1,10 @@
 $(document).ready(function() {
 
+  // Apple-like fade on load
+  setTimeout(function() {
+    $('.opacity-on-load').addClass('fade-in');
+  }, 500);
+
   // General InboxZero if all items are paid (difficult to add) with PHP before object foreach
   $('.items-paymentplans, .items-creditcards, .items-subscriptions').each(function () {
 

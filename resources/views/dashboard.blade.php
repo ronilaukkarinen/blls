@@ -16,7 +16,7 @@ if ( 'local' == App::environment() ) :
   setlocale( LC_TIME, 'fi_FI' );
 endif;
 ?>
-      <section class="dashboard-content dashboard-content-grid">
+      <section class="dashboard-content dashboard-content-grid opacity-on-load">
 
         <div class="column column-bills">
           <h1>{{ __('dashboard.summary') }}</h1>

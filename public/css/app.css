@@ -1163,6 +1163,15 @@ button[data-balloon] {
   margin-right: 5rem;
   margin-left: 50px;
   margin-left: 5rem; }
+  .dashboard-content.opacity-on-load {
+    -webkit-transition: opacity 450ms ease-in-out;
+    -o-transition: opacity 450ms ease-in-out;
+    transition: opacity 450ms ease-in-out;
+    opacity: 0;
+    visibility: hidden; }
+    .dashboard-content.opacity-on-load.fade-in {
+      opacity: 1;
+      visibility: visible; }
   @media (max-width: 1230px) {
     .dashboard-content {
       margin-top: 3rem;
