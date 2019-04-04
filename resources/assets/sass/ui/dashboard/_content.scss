@@ -63,6 +63,12 @@
     flex-wrap: wrap;
   }
 
+  @media(min-width: $container-ipad) {
+    table .formatted-duedate {
+      min-width: 243px;
+    }
+  }
+
   @media (max-width: 760px) {
     padding: 3rem;
   }

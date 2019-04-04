@@ -1165,6 +1165,9 @@ button[data-balloon] {
       display: flex;
       -ms-flex-wrap: wrap;
           flex-wrap: wrap; } }
+  @media (min-width: 768px) {
+    .dashboard-content table .formatted-duedate {
+      min-width: 243px; } }
   @media (max-width: 760px) {
     .dashboard-content {
       padding: 3rem; } }
