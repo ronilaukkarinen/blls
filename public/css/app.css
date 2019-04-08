@@ -1107,6 +1107,13 @@ button[data-balloon] {
               transform: scale(1.1);
       stroke: #88a3c6; }
 
+.validation-error {
+  padding: 15px;
+  color: #fff;
+  background: #f86380;
+  border-radius: 5px;
+  margin-bottom: 25px; }
+
 .inbox-zero {
   display: -webkit-box;
   display: -ms-flexbox;

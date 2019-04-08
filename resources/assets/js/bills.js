@@ -1,11 +1,10 @@
 $(document).ready(function() {
 
+  // Hide validation errors by default
+  $('.validation-error').fadeOut();
+
   // Save bill to database
   $(document).on('click', '#submit-button', function() {
-
-    // Close modals
-    $('body').removeClass('modal-opened');
-    $('.modal-bill').removeClass('show');
 
     var biller = $('#biller').val();
     var billnumber = $('#billnumber').val();
@@ -20,7 +19,7 @@ $(document).ready(function() {
     $.ajax({
       url: 'addbill',
       type: 'POST',
-      dataType: 'html',
+      dataType: 'json',
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
@@ -47,11 +46,31 @@ $(document).ready(function() {
         $('#amount').val('');
         $('#duedate').val('');
 
-        // Add to row
-        //$('.bills-list tr:last').after(response);
+        if( response.errors ) {
 
-        // Reload page
-        location.reload();
+          $.each(response.errors, function(key, value) {
+            $('.validation-error').fadeIn('slow');
+            // $('.validation-error .append-msg').append( value );
+
+            setTimeout(function() {
+              $('.validation-error').fadeOut('slow');
+            }, 1500);
+          });
+
+          console.log( response.errors );
+
+        } else {
+
+          // Close modals
+          $('body').removeClass('modal-opened');
+          $('.modal-bill').removeClass('show');
+
+          // Add to row
+          $('.bills-list tr:last').after(response);
+
+          // Reload page
+          location.reload();
+        }
       }
     });
   });

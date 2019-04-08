@@ -63,7 +63,7 @@ class BillController extends Controller {
       'duedate' => 'bail|required|date',
     ]);
 
-    if ($validator->passes()) {
+    if ( $validator->passes() ) {
       // Let's format the date
       $date_to_db = date( 'Y-m-d H:i:s', strtotime( $request->duedate ) );
 
@@ -94,7 +94,9 @@ class BillController extends Controller {
     }
 
     // If validator didn't pass
-    return response()->json(['error'=>$validator->errors()->all()]);
+    return response()->json([
+      'errors' => $validator->errors()->all()
+    ]);
   }
 
   // Edit bill
