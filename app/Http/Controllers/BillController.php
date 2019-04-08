@@ -103,11 +103,11 @@ class BillController extends Controller {
   public function editBill(Request $request) {
 
     $validator = Validator::make($request->all(), [
-      'biller' => 'bail|required|max:100',
-      'refnumber' => 'bail|required|max:255',
-      'accountnumber' => 'bail|required|max:255',
-      'amount' => 'bail|max:255',
-      'duedate' => 'bail|required|date',
+      'biller' => 'required|max:100',
+      'refnumber' => 'required|max:255',
+      'accountnumber' => 'required|max:255',
+      'amount' => 'max:255',
+      'duedate' => 'required|date',
     ]);
 
     if ( $validator->passes() ) {
