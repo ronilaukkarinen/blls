@@ -102,33 +102,48 @@ class BillController extends Controller {
   // Edit bill
   public function editBill(Request $request) {
 
-    // Let's format the date
-    $date_to_db = date( 'Y-m-d H:i:s', strtotime( $request->duedate ) );
-
-    // Define stuff that we will edit
-    DB::table('bills')
-    ->where('userid', Auth::user()->id)
-    ->where('id', $request->id)
-    ->where('paid', '0')
-    ->update([
-      'biller' => $request->biller,
-      'billnumber' => $request->billnumber,
-      'virtualcode' => $request->virtualcode,
-      'refnumber' => $request->refnumber,
-      'accountnumber' => $request->accountnumber,
-      'type' => $request->type,
-      'description' => $request->description,
-      'amount' => $request->amount,
-      'duedate' => $date_to_db,
-      'userid' => Auth::user()->id,
+    $validator = Validator::make($request->all(), [
+      'biller' => 'bail|required|max:100',
+      'refnumber' => 'bail|required|max:255',
+      'accountnumber' => 'bail|required|max:255',
+      'amount' => 'bail|max:255',
+      'duedate' => 'bail|required|date',
     ]);
 
-    // Print results
-    echo '<tr class="row-clickable">
-    <td data-heading="Laskuttaja" class="row-biller biller_text">' . $request->biller . '</td>
-    <td data-heading="Eräpäivä" class="formatted-duedate row-duedate duedate_text past">' . $request->duedate . '</td>
-    <td data-heading="Summa" class="row-amount amount amount_text">€ <span class="formatted-amount">' . $request->amount . '</span></td>
-    </tr>';
+    if ( $validator->passes() ) {
+      // Let's format the date
+      $date_to_db = date( 'Y-m-d H:i:s', strtotime( $request->duedate ) );
+
+      // Define stuff that we will edit
+      DB::table('bills')
+      ->where('userid', Auth::user()->id)
+      ->where('id', $request->id)
+      ->where('paid', '0')
+      ->update([
+        'biller' => $request->biller,
+        'billnumber' => $request->billnumber,
+        'virtualcode' => $request->virtualcode,
+        'refnumber' => $request->refnumber,
+        'accountnumber' => $request->accountnumber,
+        'type' => $request->type,
+        'description' => $request->description,
+        'amount' => $request->amount,
+        'duedate' => $date_to_db,
+        'userid' => Auth::user()->id,
+      ]);
+
+      // Print results
+      echo '<tr class="row-clickable">
+      <td data-heading="Laskuttaja" class="row-biller biller_text">' . $request->biller . '</td>
+      <td data-heading="Eräpäivä" class="formatted-duedate row-duedate duedate_text past">' . $request->duedate . '</td>
+      <td data-heading="Summa" class="row-amount amount amount_text">€ <span class="formatted-amount">' . $request->amount . '</span></td>
+      </tr>';
+    }
+
+    // If validator didn't pass
+    return response()->json([
+      'errors' => $validator->errors()->all()
+    ]);
   }
 
   // Mark bill as paid

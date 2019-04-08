@@ -95,7 +95,7 @@ $(document).ready(function() {
     $.ajax({
       url: 'removebill',
       type: 'POST',
-      dataType: 'html',
+      dataType: 'json',
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
@@ -160,14 +160,10 @@ $(document).ready(function() {
     var amount = $('#amount').val();
     var duedate = $('#duedate').val();
 
-    // Close modals
-    $('body').removeClass('modal-opened');
-    $('.modal-bill').removeClass('show');
-
     $.ajax({
       url: 'editbill',
       type: 'POST',
-      dataType: 'html',
+      dataType: 'json',
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
@@ -197,12 +193,32 @@ $(document).ready(function() {
         $('#submit-button').show();
         $('#update-button').hide();
 
-        $edit_bill.replaceWith(response);
+        if( response.errors ) {
 
-        // Reload page
-        setTimeout(function() {
-         location.reload();
-       }, 50);
+          $.each(response.errors, function(key, value) {
+            $('.validation-error').fadeIn('slow');
+            // $('.validation-error .append-msg').append( value );
+
+            setTimeout(function() {
+              $('.validation-error').fadeOut('slow');
+            }, 3000);
+          });
+
+          console.log( response.errors );
+
+        } else {
+
+          // Close modals
+          $('body').removeClass('modal-opened');
+          $('.modal-bill').removeClass('show');
+
+          // Add to row
+          $edit_bill.replaceWith(response);
+
+          // Reload page
+          location.reload();
+        }
+
       }
     });
   });
