@@ -17,7 +17,7 @@ if ( 'local' == App::environment() ) :
 endif;
 ?>
 
-<section class="dashboard-content">
+<section class="dashboard-content dashboard-content-paid">
 
   <div class="column-fullwidth column-bills column-bills-paid">
     <h1>{{ __('dashboard.summary') }}</h1>

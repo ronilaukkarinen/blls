@@ -1175,6 +1175,14 @@ button[data-balloon] {
   margin-left: 5rem;
   margin-bottom: 50px;
   margin-bottom: 5rem; }
+  .dashboard-content.dashboard-content-paid {
+    width: calc(100% - 50px); }
+    @media (min-width: 700px) {
+      .dashboard-content.dashboard-content-paid {
+        width: calc(100% - 150px); } }
+    @media (max-width: 600px) {
+      .dashboard-content.dashboard-content-paid {
+        width: 100%; } }
   .dashboard-content.opacity-on-load {
     -webkit-transition: opacity 450ms ease-in-out;
     -o-transition: opacity 450ms ease-in-out;

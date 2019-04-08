@@ -54,7 +54,7 @@ $(document).ready(function() {
 
             setTimeout(function() {
               $('.validation-error').fadeOut('slow');
-            }, 1500);
+            }, 3000);
           });
 
           console.log( response.errors );
