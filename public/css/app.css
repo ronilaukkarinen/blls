@@ -1165,7 +1165,9 @@ button[data-balloon] {
   margin-right: 50px;
   margin-right: 5rem;
   margin-left: 50px;
-  margin-left: 5rem; }
+  margin-left: 5rem;
+  margin-bottom: 50px;
+  margin-bottom: 5rem; }
   .dashboard-content.opacity-on-load {
     -webkit-transition: opacity 450ms ease-in-out;
     -o-transition: opacity 450ms ease-in-out;
