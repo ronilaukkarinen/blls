@@ -24,7 +24,7 @@ endif;
           <div class="items status">
             <div class="item-col">
               <h2 class="title-small">{{ __('dashboard.total') }}</h2>
-              <p class="amount">&euro; <span class="sum total-amount formatted-amount-high amount-updatable" data-amount="{{ str_replace( ',', '.', $balance ) }}">{{ str_replace( '.', ',', $balance ) }}</span></p>
+              <p class="amount">&euro; <span class="sum total-amount atatted-amount-high amount-updatable" data-amount="{{ str_replace( ',', '.', $balance ) }}">{{ str_replace( '.', ',', $balance ) }}</span></p>
             </div>
 
             <div class="item-col">
@@ -168,7 +168,7 @@ endif;
                   <td data-heading="{{ __('dashboard.description') }}" class="row-description row-hidden description_text"><?php echo $bill->description; ?></td>
                   <td data-heading="{{ __('dashboard.duedate') }}" class="formatted-duedate row-duedate duedate_text" data-balloon="<?php echo $local_date; ?>" data-copy-to-clipboard="<?php echo $formatted_date; ?>" data-balloon-pos="up"><?php echo $bill->duedate; ?></td>
                   <td data-heading="{{ __('dashboard.duedate') }} (original)" class="row-duedate-original row-hidden"><?php echo $bill->duedate; ?></td>
-                  <td data-heading="{{ __('dashboard.amount') }}" class="row-amount amount amount_text" data-copy-to-clipboard="<?php echo $formatted_amount; ?>"><span>&euro;</span> <span class="formatted-amount"><?php echo number_format( floatval( $formatted_amount ), 2); ?></span></td>
+                  <td data-heading="{{ __('dashboard.amount') }}" class="row-amount amount amount_text" data-copy-to-clipboard="<?php echo $formatted_amount; ?>"><span>&euro;</span> <span class="formatted-amount"><?php echo $formatted_amount; ?></span></td>
                   <td data-heading="{{ __('dashboard.actions') }}" class="row-actions row-hidden"><span class="delete" data-id="<?php echo $bill->id; ?>" ><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></span>
                     <span class="edit" data-id="<?php echo $bill->id; ?>"><?php echo file_get_contents( '../public/svg/dashboard/edit.svg' ); ?></span>
                     <span class="mark-as-paid" data-id="<?php echo $bill->id; ?>"><?php echo file_get_contents( '../public/svg/dashboard/check.svg' ); ?></span>
