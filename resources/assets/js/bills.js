@@ -86,12 +86,6 @@ $(document).ready(function() {
     // Fade out row
     $('.row-id-' + remove_id).fadeOut();
 
-    // Update total
-    var amount_to_be_substracted = $('.modal-bill-' + remove_id + ' .formatted-amount').attr('data-original-amount');
-    var currenttotal_substraction = $('.total-amount').text();
-    var newtotal_substraction = currenttotal_substraction - amount_to_be_substracted;
-    $('.total-amount').html(newtotal_substraction);
-
     $.ajax({
       url: 'removebill',
       type: 'POST',
