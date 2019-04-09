@@ -46,6 +46,8 @@ $(document).ready(function() {
         $('#amount').val('');
         $('#duedate').val('');
 
+        console.log( response );
+
         if( response.errors ) {
 
           $.each(response.errors, function(key, value) {
@@ -56,8 +58,6 @@ $(document).ready(function() {
               $('.validation-error').fadeOut('slow');
             }, 3000);
           });
-
-          console.log( response.errors );
 
         } else {
 
@@ -89,7 +89,7 @@ $(document).ready(function() {
     // Update total
     var amount_to_be_substracted = $('.modal-bill-' + remove_id + ' .formatted-amount').attr('data-original-amount');
     var currenttotal_substraction = $('.total-amount').text();
-    var newtotal_substraction = parseFloat(currenttotal_substraction).toFixed(2) - parseFloat(amount_to_be_substracted).toFixed(2);
+    var newtotal_substraction = currenttotal_substraction - amount_to_be_substracted;
     $('.total-amount').html(newtotal_substraction);
 
     $.ajax({

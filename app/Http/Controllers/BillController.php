@@ -57,13 +57,13 @@ class BillController extends Controller {
   public function addBill(Request $request) {
     $validator = Validator::make($request->all(), [
       'biller' => 'bail|required|max:100',
-      'refnumber' => 'bail|required|max:255',
       'accountnumber' => 'bail|required|max:255',
       'amount' => 'bail|max:255',
       'duedate' => 'bail|required|date',
     ]);
 
     if ( $validator->passes() ) {
+
       // Let's format the date
       $date_to_db = date( 'Y-m-d H:i:s', strtotime( $request->duedate ) );
 
@@ -84,19 +84,17 @@ class BillController extends Controller {
         'userid' => Auth::user()->id,
       ]);
 
-      // Print results
-      echo '<tr class="row-clickable">
-      <td data-heading="Laskuttaja" class="row-biller biller_text">' . $request->biller . '</td>
-      <td data-heading="Eräpäivä" class="formatted-duedate row-duedate duedate_text past">' . $request->duedate . '</td>
-      <td data-heading="Summa" class="row-amount amount amount_text">€ <span class="formatted-amount">' . $request->amount . '</span></td>
-      </tr>';
+      return response()->json([
+        'success' => 'true',
+      ]);
 
+    } else {
+
+      // If validator didn't pass
+      return response()->json([
+        'errors' => $validator->errors()->all()
+      ]);
     }
-
-    // If validator didn't pass
-    return response()->json([
-      'errors' => $validator->errors()->all()
-    ]);
   }
 
   // Edit bill
@@ -104,13 +102,13 @@ class BillController extends Controller {
 
     $validator = Validator::make($request->all(), [
       'biller' => 'required|max:100',
-      'refnumber' => 'required|max:255',
       'accountnumber' => 'required|max:255',
       'amount' => 'max:255',
       'duedate' => 'required|date',
     ]);
 
     if ( $validator->passes() ) {
+
       // Let's format the date
       $date_to_db = date( 'Y-m-d H:i:s', strtotime( $request->duedate ) );
 
@@ -132,18 +130,17 @@ class BillController extends Controller {
         'userid' => Auth::user()->id,
       ]);
 
-      // Print results
-      echo '<tr class="row-clickable">
-      <td data-heading="Laskuttaja" class="row-biller biller_text">' . $request->biller . '</td>
-      <td data-heading="Eräpäivä" class="formatted-duedate row-duedate duedate_text past">' . $request->duedate . '</td>
-      <td data-heading="Summa" class="row-amount amount amount_text">€ <span class="formatted-amount">' . $request->amount . '</span></td>
-      </tr>';
-    }
+      return response()->json([
+        'success' => 'true',
+      ]);
 
-    // If validator didn't pass
-    return response()->json([
-      'errors' => $validator->errors()->all()
-    ]);
+    } else {
+
+      // If validator didn't pass
+      return response()->json([
+        'errors' => $validator->errors()->all()
+      ]);
+    }
   }
 
   // Mark bill as paid
