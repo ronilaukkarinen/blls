@@ -55,7 +55,7 @@ endif;
                     <h3 class="date"><?php echo date( 'd/m/Y' ); ?></h3>
                 </div>
 
-                <span class="bill-number">#<label for="billnumber" class="screen-reader-text">{{ __('dashboard.billnumber') }}</label><input type="text" name="billnumber" id="billnumber" class="bill-number" placeholder="183411639682" required></span>
+                <span class="bill-number">#<label for="billnumber" class="screen-reader-text">{{ __('dashboard.billnumber') }}</label><input type="text" name="billnumber" id="billnumber" class="bill-number" placeholder="183411639682"></span>
               </header>
 
               <div class="row biller">

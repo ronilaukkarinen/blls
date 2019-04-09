@@ -1,10 +1,12 @@
 <?php
 
 return [
-    'unique'  => 'Sähköpostiosoite on jo olemassa',
-    'required' => 'Kenttä vaaditaan',
-    'confirmed' => 'Ei mätsää',
+    'unique'  => 'Arvo on jo olemassa',
+    'required' => 'Vaadittu kenttä',
+    'regex' => 'Kenttä ei ole oikeassa muodossa',
+    'confirmed' => 'Kenttä ei täsmää',
+    'date' => 'Päivämäärä ei ole oikein',
     'max' => [
-        'string' => 'Ei voi olla pidempi kuin :max merkkiä'
+        'string' => 'Merkkejä pitää olla :max merkkiä'
     ]
 ];

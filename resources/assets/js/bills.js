@@ -36,30 +36,31 @@ $(document).ready(function() {
         'duedate': duedate
       },
       success: function(response) {
-        $('#biller').val('');
-        $('#billnumber').val('');
-        $('#virtualcode').val('');
-        $('#refnumber').val('');
-        $('#accountnumber').val('');
-        $('#type').val('');
-        $('#description').val('');
-        $('#amount').val('');
-        $('#duedate').val('');
-
-        console.log( response );
-
         if( response.errors ) {
 
           $.each(response.errors, function(key, value) {
             $('.validation-error').fadeIn('slow');
-            // $('.validation-error .append-msg').append( value );
 
             setTimeout(function() {
               $('.validation-error').fadeOut('slow');
             }, 3000);
           });
 
+          // Log errors
+          console.log( response );
+
         } else {
+
+          // Clear form
+          $('#biller').val('');
+          $('#billnumber').val('');
+          $('#virtualcode').val('');
+          $('#refnumber').val('');
+          $('#accountnumber').val('');
+          $('#type').val('');
+          $('#description').val('');
+          $('#amount').val('');
+          $('#duedate').val('');
 
           // Close modals
           $('body').removeClass('modal-opened');
@@ -175,18 +176,6 @@ $(document).ready(function() {
         'duedate': duedate,
       },
       success: function(response) {
-        $('#biller').val('');
-        $('#billnumber').val('');
-        $('#virtualcode').val('');
-        $('#refnumber').val('');
-        $('#accountnumber').val('');
-        $('#type').val('');
-        $('#description').val('');
-        $('#amount').val('');
-        $('#duedate').val('');
-        $('#submit-button').show();
-        $('#update-button').hide();
-
         if( response.errors ) {
 
           $.each(response.errors, function(key, value) {
@@ -198,9 +187,23 @@ $(document).ready(function() {
             }, 3000);
           });
 
-          console.log( response.errors );
+          // Log errors
+          console.log( response );
 
         } else {
+
+          // Clear form
+          $('#biller').val('');
+          $('#billnumber').val('');
+          $('#virtualcode').val('');
+          $('#refnumber').val('');
+          $('#accountnumber').val('');
+          $('#type').val('');
+          $('#description').val('');
+          $('#amount').val('');
+          $('#duedate').val('');
+          $('#submit-button').show();
+          $('#update-button').hide();
 
           // Close modals
           $('body').removeClass('modal-opened');

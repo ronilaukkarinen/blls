@@ -56,10 +56,15 @@ class BillController extends Controller {
   // Add bill
   public function addBill(Request $request) {
     $validator = Validator::make($request->all(), [
-      'biller' => 'bail|required|max:100',
-      'accountnumber' => 'bail|required|max:255',
-      'amount' => 'bail|max:255',
-      'duedate' => 'bail|required|date',
+      'biller' => 'required|nullable|max:100|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
+      'billnumber' => 'nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
+      'virtualcode' => 'nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
+      'refnumber' => 'required|nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
+      'accountnumber' => 'required|nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
+      'type' => 'nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
+      'description' => 'nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
+      'amount' => 'required|nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
+      'duedate' => 'required|nullable|date|date_format:"d.m.Y"|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
     ]);
 
     if ( $validator->passes() ) {
@@ -101,10 +106,15 @@ class BillController extends Controller {
   public function editBill(Request $request) {
 
     $validator = Validator::make($request->all(), [
-      'biller' => 'required|max:100',
-      'accountnumber' => 'required|max:255',
-      'amount' => 'max:255',
-      'duedate' => 'required|date',
+      'biller' => 'required|nullable|max:100|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
+      'billnumber' => 'nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
+      'virtualcode' => 'nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
+      'refnumber' => 'required|nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
+      'accountnumber' => 'required|nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
+      'type' => 'nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
+      'description' => 'nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
+      'amount' => 'required|nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
+      'duedate' => 'required|nullable|date|date_format:"d.m.Y"|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
     ]);
 
     if ( $validator->passes() ) {

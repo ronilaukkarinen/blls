@@ -78,5 +78,5 @@ return [
     'now' => 'Today',
     'support' => 'Help & support',
     'overdue' => 'Overdue',
-    'validationerror' => 'Please fill all forms correctly, except virtualcode.',
+    'validationerror' => 'Please fill the required fields correctly.',
 ];

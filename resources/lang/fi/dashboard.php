@@ -78,5 +78,5 @@ return [
     'now' => 'Tänään',
     'support' => 'Tuki & ohjeet',
     'overdue' => 'Erääntyneet',
-    'validationerror' => 'Täytäthän kaikki kentät oikein, paitsi virtuaaliviivakoodi.',
+    'validationerror' => 'Virheellinen kenttä havaittu.',
 ];
