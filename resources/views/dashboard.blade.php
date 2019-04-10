@@ -24,7 +24,7 @@ endif;
           <div class="items status">
             <div class="item-col">
               <h2 class="title-small">{{ __('dashboard.total') }}</h2>
-              <p class="amount">&euro; <span class="sum total-amount atatted-amount-high amount-updatable" data-amount="{{ str_replace( ',', '.', $balance ) }}">{{ str_replace( '.', ',', $balance ) }}</span></p>
+              <p class="amount">&euro; <span class="sum total-amount formatted-amount-high amount-updatable" data-amount="{{ str_replace( ',', '.', $balance ) }}">{{ str_replace( '.', ',', $balance ) }}</span></p>
             </div>
 
             <div class="item-col">
