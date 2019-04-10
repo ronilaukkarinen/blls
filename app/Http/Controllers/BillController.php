@@ -61,8 +61,7 @@ class BillController extends Controller {
       'virtualcode' => 'nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
       'refnumber' => 'required|nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
       'accountnumber' => 'required|nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
-      'type' => 'nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
-      'description' => 'nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
+      'description' => 'nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!?\/ ]*$/',
       'amount' => 'required|nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
       'duedate' => 'required|nullable|date|date_format:"d.m.Y"|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
     ]);
@@ -80,7 +79,6 @@ class BillController extends Controller {
         'virtualcode' => $request->virtualcode,
         'refnumber' => $request->refnumber,
         'accountnumber' => $request->accountnumber,
-        'type' => $request->type,
         'description' => $request->description,
         'amount' => $request->amount,
         'duedate' => $date_to_db,
@@ -112,7 +110,7 @@ class BillController extends Controller {
       'refnumber' => 'required|nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
       'accountnumber' => 'required|nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
       'type' => 'nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
-      'description' => 'nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
+      'description' => 'nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!?\/ ]*$/',
       'amount' => 'required|nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
       'duedate' => 'required|nullable|date|date_format:"d.m.Y"|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
     ]);
