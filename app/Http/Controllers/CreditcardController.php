@@ -72,7 +72,7 @@ class CreditcardController extends Controller {
       <div class="details">
         <h2 class="title-larger creditor">' . $request->creditor . '</h2>
         <h3 class="title-small">' . __('dashboard.monthlycut') . '</h3>
-        <p class="monthly-cut"><span class="amount">&euro; <span class="formatted-amount">' . str_replace( '.', ',', $request->monthlyamount ) . '</span></span> / ' . __('dashboard.permonth') . '</p>
+        <p class="monthly-cut"><span class="amount">' . Auth::user()->currency->symbol . ' <span class="formatted-amount">' . str_replace( '.', ',', $request->monthlyamount ) . '</span></span> / ' . __('dashboard.permonth') . '</p>
 
         <div class="progress-bar">
           <div class="progress' . $percent_class . '" style="width: ' . $percent . '%;">

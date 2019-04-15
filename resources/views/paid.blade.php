@@ -25,7 +25,7 @@ endif;
     <div class="items status">
       <div class="item-col">
         <h2 class="title-small">{{ __('dashboard.totalpaid') }}</h2>
-        <p class="amount">&euro; <span class="sum total-amount formatted-amount-high">{{ str_replace( '.', ',', $balance ) }}</span></p>
+        <p class="amount"><?php echo Auth::user()->currency->symbol; ?> <span class="sum total-amount formatted-amount-high">{{ str_replace( '.', ',', $balance ) }}</span></p>
       </div>
     </div>
 
@@ -82,7 +82,7 @@ endif;
           <footer class="modal-footer">
             <div class="row">
               <label for="amount">{{ __('dashboard.totalamount') }}</label>
-              <span class="flex amount">&euro; <input type="text" name="amount" id="amount" placeholder="100"></span>
+              <span class="flex amount"><?php echo Auth::user()->currency->symbol; ?> <input type="text" name="amount" id="amount" placeholder="100"></span>
             </div>
 
             <div class="row">
@@ -155,7 +155,7 @@ endif;
                 <td data-heading="{{ __('dashboard.description') }}" class="row-description description_text"><?php echo $bill->description; ?></td>
                 <td data-heading="{{ __('dashboard.datepaid') }}" class="formatted-duedate row-duedate duedate_text" data-balloon="<?php echo $local_date; ?>" data-copy-to-clipboard="<?php echo $formatted_date; ?>" data-balloon-pos="up"><?php echo $bill->datepaid; ?></td>
                 <td data-heading="{{ __('dashboard.datepaid') }} (original)" class="row-duedate-original row-hidden"><?php echo $bill->datepaid; ?></td>
-                <td data-heading="{{ __('dashboard.amount') }}" class="row-amount amount amount_text" data-copy-to-clipboard="<?php echo $formatted_amount; ?>"><span>&euro;</span> <span class="formatted-amount"><?php echo $formatted_amount; ?></span></td>
+                <td data-heading="{{ __('dashboard.amount') }}" class="row-amount amount amount_text" data-copy-to-clipboard="<?php echo $formatted_amount; ?>"><span><?php echo Auth::user()->currency->symbol; ?></span> <span class="formatted-amount"><?php echo $formatted_amount; ?></span></td>
                 <td data-heading="{{ __('dashboard.actions') }}" class="row-actions row-hidden"><span class="delete" data-id="<?php echo $bill->id; ?>" ><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></span>
                   <span class="edit" data-id="<?php echo $bill->id; ?>"><?php echo file_get_contents( '../public/svg/dashboard/edit.svg' ); ?></span>
                   <span class="mark-as-paid" data-id="<?php echo $bill->id; ?>"><?php echo file_get_contents( '../public/svg/dashboard/check.svg' ); ?></span>
@@ -335,7 +335,7 @@ if ( '1' == $bill->paid && Auth::id() == $bill->userid ) :
     <footer class="modal-footer">
       <div class="row">
         <h3>{{ __('dashboard.totalamount') }}</h3>
-        <p class="amount">&euro; <span class="formatted-amount able-to-copy" data-original-amount="<?php echo $bill->amount; ?>" data-copy-to-clipboard="<?php echo $formatted_amount; ?>"><?php echo $formatted_amount; ?></span></p>
+        <p class="amount"><?php echo Auth::user()->currency->symbol; ?> <span class="formatted-amount able-to-copy" data-original-amount="<?php echo $bill->amount; ?>" data-copy-to-clipboard="<?php echo $formatted_amount; ?>"><?php echo $formatted_amount; ?></span></p>
       </div>
 
       <div class="row">

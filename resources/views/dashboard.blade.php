@@ -24,17 +24,17 @@ endif;
           <div class="items status">
             <div class="item-col">
               <h2 class="title-small">{{ __('dashboard.total') }}</h2>
-              <p class="amount">&euro; <span class="sum total-amount formatted-amount-high amount-updatable" data-amount="{{ str_replace( ',', '.', $balance ) }}">{{ str_replace( '.', ',', $balance ) }}</span></p>
+              <p class="amount"><?php echo Auth::user()->currency->symbol; ?> <span class="sum total-amount formatted-amount-high amount-updatable" data-amount="{{ str_replace( ',', '.', $balance ) }}">{{ str_replace( '.', ',', $balance ) }}</span></p>
             </div>
 
             <div class="item-col">
               <h2 class="title-small">{{ __('dashboard.overdue') }}</h2>
-              <p class="amount">&euro; <span class="sum total-amount formatted-amount-high" data-amount="{{ str_replace( ',', '.', $balance ) }}">{{ str_replace( '.', ',', $balance_overdue ) }}</span></p>
+              <p class="amount"><?php echo Auth::user()->currency->symbol; ?> <span class="sum total-amount formatted-amount-high" data-amount="{{ str_replace( ',', '.', $balance ) }}">{{ str_replace( '.', ',', $balance_overdue ) }}</span></p>
             </div>
 
             <div class="item-col">
               <h2 class="title-small">{{ __('dashboard.subscriptiontotal') }}</h2>
-              <p class="amount">&euro; <span class="sum total-amount formatted-amount-high">{{ str_replace( '.', ',', $balance_subscriptions ) }}</span></p>
+              <p class="amount"><?php echo Auth::user()->currency->symbol; ?> <span class="sum total-amount formatted-amount-high">{{ str_replace( '.', ',', $balance_subscriptions ) }}</span></p>
             </div>
           </div>
 
@@ -95,7 +95,7 @@ endif;
               <footer class="modal-footer">
                 <div class="row">
                   <label for="amount">{{ __('dashboard.totalamount') }}</label>
-                  <span class="flex amount">&euro; <input type="text" name="amount" id="amount" placeholder="100" required></span>
+                  <span class="flex amount"><?php echo Auth::user()->currency->symbol; ?> <input type="text" name="amount" id="amount" placeholder="100" required></span>
                 </div>
 
                 <div class="row">
@@ -168,7 +168,7 @@ endif;
                   <td data-heading="{{ __('dashboard.description') }}" class="row-description row-hidden description_text"><?php echo $bill->description; ?></td>
                   <td data-heading="{{ __('dashboard.duedate') }}" class="formatted-duedate row-duedate duedate_text" data-balloon="<?php echo $local_date; ?>" data-copy-to-clipboard="<?php echo $formatted_date; ?>" data-balloon-pos="up"><?php echo $bill->duedate; ?></td>
                   <td data-heading="{{ __('dashboard.duedate') }} (original)" class="row-duedate-original row-hidden"><?php echo $bill->duedate; ?></td>
-                  <td data-heading="{{ __('dashboard.amount') }}" class="row-amount amount amount_text" data-copy-to-clipboard="<?php echo $formatted_amount; ?>"><span>&euro;</span> <span class="formatted-amount"><?php echo $formatted_amount; ?></span></td>
+                  <td data-heading="{{ __('dashboard.amount') }}" class="row-amount amount amount_text" data-copy-to-clipboard="<?php echo $formatted_amount; ?>"><span><?php echo Auth::user()->currency->symbol; ?></span> <span class="formatted-amount"><?php echo $formatted_amount; ?></span></td>
                   <td data-heading="{{ __('dashboard.actions') }}" class="row-actions row-hidden"><span class="delete" data-id="<?php echo $bill->id; ?>" ><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></span>
                     <span class="edit" data-id="<?php echo $bill->id; ?>"><?php echo file_get_contents( '../public/svg/dashboard/edit.svg' ); ?></span>
                     <span class="mark-as-paid" data-id="<?php echo $bill->id; ?>"><?php echo file_get_contents( '../public/svg/dashboard/check.svg' ); ?></span>
@@ -238,7 +238,7 @@ endif;
 
                     <div class="content">
                       <ul>
-                        <li class="amount">&euro; <span class="value"><?php echo $formatted_amount; ?></span></li>
+                        <li class="amount"><?php echo Auth::user()->currency->symbol; ?> <span class="value"><?php echo $formatted_amount; ?></span></li>
                         <li class="subscription-due" data-id="<?php echo $sub->id; ?>" data-original-date="<?php echo $sub->date; ?>"><span class="value formatted-duedate" data-copy-to-clipboard="<?php echo $formatted_date; ?>"><?php echo $old_date; ?></span></li>
                       </ul>
                     </div>
@@ -293,7 +293,7 @@ endif;
                   <footer class="modal-footer">
                     <div class="row">
                       <label for="amount">{{ __('dashboard.totalamount') }}</label>
-                      <span class="flex amount">&euro; <input type="text" name="subscription_amount" id="subscription_amount" placeholder="100"></span>
+                      <span class="flex amount"><?php echo Auth::user()->currency->symbol; ?> <input type="text" name="subscription_amount" id="subscription_amount" placeholder="100"></span>
                     </div>
 
                     <div class="row">
@@ -372,7 +372,7 @@ endif;
                   <footer class="modal-footer">
                     <div class="row">
                       <label for="amount">{{ __('dashboard.totalamount') }}</label>
-                      <span class="flex amount">&euro; <input type="text" name="subscription_amount" id="subscription_amount" placeholder="100" value="<?php echo $formatted_amount; ?>"></span>
+                      <span class="flex amount"><?php echo Auth::user()->currency->symbol; ?> <input type="text" name="subscription_amount" id="subscription_amount" placeholder="100" value="<?php echo $formatted_amount; ?>"></span>
                     </div>
 
                     <div class="row">
@@ -488,7 +488,7 @@ endif;
                 <div class="details">
                   <h2 class="title-larger creditor"><?php echo $creditcard->creditor; ?></h2>
                   <h3 class="title-small">{{ __('dashboard.monthlycut') }}</h3>
-                  <p class="monthly-cut"><span class="amount">&euro; <span class="formatted-amount"><?php echo str_replace( '.', ',', $creditcard->monthlyamount ); ?></span></span> / {{ __('dashboard.permonth') }}</p>
+                  <p class="monthly-cut"><span class="amount"><?php echo Auth::user()->currency->symbol; ?> <span class="formatted-amount"><?php echo str_replace( '.', ',', $creditcard->monthlyamount ); ?></span></span> / {{ __('dashboard.permonth') }}</p>
 
                   <div class="progress-bar">
                       <?php
@@ -814,7 +814,7 @@ if ( '0' == $bill->paid && Auth::id() == $bill->userid ) :
     <footer class="modal-footer">
       <div class="row">
         <h3>{{ __('dashboard.totalamount') }}</h3>
-        <p class="amount">&euro; <span class="formatted-amount able-to-copy" data-original-amount="<?php echo $bill->amount; ?>" data-copy-to-clipboard="<?php echo $formatted_amount; ?>"><?php echo $formatted_amount; ?></span></p>
+        <p class="amount"><?php echo Auth::user()->currency->symbol; ?> <span class="formatted-amount able-to-copy" data-original-amount="<?php echo $bill->amount; ?>" data-copy-to-clipboard="<?php echo $formatted_amount; ?>"><?php echo $formatted_amount; ?></span></p>
       </div>
 
       <div class="row">
