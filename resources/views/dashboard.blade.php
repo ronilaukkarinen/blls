@@ -45,7 +45,7 @@ endif;
             <div class="modal-content">
 
               <div class="validation-error">
-                <div class="message message-error"><svg width="16" height="16" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1490 1322q0 40-28 68l-136 136q-28 28-68 28t-68-28l-294-294-294 294q-28 28-68 28t-68-28l-136-136q-28-28-28-68t28-68l294-294-294-294q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 294 294-294q28-28 68-28t68 28l136 136q28 28 28 68t-28 68l-294 294 294 294q28 28 28 68z"/></svg> <span class="validation-error-result">{{ __('dashboard.validationerror') }}</span></div>
+                <div class="message message-error"><svg width="16" height="16" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1490 1322q0 40-28 68l-136 136q-28 28-68 28t-68-28l-294-294-294 294q-28 28-68 28t-68-28l-136-136q-28-28-28-68t28-68l294-294-294-294q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 294 294-294q28-28 68-28t68 28l136 136q28 28 28 68t-28 68l-294 294 294 294q28 28 28 68z"/></svg> <span class="validation-error-result">{{ __('dashboard.validationerror') }} <span class="erroneous-fields"></span></span></div>
               </div>
 
               <form class="bills-form">
@@ -257,7 +257,7 @@ endif;
               <div class="modal-content">
 
                 <div class="validation-error">
-                  <div class="message message-error"><svg width="16" height="16" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1490 1322q0 40-28 68l-136 136q-28 28-68 28t-68-28l-294-294-294 294q-28 28-68 28t-68-28l-136-136q-28-28-28-68t28-68l294-294-294-294q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 294 294-294q28-28 68-28t68 28l136 136q28 28 28 68t-28 68l-294 294 294 294q28 28 28 68z"/></svg> <span class="validation-error-result">{{ __('dashboard.validationerror') }}</span></div>
+                  <div class="message message-error"><svg width="16" height="16" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1490 1322q0 40-28 68l-136 136q-28 28-68 28t-68-28l-294-294-294 294q-28 28-68 28t-68-28l-136-136q-28-28-28-68t28-68l294-294-294-294q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 294 294-294q28-28 68-28t68 28l136 136q28 28 28 68t-28 68l-294 294 294 294q28 28 28 68z"/></svg> <span class="validation-error-result">{{ __('dashboard.validationerror') }} <span class="erroneous-fields"></span></span></div>
                 </div>
 
                 <form class="subscriptions-form">
@@ -292,7 +292,7 @@ endif;
 
                   <footer class="modal-footer">
                     <div class="row">
-                      <label for="amount">{{ __('dashboard.totalamount') }}</label>
+                      <label for="subscription_amount">{{ __('dashboard.totalamount') }}</label>
                       <span class="flex amount"><?php echo Auth::user()->currency->symbol; ?> <input type="text" name="subscription_amount" id="subscription_amount" placeholder="100"></span>
                     </div>
 
@@ -346,7 +346,7 @@ endif;
               <div class="modal-content">
 
                 <div class="validation-error">
-                  <div class="message message-error"><svg width="16" height="16" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1490 1322q0 40-28 68l-136 136q-28 28-68 28t-68-28l-294-294-294 294q-28 28-68 28t-68-28l-136-136q-28-28-28-68t28-68l294-294-294-294q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 294 294-294q28-28 68-28t68 28l136 136q28 28 28 68t-28 68l-294 294 294 294q28 28 28 68z"/></svg> <span class="validation-error-result">{{ __('dashboard.validationerror') }}</span></div>
+                  <div class="message message-error"><svg width="16" height="16" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1490 1322q0 40-28 68l-136 136q-28 28-68 28t-68-28l-294-294-294 294q-28 28-68 28t-68-28l-136-136q-28-28-28-68t28-68l294-294-294-294q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 294 294-294q28-28 68-28t68 28l136 136q28 28 28 68t-28 68l-294 294 294 294q28 28 28 68z"/></svg> <span class="validation-error-result">{{ __('dashboard.validationerror') }} <span class="erroneous-fields"></span></span></div>
                 </div>
 
                 <form class="subscriptions-form">
@@ -533,7 +533,7 @@ endif;
           <div class="modal-content">
 
             <div class="validation-error">
-              <div class="message message-error"><svg width="16" height="16" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1490 1322q0 40-28 68l-136 136q-28 28-68 28t-68-28l-294-294-294 294q-28 28-68 28t-68-28l-136-136q-28-28-28-68t28-68l294-294-294-294q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 294 294-294q28-28 68-28t68 28l136 136q28 28 28 68t-28 68l-294 294 294 294q28 28 28 68z"/></svg> <span class="validation-error-result">{{ __('dashboard.validationerror') }}</span></div>
+              <div class="message message-error"><svg width="16" height="16" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1490 1322q0 40-28 68l-136 136q-28 28-68 28t-68-28l-294-294-294 294q-28 28-68 28t-68-28l-136-136q-28-28-28-68t28-68l294-294-294-294q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 294 294-294q28-28 68-28t68 28l136 136q28 28 28 68t-28 68l-294 294 294 294q28 28 28 68z"/></svg> <span class="validation-error-result">{{ __('dashboard.validationerror') }} <span class="erroneous-fields"></span></span></div>
             </div>
 
             <form class="credit-card-form">
@@ -597,7 +597,7 @@ endif;
       <div class="modal-content">
 
         <div class="validation-error">
-          <div class="message message-error"><svg width="16" height="16" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1490 1322q0 40-28 68l-136 136q-28 28-68 28t-68-28l-294-294-294 294q-28 28-68 28t-68-28l-136-136q-28-28-28-68t28-68l294-294-294-294q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 294 294-294q28-28 68-28t68 28l136 136q28 28 28 68t-28 68l-294 294 294 294q28 28 28 68z"/></svg> <span class="validation-error-result">{{ __('dashboard.validationerror') }}</span></div>
+          <div class="message message-error"><svg width="16" height="16" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1490 1322q0 40-28 68l-136 136q-28 28-68 28t-68-28l-294-294-294 294q-28 28-68 28t-68-28l-136-136q-28-28-28-68t28-68l294-294-294-294q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 294 294-294q28-28 68-28t68 28l136 136q28 28 28 68t-28 68l-294 294 294 294q28 28 28 68z"/></svg> <span class="validation-error-result">{{ __('dashboard.validationerror') }} <span class="erroneous-fields"></span></span></div>
         </div>
 
         <form class="credit-card-form">
@@ -657,7 +657,7 @@ endif;
       <div class="modal-content">
 
         <div class="validation-error">
-          <div class="message message-error"><svg width="16" height="16" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1490 1322q0 40-28 68l-136 136q-28 28-68 28t-68-28l-294-294-294 294q-28 28-68 28t-68-28l-136-136q-28-28-28-68t28-68l294-294-294-294q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 294 294-294q28-28 68-28t68 28l136 136q28 28 28 68t-28 68l-294 294 294 294q28 28 28 68z"/></svg> <span class="validation-error-result">{{ __('dashboard.validationerror') }}</span></div>
+          <div class="message message-error"><svg width="16" height="16" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1490 1322q0 40-28 68l-136 136q-28 28-68 28t-68-28l-294-294-294 294q-28 28-68 28t-68-28l-136-136q-28-28-28-68t28-68l294-294-294-294q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 294 294-294q28-28 68-28t68 28l136 136q28 28 28 68t-28 68l-294 294 294 294q28 28 28 68z"/></svg> <span class="validation-error-result">{{ __('dashboard.validationerror') }} <span class="erroneous-fields"></span></span></div>
         </div>
 
         <form class="paymentplan-form">
@@ -706,7 +706,7 @@ foreach ( $paymentplans as $paymentplan ) :
       <div class="modal-content">
 
         <div class="validation-error">
-          <div class="message message-error"><svg width="16" height="16" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1490 1322q0 40-28 68l-136 136q-28 28-68 28t-68-28l-294-294-294 294q-28 28-68 28t-68-28l-136-136q-28-28-28-68t28-68l294-294-294-294q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 294 294-294q28-28 68-28t68 28l136 136q28 28 28 68t-28 68l-294 294 294 294q28 28 28 68z"/></svg> <span class="validation-error-result">{{ __('dashboard.validationerror') }}</span></div>
+          <div class="message message-error"><svg width="16" height="16" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1490 1322q0 40-28 68l-136 136q-28 28-68 28t-68-28l-294-294-294 294q-28 28-68 28t-68-28l-136-136q-28-28-28-68t28-68l294-294-294-294q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 294 294-294q28-28 68-28t68 28l136 136q28 28 28 68t-28 68l-294 294 294 294q28 28 28 68z"/></svg> <span class="validation-error-result">{{ __('dashboard.validationerror') }} <span class="erroneous-fields"></span></span></div>
         </div>
 
         <form class="paymentplan-form">
@@ -772,7 +772,7 @@ if ( '0' == $bill->paid && Auth::id() == $bill->userid ) :
   <div class="modal-content">
 
     <div class="validation-error">
-      <div class="message message-error"><svg width="16" height="16" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1490 1322q0 40-28 68l-136 136q-28 28-68 28t-68-28l-294-294-294 294q-28 28-68 28t-68-28l-136-136q-28-28-28-68t28-68l294-294-294-294q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 294 294-294q28-28 68-28t68 28l136 136q28 28 28 68t-28 68l-294 294 294 294q28 28 28 68z"/></svg> <span class="validation-error-result">{{ __('dashboard.validationerror') }}</span></div>
+      <div class="message message-error"><svg width="16" height="16" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1490 1322q0 40-28 68l-136 136q-28 28-68 28t-68-28l-294-294-294 294q-28 28-68 28t-68-28l-136-136q-28-28-28-68t28-68l294-294-294-294q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 294 294-294q28-28 68-28t68 28l136 136q28 28 28 68t-28 68l-294 294 294 294q28 28 28 68z"/></svg> <span class="validation-error-result">{{ __('dashboard.validationerror') }} <span class="erroneous-fields"></span></span></div>
     </div>
 
     <header class="modal-header">

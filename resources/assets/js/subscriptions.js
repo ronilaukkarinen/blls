@@ -184,10 +184,6 @@ $(document).ready(function() {
   // Save subscription to database
   $(document).on('click', '#submit-subscription', function() {
 
-    // Close modals
-    $('body').removeClass('modal-opened');
-    $('.modal').removeClass('show');
-
     var subscription_biller = $('.modal-subscription-new #subscription_biller').val();
     var subscription_amount = $('.modal-subscription-new #subscription_amount').val();
     var subscription_month_day = $('.modal-subscription-new #subscription_month_day').val();
@@ -196,7 +192,7 @@ $(document).ready(function() {
     $.ajax({
       url: 'addsubscription',
       type: 'POST',
-      dataType: 'html',
+      dataType: 'json',
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
@@ -208,13 +204,32 @@ $(document).ready(function() {
         'subscription_plan': subscription_plan
       },
       success: function(response) {
-        // Add to row
-        $('.items-subscriptions > .item:last').after(response);
+        if( response.errors ) {
 
-        // Reload page
-        setTimeout(function() {
-         location.reload();
-       }, 50);
+          $.each(response.errors, function(key, value) {
+            $('.validation-error').fadeIn('slow');
+            $('.validation-error .erroneous-fields').html( response.errors.slice(0, -1).join(', ') );
+
+            setTimeout(function() {
+              $('.validation-error').fadeOut('slow');
+            }, 3000);
+          });
+
+          // Log errors
+          console.log( response );
+
+        } else {
+
+          // Close modals
+          $('body').removeClass('modal-opened');
+          $('.modal').removeClass('show');
+
+          // Add to row
+          $('.items-subscriptions > .item:last').after(response);
+
+          // Reload page
+          location.reload();
+        }
       }
     });
   });

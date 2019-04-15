@@ -95,7 +95,7 @@ class BillController extends Controller {
 
       // If validator didn't pass
       return response()->json([
-        'errors' => $validator->errors()->all()
+        'errors' => $validator->errors()->keys()
       ]);
     }
   }
@@ -146,7 +146,7 @@ class BillController extends Controller {
 
       // If validator didn't pass
       return response()->json([
-        'errors' => $validator->errors()->all()
+        'errors' => $validator->errors()->keys()
       ]);
     }
   }

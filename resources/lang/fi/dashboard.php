@@ -78,5 +78,5 @@ return [
     'now' => 'Tänään',
     'support' => 'Tuki & ohjeet',
     'overdue' => 'Erääntyneet',
-    'validationerror' => 'Virheellinen kenttä havaittu.',
+    'validationerror' => 'Virheelliset kentät:',
 ];
