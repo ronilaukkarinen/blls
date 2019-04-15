@@ -23,14 +23,10 @@ $(document).ready(function() {
     var subscription_month_day = $('.modal-subscription-' + edit_id + ' #subscription_month_day').val();
     var subscription_plan = $('.modal-subscription-' + edit_id + ' #subscription_plan').val();
 
-    // Close other possible modals
-    $('body').removeClass('modal-opened');
-    $('.modal').removeClass('show');
-
     $.ajax({
       url: 'editsubscription',
       type: 'POST',
-      dataType: 'html',
+      dataType: 'json',
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
@@ -43,7 +39,29 @@ $(document).ready(function() {
         'subscription_plan': subscription_plan
       },
       success: function(response) {
-        $('.item-' + edit_id).replaceWith(response);
+        if( response.errors ) {
+
+          $.each(response.errors, function(key, value) {
+            $('.validation-error').fadeIn('slow');
+            $('.modal-subscription-' + edit_id + ' .validation-error .erroneous-fields').html( response.errors.slice(0, -1).join(', ') );
+
+            setTimeout(function() {
+              $('.validation-error').fadeOut('slow');
+            }, 3000);
+          });
+
+          // Log errors
+          console.log( response );
+
+        } else {
+
+          // Close modals
+          $('body').removeClass('modal-opened');
+          $('.modal').removeClass('show');
+
+          // Reload page
+          location.reload();
+        }
       }
     });
   });
@@ -91,7 +109,7 @@ $(document).ready(function() {
     $.ajax({
       url: 'removesubscription',
       type: 'POST',
-      dataType: 'html',
+      dataType: 'json',
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
@@ -111,14 +129,10 @@ $(document).ready(function() {
     var subscription_month_day = $('.modal-subscription-' + edit_id + ' #subscription_month_day').val();
     var subscription_plan = $('.modal-subscription-' + edit_id + ' #subscription_plan').val();
 
-    // Close other possible modals
-    $('body').removeClass('modal-opened');
-    $('.modal').removeClass('show');
-
     $.ajax({
       url: 'handlesubscription',
       type: 'POST',
-      dataType: 'html',
+      dataType: 'json',
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
@@ -132,12 +146,29 @@ $(document).ready(function() {
         'subscription_plan': subscription_plan
       },
       success: function(response) {
-        $('.item-' + edit_id).replaceWith(response);
+        if( response.errors ) {
 
-        // Reload page
-        setTimeout(function() {
-         location.reload();
-       }, 50);
+          $.each(response.errors, function(key, value) {
+            $('.validation-error').fadeIn('slow');
+            $('.modal-subscription-' + edit_id + ' .validation-error .erroneous-fields').html( response.errors.slice(0, -1).join(', ') );
+
+            setTimeout(function() {
+              $('.validation-error').fadeOut('slow');
+            }, 3000);
+          });
+
+          // Log errors
+          console.log( response );
+
+        } else {
+
+          // Close modals
+          $('body').removeClass('modal-opened');
+          $('.modal').removeClass('show');
+
+          // Reload page
+          location.reload();
+        }
       }
     });
   });
@@ -150,14 +181,10 @@ $(document).ready(function() {
     var subscription_month_day = $('.modal-subscription-' + edit_id + ' #subscription_month_day').val();
     var subscription_plan = $('.modal-subscription-' + edit_id + ' #subscription_plan').val();
 
-    // Close other possible modals
-    $('body').removeClass('modal-opened');
-    $('.modal').removeClass('show');
-
     $.ajax({
       url: 'handlesubscription',
       type: 'POST',
-      dataType: 'html',
+      dataType: 'json',
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
@@ -171,12 +198,29 @@ $(document).ready(function() {
         'subscription_plan': subscription_plan
       },
       success: function(response) {
-        $('.item-' + edit_id).replaceWith(response);
+        if( response.errors ) {
 
-        // Reload page
-        setTimeout(function() {
-         location.reload();
-       }, 50);
+          $.each(response.errors, function(key, value) {
+            $('.validation-error').fadeIn('slow');
+            $('.modal-subscription-' + edit_id + ' .validation-error .erroneous-fields').html( response.errors.slice(0, -1).join(', ') );
+
+            setTimeout(function() {
+              $('.validation-error').fadeOut('slow');
+            }, 3000);
+          });
+
+          // Log errors
+          console.log( response );
+
+        } else {
+
+          // Close modals
+          $('body').removeClass('modal-opened');
+          $('.modal').removeClass('show');
+
+          // Reload page
+          location.reload();
+        }
       }
     });
   });
@@ -223,9 +267,6 @@ $(document).ready(function() {
           // Close modals
           $('body').removeClass('modal-opened');
           $('.modal').removeClass('show');
-
-          // Add to row
-          $('.items-subscriptions > .item:last').after(response);
 
           // Reload page
           location.reload();

@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
   // Hide validation errors by default
-  $('.validation-error').fadeOut();
+  $('.validation-error').hide();
 
   // Save bill to database
   $(document).on('click', '#submit-button', function() {
@@ -40,6 +40,7 @@ $(document).ready(function() {
 
           $.each(response.errors, function(key, value) {
             $('.validation-error').fadeIn('slow');
+            $('.validation-error .erroneous-fields').html( response.errors.slice(0, -1).join(', ') );
 
             setTimeout(function() {
               $('.validation-error').fadeOut('slow');
@@ -65,9 +66,6 @@ $(document).ready(function() {
           // Close modals
           $('body').removeClass('modal-opened');
           $('.modal-bill').removeClass('show');
-
-          // Add to row
-          $('.bills-list tr:last').after(response);
 
           // Reload page
           location.reload();
@@ -180,7 +178,7 @@ $(document).ready(function() {
 
           $.each(response.errors, function(key, value) {
             $('.validation-error').fadeIn('slow');
-            // $('.validation-error .append-msg').append( value );
+            $('.validation-error .erroneous-fields').html( response.errors.slice(0, -1).join(', ') );
 
             setTimeout(function() {
               $('.validation-error').fadeOut('slow');
@@ -208,9 +206,6 @@ $(document).ready(function() {
           // Close modals
           $('body').removeClass('modal-opened');
           $('.modal-bill').removeClass('show');
-
-          // Add to row
-          $edit_bill.replaceWith(response);
 
           // Reload page
           location.reload();

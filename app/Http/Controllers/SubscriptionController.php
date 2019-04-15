@@ -25,7 +25,7 @@ class SubscriptionController extends Controller {
       'subscription_biller' => 'nullable|max:100|regex:/^[a-zA-ZäöåÄÖÅ0-9\-,.!?\/ ]*$/',
       'subscription_amount' => 'required|nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
       'subscription_month_day' => 'required|nullable|date|date_format:"d.m.Y"|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
-      'subscription_plan' => 'nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!?\/ ]*$/',
+      'subscription_plan' => 'nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!?\/\$ ]*$/',
     ]);
 
     if ( $validator->passes() ) {
@@ -75,54 +75,45 @@ class SubscriptionController extends Controller {
     $timestamp_day = $date_inserted->format('d');
     $timestamp_month = $date_inserted->format('m');
 
-    // If day has passed, let's get next month
-    if ( date( 'd' ) > $timestamp_day && $timestamp_month == date( 'm' ) ) :
-      $relative_month = date( 'm', strtotime('+1 month') );
-    else :
-      $relative_month = $timestamp_month;
-    endif;
-
-    $timestamp = $date_inserted->format('Y-' . $relative_month . '-d') . ' 00:00:00';
-
-    // Define stuff that we will edit
-    DB::table('subscriptions')
-    ->where('userid', Auth::user()->id)
-    ->where('id', $request->id)
-    ->update([
-      'biller' => $request->subscription_biller,
-      'amount' => $request->subscription_amount,
-      'day' => $timestamp_day,
-      'date' => $timestamp,
-      'plan' => $request->subscription_plan,
-      'userid' => Auth::id(),
+    $validator = Validator::make($request->all(), [
+      'subscription_biller' => 'nullable|max:100|regex:/^[a-zA-ZäöåÄÖÅ0-9\-,.!?\/ ]*$/',
+      'subscription_amount' => 'required|nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
+      'subscription_month_day' => 'required|nullable|date|date_format:"d.m.Y"|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
+      'subscription_plan' => 'nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!?\/\$ ]*$/',
     ]);
 
-    /// Variables
-    $old_date_timestamp = strtotime( $timestamp );
-    $formatted_date = date( 'd.m.Y', $old_date_timestamp );
-    $stylish_date = date( 'd/m/Y', $old_date_timestamp );
-    setlocale( LC_TIME, "fi_FI" );
-    $formatted_amount = str_replace( '.', ',', $request->subscription_amount );
-    $subscription_biller = strtolower( $request->subscription_biller );
+    if ( $validator->passes() ) {
 
-    // Print results
-    echo '<div class="item item-' . $subscription_biller . ' item-' . $request->id . '" data-id="' . $request->id . '">
-    <div class="logo">
-      ' . file_get_contents( "svg/subscriptions/{$subscription_biller}.svg" ) . '
+      // If day has passed, let's get next month
+      if ( date( 'd' ) > $timestamp_day && $timestamp_month == date( 'm' ) ) :
+        $relative_month = date( 'm', strtotime('+1 month') );
+      else :
+        $relative_month = $timestamp_month;
+      endif;
 
-        <div class="details">
-          <span class="biller">' . $request->subscription_biller . '</span>
-          <span class="type">' . $request->subscription_plan . '</span>
-        </div>
-      </div>
+      $timestamp = $date_inserted->format('Y-' . $relative_month . '-d') . ' 00:00:00';
 
-      <div class="content">
-        <ul>
-          <li class="amount"><span class="value">€ ' . $request->subscription_amount . '</span></li>
-          <li class="subscription-due"><span class="value">' . $stylish_date . '</span></li>
-        </ul>
-      </div>
-    </div>';
+      // Define stuff that we will edit
+      DB::table('subscriptions')
+      ->where('userid', Auth::user()->id)
+      ->where('id', $request->id)
+      ->update([
+        'biller' => $request->subscription_biller,
+        'amount' => $request->subscription_amount,
+        'day' => $timestamp_day,
+        'date' => $timestamp,
+        'plan' => $request->subscription_plan,
+        'userid' => Auth::id(),
+      ]);
+
+    } else {
+
+      // If validator didn't pass
+      return response()->json([
+        'errors' => $validator->errors()->keys()
+      ]);
+
+    }
   }
 
   // Edit Subscription
@@ -169,56 +160,50 @@ class SubscriptionController extends Controller {
     $timestamp_day = $date_inserted->format('d');
     $timestamp_month = $date_inserted->format('m');
 
-    // If day has passed, let's get next month
-    if ( date( 'd' ) > $timestamp_day && $timestamp_month == date( 'm' ) ) :
-      $relative_month = date( 'm', strtotime('+1 month') );
-    else :
-      $relative_month = $timestamp_month;
-    endif;
-
-    $timestamp = $date_inserted->format('Y-' . $relative_month . '-d') . ' 00:00:00';
-
-    // Define stuff that we will edit
-    DB::table('subscriptions')
-    ->where('userid', Auth::user()->id)
-    ->where('id', $request->id)
-    ->update([
-      'biller' => $request->subscription_biller,
-      'amount' => $request->subscription_amount,
-      'day' => $timestamp_day,
-      'date' => $timestamp,
-      'plan' => $request->subscription_plan,
-      'userid' => Auth::id(),
-      'active' => $request->subscription_active,
+    $validator = Validator::make($request->all(), [
+      'subscription_biller' => 'nullable|max:100|regex:/^[a-zA-ZäöåÄÖÅ0-9\-,.!?\/ ]*$/',
+      'subscription_amount' => 'required|nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
+      'subscription_month_day' => 'required|nullable|date|date_format:"d.m.Y"|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
+      'subscription_plan' => 'nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!?\/\$ ]*$/',
+      'subscription_active' => 'required|nullable|max:255|regex:/^[a-zA-ZäöåÄÖÅ0-9,.!? ]*$/',
     ]);
 
-    /// Variables
-    $old_date_timestamp = strtotime( $timestamp );
-    $formatted_date = date( 'd.m.Y', $old_date_timestamp );
-    $stylish_date = date( 'd/m/Y', $old_date_timestamp );
-    setlocale( LC_TIME, "fi_FI" );
-    $formatted_amount = str_replace( '.', ',', $request->subscription_amount );
-    $subscription_biller = strtolower( $request->subscription_biller );
+    if ( $validator->passes() ) {
 
-    // Print results
-    if ( 0 == $request->subscription_active ) : $activeclass = ' inactive'; else : $activeclass = ' active'; endif;
-    echo '<div class="item item-' . $subscription_biller . '' . $activeclass . '" item-' . $request->id . '" data-id="' . $request->id . '">
-    <div class="logo">
-      ' . file_get_contents( "svg/subscriptions/{$subscription_biller}.svg" ) . '
+      // If day has passed, let's get next month
+      if ( date( 'd' ) > $timestamp_day && $timestamp_month == date( 'm' ) ) :
+        $relative_month = date( 'm', strtotime('+1 month') );
+      else :
+        $relative_month = $timestamp_month;
+      endif;
 
-        <div class="details">
-          <span class="biller">' . $request->subscription_biller . '</span>
-          <span class="type">' . $request->subscription_plan . '</span>
-        </div>
-      </div>
+      $timestamp = $date_inserted->format('Y-' . $relative_month . '-d') . ' 00:00:00';
 
-      <div class="content">
-        <ul>
-          <li class="amount"><span class="value">€ ' . $request->subscription_amount . '</span></li>
-          <li class="subscription-due"><span class="value">' . $stylish_date . '</span></li>
-        </ul>
-      </div>
-    </div>';
+      // Define stuff that we will edit
+      DB::table('subscriptions')
+      ->where('userid', Auth::user()->id)
+      ->where('id', $request->id)
+      ->update([
+        'biller' => $request->subscription_biller,
+        'amount' => $request->subscription_amount,
+        'day' => $timestamp_day,
+        'date' => $timestamp,
+        'plan' => $request->subscription_plan,
+        'userid' => Auth::id(),
+        'active' => $request->subscription_active,
+      ]);
+
+      return response()->json([
+        'success' => 'true',
+      ]);
+
+    } else {
+
+      // If validator didn't pass
+      return response()->json([
+        'errors' => $validator->errors()->keys()
+      ]);
+
+    }
   }
-
 }
