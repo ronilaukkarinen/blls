@@ -117,7 +117,7 @@ endif;
         <table class="bills-list" border="0" cellpadding="0" cellspacing="0">
           <tr>
             <th class="row-biller">{{ __('dashboard.biller') }}</th>
-            <th class="row-billnumber row-hidden">{{ __('dashboard.billnumber') }}</th>
+            <th class="row-billnumber">{{ __('dashboard.billnumber') }}</th>
             <th class="row-virtualcode row-hidden">{{ __('dashboard.virtualcode') }}</th>
             <th class="row-refnumber row-hidden">{{ __('dashboard.refnumber') }}</th>
             <th class="row-accountnumber row-hidden">{{ __('dashboard.accountnumber') }}</th>

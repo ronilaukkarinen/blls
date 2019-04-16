@@ -148,6 +148,14 @@
 
   &.column-bills-paid {
     margin-bottom: 5rem;
+
+    @media(max-width: 1000px) {
+      .row-refnumber,
+      .row-type,
+      .row-description {
+        display: none;
+      }
+    }
   }
 
   table {

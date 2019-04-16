@@ -1395,6 +1395,11 @@ button[data-balloon] {
   .column-bills.column-bills-paid {
     margin-bottom: 50px;
     margin-bottom: 5rem; }
+    @media (max-width: 1000px) {
+      .column-bills.column-bills-paid .row-refnumber,
+      .column-bills.column-bills-paid .row-type,
+      .column-bills.column-bills-paid .row-description {
+        display: none; } }
   .column-bills table {
     border-radius: .5rem;
     border: 1px solid #dae0e5; }
