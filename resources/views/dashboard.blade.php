@@ -282,6 +282,7 @@ endif;
                       <option value="Patreon">Patreon</option>
                       <option value="Untappd">Untappd</option>
                       <option value="IRCCloud">IRCCloud</option>
+                      <option value="Pandora">Pandora</option>
                     </select>
                   </div>
 
