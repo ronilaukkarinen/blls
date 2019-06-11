@@ -1614,6 +1614,8 @@ button[data-balloon] {
     background: #1f222f; }
   .column-subscriptions .item.item-spotify {
     background: #1db954; }
+  .column-subscriptions .item.item-pandora {
+    background: #005483; }
   .column-subscriptions .item.item-patreon {
     background: #f96854; }
   .column-subscriptions .item.item-untappd {
