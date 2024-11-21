@@ -111,44 +111,17 @@ gulp.task('scss-lint', function() {
 });
 
 gulp.task('styles', function() {
-  // Minified version
-  gulp.src(sassFile)
+  return gulp.src('resources/assets/sass/**/*.scss')
+    .pipe(sourcemaps.init())
     .pipe(sass({
-      outputStyle: 'compressed',
-      includePaths: [
-        'node_modules/'
-      ],
+      outputStyle: 'compressed'
     }).on('error', sass.logError))
-    .pipe(prefix('last 3 version', 'safari 5', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+    .pipe(prefix())
     .pipe(pixrem())
-    .pipe(cleancss({
-      compatibility: 'ie11',
-      level: {
-        1: {
-          tidyAtRules: true,
-          cleanupCharsets: true,
-          specialComments: 0
-        }
-      }
-    }))
-    .pipe(rename({
-      suffix: '.min'
-    }))
-    .pipe(gulp.dest(cssDest))
-    .pipe(browsersync.stream());
-
-  // Expanded version
-  gulp.src(sassFile)
-    .pipe(sass({
-      outputStyle: 'expanded',
-      includePaths: [
-        'node_modules/'
-      ],
-    }).on('error', sass.logError))
-    .pipe(prefix('last 3 version', 'safari 5', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-    .pipe(pixrem())
-    .pipe(stylefmt({ configFile: './.stylelintrc' }))
-    .pipe(gulp.dest(cssDest))
+    .pipe(cleancss())
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('public/css'))
     .pipe(browsersync.stream());
 });
 
