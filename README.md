@@ -2,7 +2,7 @@
 
 **Blls** (bills.io as in _bills I owe_) is a web application for managing and tracking your bills and payments. Keep tabs on what you owe, what you've paid, and maintain a clear financial history.
 
-> **Warning**
+> [!WARNING] Please note
 > This repository is currently not functional due to outdated and unresolved dependencies. The project requires significant updates to dependencies and compatibility fixes before it can be used. Use at your own risk.
 
 ## Features
