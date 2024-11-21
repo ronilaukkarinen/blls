@@ -2,6 +2,9 @@
 
 **Blls** (bills.io as in _bills I owe_) is a web application for managing and tracking your bills and payments. Keep tabs on what you owe, what you've paid, and maintain a clear financial history.
 
+> **Warning**
+> This repository is currently not functional due to outdated and unresolved dependencies. The project requires significant updates to dependencies and compatibility fixes before it can be used. Use at your own risk.
+
 ## Features
 
 * Track both paid and unpaid bills
@@ -31,45 +34,54 @@
 * Minimum 512MB RAM
 * 1GB free disk space
 
-## Installation
+## Installation on macOS
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/ronilaukkarinen/blls
-   cd blls
-   ```
+Clone the repository.
 
-2. Install PHP dependencies:
-   ```bash
-   composer install
-   ```
+```bash
+git clone https://github.com/ronilaukkarinen/blls
+cd blls
+```
 
-3. Install JavaScript dependencies:
-   ```bash
-   yarn install
-   ```
+Install PHP dependencies.
 
-4. Configure environment:
-   ```bash
-   cp .env.example .env
-   php artisan key:generate
-   ```
+```bash
+composer install
+```
 
-5. Set up database:
-   ```bash
-   php artisan migrate
-   php artisan db:seed
-   ```
+Install JavaScript dependencies.
 
-6. Build frontend assets:
-   ```bash
-   yarn build
-   ```
+```bash
+nvm install
+nvm use
+yarn install
+```
 
-7. Start the development server:
-   ```bash
-   php artisan serve
-   ```
+Configure environment.
+
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+
+Set up database.
+
+```bash
+php artisan migrate
+php artisan db:seed
+```
+
+Build frontend assets.
+
+```bash
+yarn build
+```
+
+Start the development server.
+
+```bash
+php artisan serve
+```
 
 ## Configuration
 
@@ -80,7 +92,7 @@
 
 ## Testing
 
-Run the test suite:
+Run the test suite.
 
 ```bash
 php artisan test

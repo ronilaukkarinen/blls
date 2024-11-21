@@ -1,0 +1,5 @@
+{
+  "target": "16.20.2",
+  "headers_dir": "/Users/rolle/.node-gyp/16.20.2",
+  "python": "/Users/rolle/.pyenv/shims/python2.7"
+}

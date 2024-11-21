@@ -5,7 +5,7 @@ REQUIRED STUFF
 */
 
 var gulp        = require('gulp');
-var sass        = require('gulp-sass');
+var sass        = require('gulp-sass')(require('sass'));
 var sourcemaps  = require('gulp-sourcemaps');
 var browsersync = require('browser-sync').create();
 var notify      = require('gulp-notify');
@@ -111,71 +111,46 @@ gulp.task('scss-lint', function() {
 });
 
 gulp.task('styles', function() {
+  // Minified version
   gulp.src(sassFile)
-
-  .pipe(sass({
-    compass: false,
-    bundleExec: true,
-    sourcemap: false,
-    style: 'compressed',
-    debugInfo: true,
-    lineNumbers: true,
-    errLogToConsole: true,
-    includePaths: [
-      'node_modules/'
-    ],
-  }))
-
-  .on('error', handleError('styles'))
-  .pipe(prefix('last 3 version', 'safari 5', 'ie 9', 'opera 12.1', 'ios 6', 'android 4')) // Adds browser prefixes (eg. -webkit, -moz, etc.)
-  .pipe(pixrem())
-  .pipe(cleancss({
-    compatibility: 'ie11',
-    level: {
-      1: {
-        tidyAtRules: true,
-        cleanupCharsets: true,
-        specialComments: 0
+    .pipe(sass({
+      outputStyle: 'compressed',
+      includePaths: [
+        'node_modules/'
+      ],
+    }).on('error', sass.logError))
+    .pipe(prefix('last 3 version', 'safari 5', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+    .pipe(pixrem())
+    .pipe(cleancss({
+      compatibility: 'ie11',
+      level: {
+        1: {
+          tidyAtRules: true,
+          cleanupCharsets: true,
+          specialComments: 0
+        }
       }
-    }
-  }, function(details) {
-      console.log('[clean-css] Time spent on minification: ' + details.stats.timeSpent + ' ms');
-      console.log('[clean-css] Compression efficiency: ' + details.stats.efficiency * 100 + ' %');
-  }))
-  .pipe(rename({
-    suffix: '.min'
-  }))
-  .pipe(gulp.dest(cssDest))
-  .pipe(browsersync.stream());
+    }))
+    .pipe(rename({
+      suffix: '.min'
+    }))
+    .pipe(gulp.dest(cssDest))
+    .pipe(browsersync.stream());
 
-  // Save expanded version
+  // Expanded version
   gulp.src(sassFile)
-
-  .pipe(sass({
-    compass: false,
-    bundleExec: true,
-    sourcemap: false,
-    style: 'expanded',
-    debugInfo: true,
-    lineNumbers: true,
-    errLogToConsole: true,
-    includePaths: [
-      'bower_components/',
-      'node_modules/',
-      // require('node-bourbon').includePaths
-    ],
-  }))
-
-  .on('error', handleError('styles'))
-  .pipe(prefix('last 3 version', 'safari 5', 'ie 9', 'opera 12.1', 'ios 6', 'android 4')) // Adds browser prefixes (eg. -webkit, -moz, etc.)
-  .pipe(pixrem())
-
-  // Process the expanded output with Stylefmt
-  .pipe(stylefmt({ configFile: './.stylelintrc' }))
-  .pipe(gulp.dest(cssDest))
-  .pipe(browsersync.stream());
-
-  });
+    .pipe(sass({
+      outputStyle: 'expanded',
+      includePaths: [
+        'node_modules/'
+      ],
+    }).on('error', sass.logError))
+    .pipe(prefix('last 3 version', 'safari 5', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+    .pipe(pixrem())
+    .pipe(stylefmt({ configFile: './.stylelintrc' }))
+    .pipe(gulp.dest(cssDest))
+    .pipe(browsersync.stream());
+});
 
 /*
 
