@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env( 'APP_NAME', 'Laravel' ),
 
     /*
     |--------------------------------------------------------------------------
@@ -25,7 +25,7 @@ return [
     |
     */
 
-    'env' => env('APP_ENV', 'production'),
+    'env' => env( 'APP_ENV', 'production' ),
 
     /*
     |--------------------------------------------------------------------------
@@ -38,7 +38,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => env( 'APP_DEBUG', false ),
 
     /*
     |--------------------------------------------------------------------------
@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env( 'APP_URL', 'http://localhost' ),
 
     /*
     |--------------------------------------------------------------------------
@@ -81,7 +81,7 @@ return [
 
     'locales' => [
         'en' => 'English',
-        'fi' => 'Finnish'
+        'fi' => 'Finnish',
     ],
 
     /*
@@ -108,7 +108,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY'),
+    'key' => env( 'APP_KEY' ),
 
     'cipher' => 'AES-256-CBC',
 
@@ -218,7 +218,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Image' => Intervention\Image\Facades\Image::class
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];
