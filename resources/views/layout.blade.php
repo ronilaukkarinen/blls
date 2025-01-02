@@ -42,8 +42,7 @@
       @if (Auth::check())
         <footer class="app-footer">
           <div class="footer-content">
-            <span class="version">{{ config('app.name') }} v{{ config('app.version', '0.1.0') }}</span>
-            <a href="https://github.com/ronilaukkarinen/blls" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <span class="version">♥ <a href="{{ config('app.github_url') }}" target="_blank" rel="noopener noreferrer">{{ config('app.name') }} is open source - you are running v{{ config('app.version', '0.1.0') }}</a> &mdash; <a href="{{ config('app.coffee_url') }}" target="_blank" rel="noopener noreferrer">Support development</a></span>
           </div>
         </footer>
       @endif

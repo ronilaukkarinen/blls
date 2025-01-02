@@ -222,5 +222,6 @@ return [
     ],
 
     'version' => env('APP_VERSION', '0.1.0'),
-
+    'github_url' => 'https://github.com/ronilaukkarinen/blls',
+    'coffee_url' => 'https://ko-fi.com/rolle',
 ];
