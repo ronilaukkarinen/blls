@@ -8,12 +8,12 @@
 // Set locale
 $lang = Config::get('app.locale');
 
-if ( 'fi' == $lang ) :
-  setlocale( LC_TIME, 'fi_FI.UTF8' );
+if ('fi' == $lang) :
+    setlocale(LC_TIME, 'fi_FI.UTF8');
 endif;
 
-if ( 'local' == App::environment() ) :
-  setlocale( LC_TIME, 'fi_FI' );
+if ('local' == App::environment()) :
+    setlocale(LC_TIME, 'fi_FI');
 endif;
 ?>
 
@@ -39,7 +39,7 @@ endif;
           <header class="modal-header">
             <div>
               <h2 class="bill-title">{{ __('dashboard.newbill') }}</h2>
-              <h3 class="date"><?php echo date( 'd/m/Y' ); ?></h3>
+              <h3 class="date"><?php echo date('d/m/Y'); ?></h3>
             </div>
 
             <span class="bill-number">#<label for="billnumber" class="screen-reader-text">{{ __('dashboard.billnumber') }}</label><input type="text" name="billnumber" id="billnumber" class="bill-number" placeholder="183411639682"></span>
@@ -102,18 +102,17 @@ endif;
     </div>
 
     <?php
-    if ( 0 === $balance ) :
-      ?>
+    if (0 === $balance) :
+        ?>
       <div class="inbox-zero">
 
         <div class="freedom">
-          <?php echo file_get_contents( 'svg/inboxzero/gamepad.svg' ); ?>
+          <?php echo file_get_contents('svg/inboxzero/gamepad.svg'); ?>
           <p class="punchline">You're all done!<br />Go play, you deserve it!</p>
         </div>
 
       </div>
-      <?php else : ?>
-
+    <?php else : ?>
         <table class="bills-list" border="0" cellpadding="0" cellspacing="0">
           <tr>
             <th class="row-biller">{{ __('dashboard.biller') }}</th>
@@ -130,20 +129,19 @@ endif;
 
           <?php
           // List bills
-          foreach ( $bills as $bill) :
+            foreach ($bills as $bill) :
+              // Variables
+                $old_date = $bill->datepaid;
+                $old_date_timestamp = strtotime($old_date);
+                $formatted_date = date('d.m.Y', $old_date_timestamp);
+                $stylish_date = date('d/m/Y', $old_date_timestamp);
+                $local_date = strftime("%e. %Bta %Y", $old_date_timestamp);
+                $formatted_amount = str_replace('.', ',', $bill->amount);
+                $user_id = Auth::id();
 
-            // Variables
-            $old_date = $bill->datepaid;
-            $old_date_timestamp = strtotime( $old_date );
-            $formatted_date = date( 'd.m.Y', $old_date_timestamp );
-            $stylish_date = date( 'd/m/Y', $old_date_timestamp );
-            $local_date = strftime( "%e. %Bta %Y", $old_date_timestamp );
-            $formatted_amount = str_replace( '.', ',', $bill->amount );
-            $user_id = Auth::id();
-
-              // Check if not paid and if owned by current user
-            if ( '1' == $bill->paid && $user_id == $bill->userid ) :
-              ?>
+                // Check if not paid and if owned by current user
+                if ('1' == $bill->paid && $user_id == $bill->userid) :
+                    ?>
               <tr class="row-clickable row-id-<?php echo $bill->id; ?>" data-row-id="<?php echo $bill->id; ?>">
 
                 <td data-heading="{{ __('dashboard.biller') }}" class="row-biller biller_text" data-copy-to-clipboard="<?php echo $bill->biller; ?>"><?php echo $bill->biller; ?></td>
@@ -156,53 +154,51 @@ endif;
                 <td data-heading="{{ __('dashboard.datepaid') }}" class="formatted-duedate row-duedate duedate_text" data-balloon="<?php echo $local_date; ?>" data-copy-to-clipboard="<?php echo $formatted_date; ?>" data-balloon-pos="up"><?php echo $bill->datepaid; ?></td>
                 <td data-heading="{{ __('dashboard.datepaid') }} (original)" class="row-duedate-original row-hidden"><?php echo $bill->datepaid; ?></td>
                 <td data-heading="{{ __('dashboard.amount') }}" class="row-amount amount amount_text" data-copy-to-clipboard="<?php echo $formatted_amount; ?>"><span><?php echo Auth::user()->currency->symbol; ?></span> <span class="formatted-amount"><?php echo $formatted_amount; ?></span></td>
-                <td data-heading="{{ __('dashboard.actions') }}" class="row-actions row-hidden"><span class="delete" data-id="<?php echo $bill->id; ?>" ><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></span>
-                  <span class="edit" data-id="<?php echo $bill->id; ?>"><?php echo file_get_contents( '../public/svg/dashboard/edit.svg' ); ?></span>
-                  <span class="mark-as-paid" data-id="<?php echo $bill->id; ?>"><?php echo file_get_contents( '../public/svg/dashboard/check.svg' ); ?></span>
+                <td data-heading="{{ __('dashboard.actions') }}" class="row-actions row-hidden"><span class="delete" data-id="<?php echo $bill->id; ?>" ><?php echo file_get_contents('../public/svg/dashboard/trash.svg'); ?></span>
+                  <span class="edit" data-id="<?php echo $bill->id; ?>"><?php echo file_get_contents('../public/svg/dashboard/edit.svg'); ?></span>
+                  <span class="mark-as-paid" data-id="<?php echo $bill->id; ?>"><?php echo file_get_contents('../public/svg/dashboard/check.svg'); ?></span>
                 </td>
               </tr>
 
-            <?php endif; ?>
-          <?php endforeach; ?>
+                <?php endif; ?>
+            <?php endforeach; ?>
         </table>
 
-      <?php endif; ?>
+    <?php endif; ?>
     </div>
 
     <div class="column-fullwidth column-payment-plans">
       <h1>{{ __('dashboard.paymentplans') }}</h1>
 
-      <?php if ( 0 == count( $paymentplans ) ) : ?>
+      <?php if (0 == count($paymentplans)) : ?>
         <div class="inbox-zero">
 
           <div class="freedom freedom-calendar">
-            <?php echo file_get_contents( 'svg/inboxzero/calendar.svg' ); ?>
+            <?php echo file_get_contents('svg/inboxzero/calendar.svg'); ?>
             <p class="punchline">{{ __('dashboard.punchline_calendar') }}<br />{{ __('dashboard.punchline_calendar_after_br') }}</p>
           </div>
 
         </div>
-        <?php else : ?>
-
+      <?php else : ?>
           <div class="items items-paymentplans">
-            <?php foreach ( $paymentplans as $paymentplan ) :
-
+            <?php foreach ($paymentplans as $paymentplan) :
               // Check if owned by current user and not paid
-              if ( '1' == $paymentplan->paid && Auth::id() == $paymentplan->userid ) :
-                ?>
+                if ('1' == $paymentplan->paid && Auth::id() == $paymentplan->userid) :
+                    ?>
 
                 <div class="item item-<?php echo $paymentplan->id; ?>" data-id="<?php echo $paymentplan->id; ?>">
                   <h2>{{ $paymentplan->name }}</h2>
 
                   <div class="progress-bar">
                     <?php
-                    $percent = round( ( $paymentplan->months_paid / $paymentplan->months_total ) * 100 );
+                    $percent = round(( $paymentplan->months_paid / $paymentplan->months_total ) * 100);
 
-                    if ( $percent < 40 ) :
-                      $percent_class = ' low';
-                    elseif ( $percent > 40 && $percent < 60 ) :
-                      $percent_class = ' medium';
-                    elseif ( $percent > 40 && $percent > 60 ) :
-                      $percent_class = ' high';
+                    if ($percent < 40) :
+                        $percent_class = ' low';
+                    elseif ($percent > 40 && $percent < 60) :
+                          $percent_class = ' medium';
+                    elseif ($percent > 40 && $percent > 60) :
+                          $percent_class = ' high';
                     endif;
                     ?>
                     <div class="progress<?php echo $percent_class; ?>" style="width: <?php echo $percent; ?>%;">
@@ -210,11 +206,11 @@ endif;
                     </div>
                   </div>
                 </div>
-                <?php
-              endif;
+                    <?php
+                endif;
             endforeach; ?>
           </div>
-        <?php endif; ?>
+      <?php endif; ?>
       </div>
 
   </section>
@@ -223,11 +219,10 @@ endif;
 
 <?php
 // Payment plan modals
-foreach ( $paymentplans as $paymentplan ) :
-
+foreach ($paymentplans as $paymentplan) :
   // Check if owned by current user and not paid
-  if ( '1' == $paymentplan->paid && Auth::id() == $paymentplan->userid ) :
-    ?>
+    if ('1' == $paymentplan->paid && Auth::id() == $paymentplan->userid) :
+        ?>
 
     <div class="modal modal-paymentplan modal-paymentplan-<?php echo $paymentplan->id; ?>">
 
@@ -238,7 +233,7 @@ foreach ( $paymentplans as $paymentplan ) :
           <header class="modal-header">
             <div>
               <h2 class="paymentplan-title">{{ __('dashboard.editpaymentplan') }}</h2>
-              <h3 class="date"><?php echo date( 'd/m/Y' ); ?></h3>
+              <h3 class="date"><?php echo date('d/m/Y'); ?></h3>
             </div>
           </header>
 
@@ -262,9 +257,9 @@ foreach ( $paymentplans as $paymentplan ) :
           <div class="row actions">
             <button type="button" class="btn-update" id="update-paymentplan" data-id="<?php echo $paymentplan->id; ?>">{{ __('dashboard.update') }}</button>
 
-            <button id="unpaid-button" class="mark-paymentplan-as-unpaid btn-markpaid" data-id="<?php echo $paymentplan->id; ?>" data-balloon="{{ __('dashboard.markunpaid') }}" data-balloon-pos="up"><?php echo file_get_contents( '../public/svg/dashboard/cancel.svg' ); ?><span class="screen-reader-text">{{ __('dashboard.markunpaid') }}</span></button>
+            <button id="unpaid-button" class="mark-paymentplan-as-unpaid btn-markpaid" data-id="<?php echo $paymentplan->id; ?>" data-balloon="{{ __('dashboard.markunpaid') }}" data-balloon-pos="up"><?php echo file_get_contents('../public/svg/dashboard/cancel.svg'); ?><span class="screen-reader-text">{{ __('dashboard.markunpaid') }}</span></button>
 
-            <button type="button" class="remove-button btn-remove" id="remove-paymentplan" data-id="<?php echo $paymentplan->id; ?>" data-balloon="{{ __('dashboard.removeforgood') }}" data-balloon-pos="up"><span class="screen-reader-text">{{ __('dashboard.removeforgood') }}</span><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></button>
+            <button type="button" class="remove-button btn-remove" id="remove-paymentplan" data-id="<?php echo $paymentplan->id; ?>" data-balloon="{{ __('dashboard.removeforgood') }}" data-balloon-pos="up"><span class="screen-reader-text">{{ __('dashboard.removeforgood') }}</span><?php echo file_get_contents('../public/svg/dashboard/trash.svg'); ?></button>
           </div>
         </form>
 
@@ -272,26 +267,25 @@ foreach ( $paymentplans as $paymentplan ) :
 
     </div>
 
-    <?php
-  endif;
+        <?php
+    endif;
 endforeach; ?>
 
 </div>
 
 <?php
 // Bill modals
-foreach ( $bills as $bill) :
-
+foreach ($bills as $bill) :
 // Define formatted date
-$formatted_amount = str_replace( '.', ',', $bill->amount );
-$old_date = $bill->datepaid;
-$old_date_timestamp = strtotime( $old_date );
-$local_date = strftime( "%e. %Bta %Y", $old_date_timestamp );
-$stylish_date = date( 'd/m/Y', $old_date_timestamp );
+    $formatted_amount = str_replace('.', ',', $bill->amount);
+    $old_date = $bill->datepaid;
+    $old_date_timestamp = strtotime($old_date);
+    $local_date = strftime("%e. %Bta %Y", $old_date_timestamp);
+    $stylish_date = date('d/m/Y', $old_date_timestamp);
 
 // Check if not paid and if owned by current user
-if ( '1' == $bill->paid && Auth::id() == $bill->userid ) :
-?>
+    if ('1' == $bill->paid && Auth::id() == $bill->userid) :
+        ?>
 
 <div class="modal modal-bill modal-bill-<?php echo $bill->id; ?>">
   <div class="modal-overlay"></div>
@@ -315,12 +309,12 @@ if ( '1' == $bill->paid && Auth::id() == $bill->userid ) :
       <p class="able-to-copy" data-copy-to-clipboard="<?php echo $bill->accountnumber; ?>"><?php echo $bill->accountnumber; ?></p>
     </div>
 
-    <?php if ( ! empty( $bill->virtualcode ) ) : ?>
+        <?php if (! empty($bill->virtualcode)) : ?>
     <div class="row">
       <h3>{{ __('dashboard.virtualcode') }}</h3>
       <p class="able-to-copy" data-copy-to-clipboard="<?php echo $bill->virtualcode; ?>"><?php echo $bill->virtualcode; ?></p>
     </div>
-    <?php endif; ?>
+        <?php endif; ?>
 
     <div class="row">
       <h3>{{ __('dashboard.refnumber') }}</h3>
@@ -345,14 +339,14 @@ if ( '1' == $bill->paid && Auth::id() == $bill->userid ) :
     </footer>
 
     <div class="row actions">
-      <button type="button" class="btn-remove remove-button" id="remove-bill" data-id="<?php echo $bill->id; ?>" data-balloon="{{ __('dashboard.removeforgood') }}" data-balloon-pos="up"><span class="screen-reader-text">{{ __('dashboard.removeforgood') }}</span><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></button>
+      <button type="button" class="btn-remove remove-button" id="remove-bill" data-id="<?php echo $bill->id; ?>" data-balloon="{{ __('dashboard.removeforgood') }}" data-balloon-pos="up"><span class="screen-reader-text">{{ __('dashboard.removeforgood') }}</span><?php echo file_get_contents('../public/svg/dashboard/trash.svg'); ?></button>
 
-      <button class="mark-as-unpaid" data-id="<?php echo $bill->id; ?>" data-balloon="{{ __('dashboard.markunpaid') }}" data-balloon-pos="up"><?php echo file_get_contents( '../public/svg/dashboard/cancel.svg' ); ?><span class="screen-reader-text">{{ __('dashboard.markunpaid') }}</span></button>
+      <button class="mark-as-unpaid" data-id="<?php echo $bill->id; ?>" data-balloon="{{ __('dashboard.markunpaid') }}" data-balloon-pos="up"><?php echo file_get_contents('../public/svg/dashboard/cancel.svg'); ?><span class="screen-reader-text">{{ __('dashboard.markunpaid') }}</span></button>
     </div>
   </div>
 </div>
-<?php
-endif;
+        <?php
+    endif;
 endforeach;
 ?>
 

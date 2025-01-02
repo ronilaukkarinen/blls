@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="/css/app.css" />
 </head>
 @if (Auth::check())
-  <body class="<?php echo strtolower( View::getSection( 'title' ) ); ?>">
+  <body class="<?php echo strtolower(View::getSection('title')); ?>">
 @else
   <body class="login">
 @endif
@@ -27,14 +27,14 @@
 
       <aside class="dashboard-status-bar">
         <header>
-          <h1 class="logo"><a href="/dashboard" {!! (Request::path() == 'dashboard') ? 'class="active"' : '' !!}><span class="screen-reader-text">{{ __('dashboard.app_name') }}</span><?php echo file_get_contents( 'svg/dashboard/logo.svg' ); ?></a></h1>
+          <h1 class="logo"><a href="/dashboard" {!! (Request::path() == 'dashboard') ? 'class="active"' : '' !!}><span class="screen-reader-text">{{ __('dashboard.app_name') }}</span><?php echo file_get_contents('svg/dashboard/logo.svg'); ?></a></h1>
         </header>
 
         <ul class="navigation-menu">
-          <li><a href="/paid" data-balloon="{{ __('dashboard.paidpage') }}" data-balloon-pos="right"><span class="screen-reader-text">{{ __('dashboard.paidpage') }}</span><?php echo file_get_contents( 'svg/dashboard/check.svg' ); ?></a></li>
-          <li><a href="/settings" data-balloon="{{ __('dashboard.settings') }}" data-balloon-pos="right"><span class="screen-reader-text">{{ __('dashboard.settings') }}</span><?php echo file_get_contents( 'svg/dashboard/settings.svg' ); ?></a></li>
-          <li style="display: none;"><a href="/support" data-balloon="{{ __('dashboard.support') }}" data-balloon-pos="right"><span class="screen-reader-text">{{ __('dashboard.support') }}</span><?php echo file_get_contents( 'svg/dashboard/support.svg' ); ?></a></li>
-          <li><a href="/logout" data-balloon="{{ __('dashboard.log_out') }}" data-balloon-pos="right"><span class="screen-reader-text">{{ __('dashboard.log_out') }}</span><?php echo file_get_contents( 'svg/dashboard/logout.svg' ); ?></a></li>
+          <li><a href="/paid" data-balloon="{{ __('dashboard.paidpage') }}" data-balloon-pos="right"><span class="screen-reader-text">{{ __('dashboard.paidpage') }}</span><?php echo file_get_contents('svg/dashboard/check.svg'); ?></a></li>
+          <li><a href="/settings" data-balloon="{{ __('dashboard.settings') }}" data-balloon-pos="right"><span class="screen-reader-text">{{ __('dashboard.settings') }}</span><?php echo file_get_contents('svg/dashboard/settings.svg'); ?></a></li>
+          <li style="display: none;"><a href="/support" data-balloon="{{ __('dashboard.support') }}" data-balloon-pos="right"><span class="screen-reader-text">{{ __('dashboard.support') }}</span><?php echo file_get_contents('svg/dashboard/support.svg'); ?></a></li>
+          <li><a href="/logout" data-balloon="{{ __('dashboard.log_out') }}" data-balloon-pos="right"><span class="screen-reader-text">{{ __('dashboard.log_out') }}</span><?php echo file_get_contents('svg/dashboard/logout.svg'); ?></a></li>
         </ul>
       </aside>
       @endif

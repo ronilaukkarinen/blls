@@ -8,12 +8,12 @@
 // Set locale
 $lang = Config::get('app.locale');
 
-if ( 'fi' == $lang ) :
-  setlocale( LC_TIME, 'fi_FI.UTF8' );
+if ('fi' == $lang) :
+    setlocale(LC_TIME, 'fi_FI.UTF8');
 endif;
 
-if ( 'local' == App::environment() ) :
-  setlocale( LC_TIME, 'fi_FI' );
+if ('local' == App::environment()) :
+    setlocale(LC_TIME, 'fi_FI');
 endif;
 ?>
       <section class="dashboard-content dashboard-content-grid opacity-on-load">
@@ -38,7 +38,7 @@ endif;
             </div>
           </div>
 
-          <h1>{{ __('dashboard.unpaidbills') }} <span class="add-new add-new-bill"><?php echo file_get_contents( 'svg/dashboard/plus.svg' ); ?></span></h1>
+          <h1>{{ __('dashboard.unpaidbills') }} <span class="add-new add-new-bill"><?php echo file_get_contents('svg/dashboard/plus.svg'); ?></span></h1>
 
           <div class="modal modal-bill modal-bill-new">
             <div class="modal-overlay"></div>
@@ -52,7 +52,7 @@ endif;
               <header class="modal-header">
                 <div>
                     <h2 class="bill-title">{{ __('dashboard.newbill') }}</h2>
-                    <h3 class="date"><?php echo date( 'd/m/Y' ); ?></h3>
+                    <h3 class="date"><?php echo date('d/m/Y'); ?></h3>
                 </div>
 
                 <span class="bill-number">#<label for="billnumber" class="screen-reader-text">{{ __('dashboard.billnumber') }}</label><input type="text" name="billnumber" id="billnumber" class="bill-number" placeholder="183411639682"></span>
@@ -115,18 +115,17 @@ endif;
         </div>
 
           <?php
-            if ( 0 === $balance ) :
-            ?>
+            if (0 === $balance) :
+                ?>
             <div class="inbox-zero">
 
               <div class="freedom freedom-tada">
-                <?php echo file_get_contents( 'svg/inboxzero/tada.svg' ); ?>
+                <?php echo file_get_contents('svg/inboxzero/tada.svg'); ?>
                 <p class="punchline">{{ __('dashboard.punchline_all_done') }}<br />{{ __('dashboard.punchline_all_done_after_br') }}</p>
               </div>
 
             </div>
-          <?php else : ?>
-
+            <?php else : ?>
             <table class="bills-list" border="0" cellpadding="0" cellspacing="0">
               <tr>
                 <th class="row-biller">{{ __('dashboard.biller') }}</th>
@@ -141,22 +140,20 @@ endif;
                 <th class="row-actions row-hidden">{{ __('dashboard.actions') }}</th>
               </tr>
 
-            <?php
+                <?php
               // List bills
-              foreach ( $bills as $bill ) :
+                foreach ($bills as $bill) :
+                // Check if not paid and if owned by current user
+                    if ('0' == $bill->paid && Auth::id() == $bill->userid) :
+                        // Variables
+                        $old_date = $bill->duedate;
+                        $old_date_timestamp = strtotime($old_date);
+                        $formatted_date = date('d.m.Y', $old_date_timestamp);
+                        $stylish_date = date('d/m/Y', $old_date_timestamp);
+                        $local_date = strftime("%e. %Bta %Y", $old_date_timestamp);
+                        $formatted_amount = str_replace('.', ',', $bill->amount);
 
-              // Check if not paid and if owned by current user
-              if ( '0' == $bill->paid && Auth::id() == $bill->userid ) :
-
-                // Variables
-                $old_date = $bill->duedate;
-                $old_date_timestamp = strtotime( $old_date );
-                $formatted_date = date( 'd.m.Y', $old_date_timestamp );
-                $stylish_date = date( 'd/m/Y', $old_date_timestamp );
-                $local_date = strftime( "%e. %Bta %Y", $old_date_timestamp );
-                $formatted_amount = str_replace( '.', ',', $bill->amount );
-
-                ?>
+                        ?>
                 <tr class="row-clickable row-id-<?php echo $bill->id; ?>" data-row-id="<?php echo $bill->id; ?>">
 
                   <td data-heading="{{ __('dashboard.biller') }}" class="row-biller biller_text" data-copy-to-clipboard="<?php echo $bill->biller; ?>"><?php echo $bill->biller; ?></td>
@@ -169,69 +166,73 @@ endif;
                   <td data-heading="{{ __('dashboard.duedate') }}" class="formatted-duedate row-duedate duedate_text" data-balloon="<?php echo $local_date; ?>" data-copy-to-clipboard="<?php echo $formatted_date; ?>" data-balloon-pos="up"><?php echo $bill->duedate; ?></td>
                   <td data-heading="{{ __('dashboard.duedate') }} (original)" class="row-duedate-original row-hidden"><?php echo $bill->duedate; ?></td>
                   <td data-heading="{{ __('dashboard.amount') }}" class="row-amount amount amount_text" data-copy-to-clipboard="<?php echo $formatted_amount; ?>"><span><?php echo Auth::user()->currency->symbol; ?></span> <span class="formatted-amount"><?php echo $formatted_amount; ?></span></td>
-                  <td data-heading="{{ __('dashboard.actions') }}" class="row-actions row-hidden"><span class="delete" data-id="<?php echo $bill->id; ?>" ><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></span>
-                    <span class="edit" data-id="<?php echo $bill->id; ?>"><?php echo file_get_contents( '../public/svg/dashboard/edit.svg' ); ?></span>
-                    <span class="mark-as-paid" data-id="<?php echo $bill->id; ?>"><?php echo file_get_contents( '../public/svg/dashboard/check.svg' ); ?></span>
+                  <td data-heading="{{ __('dashboard.actions') }}" class="row-actions row-hidden"><span class="delete" data-id="<?php echo $bill->id; ?>" ><?php echo file_get_contents('../public/svg/dashboard/trash.svg'); ?></span>
+                    <span class="edit" data-id="<?php echo $bill->id; ?>"><?php echo file_get_contents('../public/svg/dashboard/edit.svg'); ?></span>
+                    <span class="mark-as-paid" data-id="<?php echo $bill->id; ?>"><?php echo file_get_contents('../public/svg/dashboard/check.svg'); ?></span>
                   </td>
                 </tr>
 
-              <?php endif; ?>
-            <?php endforeach; ?>
+                    <?php endif; ?>
+                <?php endforeach; ?>
             </table>
 
             <?php endif; ?>
           </div>
 
           <div class="column column-subscriptions">
-            <h1>{{ __('dashboard.subscriptions') }} <span class="add-new add-new-subscription"><?php echo file_get_contents( 'svg/dashboard/plus.svg' ); ?></span></h1>
+            <h1>{{ __('dashboard.subscriptions') }} <span class="add-new add-new-subscription"><?php echo file_get_contents('svg/dashboard/plus.svg'); ?></span></h1>
 
-            <?php if ( 0 == count( $subscriptions ) ) : ?>
+            <?php if (0 == count($subscriptions)) : ?>
               <div class="inbox-zero">
 
                 <div class="freedom freedom-beer">
-                  <?php echo file_get_contents( 'svg/inboxzero/beer.svg' ); ?>
+                  <?php echo file_get_contents('svg/inboxzero/beer.svg'); ?>
                   <p class="punchline">{{ __('dashboard.punchline_beer') }}<br />{{ __('dashboard.punchline_beer_after_br') }}</p>
                 </div>
 
               </div>
             <?php else : ?>
-
             <div class="items-subscriptions">
-              <?php
+                <?php
               // List subscriptions
-              foreach ( $subscriptions as $sub) :
+                foreach ($subscriptions as $sub) :
+                  // Variables
+                  // Get day from inserted date
+                    $date_inserted = new \DateTime($sub->date);
+                    $timestamp = $date_inserted->format('Y-m-d') . ' 00:00:00';
+                    $timestamp_day = $date_inserted->format('d');
+                    $timestamp_month = $date_inserted->format('m');
 
-                // Variables
-                // Get day from inserted date
-                $date_inserted = new \DateTime($sub->date);
-                $timestamp = $date_inserted->format('Y-m-d') . ' 00:00:00';
-                $timestamp_day = $date_inserted->format('d');
-                $timestamp_month = $date_inserted->format('m');
+                  // If day has passed in this month, let's get next month
+                    if (date('d') > $sub->day && date('m') == $timestamp_month) :
+                        $relative_month = date('m', strtotime('+1 month'));
+                    else :
+                        $relative_month = $timestamp_month;
+                    endif;
 
-                // If day has passed in this month, let's get next month
-                if ( date( 'd' ) > $sub->day && date( 'm' ) == $timestamp_month ) :
-                  $relative_month = date( 'm', strtotime('+1 month') );
-                else :
-                  $relative_month = $timestamp_month;
-                endif;
+                    $old_date = date('Y-') . $relative_month . '-' . str_pad($sub->day, 2, '0', STR_PAD_LEFT) . ' ' . date('H:i:s');
+                    $old_date_timestamp = strtotime($old_date);
+                    $formatted_date = date('d.m.Y', $old_date_timestamp);
+                    $stylish_date = date('d/m/Y', $old_date_timestamp);
+                    $formatted_amount = str_replace('.', ',', $sub->amount);
+                    $biller = strtolower($sub->biller);
 
-                $old_date = date( 'Y-' ) . $relative_month . '-' . str_pad($sub->day, 2, '0', STR_PAD_LEFT) . ' ' . date( 'H:i:s' );
-                $old_date_timestamp = strtotime( $old_date );
-                $formatted_date = date( 'd.m.Y', $old_date_timestamp );
-                $stylish_date = date( 'd/m/Y', $old_date_timestamp );
-                $formatted_amount = str_replace( '.', ',', $sub->amount );
-                $biller = strtolower( $sub->biller );
+                  // Check if owned by current user
+                    if (Auth::id() == $sub->userid) :
+                        ?>
 
-                // Check if owned by current user
-                if ( Auth::id() == $sub->userid ) :
-                ?>
-
-                  <div class="item item-<?php echo $biller; ?> item-<?php echo $sub->id; ?><?php if ('1' != $sub->active) : ?> inactive<?php endif; ?>" data-id="<?php echo $sub->id; ?>">
+                  <div class="item item-<?php echo $biller; ?> item-<?php echo $sub->id; ?><?php if ('1' != $sub->active) :
+                        ?> inactive<?php
+                                        endif; ?>" data-id="<?php echo $sub->id; ?>">
                     <div class="logo">
-                      <?php echo file_get_contents( "svg/subscriptions/{$biller}.svg" ); ?>
+                        <?php echo file_get_contents("svg/subscriptions/{$biller}.svg"); ?>
 
                       <div class="details">
-                        <span class="biller"><?php if ( 'playstation' == $biller ) : echo 'PlayStation™ Network'; else : echo $sub->biller; endif; ?></span>
+                        <span class="biller"><?php if ('playstation' == $biller) :
+                            echo 'PlayStation™ Network';
+                                             else :
+                                                 echo $sub->biller;
+                                             endif; ?></span>
                         <span class="type"><?php echo $sub->plan; ?></span>
                       </div>
                     </div>
@@ -244,10 +245,10 @@ endif;
                     </div>
                   </div>
 
-                  <?php
-                endif;
-              endforeach;
-              ?>
+                        <?php
+                    endif;
+                endforeach;
+                ?>
             </div>
             <?php endif; ?>
 
@@ -264,7 +265,7 @@ endif;
                   <header class="modal-header">
                     <div>
                       <h2 class="subscription-title">{{ __('dashboard.newsubscription') }}</h2>
-                      <h3 class="date"><?php echo date( 'd/m/Y'); ?></h3>
+                      <h3 class="date"><?php echo date('d/m/Y'); ?></h3>
                     </div>
                   </header>
 
@@ -314,32 +315,31 @@ endif;
 
             <?php
             // Subscription modals
-            foreach ( $subscriptions as $subscription ) :
-
+            foreach ($subscriptions as $subscription) :
               // Variables
               // Get day from inserted date
-              $date_inserted = new \DateTime($subscription->date);
-              $timestamp = $date_inserted->format('Y-m-d') . ' 00:00:00';
-              $timestamp_day = $date_inserted->format('d');
-              $timestamp_month = $date_inserted->format('m');
+                $date_inserted = new \DateTime($subscription->date);
+                $timestamp = $date_inserted->format('Y-m-d') . ' 00:00:00';
+                $timestamp_day = $date_inserted->format('d');
+                $timestamp_month = $date_inserted->format('m');
 
               // If day has passed in this month, let's get next month
-              if ( date( 'd' ) > $subscription->day && date( 'm' ) == $timestamp_month ) :
-                $relative_month = date( 'm', strtotime('+1 month') );
-              else :
-                $relative_month = $timestamp_month;
-              endif;
+                if (date('d') > $subscription->day && date('m') == $timestamp_month) :
+                    $relative_month = date('m', strtotime('+1 month'));
+                else :
+                    $relative_month = $timestamp_month;
+                endif;
 
-              $old_date = date( 'Y-' ) . $relative_month . '-' . str_pad($subscription->day, 2, '0', STR_PAD_LEFT) . ' ' . date( 'H:i:s' );
-              $old_date_timestamp = strtotime( $old_date );
-              $local_date = strftime( "%e. %Bta %Y", $old_date_timestamp );
-              $formatted_amount = str_replace( '.', ',', $subscription->amount );
-              $stylish_date = date( 'd/m/Y', $old_date_timestamp );
-              $formatted_date = date( 'd.m.Y', $old_date_timestamp );
+                $old_date = date('Y-') . $relative_month . '-' . str_pad($subscription->day, 2, '0', STR_PAD_LEFT) . ' ' . date('H:i:s');
+                $old_date_timestamp = strtotime($old_date);
+                $local_date = strftime("%e. %Bta %Y", $old_date_timestamp);
+                $formatted_amount = str_replace('.', ',', $subscription->amount);
+                $stylish_date = date('d/m/Y', $old_date_timestamp);
+                $formatted_date = date('d.m.Y', $old_date_timestamp);
 
               // Check if owned by current user
-              if ( Auth::id() == $subscription->userid ) :
-              ?>
+                if (Auth::id() == $subscription->userid) :
+                    ?>
 
               <div class="modal modal-subscription modal-subscription-<?php echo $subscription->id; ?>">
 
@@ -384,8 +384,12 @@ endif;
 
                   <div class="row actions">
                     <button type="button" class="btn-update" id="update-subscription" data-id="<?php echo $subscription->id; ?>">{{ __('dashboard.update') }}</button>
-                    <?php if ('1' == $subscription->active) : ?><button type="button" class="btn-makeinactive" id="make-inactive" data-id="<?php echo $subscription->id; ?>">{{ __('dashboard.makeinactive') }}</button><?php else : ?><button type="button" class="btn-makeactive" id="make-active" data-id="<?php echo $subscription->id; ?>">{{ __('dashboard.makeactive') }}</button><?php endif; ?>
-                    <button type="button" class="btn-remove remove-button" id="remove-subscription" data-id="<?php echo $subscription->id; ?>" data-balloon="{{ __('dashboard.removeforgood') }}" data-balloon-pos="up"><span class="screen-reader-text">{{ __('dashboard.removeforgood') }}</span><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></button>
+                    <?php if ('1' == $subscription->active) :
+                        ?><button type="button" class="btn-makeinactive" id="make-inactive" data-id="<?php echo $subscription->id; ?>">{{ __('dashboard.makeinactive') }}</button><?php
+                    else :
+                        ?><button type="button" class="btn-makeactive" id="make-active" data-id="<?php echo $subscription->id; ?>">{{ __('dashboard.makeactive') }}</button><?php
+                    endif; ?>
+                    <button type="button" class="btn-remove remove-button" id="remove-subscription" data-id="<?php echo $subscription->id; ?>" data-balloon="{{ __('dashboard.removeforgood') }}" data-balloon-pos="up"><span class="screen-reader-text">{{ __('dashboard.removeforgood') }}</span><?php echo file_get_contents('../public/svg/dashboard/trash.svg'); ?></button>
                   </div>
                 </form>
 
@@ -393,94 +397,90 @@ endif;
 
             </div>
 
-            <?php
-            endif;
+                    <?php
+                endif;
             endforeach; ?>
 
           </div>
 
           <div class="column column-payment-plans">
-            <h1>{{ __('dashboard.paymentplans') }} <span class="add-new add-new-paymentplan"><?php echo file_get_contents( 'svg/dashboard/plus.svg' ); ?></span></h1>
+            <h1>{{ __('dashboard.paymentplans') }} <span class="add-new add-new-paymentplan"><?php echo file_get_contents('svg/dashboard/plus.svg'); ?></span></h1>
 
             <?php
-            if ( 0 == count( $paymentplans ) ) : ?>
+            if (0 == count($paymentplans)) : ?>
               <div class="inbox-zero">
 
                 <div class="freedom freedom-calendar">
-                  <?php echo file_get_contents( 'svg/inboxzero/calendar.svg' ); ?>
+                  <?php echo file_get_contents('svg/inboxzero/calendar.svg'); ?>
                   <p class="punchline">{{ __('dashboard.punchline_calendar') }}<br />{{ __('dashboard.punchline_calendar_after_br') }}</p>
                 </div>
 
               </div>
             <?php else : ?>
-
             <div class="items items-paymentplans">
-            <?php foreach ( $paymentplans as $paymentplan ) :
-
+                <?php foreach ($paymentplans as $paymentplan) :
             // Check if owned by current user and not paid
-            if ( '0' == $paymentplan->paid && Auth::id() == $paymentplan->userid ) :
-            ?>
+                    if ('0' == $paymentplan->paid && Auth::id() == $paymentplan->userid) :
+                        ?>
 
               <div class="item item-<?php echo $paymentplan->id; ?>" data-id="<?php echo $paymentplan->id; ?>">
                 <h2>{{ $paymentplan->name }}</h2>
 
                 <div class="progress-bar">
-                  <?php
-                    $percent = round( ( $paymentplan->months_paid / $paymentplan->months_total ) * 100 );
+                        <?php
+                            $percent = round(( $paymentplan->months_paid / $paymentplan->months_total ) * 100);
 
-                    if ( $percent < 40 ) :
-                      $percent_class = ' low';
-                    elseif ( $percent > 40 && $percent < 60 ) :
-                      $percent_class = ' medium';
-                    elseif ( $percent > 40 && $percent > 60 ) :
-                      $percent_class = ' high';
-                    endif;
-                  ?>
+                        if ($percent < 40) :
+                            $percent_class = ' low';
+                        elseif ($percent > 40 && $percent < 60) :
+                                $percent_class = ' medium';
+                        elseif ($percent > 40 && $percent > 60) :
+                                $percent_class = ' high';
+                        endif;
+                        ?>
                   <div class="progress<?php echo $percent_class; ?>" style="width: <?php echo $percent; ?>%;">
                     <p><?php echo $paymentplan->months_paid; ?> {{ __('dashboard.paidoftotal') }} <?php echo $paymentplan->months_total; ?> {{ __('dashboard.rounds') }}. (<?php echo $percent; ?>%)</p>
                   </div>
                 </div>
               </div>
-            <?php
-            endif;
-            endforeach; ?>
+                        <?php
+                    endif;
+                endforeach; ?>
             </div>
-          <?php endif; ?>
+            <?php endif; ?>
           </div>
 
           <div class="column column-credit-cards">
-            <h1>{{ __('dashboard.creditcards') }} <span class="add-new add-new-credit-card"><?php echo file_get_contents( 'svg/dashboard/plus.svg' ); ?></span></h1>
+            <h1>{{ __('dashboard.creditcards') }} <span class="add-new add-new-credit-card"><?php echo file_get_contents('svg/dashboard/plus.svg'); ?></span></h1>
 
-            <?php if ( 0 == count( $creditcards ) ) : ?>
+            <?php if (0 == count($creditcards)) : ?>
               <div class="inbox-zero">
 
                 <div class="freedom freedom-fireworks">
-                  <?php echo file_get_contents( 'svg/inboxzero/fireworks.svg' ); ?>
+                  <?php echo file_get_contents('svg/inboxzero/fireworks.svg'); ?>
                   <p class="punchline">{{ __('dashboard.punchline_creditcard') }}<br />{{ __('dashboard.punchline_creditcard_after_br') }}</p>
                 </div>
 
               </div>
             <?php else : ?>
-
             <div class="items items-creditcards">
-            <?php
+                <?php
             // List credit cards
-            foreach ( $creditcards as $creditcard) :
-
-            // Check if owned by current user
-            if ( Auth::id() == $creditcard->userid ) :
-            ?>
+                foreach ($creditcards as $creditcard) :
+                // Check if owned by current user
+                    if (Auth::id() == $creditcard->userid) :
+                        ?>
 
             <div class="item item-<?php echo $creditcard->id; ?> item-creditcard" data-id="<?php echo $creditcard->id; ?>">
               <div class="col col-creditcard">
 
-                <div class="credit-card credit-card-<?php echo trim( preg_replace( '/[^a-z0-9-]+/', '-', strtolower( $creditcard->creditor ) ), '-'); ?>">
+                <div class="credit-card credit-card-<?php echo trim(preg_replace('/[^a-z0-9-]+/', '-', strtolower($creditcard->creditor)), '-'); ?>">
                   <h3 class="name-on-card"><?php echo Auth::user()->name; ?></h3>
                   <div class="numbers">
                     <span><b>●●●●</b> <b>●●●●</b> <b>●●●●</b></span> <?php echo $creditcard->lastfourdigits; ?>
                   </div>
                   <div class="expiration-date">
-                    <?php echo $creditcard->expirationdate; ?>
+                        <?php echo $creditcard->expirationdate; ?>
                   </div>
                 </div>
               </div>
@@ -489,20 +489,20 @@ endif;
                 <div class="details">
                   <h2 class="title-larger creditor"><?php echo $creditcard->creditor; ?></h2>
                   <h3 class="title-small">{{ __('dashboard.monthlycut') }}</h3>
-                  <p class="monthly-cut"><span class="amount"><?php echo Auth::user()->currency->symbol; ?> <span class="formatted-amount"><?php echo str_replace( '.', ',', $creditcard->monthlyamount ); ?></span></span> / {{ __('dashboard.permonth') }}</p>
+                  <p class="monthly-cut"><span class="amount"><?php echo Auth::user()->currency->symbol; ?> <span class="formatted-amount"><?php echo str_replace('.', ',', $creditcard->monthlyamount); ?></span></span> / {{ __('dashboard.permonth') }}</p>
 
                   <div class="progress-bar">
-                      <?php
-                      $percent = round( ( $creditcard->amount_paid / $creditcard->amount_total ) * 100 );
+                        <?php
+                          $percent = round(( $creditcard->amount_paid / $creditcard->amount_total ) * 100);
 
-                      if ( $percent < 40 ) :
-                        $percent_class = ' low';
-                      elseif ( $percent > 40 && $percent < 60 ) :
-                        $percent_class = ' medium';
-                      elseif ( $percent > 40 && $percent > 60 ) :
-                        $percent_class = ' high';
-                      endif;
-                      ?>
+                        if ($percent < 40) :
+                            $percent_class = ' low';
+                        elseif ($percent > 40 && $percent < 60) :
+                                  $percent_class = ' medium';
+                        elseif ($percent > 40 && $percent > 60) :
+                                  $percent_class = ' high';
+                        endif;
+                        ?>
                       <div class="progress<?php echo $percent_class; ?>" style="width: <?php echo $percent; ?>%;">
                         <p><?php echo $creditcard->amount_paid; ?> {{ __('dashboard.paidoftotal') }} <?php echo $creditcard->amount_total; ?> {{ __('dashboard.wholecredit') }}. (<?php echo $percent; ?>%)</p>
                       </div>
@@ -512,9 +512,9 @@ endif;
 
             </div>
 
-            <?php
-            endif;
-            endforeach; ?>
+                        <?php
+                    endif;
+                endforeach; ?>
             </div>
             <?php endif; ?>
 
@@ -522,11 +522,10 @@ endif;
 
       <?php
       // Credit card modals
-      foreach ( $creditcards as $creditcard) :
-
-      // Check if owned by current user
-      if ( Auth::id() == $creditcard->userid ) :
-      ?>
+        foreach ($creditcards as $creditcard) :
+        // Check if owned by current user
+            if (Auth::id() == $creditcard->userid) :
+                ?>
 
         <div class="modal modal-credit-card modal-credit-card-<?php echo $creditcard->id; ?>">
 
@@ -541,7 +540,7 @@ endif;
               <header class="modal-header">
                 <div>
                   <h2 class="credit-card-title"><?php echo $creditcard->creditor; ?></h2>
-                  <h3 class="date"><?php echo date( 'd/m/Y' ); ?></h3>
+                  <h3 class="date"><?php echo date('d/m/Y'); ?></h3>
                 </div>
               </header>
 
@@ -554,7 +553,7 @@ endif;
 
               <div class="row">
                 <label for="expirationdate">{{ __('dashboard.expirationdate') }}</label>
-                <input type="text" class="datepicker-expirationdate" name="expirationdate" id="expirationdate" value="<?php echo $creditcard->expirationdate; ?>" placeholder="<?php echo date( 'm/Y' ); ?>">
+                <input type="text" class="datepicker-expirationdate" name="expirationdate" id="expirationdate" value="<?php echo $creditcard->expirationdate; ?>" placeholder="<?php echo date('m/Y'); ?>">
               </div>
 
               <div class="row">
@@ -581,14 +580,14 @@ endif;
 
               <div class="row actions">
                 <button type="button" id="update-credit-card" class="btn-update" data-id="<?php echo $creditcard->id; ?>">{{ __('dashboard.update') }}</button>
-                <button type="button" class="remove-button btn-remove" id="remove-credit-card" data-id="<?php echo $creditcard->id; ?>" data-balloon="{{ __('dashboard.removeforgood') }}" data-balloon-pos="up"><span class="screen-reader-text">{{ __('dashboard.removeforgood') }}</span><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></button>
+                <button type="button" class="remove-button btn-remove" id="remove-credit-card" data-id="<?php echo $creditcard->id; ?>" data-balloon="{{ __('dashboard.removeforgood') }}" data-balloon-pos="up"><span class="screen-reader-text">{{ __('dashboard.removeforgood') }}</span><?php echo file_get_contents('../public/svg/dashboard/trash.svg'); ?></button>
               </div>
             </form>
 
           </div>
 
-        <?php
-        endif;
+                <?php
+            endif;
         endforeach;
         ?>
 
@@ -605,7 +604,7 @@ endif;
           <header class="modal-header">
             <div>
               <h2 class="credit-card-title">{{ __('dashboard.newcreditcard') }}</h2>
-              <h3 class="date"><?php echo date( 'd/m/Y' ); ?></h3>
+              <h3 class="date"><?php echo date('d/m/Y'); ?></h3>
             </div>
           </header>
 
@@ -620,7 +619,7 @@ endif;
 
           <div class="row">
             <label for="expirationdate">{{ __('dashboard.expirationdate') }}</label>
-            <input type="text" class="datepicker-expirationdate" name="expirationdate" id="expirationdate" placeholder="<?php echo date( 'm/Y' ); ?>">
+            <input type="text" class="datepicker-expirationdate" name="expirationdate" id="expirationdate" placeholder="<?php echo date('m/Y'); ?>">
           </div>
 
           <div class="row">
@@ -665,7 +664,7 @@ endif;
           <header class="modal-header">
             <div>
               <h2 class="paymentplan-title">{{ __('dashboard.newpaymentplan') }}</h2>
-              <h3 class="date"><?php echo date( 'd/m/Y' ); ?></h3>
+              <h3 class="date"><?php echo date('d/m/Y'); ?></h3>
             </div>
           </header>
 
@@ -695,11 +694,10 @@ endif;
 
 <?php
 // Payment plan modals
-foreach ( $paymentplans as $paymentplan ) :
-
+foreach ($paymentplans as $paymentplan) :
   // Check if owned by current user and not paid
-  if ( '0' == $paymentplan->paid && Auth::id() == $paymentplan->userid ) :
-  ?>
+    if ('0' == $paymentplan->paid && Auth::id() == $paymentplan->userid) :
+        ?>
 
     <div class="modal modal-paymentplan modal-paymentplan-<?php echo $paymentplan->id; ?>">
 
@@ -714,7 +712,7 @@ foreach ( $paymentplans as $paymentplan ) :
           <header class="modal-header">
             <div>
               <h2 class="paymentplan-title">{{ __('dashboard.editpaymentplan') }}</h2>
-              <h3 class="date"><?php echo date( 'd/m/Y' ); ?></h3>
+              <h3 class="date"><?php echo date('d/m/Y'); ?></h3>
             </div>
           </header>
 
@@ -738,8 +736,8 @@ foreach ( $paymentplans as $paymentplan ) :
           <div class="row actions">
             <button type="button" class="btn-update" id="update-paymentplan" data-id="<?php echo $paymentplan->id; ?>">{{ __('dashboard.update') }}</button>
 
-            <button id="paid-button" class="mark-paymentplan-as-paid btn-markpaid" data-id="<?php echo $paymentplan->id; ?>" data-balloon="{{ __('dashboard.markaspaid') }}" data-balloon-pos="up"><?php echo file_get_contents( '../public/svg/dashboard/check.svg' ); ?><span class="screen-reader-text">{{ __('dashboard.markaspaid') }}</span></button>
-            <button type="button" class="remove-button btn-remove" id="remove-paymentplan" data-id="<?php echo $paymentplan->id; ?>" data-balloon="{{ __('dashboard.removeforgood') }}" data-balloon-pos="up"><span class="screen-reader-text">{{ __('dashboard.removeforgood') }}</span><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></button>
+            <button id="paid-button" class="mark-paymentplan-as-paid btn-markpaid" data-id="<?php echo $paymentplan->id; ?>" data-balloon="{{ __('dashboard.markaspaid') }}" data-balloon-pos="up"><?php echo file_get_contents('../public/svg/dashboard/check.svg'); ?><span class="screen-reader-text">{{ __('dashboard.markaspaid') }}</span></button>
+            <button type="button" class="remove-button btn-remove" id="remove-paymentplan" data-id="<?php echo $paymentplan->id; ?>" data-balloon="{{ __('dashboard.removeforgood') }}" data-balloon-pos="up"><span class="screen-reader-text">{{ __('dashboard.removeforgood') }}</span><?php echo file_get_contents('../public/svg/dashboard/trash.svg'); ?></button>
           </div>
         </form>
 
@@ -747,26 +745,25 @@ foreach ( $paymentplans as $paymentplan ) :
 
     </div>
 
-    <?php
-  endif;
+        <?php
+    endif;
 endforeach; ?>
 
 </div>
 
 <?php
 // Bill modals
-foreach ( $bills as $bill ) :
-
+foreach ($bills as $bill) :
 // Define formatted date
-$formatted_amount = str_replace( '.', ',', $bill->amount );
-$old_date = $bill->duedate;
-$old_date_timestamp = strtotime( $old_date );
-$local_date = strftime( "%e. %Bta %Y", $old_date_timestamp );
-$stylish_date = date( 'd/m/Y', $old_date_timestamp );
+    $formatted_amount = str_replace('.', ',', $bill->amount);
+    $old_date = $bill->duedate;
+    $old_date_timestamp = strtotime($old_date);
+    $local_date = strftime("%e. %Bta %Y", $old_date_timestamp);
+    $stylish_date = date('d/m/Y', $old_date_timestamp);
 
 // Check if not paid and if owned by current user
-if ( '0' == $bill->paid && Auth::id() == $bill->userid ) :
-?>
+    if ('0' == $bill->paid && Auth::id() == $bill->userid) :
+        ?>
 
 <div class="modal modal-bill modal-bill-<?php echo $bill->id; ?>">
   <div class="modal-overlay"></div>
@@ -795,12 +792,12 @@ if ( '0' == $bill->paid && Auth::id() == $bill->userid ) :
       <p class="able-to-copy" data-copy-to-clipboard="<?php echo $bill->accountnumber; ?>"><?php echo $bill->accountnumber; ?></p>
     </div>
 
-    <?php if ( ! empty( $bill->virtualcode ) ) : ?>
+        <?php if (! empty($bill->virtualcode)) : ?>
     <div class="row">
       <h3>{{ __('dashboard.virtualcode') }}</h3>
       <p class="able-to-copy" data-copy-to-clipboard="<?php echo $bill->virtualcode; ?>"><?php echo $bill->virtualcode; ?></p>
     </div>
-    <?php endif; ?>
+        <?php endif; ?>
 
     <div class="row">
       <h3>{{ __('dashboard.refnumber') }}</h3>
@@ -825,18 +822,18 @@ if ( '0' == $bill->paid && Auth::id() == $bill->userid ) :
     </footer>
 
     <div class="row actions">
-      <button type="button" class="btn-remove remove-button" id="remove-bill" data-id="<?php echo $bill->id; ?>" data-balloon="{{ __('dashboard.removeforgood') }}" data-balloon-pos="up"><span class="screen-reader-text">{{ __('dashboard.removeforgood') }}</span><?php echo file_get_contents( '../public/svg/dashboard/trash.svg' ); ?></button>
-      <button class="edit" data-id="<?php echo $bill->id; ?>" data-balloon="{{ __('dashboard.edit') }}" data-balloon-pos="up"><?php echo file_get_contents( '../public/svg/dashboard/edit.svg' ); ?></button>
-      <button class="mark-as-paid" data-id="<?php echo $bill->id; ?>" data-balloon="{{ __('dashboard.markaspaid') }}" data-balloon-pos="up"><?php echo file_get_contents( '../public/svg/dashboard/check.svg' ); ?><span class="screen-reader-text">{{ __('dashboard.markaspaid') }}</span></button>
+      <button type="button" class="btn-remove remove-button" id="remove-bill" data-id="<?php echo $bill->id; ?>" data-balloon="{{ __('dashboard.removeforgood') }}" data-balloon-pos="up"><span class="screen-reader-text">{{ __('dashboard.removeforgood') }}</span><?php echo file_get_contents('../public/svg/dashboard/trash.svg'); ?></button>
+      <button class="edit" data-id="<?php echo $bill->id; ?>" data-balloon="{{ __('dashboard.edit') }}" data-balloon-pos="up"><?php echo file_get_contents('../public/svg/dashboard/edit.svg'); ?></button>
+      <button class="mark-as-paid" data-id="<?php echo $bill->id; ?>" data-balloon="{{ __('dashboard.markaspaid') }}" data-balloon-pos="up"><?php echo file_get_contents('../public/svg/dashboard/check.svg'); ?><span class="screen-reader-text">{{ __('dashboard.markaspaid') }}</span></button>
 
-      <?php if ( 'Osuuspankki' === Auth::user()->ebillprovider && 'E-lasku' === $bill->type ) : ?>
-        <a target="_blank" href="https://www.op.fi" class="op-ebill"><?php echo file_get_contents( '../public/svg/dashboard/pay.svg' ); ?>{{ __('dashboard.op_ebill') }}</a>
-      <?php endif; ?>
+        <?php if ('Osuuspankki' === Auth::user()->ebillprovider && 'E-lasku' === $bill->type) : ?>
+        <a target="_blank" href="https://www.op.fi" class="op-ebill"><?php echo file_get_contents('../public/svg/dashboard/pay.svg'); ?>{{ __('dashboard.op_ebill') }}</a>
+        <?php endif; ?>
     </div>
   </div>
 </div>
-<?php
-endif;
+        <?php
+    endif;
 endforeach;
 ?>
 

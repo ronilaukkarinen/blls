@@ -34,7 +34,7 @@
 * Minimum 512MB RAM
 * 1GB free disk space
 
-## Installation on macOS
+## Installation
 
 Clone the repository.
 
@@ -47,6 +47,7 @@ Install PHP dependencies.
 
 ```bash
 composer install
+composer require laravel/legacy-factories --dev
 ```
 
 Install JavaScript dependencies.
@@ -64,17 +65,20 @@ cp .env.example .env
 php artisan key:generate
 ```
 
-Set up database.
+Set up database. Create a new database and run the migrations.
 
 ```bash
+php artisan migrate:reset
 php artisan migrate
+composer dump-autoload
 php artisan db:seed
 ```
 
 Build frontend assets.
 
 ```bash
-yarn build
+npm install gulp@4.0.2 -g
+gulp build
 ```
 
 Start the development server.

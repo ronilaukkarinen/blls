@@ -8,12 +8,12 @@
 // Set locale
 $lang = Config::get('app.locale');
 
-if ( 'fi' == $lang ) :
-  setlocale( LC_TIME, 'fi_FI.UTF8' );
+if ('fi' == $lang) :
+    setlocale(LC_TIME, 'fi_FI.UTF8');
 endif;
 
-if ( 'local' == App::environment() ) :
-  setlocale( LC_TIME, 'fi_FI' );
+if ('local' == App::environment()) :
+    setlocale(LC_TIME, 'fi_FI');
 endif;
 ?>
 

@@ -1,5 +1,4 @@
 /*
-
 REQUIRED STUFF
 ==============
 */
@@ -26,7 +25,6 @@ var phpcs       = require('gulp-phpcs');
 var cache       = require('gulp-cached');
 
 /*
-
 ERROR HANDLING
 ==============
 */
@@ -35,17 +33,16 @@ ERROR HANDLING
 var handleError = function(task) {
   return function(err) {
 
-      notify.onError({
-        message: task + ' failed, check the logs..',
-        sound: true
-      })(err);
+    notify.onError({
+      message: task + ' failed, check the logs..',
+      sound: true
+    })(err);
 
     util.log(util.colors.bgRed(task + ' error:'), util.colors.red(err));
   };
 };
 
 /*
-
 FILE PATHS
 ==========
 */
@@ -58,51 +55,48 @@ var jsDest = 'public/js';
 var markupSrc = 'resources/views/*.php';
 
 /*
-
 BROWSERSYNC
 ===========
 */
 
 gulp.task('browsersync', function() {
+  var files = [
+    jsSrc,
+    markupSrc
+  ];
 
-    var files = [
-      jsSrc,
-      markupSrc
-    ];
-
-    browsersync.init(files, {
-        proxy: "blls.test",
-        browser: null,
-        notify: true,
-        open: false,
-        reloadDelay: 1000
-    });
+  browsersync.init(files, {
+    proxy: "blls.test",
+    browser: null,
+    notify: true,
+    open: false,
+    reloadDelay: 1000
+  });
 });
 
 /*
-
 STYLES
 ======
 */
 
 var stylefmtfile = function( file ) {
 
-    console.log(util.colors.white('[') + util.colors.yellow('Stylefmt') + util.colors.white('] ') + 'Automatically correcting file based on .stylelintrc...');
-    var currentdirectory = process.cwd() + '/';
-    var modifiedfile = file.path.replace( currentdirectory, '' );
-    var filename = modifiedfile.replace(/^.*[\\\/]/, '')
-    var correctdir = modifiedfile.replace( filename, '' );
+  console.log(util.colors.white('[') + util.colors.yellow('Stylefmt') + util.colors.white('] ') + 'Automatically correcting file based on .stylelintrc...');
+  var currentdirectory = process.cwd() + '/';
+  var modifiedfile = file.path.replace( currentdirectory, '' );
+  var filename = modifiedfile.replace(/^.*[\\\/]/, '')
+  var correctdir = modifiedfile.replace( filename, '' );
 
-    gulp.src(modifiedfile)
+  gulp.src(modifiedfile)
 
-        // Cache this action to prevent watch loop
-        .pipe(cache('stylefmtrunning'))
+    // Cache this action to prevent watch loop
+    .pipe(cache('stylefmtrunning'))
 
-        // Run current file through stylefmt
-        .pipe(stylefmt({ configFile: '.stylelintrc' }))
+    // Run current file through stylefmt
+    .pipe(stylefmt({ configFile: '.stylelintrc' }))
 
-        // Overwrite
-        .pipe(gulp.dest(correctdir))
+    // Overwrite
+    .pipe(gulp.dest(correctdir))
 };
 
 gulp.task('scss-lint', function() {
@@ -111,74 +105,65 @@ gulp.task('scss-lint', function() {
 });
 
 gulp.task('styles', function() {
-  return gulp.src('resources/assets/sass/**/*.scss')
-    .pipe(sourcemaps.init())
-    .pipe(sass({
-      outputStyle: 'compressed'
-    }).on('error', sass.logError))
-    .pipe(prefix())
-    .pipe(pixrem())
-    .pipe(cleancss())
-    .pipe(rename({ suffix: '.min' }))
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('public/css'))
-    .pipe(browsersync.stream());
+return gulp.src('resources/assets/sass/**/*.scss')
+  .pipe(sourcemaps.init())
+  .pipe(sass({
+    outputStyle: 'compressed',
+    includePaths: ['node_modules']
+  }).on('error', sass.logError))
+  .pipe(prefix())
+  .pipe(pixrem())
+  .pipe(cleancss())
+  .pipe(rename({ suffix: '.min' }))
+  .pipe(sourcemaps.write('.'))
+  .pipe(gulp.dest('public/css'))
+  .pipe(browsersync.stream());
 });
 
 /*
-
 SCRIPTS
 =======
 */
 
 gulp.task('js', function() {
-
-      gulp.src(
-        [
-          'node_modules/jquery/dist/jquery.js',
-          'resources/assets/js/moment-with-locales.js',
-          'resources/assets/js/macy.js',
-          'resources/assets/js/scripts.js',
-          'resources/assets/js/bills.js',
-          'resources/assets/js/subscriptions.js',
-          'resources/assets/js/paymentplans.js',
-          'resources/assets/js/creditcards.js',
-          'resources/assets/js/materialDateTimePicker.js'
-        ])
-        .pipe(concat('app.js'))
-        .pipe(uglify({
-          compress: true,
-          mangle: true}).on('error', function(err) {
-            util.log(util.colors.red('[Error]'), err.toString());
-            this.emit('end');
-        }))
-        .pipe(gulp.dest(jsDest));
+  return gulp.src([
+    'node_modules/jquery/dist/jquery.js',
+    'resources/assets/js/moment-with-locales.js',
+    'resources/assets/js/macy.js',
+    'resources/assets/js/scripts.js',
+    'resources/assets/js/bills.js',
+    'resources/assets/js/subscriptions.js',
+    'resources/assets/js/paymentplans.js',
+    'resources/assets/js/creditcards.js',
+    'resources/assets/js/materialDateTimePicker.js'
+  ])
+  .pipe(concat('app.js'))
+  .pipe(uglify({
+    compress: true,
+    mangle: true
+  }).on('error', function(err) {
+    util.log(util.colors.red('[Error]'), err.toString());
+    this.emit('end');
+  }))
+  .pipe(gulp.dest(jsDest));
 });
 
 /*
-
 PHP
 ===
 */
 
 gulp.task('php', function() {
-
-  gulp.src(markupSrc)
-
-    // Validate files using PHP Code Sniffer
-    .pipe(phpcs({
-      bin: '/usr/local/bin/phpcs',
-      standard: 'phpcs.xml',
-      warningSeverity: 0
-    }))
-
-    // Log all problems that was found
-    .pipe(phpcs.reporter('log'))
-
+return gulp.src(markupSrc)
+  .pipe(phpcs({
+    bin: '/usr/local/bin/phpcs',
+    standard: 'phpcs.xml',
+    warningSeverity: 0
+  }))
+  .pipe(phpcs.reporter('log'));
 });
 
 /*
-
 WATCH
 =====
 
@@ -188,20 +173,21 @@ Notes:
 */
 
 // Run the JS task followed by a reload
-gulp.task('js-watch', ['js'], browsersync.reload);
+gulp.task('js-watch', gulp.series('js', function(done) {
+  browsersync.reload();
+  done();
+}));
 
-gulp.task('watch', ['browsersync'], function() {
-
-  gulp.watch(sassSrc, ['styles', 'scss-lint']).on( 'change', stylefmtfile );
-  gulp.watch(jsSrc, ['js-watch']);
-
-});
+gulp.task('watch', gulp.series('browsersync', function(done) {
+  gulp.watch(sassSrc, gulp.series('styles', 'scss-lint')).on('change', stylefmtfile);
+  gulp.watch(jsSrc, gulp.series('js-watch'));
+  done();
+}));
 
 /*
-
 DEFAULT
 =====
-
 */
 
-gulp.task('default', ['watch']);
+gulp.task('build', gulp.series('styles', 'js', 'php'));
+gulp.task('default', gulp.series('watch'));
