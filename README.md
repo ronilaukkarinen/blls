@@ -90,7 +90,7 @@ php artisan config:cache
 Start the development server.
 
 ```bash
-php artisan serve
+php artisan serve:dev
 ```
 
 Register a new user and check the email from the log file `storage/logs/laravel.log`.

@@ -1,76 +1,80 @@
 <?xml version="1.0"?>
 <ruleset name="Laravel Application Coding Standards">
-    <!-- Set a description for this ruleset -->
-    <description>A custom set of code standard rules for Laravel applications.</description>
+  <!-- Set a description for this ruleset -->
+  <description>A custom set of code standard rules for Laravel applications.</description>
 
-    <!-- Pass some flags to PHPCS -->
-    <arg value="p"/>
-    <arg value="s"/>
-    <arg value="n"/>
-    <arg name="colors"/>
-    <arg name="extensions" value="php"/>
-    <arg name="encoding" value="utf-8"/>
+  <!-- Pass some flags to PHPCS -->
+  <arg value="p"/>
+  <arg value="s"/>
+  <arg value="n"/>
+  <arg name="colors"/>
+  <arg name="extensions" value="php"/>
+  <arg name="encoding" value="utf-8"/>
 
-    <!-- Check all files in this directory and the directories below it -->
-    <file>app</file>
-    <file>config</file>
-    <file>database</file>
-    <file>resources</file>
-    <file>routes</file>
-    <file>tests</file>
+  <!-- Check all files in this directory and the directories below it -->
+  <file>app</file>
+  <file>config</file>
+  <file>database</file>
+  <file>resources</file>
+  <file>routes</file>
+  <file>tests</file>
 
-    <!-- Exclude some folders -->
-    <exclude-pattern>*/cache/*</exclude-pattern>
-    <exclude-pattern>*/*.js</exclude-pattern>
-    <exclude-pattern>*/*.css</exclude-pattern>
-    <exclude-pattern>*/*.xml</exclude-pattern>
-    <exclude-pattern>*/autoload.php</exclude-pattern>
-    <exclude-pattern>*/storage/*</exclude-pattern>
-    <exclude-pattern>*/docs/*</exclude-pattern>
-    <exclude-pattern>*/vendor/*</exclude-pattern>
-    <exclude-pattern>*/migrations/*</exclude-pattern>
+  <!-- Exclude some folders -->
+  <exclude-pattern>*/cache/*</exclude-pattern>
+  <exclude-pattern>*/*.js</exclude-pattern>
+  <exclude-pattern>*/*.css</exclude-pattern>
+  <exclude-pattern>*/*.xml</exclude-pattern>
+  <exclude-pattern>*/autoload.php</exclude-pattern>
+  <exclude-pattern>*/storage/*</exclude-pattern>
+  <exclude-pattern>*/docs/*</exclude-pattern>
+  <exclude-pattern>*/vendor/*</exclude-pattern>
+  <exclude-pattern>*/migrations/*</exclude-pattern>
 
-    <!-- Include the PSR-12 standard -->
-    <rule ref="PSR12">
-        <!-- You can selectively exclude rules if needed -->
-        <exclude name="PSR12.Files.FileHeader"/>
-    </rule>
+  <!-- Include the PSR-12 standard -->
+  <rule ref="PSR12">
+    <!-- You can selectively exclude rules if needed -->
+    <exclude name="PSR12.Files.FileHeader"/>
+  </rule>
 
-    <!-- Include PSR-1 -->
-    <rule ref="PSR1"/>
+  <!-- Include PSR-1 -->
+  <rule ref="PSR1"/>
 
-    <!-- Add some specific rules -->
-    <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
-    <rule ref="Generic.PHP.ForbiddenFunctions">
-        <properties>
-            <property name="forbiddenFunctions" type="array">
-                <element key="sizeof" value="count"/>
-                <element key="delete" value="unset"/>
-                <element key="print" value="echo"/>
-                <element key="is_null" value="null"/>
-                <element key="create_function" value="null"/>
-            </property>
-        </properties>
-    </rule>
+  <!-- Configure indentation -->
+  <rule ref="Generic.WhiteSpace.ScopeIndent">
+    <properties>
+      <property name="indent" value="2"/>
+      <property name="exact" value="true"/>
+    </properties>
+  </rule>
 
-    <!-- Configure line length -->
-    <rule ref="Generic.Files.LineLength">
-        <properties>
-            <property name="lineLimit" value="120"/>
-            <property name="absoluteLineLimit" value="0"/>
-        </properties>
-    </rule>
+  <!-- Add some specific rules -->
+  <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
+  <rule ref="Generic.PHP.ForbiddenFunctions">
+    <properties>
+      <property name="forbiddenFunctions" type="array">
+        <element key="sizeof" value="count"/>
+        <element key="delete" value="unset"/>
+        <element key="print" value="echo"/>
+        <element key="is_null" value="null"/>
+        <element key="create_function" value="null"/>
+      </property>
+    </properties>
+  </rule>
 
-    <!-- PHP compatibility checks -->
-    <config name="testVersion" value="8.1-"/>
-    <rule ref="PHPCompatibility"/>
+  <!-- Configure line length -->
+  <rule ref="Generic.Files.LineLength">
+    <properties>
+      <property name="lineLimit" value="120"/>
+      <property name="absoluteLineLimit" value="0"/>
+    </properties>
+  </rule>
 
-    <!-- Paths to check -->
-    <arg name="basepath" value="."/>
-    <arg name="parallel" value="75"/>
-    <arg name="cache"/>
+  <!-- PHP compatibility checks -->
+  <config name="testVersion" value="8.1-"/>
+  <rule ref="PHPCompatibility"/>
 
-    <!-- Include sniffs for PHP cross-version compatibility. -->
-    <config name="testVersion" value="8.1"/>
-    <rule ref="PHPCompatibility"/>
+  <!-- Paths to check -->
+  <arg name="basepath" value="."/>
+  <arg name="parallel" value="75"/>
+  <arg name="cache"/>
 </ruleset>

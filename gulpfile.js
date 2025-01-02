@@ -60,17 +60,17 @@ BROWSERSYNC
 */
 
 gulp.task('browsersync', function() {
-  var files = [
-    jsSrc,
-    markupSrc
-  ];
-
-  browsersync.init(files, {
-    proxy: "blls.test",
+  browsersync.init({
+    proxy: "127.0.0.1:8000",
     browser: null,
     notify: true,
     open: false,
-    reloadDelay: 1000
+    reloadDelay: 0,
+    injectChanges: false,
+    files: [
+      'public/css/*.css',
+      'resources/views/**/*.php'
+    ]
   });
 });
 
@@ -105,19 +105,20 @@ gulp.task('scss-lint', function() {
 });
 
 gulp.task('styles', function() {
-return gulp.src('resources/assets/sass/**/*.scss')
-  .pipe(sourcemaps.init())
-  .pipe(sass({
-    outputStyle: 'compressed',
-    includePaths: ['node_modules']
-  }).on('error', sass.logError))
-  .pipe(prefix())
-  .pipe(pixrem())
-  .pipe(cleancss())
-  .pipe(rename({ suffix: '.min' }))
-  .pipe(sourcemaps.write('.'))
-  .pipe(gulp.dest('public/css'))
-  .pipe(browsersync.stream());
+  return gulp.src(sassFile)
+    .pipe(sourcemaps.init())
+    .pipe(sass({
+      outputStyle: 'expanded',
+      includePaths: ['node_modules']
+    }).on('error', sass.logError))
+    .pipe(prefix())
+    .pipe(pixrem())
+    .pipe(rename('app.css'))
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest(cssDest))
+    .on('end', function() {
+      browsersync.reload();
+    });
 });
 
 /*
@@ -178,16 +179,20 @@ gulp.task('js-watch', gulp.series('js', function(done) {
   done();
 }));
 
-gulp.task('watch', gulp.series('browsersync', function(done) {
-  gulp.watch(sassSrc, gulp.series('styles', 'scss-lint')).on('change', stylefmtfile);
-  gulp.watch(jsSrc, gulp.series('js-watch'));
+gulp.task('watch', function(done) {
+  // Watch Sass files and trigger styles task
+  gulp.watch(sassSrc, { ignoreInitial: false }, gulp.series('styles'));
+
+  // Watch PHP files
+  gulp.watch('resources/views/**/*.php', browsersync.reload);
+
   done();
-}));
+});
 
 /*
 DEFAULT
-=====
+=======
 */
 
-gulp.task('build', gulp.series('styles', 'js', 'php'));
-gulp.task('default', gulp.series('watch'));
+gulp.task('build', gulp.series('styles', 'js'));
+gulp.task('default', gulp.series('build', 'watch', 'browsersync'));

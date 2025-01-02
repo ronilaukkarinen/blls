@@ -8,6 +8,10 @@
 * Obfuscate user exists message for security
 * Fix a typo in .env that would cause the app to crash
 * Change beer to coffee in InboxZero
+* Add Generic.WhiteSpace.ScopeIndent for 2 spaces
+* Add footer
+* Include gulp build in serve:dev command
+* Fix gulp tasks for development
 
 ### 0.0.8: 2025-01-02
 

@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => env( 'APP_NAME', 'Laravel' ),
+    'name' => env('APP_NAME', 'Blls'),
 
     /*
     |--------------------------------------------------------------------------
@@ -25,7 +25,7 @@ return [
     |
     */
 
-    'env' => env( 'APP_ENV', 'production' ),
+    'env' => env('APP_ENV', 'production'),
 
     /*
     |--------------------------------------------------------------------------
@@ -38,7 +38,7 @@ return [
     |
     */
 
-    'debug' => env( 'APP_DEBUG', false ),
+    'debug' => env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'url' => env( 'APP_URL', 'http://localhost' ),
+    'url' => env('APP_URL', 'http://localhost'),
 
     /*
     |--------------------------------------------------------------------------
@@ -108,7 +108,7 @@ return [
     |
     */
 
-    'key' => env( 'APP_KEY' ),
+    'key' => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
 
@@ -220,5 +220,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
     ],
+
+    'version' => env('APP_VERSION', '0.1.0'),
 
 ];

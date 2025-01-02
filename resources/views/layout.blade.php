@@ -14,7 +14,7 @@
   <meta name="theme-color" content="#1b3b62">
 
   <script src="/js/app.js"></script>
-  <link rel="stylesheet" href="/css/app.css" />
+  <link rel="stylesheet" href="/css/app{{ app()->environment('production') ? '.min' : '' }}.css" />
 </head>
 @if (Auth::check())
   <body class="<?php echo strtolower(View::getSection('title')); ?>">
@@ -39,6 +39,14 @@
       </aside>
       @endif
       @yield('body')
+      @if (Auth::check())
+        <footer class="app-footer">
+          <div class="footer-content">
+            <span class="version">{{ config('app.name') }} v{{ config('app.version', '0.1.0') }}</span>
+            <a href="https://github.com/ronilaukkarinen/blls" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+        </footer>
+      @endif
     </div>
   </div>
   @yield('scripts')
