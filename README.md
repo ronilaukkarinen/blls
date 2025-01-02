@@ -1,11 +1,11 @@
 # Blls.io
 
-[![Latest Release](https://img.shields.io/github/v/release/ronilaukkarinen/blls?include_prereleases)](https://github.com/ronilaukkarinen/blls/releases)
-[![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![PHP Version](https://img.shields.io/badge/PHP-8.1%2B-blue.svg)](https://www.php.net)
-[![Laravel](https://img.shields.io/badge/Laravel-10.x-red.svg)](https://laravel.com)
-[![Node](https://img.shields.io/badge/Node-16.x-green.svg)](https://nodejs.org)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/ronilaukkarinen/blls/ci.yml?branch=main)](https://github.com/ronilaukkarinen/blls/actions)
+[![GitHub release](https://img.shields.io/github/tag/ronilaukkarinen/blls.svg?style=flat-square)](https://github.com/ronilaukkarinen/blls/releases)
+[![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg?style=flat-square)](https://www.gnu.org/licenses/gpl-3.0)
+[![PHP Version](https://img.shields.io/badge/PHP-8.1%2B-blue.svg?style=flat-square)](https://www.php.net)
+[![Laravel](https://img.shields.io/badge/Laravel-10.x-red.svg?style=flat-square)](https://laravel.com)
+[![Node](https://img.shields.io/badge/Node-16.x-green.svg?style=flat-square)](https://nodejs.org)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/ronilaukkarinen/blls/ci.yml?branch=main&style=flat-square)](https://github.com/ronilaukkarinen/blls/actions)
 
 **Blls** (bills.io as in _bills I owe_) is a web application for managing and tracking your bills and payments. Keep tabs on what you owe, what you've paid, and maintain a clear financial history.
 
