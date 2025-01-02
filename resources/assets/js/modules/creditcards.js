@@ -1,34 +1,30 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Open new modal from click
-  document.addEventListener('click', (e) => {
-    if (e.target.matches('.add-new-credit-card')) {
+  // Hide validation errors by default
+  document.querySelectorAll('.validation-error').forEach(el => el.style.display = 'none');
+
+  // Add click handlers for new credit card button
+  document.querySelectorAll('.add-new-credit-card').forEach(btn => {
+    btn.addEventListener('click', () => {
       document.body.classList.add('modal-opened');
       const modal = document.querySelector('.modal-credit-card-new');
       document.body.appendChild(modal);
-      modal.style.display = 'none';
-      setTimeout(() => {
-        modal.style.display = 'block';
-        modal.classList.add('show');
-      }, 10);
-    }
+      modal.style.display = 'block';
+      modal.classList.add('show');
+    });
   });
 
   // Open modal when clicking single items
   const itemsContainer = document.querySelector('.items-creditcards');
   if (itemsContainer) {
-    itemsContainer.addEventListener('click', (e) => {
-      if (e.target.matches('.item') || e.target.closest('.item')) {
-        const item = e.target.matches('.item') ? e.target : e.target.closest('.item');
+    itemsContainer.querySelectorAll('.item').forEach(item => {
+      item.addEventListener('click', () => {
         const rowId = item.dataset.id;
         document.body.classList.add('modal-opened');
         const modal = document.querySelector(`.modal-credit-card-${rowId}`);
         document.body.appendChild(modal);
-        modal.style.display = 'none';
-        setTimeout(() => {
-          modal.style.display = 'block';
-          modal.classList.add('show');
-        }, 10);
-      }
+        modal.style.display = 'block';
+        modal.classList.add('show');
+      });
     });
   }
 

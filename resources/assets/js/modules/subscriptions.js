@@ -1,6 +1,22 @@
+console.log('subscriptions.js being imported');
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('subscriptions.js loaded');
+
   // Hide validation errors by default
   document.querySelectorAll('.validation-error').forEach(el => el.style.display = 'none');
+
+  // Add click handlers for new subscription button
+  document.querySelectorAll('.add-new-subscription').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.body.classList.add('modal-opened');
+      const modal = document.querySelector('.modal-subscription-new');
+      if (modal) {
+        document.body.appendChild(modal);
+        modal.style.display = 'block';
+        modal.classList.add('show');
+      }
+    });
+  });
 
   // Event delegation for all click events
   document.addEventListener('click', e => {
@@ -10,20 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const rowId = item.dataset.id;
       document.body.classList.add('modal-opened');
       const modal = document.querySelector(`.modal-subscription-${rowId}`);
-      if (modal) {
-        document.body.appendChild(modal);
-        modal.style.display = 'none';
-        setTimeout(() => {
-          modal.style.display = 'block';
-          modal.classList.add('show');
-        }, 10);
-      }
-    }
-
-    // Add new subscription
-    if (e.target.matches('.add-new-subscription')) {
-      document.body.classList.add('modal-opened');
-      const modal = document.querySelector('.modal-subscription-new');
       if (modal) {
         document.body.appendChild(modal);
         modal.style.display = 'none';

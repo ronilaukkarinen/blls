@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Modal handling
+  // Add click handlers for new bill button
   document.querySelectorAll('.add-new-bill').forEach(btn => {
     btn.addEventListener('click', () => {
       document.body.classList.add('modal-opened');

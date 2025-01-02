@@ -1,29 +1,30 @@
-document.addEventListener('DOMContentLoaded', function() {
-  // Open new modal from click
-  document.addEventListener('click', function(e) {
-    if (e.target.matches('.add-new-paymentplan')) {
+document.addEventListener('DOMContentLoaded', () => {
+  // Hide validation errors by default
+  document.querySelectorAll('.validation-error').forEach(el => el.style.display = 'none');
+
+  // Add click handlers for new payment plan button
+  document.querySelectorAll('.add-new-paymentplan').forEach(btn => {
+    btn.addEventListener('click', () => {
       document.body.classList.add('modal-opened');
       const modal = document.querySelector('.modal-paymentplan-new');
       document.body.appendChild(modal);
-      modal.style.display = 'none';
-      fadeIn(modal);
+      modal.style.display = 'block';
       modal.classList.add('show');
-    }
+    });
   });
 
   // Open modal when clicking single items
   const itemsContainer = document.querySelector('.items-paymentplans');
   if (itemsContainer) {
-    itemsContainer.addEventListener('click', (e) => {
-      if (e.target.matches('.item')) {
-        const rowId = e.target.dataset.id;
+    itemsContainer.querySelectorAll('.item').forEach(item => {
+      item.addEventListener('click', () => {
+        const rowId = item.dataset.id;
         document.body.classList.add('modal-opened');
         const modal = document.querySelector(`.modal-paymentplan-${rowId}`);
         document.body.appendChild(modal);
-        modal.style.display = 'none';
-        fadeIn(modal);
+        modal.style.display = 'block';
         modal.classList.add('show');
-      }
+      });
     });
   }
 
