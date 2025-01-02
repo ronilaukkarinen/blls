@@ -237,11 +237,11 @@
         }
 
         &:hover {
-          color: color-mix(in srgb, #ff6a10 90%, black);
+          color: darken(#ff6a10, 10%);
         }
 
         &:hover svg {
-          stroke: color-mix(in srgb, #ff6a10 90%, black);
+          stroke: darken(#ff6a10, 10%);
         }
       }
 

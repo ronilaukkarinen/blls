@@ -219,6 +219,17 @@
 
 .modal-opened .dashboard {
   filter: blur(8px);
-  transform: scale(1.005);
-  transition: all .33s;
+  transition: all .33s ease-out;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: filter;
+}
+
+.dashboard-status-bar {
+  transition: all .33s ease-out;
+}
+
+.modal-opened .dashboard-status-bar {
+  padding: 23px 15px 3px 27px;
+  margin: -10px;
 }
