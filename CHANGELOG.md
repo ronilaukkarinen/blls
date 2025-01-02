@@ -7,6 +7,7 @@
 * Fix errors in sign up
 * Obfuscate user exists message for security
 * Fix a typo in .env that would cause the app to crash
+* Change beer to coffee in InboxZero
 
 ### 0.0.8: 2025-01-02
 

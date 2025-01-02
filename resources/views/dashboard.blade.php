@@ -185,9 +185,9 @@ endif;
             <?php if (0 == count($subscriptions)) : ?>
               <div class="inbox-zero">
 
-                <div class="freedom freedom-beer">
-                  <?php echo file_get_contents('svg/inboxzero/beer.svg'); ?>
-                  <p class="punchline">{{ __('dashboard.punchline_beer') }}<br />{{ __('dashboard.punchline_beer_after_br') }}</p>
+                <div class="freedom freedom-coffee">
+                  <?php echo file_get_contents('svg/inboxzero/coffee.svg'); ?>
+                  <p class="punchline">{{ __('dashboard.punchline_coffee') }}<br />{{ __('dashboard.punchline_coffee_after_br') }}</p>
                 </div>
 
               </div>

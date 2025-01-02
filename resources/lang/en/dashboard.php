@@ -79,4 +79,6 @@ return [
     'support' => 'Help & support',
     'overdue' => 'Overdue',
     'validationerror' => 'Please fill the required fields correctly:',
+    'punchline_coffee' => 'Grab a coffee!',
+    'punchline_coffee_after_br' => 'You can afford it!',
 ];
