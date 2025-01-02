@@ -9,9 +9,6 @@
 
 **Blls** (bills.io as in _bills I owe_) is a web application for managing and tracking your bills and payments. Keep tabs on what you owe, what you've paid, and maintain a clear financial history.
 
-> [!NOTE]
-> This repository is currently not functional due to outdated and unresolved dependencies. The project requires significant updates to dependencies and compatibility fixes before it can be used. Use at your own risk.
-
 ## Features
 
 * Track both paid and unpaid bills
@@ -198,18 +195,6 @@ This project is proprietary software. See the [LICENSE](LICENSE) file for detail
    yarn install
    ```
 
-## Development
-
-1. Start the development server:
-   ```bash
-   gulp watch
-   ```
-
-2. Build for production:
-   ```bash
-   gulp build
-   ```
-
 ## Troubleshooting
 
 If you encounter any issues during installation:
@@ -238,3 +223,7 @@ If you encounter any issues during installation:
 - Sass compilation is handled by dart-sass
 - Node.js version 16.20.2 is required for compatibility
 - Python 2.7 is required for some dependencies
+
+## Todo
+
+[ ] Add dark mode
