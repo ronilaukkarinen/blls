@@ -1,3 +1,5 @@
+console.log('scripts.js imported');
+
 document.addEventListener('DOMContentLoaded', () => {
   // Apple-like fade on load
   setTimeout(() => {
@@ -67,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.classList.add('modal-opened');
       const modal = document.querySelector('.modal-bill-new');
       document.body.appendChild(modal);
-      modal.style.display = 'block';
+      modal.style.display = 'flex';
       modal.classList.add('show');
       document.querySelector('.bill-title').textContent = 'Uusi lasku';
     });
@@ -79,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.classList.add('modal-opened');
       const modal = document.querySelector(`.modal-bill-${rowId}`);
       document.body.appendChild(modal);
-      modal.style.display = 'block';
+      modal.style.display = 'flex';
       modal.classList.add('show');
     });
   });

@@ -1,6 +1,6 @@
-console.log('subscriptions.js being imported');
+console.log('subscriptions.js imported');
+
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('subscriptions.js loaded');
 
   // Hide validation errors by default
   document.querySelectorAll('.validation-error').forEach(el => el.style.display = 'none');
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const modal = document.querySelector('.modal-subscription-new');
       if (modal) {
         document.body.appendChild(modal);
-        modal.style.display = 'block';
+        modal.style.display = 'flex';
         modal.classList.add('show');
       }
     });
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(modal);
         modal.style.display = 'none';
         setTimeout(() => {
-          modal.style.display = 'block';
+          modal.style.display = 'flex';
           modal.classList.add('show');
         }, 10);
       }

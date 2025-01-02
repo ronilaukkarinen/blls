@@ -1,3 +1,5 @@
+console.log('creditcards.js imported');
+
 document.addEventListener('DOMContentLoaded', () => {
   // Hide validation errors by default
   document.querySelectorAll('.validation-error').forEach(el => el.style.display = 'none');
@@ -8,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.classList.add('modal-opened');
       const modal = document.querySelector('.modal-credit-card-new');
       document.body.appendChild(modal);
-      modal.style.display = 'block';
+      modal.style.display = 'flex';
       modal.classList.add('show');
     });
   });
@@ -22,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.add('modal-opened');
         const modal = document.querySelector(`.modal-credit-card-${rowId}`);
         document.body.appendChild(modal);
-        modal.style.display = 'block';
+        modal.style.display = 'flex';
         modal.classList.add('show');
       });
     });

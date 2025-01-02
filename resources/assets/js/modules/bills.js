@@ -1,3 +1,5 @@
+console.log('bills.js imported');
+
 document.addEventListener('DOMContentLoaded', () => {
   // Hide validation errors by default
   document.querySelectorAll('.validation-error').forEach(el => el.style.display = 'none');
@@ -96,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.classList.add('modal-opened');
       const modal = document.querySelector('.modal-bill-new');
       document.body.appendChild(modal);
-      modal.style.display = 'block';
+      modal.style.display = 'flex';
       modal.classList.add('show');
       document.querySelector('.bill-title').textContent = 'Muokkaa laskua';
 

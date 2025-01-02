@@ -138,18 +138,6 @@ gulp.task('js', () => {
   gulp.src('node_modules/moment/min/moment-with-locales.min.js')
     .pipe(gulp.dest(jsConfig.dest));
 
-  // Create separate datepicker.js file
-  gulp.src('resources/assets/js/modules/datepicker.js')
-    .pipe(plumber(handleError('js')))
-    .pipe(eslint())
-    .pipe(eslint.format())
-    .pipe(uglify({
-      compress: { drop_console: false },
-      mangle: true,
-      output: { comments: false }
-    }))
-    .pipe(gulp.dest(jsConfig.dest));
-
   // Bundle app.js with browserify
   return browserify({
     entries: 'resources/assets/js/app.js',
@@ -333,5 +321,5 @@ gulp.task('watch', function() {
     });
 });
 
-// Update default task to include watch
-gulp.task('default', gulp.parallel('watch', /* your other tasks */));
+// Default task
+gulp.task('default', gulp.series('watch', 'browsersync'));
