@@ -2156,7 +2156,7 @@ button[data-balloon] {
   font-size: 22px;
   font-size: 2.2rem;
   font-weight: 500;
-  opacity: 0.4;
+  opacity: 0.7;
 }
 .modal .btn-submit,
 .modal .btn-update {
@@ -2700,6 +2700,7 @@ body .dashboard-content.settings-content {
 }
 
 .dtp {
+  --color-main: var(--color-default);
   position: fixed;
   top: 0;
   left: 0;
@@ -2711,6 +2712,8 @@ body .dashboard-content.settings-content {
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
+  display: grid;
+  align-items: center;
 }
 
 .dtp-btn-calendar-ico {
@@ -2992,6 +2995,62 @@ body .dashboard-content.settings-content {
   color: var(--color-main);
 }
 
+.flatpickr-calendar {
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  width: 307px !important;
+  position: absolute !important;
+  z-index: 999999 !important;
+}
+.flatpickr-calendar.open {
+  display: block;
+}
+.flatpickr-calendar .flatpickr-months {
+  background: var(--color-main);
+  border-radius: 4px 4px 0 0;
+  padding: 6px 0;
+}
+.flatpickr-calendar .flatpickr-months .flatpickr-prev-month,
+.flatpickr-calendar .flatpickr-months .flatpickr-next-month {
+  fill: #fff;
+  padding: 10px;
+}
+.flatpickr-calendar .flatpickr-months .flatpickr-prev-month:hover,
+.flatpickr-calendar .flatpickr-months .flatpickr-next-month:hover {
+  fill: rgba(255, 255, 255, 0.7);
+}
+.flatpickr-calendar .flatpickr-months .flatpickr-month {
+  color: #fff;
+  fill: #fff;
+}
+.flatpickr-calendar .flatpickr-current-month {
+  padding-top: 0;
+}
+.flatpickr-calendar .flatpickr-current-month .flatpickr-monthDropdown-months {
+  color: #fff;
+  background: transparent;
+}
+.flatpickr-calendar .flatpickr-current-month .flatpickr-monthDropdown-months:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.flatpickr-calendar .flatpickr-current-month input.cur-year {
+  color: #fff;
+}
+.flatpickr-calendar .flatpickr-current-month input.cur-year:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.flatpickr-calendar .flatpickr-day.selected {
+  background: var(--color-main);
+  border-color: var(--color-main);
+}
+.flatpickr-calendar .flatpickr-day.today {
+  border-color: var(--color-main);
+}
+.flatpickr-calendar .flatpickr-day:hover {
+  background: #f0f0f0;
+}
+
 .message svg {
   fill: #fff;
   margin-right: 10px;
@@ -3252,5 +3311,4 @@ body .dashboard-content.settings-content {
 .app-footer a:hover {
   color: var(--color-lightblue);
 }
-
-/*# sourceMappingURL=Projects/blls/public/css/app.css.map */
+/*# sourceMappingURL=app.css.map */

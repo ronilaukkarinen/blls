@@ -173,3 +173,5 @@ sudo supervisorctl start blls-worker:*
 [ ] Add dark mode
 [ ] Add screenshots
 [ ] Release 1.0
+[ ] Improve accessibility: Change plus icon spans to buttons
+[ ] Improve accessibility: Add close button to modals

@@ -1,4 +1,5 @@
 .dtp {
+  --color-main: var(--color-default);
   position: fixed;
   top: 0;
   left: 0;
@@ -11,6 +12,8 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  display: grid;
+  align-items: center;
 }
 
 .minute-hand {
@@ -306,3 +309,75 @@
 .btn.btn-flat.dtp-btn-ok {
   color: var(--color-main);
 }
+
+.flatpickr-calendar {
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  width: 307px !important;
+  position: absolute !important;
+  z-index: 999999 !important;
+
+  &.open {
+    display: block;
+  }
+
+  .flatpickr-months {
+    background: var(--color-main);
+    border-radius: 4px 4px 0 0;
+    padding: 6px 0;
+
+    .flatpickr-prev-month,
+    .flatpickr-next-month {
+      fill: #fff;
+      padding: 10px;
+
+      &:hover {
+        fill: rgba(255, 255, 255, 0.7);
+      }
+    }
+
+    .flatpickr-month {
+      color: #fff;
+      fill: #fff;
+    }
+  }
+
+  .flatpickr-current-month {
+    padding-top: 0;
+
+    .flatpickr-monthDropdown-months {
+      color: #fff;
+      background: transparent;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+    }
+
+    input.cur-year {
+      color: #fff;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+    }
+  }
+
+  .flatpickr-day {
+    &.selected {
+      background: var(--color-main);
+      border-color: var(--color-main);
+    }
+
+    &.today {
+      border-color: var(--color-main);
+    }
+
+    &:hover {
+      background: #f0f0f0;
+    }
+  }
+}
+
+// Remove the .dtp styles or comment them out since we're using flatpickr

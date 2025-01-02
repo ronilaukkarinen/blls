@@ -9,6 +9,9 @@
   <link rel="manifest" href="images/site.webmanifest">
   <link rel="mask-icon" href="images/safari-pinned-tab.svg" color="#244e81">
   <link rel="shortcut icon" href="images/favicon.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
   <meta name="msapplication-TileColor" content="#2b5797">
   <meta name="msapplication-config" content="images/browserconfig.xml">
   <meta name="theme-color" content="#1b3b62">

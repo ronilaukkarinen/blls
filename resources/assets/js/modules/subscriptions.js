@@ -125,16 +125,52 @@ document.addEventListener('DOMContentLoaded', () => {
       const monthDayEl = modal.querySelector('#subscription_month_day');
       const planEl = modal.querySelector('#subscription_plan');
 
+      // Format the date properly
+      const dateValue = monthDayEl?.value ? formatDate(monthDayEl.value) : '';
+
+      console.log('Submit clicked', {
+        biller: billerEl?.value,
+        amount: amountEl?.value,
+        monthDay: dateValue,
+        plan: planEl?.value
+      });
+
       const data = {
         save: 1,
-        subscription_biller: billerEl && billerEl.value || '',
-        subscription_amount: amountEl && amountEl.value || '',
-        subscription_month_day: monthDayEl && monthDayEl.value || '',
-        subscription_plan: planEl && planEl.value || ''
+        subscription_biller: billerEl?.value || '',
+        subscription_amount: amountEl?.value || '',
+        subscription_month_day: dateValue,
+        subscription_plan: planEl?.value || ''
       };
 
       handleSubscriptionRequest('addsubscription', data);
     }
+  });
+
+  // Initialize datepicker for subscription date inputs
+  const dateInputs = document.querySelectorAll('#subscription_month_day');
+  dateInputs.forEach(input => {
+    const today = new Date();
+    const formatted = formatDate(today);
+    input.value = formatted;
+
+    // Initialize flatpickr
+    flatpickr(input, {
+      dateFormat: 'd.m.Y',
+      defaultDate: today,
+      locale: {
+        firstDayOfWeek: 1
+      },
+      disableMobile: true,
+      static: false,
+      monthSelectorType: 'dropdown',
+      clickOpens: true,
+      allowInput: true,
+      onClose: () => {
+        document.body.classList.remove('modal-opened');
+      },
+      appendTo: modal
+    });
   });
 });
 
@@ -154,6 +190,8 @@ function fadeOutElement(selector) {
 }
 
 function handleSubscriptionRequest(url, data) {
+  console.log('Making request to:', url, data);
+
   fetch(url, {
     method: 'POST',
     headers: {
@@ -162,28 +200,48 @@ function handleSubscriptionRequest(url, data) {
     },
     body: JSON.stringify(data)
   })
-  .then(response => response.json())
   .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(response => {
+    console.log('Response:', response);
     if (response.errors) {
       showValidationError(response.errors);
     } else {
       handleModalClose();
       location.reload();
     }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    showValidationError(['An error occurred while saving the subscription']);
   });
 }
 
 function showValidationError(errors) {
-  const validationError = document.querySelector('.validation-error');
+  const validationError = document.querySelector('.modal-subscription-new .validation-error');
   if (validationError) {
     validationError.style.display = 'block';
     const errorFields = validationError.querySelector('.erroneous-fields');
     if (errorFields) {
-      errorFields.textContent = errors.slice(0, -1).join(', ');
+      errorFields.textContent = Array.isArray(errors) ? errors.join(', ') : errors;
     }
     setTimeout(() => {
       validationError.style.display = 'none';
     }, 3000);
-    console.log(errors);
+    console.log('Validation errors:', errors);
   }
+}
+
+function formatDate(date) {
+  const d = new Date(date);
+  // Adjust for local timezone
+  const localD = new Date(d.getTime() - (d.getTimezoneOffset() * 60000));
+  const day = String(localD.getDate()).padStart(2, '0');
+  const month = String(localD.getMonth() + 1).padStart(2, '0');
+  const year = localD.getFullYear();
+  return `${day}.${month}.${year}`;
 }
