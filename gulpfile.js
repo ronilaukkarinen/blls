@@ -3,32 +3,30 @@ REQUIRED STUFF
 ==============
 */
 
-var gulp        = require('gulp');
-var sass        = require('gulp-sass')(require('sass'));
-var sourcemaps  = require('gulp-sourcemaps');
+var gulp = require('gulp');
+var sass = require('gulp-sass')(require('sass'));
+var sourcemaps = require('gulp-sourcemaps');
 var browsersync = require('browser-sync').create();
-var notify      = require('gulp-notify');
-var prefix      = require('gulp-autoprefixer');
-var cleancss    = require('gulp-clean-css');
-var uglify      = require('gulp-uglify-es').default;
-var concat      = require('gulp-concat');
-var util        = require('gulp-util');
-var pixrem      = require('gulp-pixrem');
-var exec        = require('child_process').exec;
-var rename      = require('gulp-rename');
-var stylefmt    = require('gulp-stylefmt');
-var debug       = require('gulp-debug');
-var scsslint    = require('gulp-scss-lint');
-var php2html    = require('gulp-php2html');
-var htmlmin     = require('gulp-htmlmin');
-var phpcs       = require('gulp-phpcs');
-var cache       = require('gulp-cached');
+var notify = require('gulp-notify');
+var prefix = require('gulp-autoprefixer');
+var uglify = require('gulp-uglify-es').default;
+var util = require('gulp-util');
+var pixrem = require('gulp-pixrem');
+var rename = require('gulp-rename');
+var scsslint = require('gulp-scss-lint');
+var phpcs = require('gulp-phpcs');
+const eslint = require('gulp-eslint');
+const plumber = require('gulp-plumber');
+const webpack = require('webpack');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const browserify = require('browserify');
+const source = require('vinyl-source-stream');
+const buffer = require('vinyl-buffer');
 
 /*
 ERROR HANDLING
 ==============
 */
-
 
 var handleError = function(task) {
   return function(err) {
@@ -50,8 +48,6 @@ FILE PATHS
 var sassSrc = 'resources/assets/sass/**/*.{sass,scss}';
 var sassFile = 'resources/assets/sass/app.scss';
 var cssDest = 'public/css';
-var jsSrc = 'resources/assets/js/**/*.js';
-var jsDest = 'public/js';
 var markupSrc = 'resources/views/*.php';
 
 /*
@@ -61,7 +57,7 @@ BROWSERSYNC
 
 gulp.task('browsersync', function() {
   browsersync.init({
-    proxy: "127.0.0.1:8000",
+    proxy: 'http://127.0.0.1:8000',
     port: 3005,
     host: '127.0.0.1',
     open: true,
@@ -70,7 +66,9 @@ gulp.task('browsersync', function() {
     injectChanges: true,
     files: [
       'public/css/*.css',
-      'resources/views/**/*.php'
+      'public/js/**/*.js',
+      'resources/views/**/*.php',
+      'resources/assets/js/**/*.js'
     ],
     snippetOptions: {
       rule: {
@@ -85,9 +83,7 @@ gulp.task('browsersync', function() {
         res.setHeader('Access-Control-Allow-Origin', '*');
         next();
       }
-    ],
-    logLevel: 'debug',
-    logConnections: true
+    ]
   });
 });
 
@@ -95,26 +91,6 @@ gulp.task('browsersync', function() {
 STYLES
 ======
 */
-
-var stylefmtfile = function( file ) {
-
-  console.log(util.colors.white('[') + util.colors.yellow('Stylefmt') + util.colors.white('] ') + 'Automatically correcting file based on .stylelintrc...');
-  var currentdirectory = process.cwd() + '/';
-  var modifiedfile = file.path.replace( currentdirectory, '' );
-  var filename = modifiedfile.replace(/^.*[\\\/]/, '')
-  var correctdir = modifiedfile.replace( filename, '' );
-
-  gulp.src(modifiedfile)
-
-    // Cache this action to prevent watch loop
-    .pipe(cache('stylefmtrunning'))
-
-    // Run current file through stylefmt
-    .pipe(stylefmt({ configFile: '.stylelintrc' }))
-
-    // Overwrite
-    .pipe(gulp.dest(correctdir))
-};
 
 gulp.task('scss-lint', function() {
   gulp.src([sassSrc, '!sass/navigation/_burger.scss', '!sass/base/_normalize.scss'])
@@ -143,28 +119,111 @@ SCRIPTS
 =======
 */
 
-gulp.task('js', function() {
-  return gulp.src([
-    'node_modules/jquery/dist/jquery.js',
-    'resources/assets/js/moment-with-locales.js',
-    'resources/assets/js/macy.js',
-    'resources/assets/js/scripts.js',
-    'resources/assets/js/bills.js',
-    'resources/assets/js/subscriptions.js',
-    'resources/assets/js/paymentplans.js',
-    'resources/assets/js/creditcards.js',
-    'resources/assets/js/materialDateTimePicker.js'
-  ])
-  .pipe(concat('app.js'))
-  .pipe(uglify({
-    compress: true,
-    mangle: true
-  }).on('error', function(err) {
-    util.log(util.colors.red('[Error]'), err.toString());
-    this.emit('end');
-  }))
-  .pipe(gulp.dest(jsDest));
+const jsConfig = {
+  vendor: [
+    'node_modules/moment/min/moment-with-locales.min.js',
+    'node_modules/macy/dist/macy.js',
+    'resources/assets/js/vendor/**/*.js'
+  ],
+  modules: 'resources/assets/js/modules/**/*.js',
+  vue: [
+    'resources/assets/js/vue-app.js'
+  ],
+  dest: 'public/js'
+};
+
+// Regular JS modules
+gulp.task('js', () => {
+  // First copy moment.js directly
+  gulp.src('node_modules/moment/min/moment-with-locales.min.js')
+    .pipe(gulp.dest(jsConfig.dest));
+
+  // Create separate datepicker.js file
+  gulp.src('resources/assets/js/modules/datepicker.js')
+    .pipe(plumber(handleError('js')))
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(uglify({
+      compress: { drop_console: false },
+      mangle: true,
+      output: { comments: false }
+    }))
+    .pipe(gulp.dest(jsConfig.dest));
+
+  // Bundle app.js with browserify
+  return browserify({
+    entries: 'resources/assets/js/app.js',
+    debug: true
+  })
+    .bundle()
+    .pipe(source('app.js'))
+    .pipe(buffer())
+    .pipe(uglify({
+      compress: { drop_console: false },
+      mangle: true,
+      output: { comments: false }
+    }))
+    .pipe(gulp.dest(jsConfig.dest))
+    .pipe(browsersync.stream());
 });
+
+// Vue app
+gulp.task('vue', () => {
+  const webpackConfig = {
+    mode: 'production',
+    entry: require('path').resolve(__dirname, jsConfig.vue[0]),
+    module: {
+      rules: [
+        {
+          test: /\.vue$/,
+          use: 'vue-loader'
+        },
+        {
+          test: /\.js$/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env']
+            }
+          },
+          exclude: /node_modules/
+        }
+      ]
+    },
+    plugins: [
+      new VueLoaderPlugin(),
+      new webpack.ProvidePlugin({
+        moment: 'moment'
+      }),
+      new webpack.optimize.LimitChunkCountPlugin({
+        maxChunks: 1
+      })
+    ],
+    resolve: {
+      alias: {
+        'moment': 'moment/moment.js',
+        'vue$': 'vue/dist/vue.esm.js'
+      }
+    },
+    output: {
+      path: require('path').resolve(__dirname, 'public/js'),
+      filename: 'vue-app.js',
+      libraryTarget: 'window',
+      library: '[name]'
+    },
+    optimization: {
+      minimize: true
+    }
+  };
+
+  return gulp.src(jsConfig.vue[0])
+    .pipe(plumber(handleError('vue')))
+    .pipe(require('webpack-stream')(webpackConfig, webpack))
+    .pipe(gulp.dest(jsConfig.dest));
+});
+
+// Combined task
+gulp.task('scripts', gulp.parallel('js', 'vue'));
 
 /*
 PHP
@@ -196,12 +255,23 @@ gulp.task('js-watch', gulp.series('js', function(done) {
   done();
 }));
 
+// Update watch task to include Vue files and proper task ordering
 gulp.task('watch', function(done) {
-  // Watch Sass files and trigger styles task
+  // Watch Sass files
   gulp.watch(sassSrc, { ignoreInitial: false }, gulp.series('styles'));
 
   // Watch PHP files
   gulp.watch('resources/views/**/*.php', browsersync.reload);
+
+  // Watch JS files including Vue
+  gulp.watch([
+    'resources/assets/js/**/*.js',
+    'resources/assets/js/**/*.vue'
+  ], gulp.series('scripts', function(done) {
+    console.log('JS files changed, rebuilding...');
+    browsersync.reload();
+    done();
+  }));
 
   done();
 });
@@ -211,5 +281,57 @@ DEFAULT
 =======
 */
 
-gulp.task('build', gulp.series('styles', 'js'));
-gulp.task('default', gulp.series('build', 'watch', 'browsersync'));
+// Define build task
+gulp.task('build', gulp.series('styles', 'js', 'vue'));
+
+// Define dev task that includes browsersync
+gulp.task('dev', gulp.series(
+  'build',
+  gulp.parallel('browsersync', 'watch')
+));
+
+// Make default task same as dev
+gulp.task('default', gulp.series('dev'));
+
+/*
+LINT
+====
+*/
+
+// Error handling
+const errorHandler = {
+  errorHandler: notify.onError({
+    title: 'Gulp Error',
+    message: 'Error: <%= error.message %>'
+  })
+};
+
+// Add new lint task
+gulp.task('lint', () => {
+  return gulp.src('resources/assets/js/*.js')
+    .pipe(plumber(errorHandler))
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
+});
+
+// Add watch task for linting
+gulp.task('watch', () => {
+  gulp.watch('resources/assets/js/*.js', gulp.series('lint', 'js'));
+});
+
+// Default task
+gulp.task('default', gulp.series('lint', 'js', 'watch'));
+
+// Add this after your existing js task
+gulp.task('watch', function() {
+  // Watch JS files
+  gulp.watch('resources/assets/js/modules/**/*.js', gulp.series('js'))
+    .on('change', function(path) {
+      console.log(`File ${path} was changed`);
+      browsersync.reload();
+    });
+});
+
+// Update default task to include watch
+gulp.task('default', gulp.parallel('watch', /* your other tasks */));

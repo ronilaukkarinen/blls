@@ -185,10 +185,10 @@ endif;
             <?php if (0 == count($subscriptions)) : ?>
               <div class="inbox-zero">
 
-                <div class="freedom freedom-beer">
-              <?php echo file_get_contents('svg/inboxzero/beer.svg'); ?>
-                  <p class="punchline">{{ __('dashboard.punchline_beer') }}<br />{{ __('dashboard.punchline_beer_after_br') }}</p>
-                </div>
+              <div class="freedom freedom-coffee">
+              <?php echo file_get_contents('svg/inboxzero/coffee.svg'); ?>
+                <p class="punchline">{{ __('dashboard.punchline_coffee') }}<br />{{ __('dashboard.punchline_coffee_after_br') }}</p>
+              </div>
 
               </div>
             <?php else : ?>
@@ -456,10 +456,10 @@ endif;
             <?php if (0 == count($creditcards)) : ?>
               <div class="inbox-zero">
 
-                <div class="freedom freedom-fireworks">
+              <div class="freedom freedom-fireworks">
               <?php echo file_get_contents('svg/inboxzero/fireworks.svg'); ?>
-                  <p class="punchline">{{ __('dashboard.punchline_creditcard') }}<br />{{ __('dashboard.punchline_creditcard_after_br') }}</p>
-                </div>
+                <p class="punchline">{{ __('dashboard.punchline_creditcard') }}<br />{{ __('dashboard.punchline_creditcard_after_br') }}</p>
+              </div>
 
               </div>
             <?php else : ?>
@@ -841,25 +841,10 @@ foreach ($bills as $bill) :
 endforeach;
 ?>
 
+<script src="/js/moment-with-locales.min.js"></script>
+<script src="/js/app.js"></script>
 <script>
-// Set moment.js to current language
-moment.locale('{{ Config::get('app.locale') }}');
-
-$(document).ready(function() {
-  // Datepickers
-  $('.datepicker').bootstrapMaterialDatePicker({
-    lang: '{{ Config::get('app.locale') }}',
-    clearText: '{{ __('dashboard.cleartext') }}',
-    nowText: '{{ __('dashboard.now') }}',
-    time: false,
-    weekStart: 1,
-    format: 'DD.MM.YYYY',
-    clearButton: false,
-    switchOnClick: true,
-    nowButton: false
-  });
-});
-
+  moment.locale('{{ Config::get('app.locale') }}');
 </script>
 
 @endsection

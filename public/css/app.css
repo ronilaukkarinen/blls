@@ -1350,6 +1350,10 @@ button[data-balloon] {
   margin-left: 5rem;
   margin-bottom: 50px;
   margin-bottom: 5rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 50px;
+  gap: 5rem;
 }
 .dashboard-content.dashboard-content-paid {
   width: calc(100% - 50px);
@@ -1392,41 +1396,7 @@ button[data-balloon] {
 }
 .dashboard-content .column {
   margin-right: 0;
-  margin-bottom: 50px;
-  margin-bottom: 5rem;
-  min-width: 464px;
-}
-@media (min-width: 560px) {
-  .dashboard-content .column {
-    float: left;
-    clear: none;
-    text-align: inherit;
-    width: 48.5%;
-    margin-left: 0%;
-    margin-right: 3%;
-  }
-  .dashboard-content .column::after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-  .dashboard-content .column:nth-child(n) {
-    margin-right: 3%;
-    float: left;
-    clear: none;
-  }
-  .dashboard-content .column:nth-child(2n) {
-    margin-right: 0%;
-    float: right;
-  }
-  .dashboard-content .column:nth-child(2n+1) {
-    clear: both;
-  }
-}
-@media (max-width: 560px) {
-  .dashboard-content .column {
-    width: 100%;
-  }
+  margin-bottom: 0;
 }
 @media (max-width: 1111px) {
   .dashboard-content .column {
@@ -1437,11 +1407,12 @@ button[data-balloon] {
 @media (max-width: 560px) {
   .dashboard-content .column {
     min-width: 220px;
-    margin-bottom: 5rem;
-    margin-right: 0;
   }
-  .dashboard-content .column:last-of-type {
-    margin-bottom: 0;
+}
+@media (max-width: 560px) {
+  .dashboard-content {
+    grid-template-columns: 1fr;
+    gap: 5rem;
   }
 }
 
@@ -1757,11 +1728,6 @@ button[data-balloon] {
 }
 .column-subscriptions .item .biller {
   margin: 0;
-}
-.column-subscriptions .item .biller::after {
-  content: "";
-  display: table;
-  clear: both;
 }
 .column-subscriptions .item .type {
   font-size: 11px;

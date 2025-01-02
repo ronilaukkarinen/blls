@@ -111,36 +111,27 @@
     }
   }
 
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5rem;
+
   .column {
     margin-right: 0;
-    margin-bottom: 5rem;
+    margin-bottom: 0;
 
-    @media (min-width: 560px) {
-      @include column(1/2, $cycle: 2);
-    }
-
-    @media(max-width: 560px) {
-      width: 100%;
-    }
-
-    // Disable masonry by force
     @media (max-width: 1111px) {
       position: static !important;
       float: none !important;
     }
 
-    // Minimum width for the table
-    min-width: 464px;
-
     @media (max-width: 560px) {
       min-width: 220px;
-      margin-bottom: 5rem;
-      margin-right: 0;
-
-      &:last-of-type {
-        margin-bottom: 0;
-      }
     }
+  }
+
+  @media (max-width: 560px) {
+    grid-template-columns: 1fr;
+    gap: 5rem;
   }
 }
 

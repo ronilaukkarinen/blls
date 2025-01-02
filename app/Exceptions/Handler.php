@@ -6,7 +6,8 @@ use Throwable;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
-class Handler extends ExceptionHandler {
+class Handler extends ExceptionHandler
+{
  // phpcs:ignore Squiz.Commenting.ClassComment.Missing
  // phpcs:ignore Squiz.Commenting.ClassComment.Missing
 
@@ -15,7 +16,7 @@ class Handler extends ExceptionHandler {
      *
      * @var array
      */
-    protected $dontReport = [
+  protected $dontReport = [
         \Illuminate\Auth\AuthenticationException::class,
         \Illuminate\Auth\Access\AuthorizationException::class,
         \Symfony\Component\HttpKernel\Exception\HttpException::class,
@@ -32,9 +33,10 @@ class Handler extends ExceptionHandler {
      * @param  \Throwable $e
      * @return void
      */
-    public function report( Throwable $e ) {
-        parent::report( $e );
-    }
+  public function report(Throwable $e)
+  {
+    parent::report($e);
+  }
 
     /**
      * Render an exception into an HTTP response.
@@ -43,9 +45,10 @@ class Handler extends ExceptionHandler {
      * @param  \Throwable               $e
      * @return \Illuminate\Http\Response
      */
-    public function render( $request, Throwable $e ) {
-        return parent::render( $request, $e );
-    }
+  public function render($request, Throwable $e)
+  {
+    return parent::render($request, $e);
+  }
 
     /**
      * Convert an authentication exception into an unauthenticated response.
@@ -54,11 +57,12 @@ class Handler extends ExceptionHandler {
      * @param  \Illuminate\Auth\AuthenticationException $exception
      * @return \Illuminate\Http\Response
      */
-    protected function unauthenticated( $request, AuthenticationException $exception ) {
-        if ( $request->expectsJson() ) {
-            return response()->json( [ 'error' => 'Unauthenticated.' ], 401 );
-        }
-
-        return redirect()->guest( route( 'login' ) );
+  protected function unauthenticated($request, AuthenticationException $exception)
+  {
+    if ($request->expectsJson()) {
+      return response()->json([ 'error' => 'Unauthenticated.' ], 401);
     }
+
+    return redirect()->guest(route('login'));
+  }
 }

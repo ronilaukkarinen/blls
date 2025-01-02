@@ -17,5 +17,13 @@
         ]
       }
     ]
-  }
+  },
+  "ignoreFiles": [
+    "**/*.css",
+    "public/css/**/*.css",
+    "public/css/**",
+    "public/css/app.min.css",
+    "public/style.css",
+    "dist/**/*.css"
+  ]
 }

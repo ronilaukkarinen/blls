@@ -101,7 +101,63 @@ Open localhost:3005 to start developing.
 
 Register a new user and check the email from the log file `storage/logs/laravel.log`.
 
-## Email configuration for production
+## Installing in production
+
+1. Clone and set up the repository
+```bash
+git clone https://github.com/ronilaukkarinen/blls
+cd blls
+composer install --no-dev --optimize-autoloader
+```
+
+2. Configure environment and permissions
+```bash
+cp .env.example .env
+php artisan key:generate
+chown -R www-data:www-data storage bootstrap/cache
+chmod -R 775 storage bootstrap/cache
+```
+
+3. Set up your web server
+- Configure Nginx/Apache to point to the `/public` directory
+- Enable and configure PHP-FPM
+- Set up SSL certificate (recommended: Let's Encrypt)
+
+4. Install and build frontend assets
+```bash
+nvm install
+nvm use
+yarn install
+gulp build --production
+```
+
+5. Set up the database
+```bash
+php artisan migrate --force
+php artisan db:seed --force
+```
+
+6. Configure cache and optimization
+```bash
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+php artisan storage:link
+```
+
+7. Set up task scheduler in crontab
+```bash
+* * * * * cd /path/to/blls && php artisan schedule:run >> /dev/null 2>&1
+```
+
+8. Configure supervisor for queue workers (if using queues)
+```bash
+sudo supervisorctl reread
+sudo supervisorctl update
+sudo supervisorctl start blls-worker:*
+```
+
+### Email configuration for production
 
 1. Update `.env` file with your database credentials
 2. Set up Mailgun:
@@ -112,120 +168,8 @@ Register a new user and check the email from the log file `storage/logs/laravel.
 3. Set up your application URL
 4. Configure timezone settings
 
-## Testing
-
-Run the test suite.
-
-```bash
-php artisan test
-```
-
-## License
-
-This project is proprietary software. See the [LICENSE](LICENSE) file for details.
-
-# Project Setup
-
-## Prerequisites
-
-### macOS
-1. Install Homebrew if not already installed:
-   ```bash
-   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-   ```
-
-2. Install nvm (Node Version Manager):
-   ```bash
-   # Install nvm if you don't have it
-   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-   ```
-
-3. Install Python 2.7 (required for some dependencies):
-   ```bash
-   brew install pyenv
-   pyenv install 2.7.18
-   pyenv global 2.7.18
-   ```
-
-### Linux (Ubuntu/Debian)
-1. Install nvm:
-   ```bash
-   # Install nvm
-   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-   source ~/.bashrc
-   ```
-
-2. Install Python 2.7 and build essentials:
-   ```bash
-   sudo apt-get update
-   sudo apt-get install -y python2.7 build-essential
-   ```
-
-## Installation
-
-1. Clone the repository:
-   ```bash
-   git clone [repository-url]
-   cd [project-directory]
-   ```
-
-2. Set up Node.js using nvm:
-   ```bash
-   # Create .nvmrc file
-   echo "16.20.2" > .nvmrc
-   
-   # Install and use the correct Node version
-   nvm install
-   nvm use
-   ```
-
-3. Install Yarn if you don't have it:
-   ```bash
-   npm install -g yarn
-   ```
-
-4. Create necessary configuration files:
-   ```bash
-   # Create .npmrc
-   echo "legacy-peer-deps=true
-   package-lock=false
-   node-sass=npm:sass@latest" > .npmrc
-   ```
-
-5. Install dependencies:
-   ```bash
-   yarn install
-   ```
-
-## Troubleshooting
-
-If you encounter any issues during installation:
-
-1. Clean the environment:
-   ```bash
-   rm -rf node_modules
-   rm yarn.lock
-   yarn cache clean
-   ```
-
-2. Make sure you're using the correct Node.js version:
-   ```bash
-   nvm use  # This will use the version specified in .nvmrc
-   node -v  # Should show v16.20.2
-   ```
-
-3. Reinstall dependencies:
-   ```bash
-   yarn install
-   ```
-
-## Notes
-
-- The project uses Gulp for task automation
-- Sass compilation is handled by dart-sass
-- Node.js version 16.20.2 is required for compatibility
-- Python 2.7 is required for some dependencies
-
 ## Todo
 
 [ ] Add dark mode
+[ ] Add screenshots
+[ ] Release 1.0

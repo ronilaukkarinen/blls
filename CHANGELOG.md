@@ -15,6 +15,15 @@
 * Fix unclosed div in dashboard.blade.php
 * Use CSS custom properties instead of SCSS variables
 * Fix blur halo effect
+* Replace jeet grids with CSS grids
+* Update vue-loader to 15.9.8, webpack to 4.46.0, babel to 7.15.0
+* Replace jQuery with Vanilla JavaScript
+* Rebuild gulp stack
+* Replace jQuery datepickers with Vanilla datepickers
+* Add installation instructions for production
+* Remove muuri, packery and macy that are no longer needed
+* Clean up SVG icons
+* Fix SVG class mismatches
 
 ### 0.0.8: 2025-01-02
 

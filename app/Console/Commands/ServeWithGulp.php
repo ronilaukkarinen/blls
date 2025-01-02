@@ -22,8 +22,8 @@ class ServeWithGulp extends Command
     // Give Laravel a moment to start
     sleep(2);
 
-    // Start gulp with different BrowserSync port
-    $gulp = new Process(['gulp', '--port=3000']);
+    // Start gulp with dev task
+    $gulp = new Process(['gulp', 'dev']);
     $gulp->setTty(true);
     $gulp->start();
 

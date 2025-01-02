@@ -13,8 +13,7 @@
   <meta name="msapplication-config" content="images/browserconfig.xml">
   <meta name="theme-color" content="#1b3b62">
 
-  <script src="/js/app.js"></script>
-  <link rel="stylesheet" href="/css/app{{ app()->environment('production') ? '.min' : '' }}.css" />
+  <link rel="stylesheet" href="/css/app.css" />
 </head>
 @if (Auth::check())
   <body class="<?php echo strtolower(View::getSection('title')); ?>">
@@ -48,6 +47,8 @@
       @endif
     </div>
   </div>
-  @yield('scripts')
+  <script src="/js/moment-with-locales.min.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/vue-app.js"></script>
 </body>
 </html>
