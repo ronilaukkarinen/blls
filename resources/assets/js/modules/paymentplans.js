@@ -49,22 +49,45 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         body: JSON.stringify(data)
       })
-      .then(response => response.json())
       .then(response => {
-        if (response.errors) {
-          const validationError = document.querySelector('.validation-error');
-          validationError.style.display = 'block';
-          validationError.querySelector('.erroneous-fields').textContent = response.errors.join(', ');
-
-          setTimeout(() => {
-            validationError.style.display = 'none';
-          }, 3000);
-        } else {
-          // Close modal and reload page on success
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+          return response.json();
+        }
+        return response.text();
+      })
+      .then(response => {
+        if (typeof response === 'string') {
+          // Handle HTML response
           document.body.classList.remove('modal-opened');
           document.querySelectorAll('.modal').forEach(modal => modal.classList.remove('show'));
           location.reload();
+        } else {
+          // Handle JSON response
+          if (response.errors) {
+            const validationError = document.querySelector('.validation-error');
+            validationError.style.display = 'block';
+            validationError.querySelector('.erroneous-fields').textContent = response.errors.join(', ');
+
+            setTimeout(() => {
+              validationError.style.display = 'none';
+            }, 3000);
+          } else {
+            document.body.classList.remove('modal-opened');
+            document.querySelectorAll('.modal').forEach(modal => modal.classList.remove('show'));
+            location.reload();
+          }
         }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        const validationError = document.querySelector('.validation-error');
+        validationError.style.display = 'block';
+        validationError.querySelector('.erroneous-fields').textContent = 'An error occurred while saving';
+
+        setTimeout(() => {
+          validationError.style.display = 'none';
+        }, 3000);
       });
     }
   });
