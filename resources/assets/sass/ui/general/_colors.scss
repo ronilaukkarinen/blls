@@ -1,17 +1,17 @@
 // General color definitions
 .color-high,
 .past {
-  color: $color-high;
+  color: var(--color-high);
 }
 
 .color-medium {
-  color: $color-medium;
+  color: var(--color-medium);
 }
 
 .color-high,
 .color-medium.color-high,
 .color-low.color-high {
-  color: $color-high;
+  color: var(--color-high);
 }
 
 td .formatted-amount {
@@ -67,7 +67,7 @@ tr:hover .past {
   transition: all .22s;
 
   &.future {
-    color: rgba($color-altblue, .3);
+    color: rgba(var(--color-altblue), .3);
   }
 
   &.past {
@@ -77,7 +77,7 @@ tr:hover .past {
   &.soon,
   &.soon.future {
     filter: saturate(50%);
-    color: $color-high;
+    color: var(--color-high);
   }
 }
 
@@ -92,11 +92,11 @@ tr:hover .row-duedate.past {
 
 .color-low,
 .future {
-  color: $color-low;
+  color: var(--color-low);
 }
 
 // Selections
 ::selection {
-  color: $color-main;
-  background: $color-default;
+  color: var(--color-main);
+  background: var(--color-default);
 }

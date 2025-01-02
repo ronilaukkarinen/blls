@@ -2,7 +2,7 @@
   .status {
     display: flex;
     justify-content: space-between;
-    border: 1px solid $color-darkgrey;
+    border: 1px solid var(--color-darkgrey);
     border-radius: .5rem;
     padding: 2rem;
     margin-bottom: 5rem;
@@ -42,13 +42,13 @@
 
   .title-small {
     font-size: 15px;
-    color: $color-darkestgrey;
+    color: var(--color-darkestgrey);
     margin: 0 0 1rem;
   }
 
   // Bills
   .item {
-    border: 1px solid $color-darkgrey;
+    border: 1px solid var(--color-darkgrey);
     border-radius: .5rem;
     padding: 20px;
     margin-bottom: 1.5rem;
@@ -72,7 +72,7 @@
         font-weight: 500;
         margin-bottom: 1rem;
         transition: all .66s;
-        color: #ddd;
+        color: var(--color-darkgrey);
       }
     }
 
@@ -88,14 +88,14 @@
     li {
       line-height: 1.33;
       font-size: 11px;
-      color: $color-darkergrey;
+      color: var(--color-darkergrey);
 
       span {
         transition: all .66s;
       }
 
       span:hover {
-        color: $color-default;
+        color: var(--color-default);
       }
     }
 
@@ -122,7 +122,7 @@
 
   .biller {
     font-size: 14px;
-    color: $color-darkergrey;
+    color: var(--color-darkergrey);
     font-weight: 500;
     margin-bottom: 2rem;
   }
@@ -160,13 +160,13 @@
 
   table {
     border-radius: .5rem;
-    border: 1px solid $color-darkgrey;
+    border: 1px solid var(--color-darkgrey);
   }
 
   td {
     padding: 1rem 2rem;
     font-weight: 500;
-    border-bottom: 1px solid #f0eff2;
+    border-bottom: 1px solid var(--color-darkgrey);
   }
 
   .row-biller,
@@ -204,7 +204,7 @@
   }
 
   tr:hover {
-    background: rgba(lighten(#f0eff2, 1%), .5);
+    background: rgba(223, 226, 229, 0.5);
     cursor: pointer;
   }
 

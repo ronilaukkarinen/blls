@@ -4,21 +4,21 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(lighten($color-blueish, 20%), .3);
+  background: rgba(var(--color-blueish), 0.3);
   display: flex;
   justify-content: center;
   align-items: center;
   opacity: 0;
-  transition: all .33s;
-  z-index: -99;
+  transition: var(--transition-modal);
+  z-index: calc(var(--z-index-modal) * -1);
 
   .amount-big {
-    font-family: $font-alt;
+    font-family: var(--font-alt);
     font-size: 2.2rem;
     font-weight: 500;
 
     &::placeholder {
-      font-family: $font-alt;
+      font-family: var(--font-alt);
       font-size: 2.2rem;
       font-weight: 500;
       opacity: 1;
@@ -45,7 +45,7 @@
 
     svg,
     path {
-      stroke: $color-high;
+      stroke: var(--color-high);
     }
   }
 
@@ -60,7 +60,7 @@
 
       svg,
       path {
-        stroke: $color-high;
+        stroke: var(--color-high);
       }
     }
 
@@ -111,21 +111,21 @@
   }
 
   h2 {
-    font-family: $font-alt;
+    font-family: var(--font-alt);
     margin: 0 0 1rem;
     font-size: 2rem;
     letter-spacing: .5px;
     text-transform: uppercase;
     font-weight: 500;
-    color: $color-altblue;
+    color: var(--color-altblue);
     opacity: .9;
   }
 
   .date {
-    font-family: $font-alt;
+    font-family: var(--font-alt);
     margin: 0;
     font-size: 11px;
-    color: $color-grey;
+    color: var(--color-grey);
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 400;
@@ -134,10 +134,10 @@
   .modal-header {
     display: flex;
     justify-content: space-between;
-    color: $color-grey;
+    color: var(--color-grey);
     padding-bottom: 8.5rem;
     margin-bottom: 2rem;
-    border-bottom: 1px dashed rgba($color-grey, .5);
+    border-bottom: 1px dashed rgba(var(--color-grey), .5);
 
     .bill-number,
     .bill-number::placeholder {
@@ -149,7 +149,7 @@
     }
 
     .bill-number::placeholder {
-      color: $color-grey;
+      color: var(--color-grey);
       opacity: 1;
     }
   }
@@ -157,10 +157,10 @@
   .modal-footer {
     display: flex;
     justify-content: space-between;
-    color: $color-grey;
+    color: var(--color-grey);
     padding-top: 2rem;
     margin-top: 2rem;
-    border-top: 1px dashed rgba($color-grey, .5);
+    border-top: 1px dashed rgba(var(--color-grey), .5);
 
     #duedate::placeholder {
       font-size: 1.9rem;
@@ -182,13 +182,13 @@
     }
 
     .amount {
-      font-family: $font-alt;
+      font-family: var(--font-alt);
       font-size: 2.2rem;
       font-weight: 500;
 
       input,
       input::placeholder {
-        font-family: $font-alt;
+        font-family: var(--font-alt);
         font-size: 2.2rem;
         font-weight: 500;
         opacity: 1;
@@ -200,25 +200,25 @@
     margin-bottom: 2rem;
 
     button {
-      font-family: $font-alt;
+      font-family: var(--font-alt);
       font-size: 1.8rem;
       font-weight: 400;
       border: 1px solid transparent;
       padding: 0;
       margin: 0;
       background: 0;
-      color: $color-sherpablue;
+      color: var(--color-sherpablue);
     }
 
     button:hover {
       cursor: pointer;
-      border-bottom: 1px solid $color-sherpablue;
+      border-bottom: 1px solid var(--color-sherpablue);
     }
 
     &.actions {
       padding-top: 2rem;
       margin-top: 0;
-      border-top: 1px dashed rgba($color-grey, .5);
+      border-top: 1px dashed rgba(var(--color-grey), .5);
 
       .op-ebill {
         font-weight: 500;
@@ -237,11 +237,11 @@
         }
 
         &:hover {
-          color: darken(#ff6a10, 10%);
+          color: color-mix(in srgb, #ff6a10 90%, black);
         }
 
         &:hover svg {
-          stroke: darken(#ff6a10, 10%);
+          stroke: color-mix(in srgb, #ff6a10 90%, black);
         }
       }
 
@@ -249,10 +249,10 @@
         margin-right: .5rem;
         width: 20px;
         height: 20px;
-        stroke: $color-sherpablue;
+        stroke: var(--color-sherpablue);
 
         path {
-          stroke: $color-sherpablue;
+          stroke: var(--color-sherpablue);
         }
       }
 
@@ -267,10 +267,10 @@
 
       .edit svg:hover {
         cursor: pointer;
-        stroke: lighten($color-sherpablue, 40%);
+        stroke: var(--color-lightblue);
 
         path {
-          stroke: lighten($color-sherpablue, 40%);
+          stroke: var(--color-lightblue);
         }
       }
 
@@ -279,10 +279,10 @@
       .mark-as-unpaid svg:hover,
       .mark-paymentplan-as-unpaid svg:hover {
         cursor: pointer;
-        stroke: $color-success;
+        stroke: var(--color-success);
 
         path {
-          stroke: $color-success;
+          stroke: var(--color-success);
         }
       }
     }
@@ -308,10 +308,10 @@
 
     h3,
     label {
-      font-family: $font-alt;
+      font-family: var(--font-alt);
       margin-top: 0;
       font-size: 12px;
-      color: $color-grey;
+      color: var(--color-grey);
       text-transform: uppercase;
       letter-spacing: 1px;
       font-weight: 400;
@@ -333,7 +333,7 @@
   form select {
     border: 0;
     background: transparent;
-    color: $color-body;
+    color: var(--color-body);
     font-size: 14px;
     width: 100%;
     padding-top: 5px;
@@ -344,7 +344,7 @@
 
     &:hover,
     &:focus {
-      background: rgba($color-grey, .1);
+      background: rgba(162, 166, 172, .1);
     }
 
     &.biller-label {
@@ -359,7 +359,7 @@
 
     &::placeholder {
       opacity: 1;
-      color: $color-body;
+      color: var(--color-body);
       font-size: 14px;
     }
   }
@@ -368,16 +368,16 @@
     .modal-footer span,
     .modal-footer input,
     .modal-footer input::placeholder {
-      font-family: $font-alt;
+      font-family: var(--font-alt);
       font-size: 2.2rem;
       font-weight: 500;
       opacity: 1;
-      color: $color-body;
+      color: var(--color-body);
     }
 
     .flex {
       align-items: center;
-      color: $color-body;
+      color: var(--color-body);
       display: flex;
     }
 
@@ -396,7 +396,7 @@
       appearance: none;
       padding-left: 0;
       padding-right: 0;
-      color: darken($color-body, 20%);
+      color: var(--color-default);
     }
 
     .bill-number {

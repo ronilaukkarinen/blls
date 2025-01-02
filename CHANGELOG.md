@@ -13,6 +13,7 @@
 * Include gulp build in serve:dev command
 * Fix gulp tasks for development
 * Fix unclosed div in dashboard.blade.php
+* Use CSS custom properties instead of SCSS variables
 
 ### 0.0.8: 2025-01-02
 

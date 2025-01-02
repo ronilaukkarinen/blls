@@ -1,0 +1,12 @@
+:root {
+  // Font families
+  --font-base: 'Rubik', 'Helvetica Neue', Helvetica, sans-serif;
+  --font-headings: 'Rubik', 'Helvetica Neue', Helvetica, sans-serif;
+  --font-alt: 'Graphik', 'Helvetica Neue', Helvetica, sans-serif;
+  --font-monospace: 'Menlo', 'Courier', monospace;
+}
+
+$font-min-size: 15px;
+$font-max-size: 22px;
+$font-base-line-height: 1.55;
+$headings-weight: 500;

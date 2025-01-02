@@ -164,47 +164,47 @@
 
     // Types of subscriptions
     &.item-netflix {
-      background: $color-netflix;
+      background: var(--color-netflix);
     }
 
     &.item-playstation {
-      background: $color-playstation;
+      background: var(--color-playstation);
     }
 
     &.item-plex {
-      background: $color-plex;
+      background: var(--color-plex);
     }
 
     &.item-trakt {
-      background: $color-trakt;
+      background: var(--color-trakt);
     }
 
     &.item-toshl {
-      background: $color-toshl;
+      background: var(--color-toshl);
     }
 
     &.item-bookbeat {
-      background: $color-bookbeat;
+      background: var(--color-bookbeat);
     }
 
     &.item-spotify {
-      background: $color-spotify;
+      background: var(--color-spotify);
     }
 
     &.item-pandora {
-      background: $color-pandora;
+      background: var(--color-pandora);
     }
 
     &.item-patreon {
-      background: $color-patreon;
+      background: var(--color-patreon);
     }
 
     &.item-untappd {
-      background: $color-untappd;
+      background: var(--color-untappd);
     }
 
     &.item-irccloud {
-      background: $color-irccloud;
+      background: var(--color-irccloud);
 
       svg {
         width: 26px;
@@ -215,7 +215,7 @@
     }
 
     &.item-paypal {
-      background: $color-paypal;
+      background: var(--color-paypal);
 
       svg {
         width: 28px;
@@ -227,8 +227,8 @@
 
     &.inactive:not(:hover) {
       opacity: .5;
-      background: #bfc7cf;
-      border-color: #bfc7cf;
+      background: var(--color-darkgrey);
+      border-color: var(--color-darkgrey);
     }
   }
 }

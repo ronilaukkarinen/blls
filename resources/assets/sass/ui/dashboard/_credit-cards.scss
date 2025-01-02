@@ -10,7 +10,7 @@
   }
 
   .name-on-card {
-    font-family: $font-alt;
+    font-family: var(--font-alt);
     text-transform: uppercase;
     font-size: 15px;
     color: #fff;

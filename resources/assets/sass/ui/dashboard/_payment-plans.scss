@@ -25,7 +25,7 @@
   }
 
   .progress-bar {
-    background: darken(#eeeef6, 5%);
+    background: color-mix(in srgb, #eeeef6 95%, black);
     transform: translateY(-5px);
     border-radius: .2rem;
   }
@@ -38,22 +38,22 @@
   white-space: nowrap;
 
   .progress {
-    background: $color-main;
+    background: var(--color-main);
     border-radius: .7rem;
     height: 5px;
     transition: all .22s;
     white-space: nowrap;
 
     &.low {
-      background: $color-main;
+      background: var(--color-main);
     }
 
     &.medium {
-      background: $color-medium-alt;
+      background: var(--color-medium-alt);
     }
 
     &.high {
-      background: $color-low;
+      background: var(--color-low);
     }
   }
 

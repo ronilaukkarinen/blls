@@ -6,13 +6,13 @@
   font-size: 12px;
   border-top-left-radius: 4px;
   z-index: 100;
-  font-family: $font-alt;
+  font-family: var(--font-alt);
 
   .footer-content {
     display: flex;
     align-items: center;
     gap: 15px;
-    color: $color-grey;
+    color: var(--color-grey);
   }
 
   .version {
@@ -20,12 +20,12 @@
   }
 
   a {
-    color: $color-blueish;
+    color: var(--color-blueish);
     text-decoration: none;
     transition: color 0.2s ease;
 
     &:hover {
-      color: darken($color-blueish, 10%);
+      color: var(--color-lightblue);
     }
   }
 }

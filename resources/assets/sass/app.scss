@@ -1,9 +1,17 @@
 // Base
 @import 'base/normalize';
 @import 'jeet/scss/index';
-@import 'base/config';
 @import 'base/helpers';
 @import 'base/accessibility';
+
+// Variables
+@import 'variables/color';
+@import 'variables/typography';
+@import 'variables/layout';
+@import 'variables/breakpoints';
+@import 'variables/spacing';
+@import 'variables/z-index';
+@import 'variables/transitions';
 
 // General
 @import 'ui/general/typography';

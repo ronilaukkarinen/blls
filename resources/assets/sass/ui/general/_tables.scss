@@ -14,7 +14,7 @@ body {
 
   .message.success {
     border-radius: 4px;
-    background: $color-success;
+    background: var(--color-success);
     padding: 3px 6px;
     position: absolute;
     left: 0;

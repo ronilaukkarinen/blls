@@ -1,0 +1,37 @@
+:root {
+  // Spacing
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 3rem;
+  --spacing-xl: 4rem;
+  --spacing-xxl: 5rem;
+
+  // Specific spacings found in code
+  --spacing-modal-padding: 3rem;
+  --spacing-card-padding: 2rem;
+  --spacing-table-cell: 1rem 2rem;
+  --spacing-status-margin: 5rem;
+
+  // Margins
+  --margin-xs: 0.3rem;
+  --margin-sm: 0.5rem;
+  --margin-base: 1rem;
+  --margin-lg: 1.5rem;
+  --margin-xl: 2rem;
+  --margin-xxl: 2.5rem;
+  --margin-huge: 5rem;
+
+  // Padding
+  --padding-xs: 5px;
+  --padding-sm: 1rem;
+  --padding-base: 2rem;
+  --padding-lg: 3rem;
+  --padding-xl: 4rem;
+  --padding-xxl: 8.5rem;
+
+  // Sizes
+  --size-max-width: 34rem;
+  --size-credit-card-width: 275px;
+  --size-credit-card-height: 170px;
+}

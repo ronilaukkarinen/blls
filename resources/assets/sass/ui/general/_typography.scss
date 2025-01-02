@@ -180,7 +180,7 @@
 // Start typography settings
 body {
   font-size: 1.7rem;
-  font-family: $font-base;
+  font-family: var(--font-base);
 }
 
 p {
@@ -208,8 +208,8 @@ h4,
 h5,
 h6 {
   font-feature-settings: 'dlig' 1, 'liga' 1, 'lnum' 1, 'kern' 1;
-  color: $color-headings;
-  font-family: $font-headings;
+  color: var(--color-headings);
+  font-family: var(--font-headings);
   font-weight: $headings-weight;
 }
 
@@ -250,8 +250,8 @@ ol,
 dl,
 small,
 blockquote {
-  font-family: $font-base;
-  color: $color-body;
+  font-family: var(--font-base);
+  color: var(--color-body);
 }
 
 // Font smoothing options

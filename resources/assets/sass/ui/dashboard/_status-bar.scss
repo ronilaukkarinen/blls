@@ -1,11 +1,11 @@
 .dashboard-status-bar {
-  background: linear-gradient(to bottom, $color-darkblueish 0%, $color-blueish 100%);
+  background: linear-gradient(to bottom, var(--color-darkblueish) 0%, var(--color-blueish) 100%);
   box-shadow: 0 0 20px rgba(#000, .1);
   padding: 1.5rem;
   height: 100%;
 
   @media(max-width: 560px) {
-    background: $color-blueish;
+    background: var(--color-blueish);
   }
 
   header {
@@ -75,7 +75,7 @@
 
     a:hover svg {
       transform: scale(1.1);
-      stroke: lighten($color-lightblue, 15%);
+      stroke: var(--color-lightblue);
     }
   }
 }

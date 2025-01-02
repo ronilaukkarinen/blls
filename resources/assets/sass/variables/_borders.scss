@@ -1,0 +1,12 @@
+:root {
+  // Border radius
+  --border-radius-sm: 0.2rem;
+  --border-radius-md: 0.5rem;
+  --border-radius-lg: 0.7rem;
+
+  // Border styles
+  --border-color-default: var(--color-darkgrey);
+  --border-color-table: #f0eff2;
+  --border-style-dashed: 1px dashed rgba(var(--color-grey), 0.5);
+  --border-style-solid: 1px solid var(--border-color-default);
+}

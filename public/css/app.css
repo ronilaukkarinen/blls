@@ -258,6 +258,119 @@ p a {
   text-decoration: underline;
 }
 
+:root {
+  --color-main: #dc3651;
+  --color-default: #0d233e;
+  --color-body: #0d233e;
+  --color-headings: #0d233e;
+  --color-darkblueish: #21273f;
+  --color-altblue: #28384c;
+  --color-blueish: #1b3b62;
+  --color-lightblue: #547bad;
+  --color-grey: #a2a6ac;
+  --color-darkgrey: #dfe2e5;
+  --color-darkergrey: #c5cad0;
+  --color-darkestgrey: #acb3bc;
+  --color-sherpablue: #01212d;
+  --color-high: #e55d71;
+  --color-medium: #cbb046;
+  --color-medium-alt: #12cdd6;
+  --color-low: #2ecc71;
+  --color-success: #2ecc71;
+  --color-netflix: #e50914;
+  --color-playstation: #003087;
+  --color-plex: #e5a00d;
+  --color-trakt: #cb161e;
+  --color-toshl: #b23655;
+  --color-bookbeat: #1f222f;
+  --color-spotify: #1db954;
+  --color-pandora: #005483;
+  --color-paypal: #009cde;
+  --color-patreon: #f96854;
+  --color-untappd: #ffc000;
+  --color-irccloud: #4480fa;
+}
+
+:root {
+  --font-base: "Rubik", "Helvetica Neue", Helvetica, sans-serif;
+  --font-headings: "Rubik", "Helvetica Neue", Helvetica, sans-serif;
+  --font-alt: "Graphik", "Helvetica Neue", Helvetica, sans-serif;
+  --font-monospace: "Menlo", "Courier", monospace;
+}
+
+:root {
+  --grid-base: 1000px;
+  --container-tv: 1824px;
+  --container-large: 1224px;
+  --container-desktop: 960px;
+  --container-ipad: 768px;
+  --container-mobile: 480px;
+}
+
+:root {
+  --spacing-xs: 5px;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 10px;
+  --spacing-sm: 1rem;
+  --spacing-md: 20px;
+  --spacing-md: 2rem;
+  --spacing-lg: 30px;
+  --spacing-lg: 3rem;
+  --spacing-xl: 40px;
+  --spacing-xl: 4rem;
+  --spacing-xxl: 50px;
+  --spacing-xxl: 5rem;
+  --spacing-modal-padding: 30px;
+  --spacing-modal-padding: 3rem;
+  --spacing-card-padding: 20px;
+  --spacing-card-padding: 2rem;
+  --spacing-table-cell: 10px 20px;
+  --spacing-table-cell: 1rem 2rem;
+  --spacing-status-margin: 50px;
+  --spacing-status-margin: 5rem;
+  --margin-xs: 3px;
+  --margin-xs: 0.3rem;
+  --margin-sm: 5px;
+  --margin-sm: 0.5rem;
+  --margin-base: 10px;
+  --margin-base: 1rem;
+  --margin-lg: 15px;
+  --margin-lg: 1.5rem;
+  --margin-xl: 20px;
+  --margin-xl: 2rem;
+  --margin-xxl: 25px;
+  --margin-xxl: 2.5rem;
+  --margin-huge: 50px;
+  --margin-huge: 5rem;
+  --padding-xs: 5px;
+  --padding-sm: 10px;
+  --padding-sm: 1rem;
+  --padding-base: 20px;
+  --padding-base: 2rem;
+  --padding-lg: 30px;
+  --padding-lg: 3rem;
+  --padding-xl: 40px;
+  --padding-xl: 4rem;
+  --padding-xxl: 85px;
+  --padding-xxl: 8.5rem;
+  --size-max-width: 340px;
+  --size-max-width: 34rem;
+  --size-credit-card-width: 275px;
+  --size-credit-card-height: 170px;
+}
+
+:root {
+  --z-index-modal: 99;
+  --z-index-modal-overlay: 90;
+  --z-index-footer: 100;
+}
+
+:root {
+  --transition-default: all 0.22s ease-in-out;
+  --transition-modal: all 0.33s;
+  --transition-hover: all 0.66s;
+}
+
 @font-face {
   font-family: "Graphik";
   src: url("../fonts/graphikregular.eot");
@@ -366,7 +479,7 @@ p a {
 body {
   font-size: 17px;
   font-size: 1.7rem;
-  font-family: "Rubik", "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--font-base);
 }
 
 p {
@@ -404,8 +517,8 @@ h4,
 h5,
 h6 {
   font-feature-settings: "dlig" 1, "liga" 1, "lnum" 1, "kern" 1;
-  color: #0d233e;
-  font-family: "Rubik", "Helvetica Neue", Helvetica, sans-serif;
+  color: var(--color-headings);
+  font-family: var(--font-headings);
   font-weight: 500;
 }
 
@@ -499,8 +612,8 @@ ol,
 dl,
 small,
 blockquote {
-  font-family: "Rubik", "Helvetica Neue", Helvetica, sans-serif;
-  color: #0d233e;
+  font-family: var(--font-base);
+  color: var(--color-body);
 }
 
 body,
@@ -517,17 +630,17 @@ html * {
 .color-high,
 .past,
 tr:hover .row-duedate.past {
-  color: rgb(227.0842105263, 95.7157894737, 115.4210526316);
+  color: var(--color-high);
 }
 
 .color-medium {
-  color: #cbb046;
+  color: var(--color-medium);
 }
 
 .color-high,
 .color-medium.color-high,
 .color-low.color-high {
-  color: rgb(227.0842105263, 95.7157894737, 115.4210526316);
+  color: var(--color-high);
 }
 
 td .formatted-amount {
@@ -577,14 +690,14 @@ tr:hover .past, tr:hover .row-duedate.past {
   transition: all 0.22s;
 }
 .row-duedate.future, tr:hover .row-duedate.future {
-  color: rgba(40, 56, 76, 0.3);
+  color: rgba(var(--color-altblue), 0.3);
 }
 .row-duedate.past, tr:hover .row-duedate.past {
   filter: saturate(80%);
 }
 .row-duedate.soon, .row-duedate.soon.future, tr:hover .row-duedate.soon.future {
   filter: saturate(50%);
-  color: rgb(227.0842105263, 95.7157894737, 115.4210526316);
+  color: var(--color-high);
 }
 
 tr:hover .row-duedate.past {
@@ -594,17 +707,17 @@ tr:hover .row-duedate.past {
 .color-low,
 .future,
 tr:hover .row-duedate.future {
-  color: #2ecc71;
+  color: var(--color-low);
 }
 
 ::-moz-selection {
-  color: #dc3651;
-  background: #0d233e;
+  color: var(--color-main);
+  background: var(--color-default);
 }
 
 ::selection {
-  color: #dc3651;
-  background: #0d233e;
+  color: var(--color-main);
+  background: var(--color-default);
 }
 
 body .row-hidden {
@@ -620,7 +733,7 @@ body .row-refnumber {
 }
 body .message.success {
   border-radius: 4px;
-  background: #2ecc71;
+  background: var(--color-success);
   padding: 3px 6px;
   position: absolute;
   left: 0;
@@ -1080,7 +1193,7 @@ button[data-balloon] {
 }
 
 .dashboard-status-bar {
-  background: linear-gradient(to bottom, #21273f 0%, #1b3b62 100%);
+  background: linear-gradient(to bottom, var(--color-darkblueish) 0%, var(--color-blueish) 100%);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   padding: 15px;
   padding: 1.5rem;
@@ -1088,7 +1201,7 @@ button[data-balloon] {
 }
 @media (max-width: 560px) {
   .dashboard-status-bar {
-    background: #1b3b62;
+    background: var(--color-blueish);
   }
 }
 .dashboard-status-bar header {
@@ -1161,7 +1274,7 @@ button[data-balloon] {
 }
 .dashboard-status-bar .navigation-menu li a:hover svg {
   transform: scale(1.1);
-  stroke: rgb(135.7055335968, 162.9130434783, 197.7944664032);
+  stroke: var(--color-lightblue);
 }
 
 .validation-error {
@@ -1214,7 +1327,7 @@ button[data-balloon] {
   }
 }
 .inbox-zero .punchline {
-  font-family: "Graphik", "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--font-alt);
   font-size: 15px;
   font-size: 1.5rem;
   color: #2d404e;
@@ -1354,7 +1467,7 @@ button[data-balloon] {
 .dashboard-content .status {
   display: flex;
   justify-content: space-between;
-  border: 1px solid rgb(218.25, 223.5, 228.75);
+  border: 1px solid var(--color-darkgrey);
   border-radius: 0.5rem;
   padding: 20px;
   padding: 2rem;
@@ -1390,12 +1503,12 @@ button[data-balloon] {
 }
 .dashboard-content .title-small {
   font-size: 15px;
-  color: rgb(158.75, 172.5, 186.25);
+  color: var(--color-darkestgrey);
   margin: 0 0 10px;
   margin: 0 0 1rem;
 }
 .dashboard-content .item {
-  border: 1px solid rgb(218.25, 223.5, 228.75);
+  border: 1px solid var(--color-darkgrey);
   border-radius: 0.5rem;
   padding: 20px;
   margin-bottom: 15px;
@@ -1420,7 +1533,7 @@ button[data-balloon] {
   margin-bottom: 10px;
   margin-bottom: 1rem;
   transition: all 0.66s;
-  color: #ddd;
+  color: var(--color-darkgrey);
 }
 .dashboard-content .item .bill-details li {
   width: 50%;
@@ -1432,13 +1545,13 @@ button[data-balloon] {
 .dashboard-content .more-details li {
   line-height: 1.33;
   font-size: 11px;
-  color: rgb(188.5, 198, 207.5);
+  color: var(--color-darkergrey);
 }
 .dashboard-content .more-details li span {
   transition: all 0.66s;
 }
 .dashboard-content .more-details li span:hover {
-  color: #0d233e;
+  color: var(--color-default);
 }
 .dashboard-content .more-details li:after {
   content: ", ";
@@ -1459,7 +1572,7 @@ button[data-balloon] {
 }
 .dashboard-content .biller {
   font-size: 14px;
-  color: rgb(188.5, 198, 207.5);
+  color: var(--color-darkergrey);
   font-weight: 500;
   margin-bottom: 20px;
   margin-bottom: 2rem;
@@ -1494,13 +1607,13 @@ button[data-balloon] {
 }
 .column-bills table {
   border-radius: 0.5rem;
-  border: 1px solid rgb(218.25, 223.5, 228.75);
+  border: 1px solid var(--color-darkgrey);
 }
 .column-bills td {
   padding: 10px 20px;
   padding: 1rem 2rem;
   font-weight: 500;
-  border-bottom: 1px solid #f0eff2;
+  border-bottom: 1px solid var(--color-darkgrey);
 }
 .column-bills .row-biller,
 .column-bills .row-duedate {
@@ -1534,7 +1647,7 @@ button[data-balloon] {
   border-bottom-right-radius: 0.5rem;
 }
 .column-bills tr:hover {
-  background: rgba(242.6379310345, 241.8137931034, 244.2862068966, 0.5);
+  background: rgba(223, 226, 229, 0.5);
   cursor: pointer;
 }
 .column-bills .row-clickable:hover {
@@ -1699,37 +1812,37 @@ button[data-balloon] {
   font-weight: 500;
 }
 .column-subscriptions .item.item-netflix {
-  background: #e50914;
+  background: var(--color-netflix);
 }
 .column-subscriptions .item.item-playstation {
-  background: #003087;
+  background: var(--color-playstation);
 }
 .column-subscriptions .item.item-plex {
-  background: #e5a00d;
+  background: var(--color-plex);
 }
 .column-subscriptions .item.item-trakt {
-  background: #cb161e;
+  background: var(--color-trakt);
 }
 .column-subscriptions .item.item-toshl {
-  background: #b23655;
+  background: var(--color-toshl);
 }
 .column-subscriptions .item.item-bookbeat {
-  background: #1f222f;
+  background: var(--color-bookbeat);
 }
 .column-subscriptions .item.item-spotify {
-  background: #1db954;
+  background: var(--color-spotify);
 }
 .column-subscriptions .item.item-pandora {
-  background: #005483;
+  background: var(--color-pandora);
 }
 .column-subscriptions .item.item-patreon {
-  background: #f96854;
+  background: var(--color-patreon);
 }
 .column-subscriptions .item.item-untappd {
-  background: #ffc000;
+  background: var(--color-untappd);
 }
 .column-subscriptions .item.item-irccloud {
-  background: #4480fa;
+  background: var(--color-irccloud);
 }
 .column-subscriptions .item.item-irccloud svg {
   width: 26px;
@@ -1738,7 +1851,7 @@ button[data-balloon] {
   margin-right: 13px;
 }
 .column-subscriptions .item.item-paypal {
-  background: #009cde;
+  background: var(--color-paypal);
 }
 .column-subscriptions .item.item-paypal svg {
   width: 28px;
@@ -1748,8 +1861,8 @@ button[data-balloon] {
 }
 .column-subscriptions .item.inactive:not(:hover) {
   opacity: 0.5;
-  background: #bfc7cf;
-  border-color: #bfc7cf;
+  background: var(--color-darkgrey);
+  border-color: var(--color-darkgrey);
 }
 
 .items-paymentplans h2 {
@@ -1776,7 +1889,7 @@ button[data-balloon] {
   opacity: 1;
 }
 .item:hover .progress-bar {
-  background: rgb(221.3269230769, 221.3269230769, 237.1730769231);
+  background: color-mix(in srgb, #eeeef6 95%, black);
   transform: translateY(-5px);
   border-radius: 0.2rem;
 }
@@ -1788,20 +1901,20 @@ button[data-balloon] {
   white-space: nowrap;
 }
 .progress-bar .progress {
-  background: #dc3651;
+  background: var(--color-main);
   border-radius: 0.7rem;
   height: 5px;
   transition: all 0.22s;
   white-space: nowrap;
 }
 .progress-bar .progress.low {
-  background: #dc3651;
+  background: var(--color-main);
 }
 .progress-bar .progress.medium {
-  background: #12cdd6;
+  background: var(--color-medium-alt);
 }
 .progress-bar .progress.high {
-  background: #2ecc71;
+  background: var(--color-low);
 }
 .progress-bar p {
   color: #fff;
@@ -1826,7 +1939,7 @@ button[data-balloon] {
   }
 }
 .items-creditcards .item-creditcard .credit-card .name-on-card {
-  font-family: "Graphik", "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--font-alt);
   text-transform: uppercase;
   font-size: 15px;
   color: #fff;
@@ -2039,29 +2152,29 @@ button[data-balloon] {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(49.032, 107.144, 177.968, 0.3);
+  background: rgba(var(--color-blueish), 0.3);
   display: flex;
   justify-content: center;
   align-items: center;
   opacity: 0;
-  transition: all 0.33s;
-  z-index: -99;
+  transition: var(--transition-modal);
+  z-index: calc(var(--z-index-modal) * -1);
 }
 .modal .amount-big {
-  font-family: "Graphik", "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--font-alt);
   font-size: 22px;
   font-size: 2.2rem;
   font-weight: 500;
 }
 .modal .amount-big::-moz-placeholder {
-  font-family: "Graphik", "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--font-alt);
   font-size: 22px;
   font-size: 2.2rem;
   font-weight: 500;
   opacity: 1;
 }
 .modal .amount-big::placeholder {
-  font-family: "Graphik", "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--font-alt);
   font-size: 22px;
   font-size: 2.2rem;
   font-weight: 500;
@@ -2084,7 +2197,7 @@ button[data-balloon] {
 }
 .modal .row.actions .remove-button:hover svg,
 .modal .row.actions .remove-button:hover path {
-  stroke: rgb(227.0842105263, 95.7157894737, 115.4210526316);
+  stroke: var(--color-high);
 }
 .modal.modal-subscription .actions, .modal.modal-paymentplan .actions, .modal.modal-credit-card .actions {
   display: flex;
@@ -2097,7 +2210,7 @@ button[data-balloon] {
 .modal.modal-subscription .actions .remove-button:hover path, .modal.modal-paymentplan .actions .remove-button:hover svg,
 .modal.modal-paymentplan .actions .remove-button:hover path, .modal.modal-credit-card .actions .remove-button:hover svg,
 .modal.modal-credit-card .actions .remove-button:hover path {
-  stroke: rgb(227.0842105263, 95.7157894737, 115.4210526316);
+  stroke: var(--color-high);
 }
 .modal.modal-subscription .actions #make-active,
 .modal.modal-subscription .actions #make-inactive,
@@ -2155,7 +2268,7 @@ button[data-balloon] {
   z-index: 100;
 }
 .modal h2 {
-  font-family: "Graphik", "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--font-alt);
   margin: 0 0 10px;
   margin: 0 0 1rem;
   font-size: 20px;
@@ -2163,14 +2276,14 @@ button[data-balloon] {
   letter-spacing: 0.5px;
   text-transform: uppercase;
   font-weight: 500;
-  color: #28384c;
+  color: var(--color-altblue);
   opacity: 0.9;
 }
 .modal .date {
-  font-family: "Graphik", "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--font-alt);
   margin: 0;
   font-size: 11px;
-  color: #a2a6ac;
+  color: var(--color-grey);
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 400;
@@ -2178,12 +2291,12 @@ button[data-balloon] {
 .modal .modal-header {
   display: flex;
   justify-content: space-between;
-  color: #a2a6ac;
+  color: var(--color-grey);
   padding-bottom: 85px;
   padding-bottom: 8.5rem;
   margin-bottom: 20px;
   margin-bottom: 2rem;
-  border-bottom: 1px dashed rgba(162, 166, 172, 0.5);
+  border-bottom: 1px dashed rgba(var(--color-grey), 0.5);
 }
 .modal .modal-header .bill-number::-moz-placeholder {
   letter-spacing: 1px;
@@ -2201,22 +2314,22 @@ button[data-balloon] {
   padding-bottom: 0;
 }
 .modal .modal-header .bill-number::-moz-placeholder {
-  color: #a2a6ac;
+  color: var(--color-grey);
   opacity: 1;
 }
 .modal .modal-header .bill-number::placeholder {
-  color: #a2a6ac;
+  color: var(--color-grey);
   opacity: 1;
 }
 .modal .modal-footer {
   display: flex;
   justify-content: space-between;
-  color: #a2a6ac;
+  color: var(--color-grey);
   padding-top: 20px;
   padding-top: 2rem;
   margin-top: 20px;
   margin-top: 2rem;
-  border-top: 1px dashed rgba(162, 166, 172, 0.5);
+  border-top: 1px dashed rgba(var(--color-grey), 0.5);
 }
 .modal .modal-footer #duedate::-moz-placeholder {
   font-size: 19px;
@@ -2250,13 +2363,13 @@ button[data-balloon] {
   opacity: 1;
 }
 .modal .modal-footer .amount {
-  font-family: "Graphik", "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--font-alt);
   font-size: 22px;
   font-size: 2.2rem;
   font-weight: 500;
 }
 .modal .modal-footer .amount input::-moz-placeholder {
-  font-family: "Graphik", "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--font-alt);
   font-size: 22px;
   font-size: 2.2rem;
   font-weight: 500;
@@ -2264,7 +2377,7 @@ button[data-balloon] {
 }
 .modal .modal-footer .amount input,
 .modal .modal-footer .amount input::placeholder {
-  font-family: "Graphik", "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--font-alt);
   font-size: 22px;
   font-size: 2.2rem;
   font-weight: 500;
@@ -2275,7 +2388,7 @@ button[data-balloon] {
   margin-bottom: 2rem;
 }
 .modal .row button {
-  font-family: "Graphik", "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--font-alt);
   font-size: 18px;
   font-size: 1.8rem;
   font-weight: 400;
@@ -2283,17 +2396,17 @@ button[data-balloon] {
   padding: 0;
   margin: 0;
   background: 0;
-  color: #01212d;
+  color: var(--color-sherpablue);
 }
 .modal .row button:hover {
   cursor: pointer;
-  border-bottom: 1px solid #01212d;
+  border-bottom: 1px solid var(--color-sherpablue);
 }
 .modal .row.actions {
   padding-top: 20px;
   padding-top: 2rem;
   margin-top: 0;
-  border-top: 1px dashed rgba(162, 166, 172, 0.5);
+  border-top: 1px dashed rgba(var(--color-grey), 0.5);
 }
 .modal .row.actions .op-ebill {
   font-weight: 500;
@@ -2312,20 +2425,20 @@ button[data-balloon] {
   top: -0.5px;
 }
 .modal .row.actions .op-ebill:hover {
-  color: rgb(220, 82.8451882845, 0);
+  color: color-mix(in srgb, #ff6a10 90%, black);
 }
 .modal .row.actions .op-ebill:hover svg {
-  stroke: rgb(220, 82.8451882845, 0);
+  stroke: color-mix(in srgb, #ff6a10 90%, black);
 }
 .modal .row.actions svg {
   margin-right: 5px;
   margin-right: 0.5rem;
   width: 20px;
   height: 20px;
-  stroke: #01212d;
+  stroke: var(--color-sherpablue);
 }
 .modal .row.actions svg path {
-  stroke: #01212d;
+  stroke: var(--color-sherpablue);
 }
 .modal .row.actions .edit:hover,
 .modal .row.actions .mark-as-paid:hover,
@@ -2337,23 +2450,23 @@ button[data-balloon] {
 }
 .modal .row.actions .edit svg:hover {
   cursor: pointer;
-  stroke: rgb(5.4347826087, 179.347826087, 244.5652173913);
+  stroke: var(--color-lightblue);
 }
 .modal .row.actions .edit svg:hover path {
-  stroke: rgb(5.4347826087, 179.347826087, 244.5652173913);
+  stroke: var(--color-lightblue);
 }
 .modal .row.actions .mark-paymentplan-as-paid svg:hover,
 .modal .row.actions .mark-as-paid svg:hover,
 .modal .row.actions .mark-as-unpaid svg:hover,
 .modal .row.actions .mark-paymentplan-as-unpaid svg:hover {
   cursor: pointer;
-  stroke: #2ecc71;
+  stroke: var(--color-success);
 }
 .modal .row.actions .mark-paymentplan-as-paid svg:hover path,
 .modal .row.actions .mark-as-paid svg:hover path,
 .modal .row.actions .mark-as-unpaid svg:hover path,
 .modal .row.actions .mark-paymentplan-as-unpaid svg:hover path {
-  stroke: #2ecc71;
+  stroke: var(--color-success);
 }
 .modal .row:last-of-type {
   margin-bottom: 0;
@@ -2375,10 +2488,10 @@ button[data-balloon] {
 }
 .modal .row h3,
 .modal .row label {
-  font-family: "Graphik", "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--font-alt);
   margin-top: 0;
   font-size: 12px;
-  color: #a2a6ac;
+  color: var(--color-grey);
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 400;
@@ -2399,7 +2512,7 @@ button[data-balloon] {
 .modal form select {
   border: 0;
   background: transparent;
-  color: #0d233e;
+  color: var(--color-body);
   font-size: 14px;
   width: 100%;
   padding-top: 5px;
@@ -2433,36 +2546,36 @@ button[data-balloon] {
 }
 .modal form input::-moz-placeholder, .modal form select::-moz-placeholder {
   opacity: 1;
-  color: #0d233e;
+  color: var(--color-body);
   font-size: 14px;
 }
 .modal form input::placeholder,
 .modal form select::placeholder {
   opacity: 1;
-  color: #0d233e;
+  color: var(--color-body);
   font-size: 14px;
 }
 .modal form .modal-footer input::-moz-placeholder {
-  font-family: "Graphik", "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--font-alt);
   font-size: 22px;
   font-size: 2.2rem;
   font-weight: 500;
   opacity: 1;
-  color: #0d233e;
+  color: var(--color-body);
 }
 .modal form .modal-footer span,
 .modal form .modal-footer input,
 .modal form .modal-footer input::placeholder {
-  font-family: "Graphik", "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--font-alt);
   font-size: 22px;
   font-size: 2.2rem;
   font-weight: 500;
   opacity: 1;
-  color: #0d233e;
+  color: var(--color-body);
 }
 .modal form .flex {
   align-items: center;
-  color: #0d233e;
+  color: var(--color-body);
   display: flex;
 }
 .modal form .flex input {
@@ -2482,7 +2595,7 @@ button[data-balloon] {
           appearance: none;
   padding-left: 0;
   padding-right: 0;
-  color: black;
+  color: var(--color-default);
 }
 .modal form .bill-number {
   display: flex;
@@ -2504,7 +2617,7 @@ body .dashboard-content.settings-content {
   max-width: 50rem;
 }
 .dashboard-content .column-settings .settings-choices {
-  border: 1px solid #dae0e5;
+  border: 1px solid var(--color-darkgrey);
   border-radius: 0.5rem;
   padding: 20px;
   padding: 2rem;
@@ -2516,19 +2629,19 @@ body .dashboard-content.settings-content {
 }
 .dashboard-content .column-settings .settings-choices a {
   text-decoration: none;
-  color: rgb(38.016, 83.072, 137.984);
+  color: var(--color-blueish);
   font-weight: 500;
   display: flex;
   align-items: center;
   width: 100%;
-  font-family: "Graphik", "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--font-alt);
   transition: all 170ms;
 }
 .dashboard-content .column-settings .settings-choices a:hover {
-  color: black;
+  color: var(--color-darkblueish);
 }
 .dashboard-content .column-settings .settings-choices a:hover svg {
-  stroke: black;
+  stroke: var(--color-darkblueish);
 }
 .dashboard-content .column-settings .settings-choices li {
   margin-bottom: 10px;
@@ -2553,7 +2666,7 @@ body .dashboard-content.settings-content {
 .dashboard-content .column-settings button {
   padding: 0.84615385em 1.23076923em;
   font-weight: 400;
-  background-color: #1b3b62;
+  background-color: var(--color-blueish);
   color: #fff;
   text-shadow: none;
   background-image: none;
@@ -2580,7 +2693,7 @@ body .dashboard-content.settings-content {
   width: 100%;
 }
 .dashboard-content .column-settings button:hover {
-  background-color: #547bad;
+  background-color: var(--color-lightblue);
 }
 .dashboard-content .column-settings input,
 .dashboard-content .column-settings select {
@@ -2592,8 +2705,8 @@ body .dashboard-content.settings-content {
   padding: 0.84615385em 1.23076923em;
   font-size: 1em;
   background: #fff;
-  border: 1px solid #e4e8ed;
-  color: #4f5d6a;
+  border: 1px solid var(--color-darkgrey);
+  color: var(--color-altblue);
   border-radius: 0.30769231rem;
   box-shadow: inset 0 0 0 0 transparent;
   transition: color 175ms ease-in-out, border-color 175ms ease-in-out;
@@ -2602,8 +2715,8 @@ body .dashboard-content.settings-content {
 }
 .dashboard-content .column-settings input:focus,
 .dashboard-content .column-settings select:focus {
-  color: #1b1b1b;
-  border-color: #21273f;
+  color: var(--color-default);
+  border-color: var(--color-darkblueish);
   background: #fff;
   box-shadow: inset 0 0 0 0 rgba(34, 36, 38, 0.35);
 }
@@ -2653,7 +2766,7 @@ body .dashboard-content.settings-content {
 }
 
 .dtp > .dtp-content > .dtp-date-view > header.dtp-header {
-  background: rgb(189.9279661017, 33.0720338983, 58.5847457627);
+  background: color-mix(in srgb, var(--color-main) 90%, black);
   color: #fff;
   text-align: center;
   padding: 0.3em;
@@ -2661,7 +2774,7 @@ body .dashboard-content.settings-content {
 
 .dtp div.dtp-date,
 .dtp div.dtp-time {
-  background: #dc3651;
+  background: var(--color-main);
   text-align: center;
   color: #fff;
   padding: 10px;
@@ -2755,7 +2868,7 @@ body .dashboard-content.settings-content {
 }
 
 .dtp table.dtp-picker-days tr > td > a.selected {
-  background: #dc3651;
+  background: var(--color-main);
   color: #fff;
 }
 
@@ -2898,7 +3011,7 @@ body .dashboard-content.settings-content {
 }
 
 .btn.btn-flat.dtp-btn-ok {
-  color: #dc3651;
+  color: var(--color-main);
 }
 
 .message svg {
@@ -2981,13 +3094,13 @@ body .dashboard-content.settings-content {
   text-align: center;
   margin-top: 0;
   margin-bottom: 40px;
-  color: #1b3b62;
+  color: var(--color-blueish);
 }
 .login .logo svg,
 .reset-password .logo svg {
   position: relative;
   top: 4px;
-  fill: #1b3b62;
+  fill: var(--color-blueish);
 }
 .login .currency-selection,
 .reset-password .currency-selection {
@@ -2996,17 +3109,17 @@ body .dashboard-content.settings-content {
 .login a,
 .reset-password a {
   text-decoration: none;
-  color: #1b3b62;
+  color: var(--color-blueish);
   transition: all 175ms;
 }
 .login a:hover,
 .reset-password a:hover {
-  color: #547bad;
+  color: var(--color-lightblue);
 }
 .login hr,
 .reset-password hr {
   border: 0;
-  border-top: solid 1px #e4e8ed;
+  border-top: solid 1px var(--color-darkgrey);
   margin-top: 15px;
   margin-bottom: 10px;
 }
@@ -3014,7 +3127,7 @@ body .dashboard-content.settings-content {
 .reset-password .field.links {
   font-weight: 400;
   font-size: 14px;
-  color: #7e8f9f;
+  color: var(--color-grey);
   text-align: center;
 }
 .login > div,
@@ -3038,7 +3151,7 @@ body .dashboard-content.settings-content {
   padding: 2rem;
 }
 .login-wrapper * {
-  font-family: "Graphik", "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--font-alt);
 }
 .login-wrapper .box {
   max-width: 300px;
@@ -3053,7 +3166,7 @@ body .dashboard-content.settings-content {
 }
 .login-wrapper h2 {
   line-height: 1.25;
-  color: #1b1b1b;
+  color: var(--color-default);
   font-weight: 500;
   font-size: 28px;
   font-size: 2.8rem;
@@ -3069,7 +3182,7 @@ body .dashboard-content.settings-content {
 .login-wrapper .login-desc {
   font-weight: 400;
   line-height: 1.55;
-  color: #7e8f9f;
+  color: var(--color-grey);
   font-size: 16px;
   text-align: center;
   margin-bottom: 45px;
@@ -3079,7 +3192,7 @@ body .dashboard-content.settings-content {
 .login-wrapper button {
   padding: 0.84615385em 1.23076923em;
   font-weight: 400;
-  background-color: #1b3b62;
+  background-color: var(--color-blueish);
   color: #fff;
   text-shadow: none;
   background-image: none;
@@ -3106,7 +3219,7 @@ body .dashboard-content.settings-content {
   width: 100%;
 }
 .login-wrapper button:hover {
-  background-color: #547bad;
+  background-color: var(--color-lightblue);
 }
 .login-wrapper input,
 .login-wrapper select {
@@ -3118,8 +3231,8 @@ body .dashboard-content.settings-content {
   padding: 0.84615385em 1.23076923em;
   font-size: 1em;
   background: #fff;
-  border: 1px solid #e4e8ed;
-  color: #4f5d6a;
+  border: 1px solid var(--color-darkgrey);
+  color: var(--color-altblue);
   border-radius: 0.30769231rem;
   box-shadow: inset 0 0 0 0 transparent;
   transition: color 175ms ease-in-out, border-color 175ms ease-in-out;
@@ -3128,8 +3241,8 @@ body .dashboard-content.settings-content {
 }
 .login-wrapper input:focus,
 .login-wrapper select:focus {
-  color: #1b1b1b;
-  border-color: #21273f;
+  color: var(--color-default);
+  border-color: var(--color-darkblueish);
   background: #fff;
   box-shadow: inset 0 0 0 0 rgba(34, 36, 38, 0.35);
 }
@@ -3142,23 +3255,23 @@ body .dashboard-content.settings-content {
   font-size: 12px;
   border-top-left-radius: 4px;
   z-index: 100;
-  font-family: "Graphik", "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--font-alt);
 }
 .app-footer .footer-content {
   display: flex;
   align-items: center;
   gap: 15px;
-  color: #a2a6ac;
+  color: var(--color-grey);
 }
 .app-footer .version {
   opacity: 0.7;
 }
 .app-footer a {
-  color: #1b3b62;
+  color: var(--color-blueish);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 .app-footer a:hover {
-  color: rgb(15.984, 34.928, 58.016);
+  color: var(--color-lightblue);
 }
 /*# sourceMappingURL=app.css.map */

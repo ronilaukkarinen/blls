@@ -7,7 +7,7 @@ body .dashboard-content.settings-content {
   max-width: 50rem;
 
   .settings-choices {
-    border: 1px solid #dae0e5;
+    border: 1px solid var(--color-darkgrey);
     border-radius: .5rem;
     padding: 2rem;
     margin-bottom: 5rem;
@@ -17,20 +17,20 @@ body .dashboard-content.settings-content {
 
   .settings-choices a {
     text-decoration: none;
-    color: lighten($color-blueish, 10%);
+    color: var(--color-blueish);
     font-weight: 500;
     display: flex;
     align-items: center;
     width: 100%;
-    font-family: $font-alt;
+    font-family: var(--font-alt);
     transition: all 170ms;
 
     &:hover {
-      color: darken($color-darkblueish, 20%);
+      color: var(--color-darkblueish);
     }
 
     &:hover svg {
-      stroke: darken($color-darkblueish, 20%);
+      stroke: var(--color-darkblueish);
     }
   }
 
@@ -58,7 +58,7 @@ body .dashboard-content.settings-content {
   button {
     padding: .84615385em 1.23076923em;
     font-weight: 400;
-    background-color: $color-blueish;
+    background-color: var(--color-blueish);
     color: #fff;
     text-shadow: none;
     background-image: none;
@@ -82,7 +82,7 @@ body .dashboard-content.settings-content {
     width: 100%;
 
     &:hover {
-      background-color: $color-lightblue;
+      background-color: var(--color-lightblue);
     }
   }
 
@@ -96,8 +96,8 @@ body .dashboard-content.settings-content {
     padding: .84615385em 1.23076923em;
     font-size: 1em;
     background: #fff;
-    border: 1px solid #e4e8ed;
-    color: #4f5d6a;
+    border: 1px solid var(--color-darkgrey);
+    color: var(--color-altblue);
     border-radius: .30769231rem;
     box-shadow: inset 0 0 0 0 transparent;
     transition: color 175ms ease-in-out, border-color 175ms ease-in-out;
@@ -105,8 +105,8 @@ body .dashboard-content.settings-content {
     margin-bottom: 15px;
 
     &:focus {
-      color: #1b1b1b;
-      border-color: $color-darkblueish;
+      color: var(--color-default);
+      border-color: var(--color-darkblueish);
       background: #fff;
       box-shadow: inset 0 0 0 0 rgba(34, 36, 38, .35);
     }
