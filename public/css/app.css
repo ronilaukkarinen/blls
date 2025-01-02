@@ -1318,7 +1318,7 @@ button[data-balloon] {
   margin-bottom: 20px;
   margin-top: 20px;
 }
-.inbox-zero .freedom svg path {
+.inbox-zero .freedom svg path:not(.og) {
   fill: #2d404e;
 }
 @media (max-width: 500px) {

@@ -39,7 +39,7 @@
       margin-bottom: 20px;
       margin-top: 20px;
 
-      path {
+      path:not(.og) {
         fill: #2d404e;
       }
     }
