@@ -272,6 +272,7 @@ p a {
   --color-darkergrey: #c5cad0;
   --color-darkestgrey: #acb3bc;
   --color-sherpablue: #01212d;
+  --color-footer-text: #808080;
   --color-high: #e55d71;
   --color-medium: #cbb046;
   --color-medium-alt: #12cdd6;
@@ -3261,7 +3262,7 @@ body .dashboard-content.settings-content {
   display: flex;
   align-items: center;
   gap: 15px;
-  color: var(--color-grey);
+  color: var(--color-footer-text);
 }
 .app-footer .version {
   opacity: 0.7;

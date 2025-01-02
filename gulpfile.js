@@ -62,15 +62,32 @@ BROWSERSYNC
 gulp.task('browsersync', function() {
   browsersync.init({
     proxy: "127.0.0.1:8000",
-    browser: null,
+    port: 3005,
+    host: '127.0.0.1',
+    open: true,
     notify: true,
-    open: false,
-    reloadDelay: 0,
-    injectChanges: false,
+    reloadDelay: 500,
+    injectChanges: true,
     files: [
       'public/css/*.css',
       'resources/views/**/*.php'
-    ]
+    ],
+    snippetOptions: {
+      rule: {
+        match: /<\/head>/i,
+        fn: function (snippet, match) {
+          return snippet + match;
+        }
+      }
+    },
+    middleware: [
+      function(req, res, next) {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        next();
+      }
+    ],
+    logLevel: 'debug',
+    logConnections: true
   });
 });
 

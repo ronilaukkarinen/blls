@@ -14,7 +14,7 @@ class ServeWithGulp extends Command
   {
     $this->info('Starting Laravel development server and gulp watch...');
 
-    // Start Laravel server in background first
+    // Start Laravel server in background
     $serve = new Process(['php', 'artisan', 'serve', '--host=127.0.0.1', '--port=8000']);
     $serve->setTty(true);
     $serve->start();
@@ -22,14 +22,14 @@ class ServeWithGulp extends Command
     // Give Laravel a moment to start
     sleep(2);
 
-    // Start gulp default task which includes browsersync
-    $gulp = new Process(['gulp']);
+    // Start gulp with different BrowserSync port
+    $gulp = new Process(['gulp', '--port=3000']);
     $gulp->setTty(true);
     $gulp->start();
 
     // Keep the command running and handle process output
     while ($serve->isRunning() && $gulp->isRunning()) {
-      usleep(500000); // Check every half second
+      usleep(500000);
     }
 
     // Cleanup processes

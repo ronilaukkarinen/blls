@@ -97,6 +97,8 @@ Start the development server.
 php artisan serve:dev
 ```
 
+Open localhost:3005 to start developing.
+
 Register a new user and check the email from the log file `storage/logs/laravel.log`.
 
 ## Email configuration for production
