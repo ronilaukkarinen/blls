@@ -33,14 +33,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // Save payment plan to database
   document.addEventListener('click', function(e) {
     if (e.target.matches('#submit-paymentplan')) {
-      // Close modals
-      document.body.classList.remove('modal-opened');
-      document.querySelectorAll('.modal').forEach(modal => modal.classList.remove('show'));
-
       const modal = document.querySelector('.modal-paymentplan-new');
-      const paymentplanName = modal.querySelector('#paymentplan-name').value;
-      const paymentplanMonthsPaid = modal.querySelector('#paymentplan-months-paid').value;
-      const paymentplanMonthsTotal = modal.querySelector('#paymentplan-months-total').value;
+      const data = {
+        save: 1,
+        paymentplan_name: modal.querySelector('#paymentplan-name').value,
+        paymentplan_months_paid: modal.querySelector('#paymentplan-months-paid').value,
+        paymentplan_months_total: modal.querySelector('#paymentplan-months-total').value
+      };
 
       fetch('addpaymentplan', {
         method: 'POST',
@@ -48,18 +47,24 @@ document.addEventListener('DOMContentLoaded', () => {
           'Content-Type': 'application/json',
           'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
         },
-        body: JSON.stringify({
-          save: 1,
-          paymentplan_name: paymentplanName,
-          paymentplan_months_paid: paymentplanMonthsPaid,
-          paymentplan_months_total: paymentplanMonthsTotal
-        })
+        body: JSON.stringify(data)
       })
-      .then(response => response.text())
-      .then(html => {
-        const lastItem = document.querySelector('.items-paymentplans > .item:last-child');
-        lastItem.insertAdjacentHTML('afterend', html);
-        setTimeout(() => location.reload(), 50);
+      .then(response => response.json())
+      .then(response => {
+        if (response.errors) {
+          const validationError = document.querySelector('.validation-error');
+          validationError.style.display = 'block';
+          validationError.querySelector('.erroneous-fields').textContent = response.errors.join(', ');
+
+          setTimeout(() => {
+            validationError.style.display = 'none';
+          }, 3000);
+        } else {
+          // Close modal and reload page on success
+          document.body.classList.remove('modal-opened');
+          document.querySelectorAll('.modal').forEach(modal => modal.classList.remove('show'));
+          location.reload();
+        }
       });
     }
   });

@@ -4,54 +4,72 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Validator;
 
 use Auth;
 use DB;
 use Response;
 
-class PaymentplanController extends Controller {
-
+class PaymentplanController extends Controller
+{
   // Add payment plan
-  public function addPaymentplan(Request $request) {
-
-    // Define stuff that we will add to the database
-    DB::table('paymentplans')
-    ->insert([
-      'userid' => Auth::id(),
-      'name' => $request->paymentplan_name,
-      'months_paid' => $request->paymentplan_months_paid,
-      'months_total' => $request->paymentplan_months_total,
-      'created' => date('Y-m-d H:i:s'),
-      'paid' => 0,
+  public function addPaymentplan(Request $request)
+  {
+    $validator = Validator::make($request->all(), [
+      'paymentplan_name' => 'required|max:255',
+      'paymentplan_months_paid' => 'required|numeric',
+      'paymentplan_months_total' => 'required|numeric'
     ]);
 
-    // Percents and colors
-    $percent = round( ( $request->paymentplan_months_paid / $request->paymentplan_months_total ) * 100 );
+    if ($validator->passes()) {
+      // Define stuff that we will add to the database
+      DB::table('paymentplans')
+      ->insert([
+        'userid' => Auth::id(),
+        'name' => $request->paymentplan_name,
+        'months_paid' => $request->paymentplan_months_paid,
+        'months_total' => $request->paymentplan_months_total,
+        'created' => date('Y-m-d H:i:s'),
+        'paid' => 0,
+      ]);
 
-    if ( $percent < 40 ) :
-      $percent_class = ' low';
-    elseif ( $percent > 40 && $percent < 60 ) :
-      $percent_class = ' medium';
-    elseif ( $percent > 40 && $percent > 60 ) :
-      $percent_class = ' high';
-    endif;
+      // Percents and colors
+      $percent = round(( $request->paymentplan_months_paid / $request->paymentplan_months_total ) * 100);
 
-    // Print results
-    echo '<div class="items items-paymentplans">
+      if ($percent < 40) :
+        $percent_class = ' low';
+      elseif ($percent > 40 && $percent < 60) :
+        $percent_class = ' medium';
+      elseif ($percent > 40 && $percent > 60) :
+        $percent_class = ' high';
+      endif;
 
-    <div class="item">
-    <h2>' . $request->paymentplan_name . '</h2>
+      // Print results
+      echo '<div class="items items-paymentplans">
 
-    <div class="progress-bar">
-      <div class="progress' . $percent_class . '" style="width: ' . $percent . '%;">
-      <p>' . $request->paymentplan_months_paid . ' paid of total ' . $request->paymentplan_months_total . ' rounds. (' . $percent . '%)</p>
+      <div class="item">
+      <h2>' . $request->paymentplan_name . '</h2>
+
+      <div class="progress-bar">
+        <div class="progress' . $percent_class . '" style="width: ' . $percent . '%;">
+        <p>' . $request->paymentplan_months_paid . ' paid of total ' . $request->paymentplan_months_total . ' rounds. (' . $percent . '%)</p>
+        </div>
       </div>
-    </div>
-    </div>';
+      </div>';
+
+      return response()->json([
+        'success' => true
+      ]);
+    }
+
+    return response()->json([
+      'errors' => $validator->errors()->keys()
+    ]);
   }
 
   // Edit payment plan
-  public function editPaymentplan(Request $request) {
+  public function editPaymentplan(Request $request)
+  {
 
     // Define stuff that we will add to the database
     DB::table('paymentplans')
@@ -65,13 +83,13 @@ class PaymentplanController extends Controller {
     ]);
 
     // Percents and colors
-    $percent = round( ( $request->paymentplan_months_paid / $request->paymentplan_months_total ) * 100 );
+    $percent = round(( $request->paymentplan_months_paid / $request->paymentplan_months_total ) * 100);
 
-    if ( $percent < 40 ) :
+    if ($percent < 40) :
       $percent_class = ' low';
-    elseif ( $percent > 40 && $percent < 60 ) :
+    elseif ($percent > 40 && $percent < 60) :
       $percent_class = ' medium';
-    elseif ( $percent > 40 && $percent > 60 ) :
+    elseif ($percent > 40 && $percent > 60) :
       $percent_class = ' high';
     endif;
 
@@ -90,7 +108,8 @@ class PaymentplanController extends Controller {
   }
 
   // Remove payment plan
-  public function removePaymentplan(Request $request) {
+  public function removePaymentplan(Request $request)
+  {
     DB::table('paymentplans')
     ->where('userid', Auth::user()->id)
     ->where('id', $request->id)
@@ -98,7 +117,8 @@ class PaymentplanController extends Controller {
   }
 
   // Mark as paid
-  public function markaPaymentplanasPaid(Request $request) {
+  public function markaPaymentplanasPaid(Request $request)
+  {
 
     // Update the bill in question
     DB::table('paymentplans')
@@ -112,7 +132,8 @@ class PaymentplanController extends Controller {
   }
 
   // Mark as unpaid
-  public function markaPaymentplanasunPaid(Request $request) {
+  public function markaPaymentplanasunPaid(Request $request)
+  {
 
     // Update the bill in question
     DB::table('paymentplans')
@@ -123,5 +144,4 @@ class PaymentplanController extends Controller {
         'paid' => 0,
     ]);
   }
-
 }
