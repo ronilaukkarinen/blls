@@ -5,11 +5,12 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable {
+class User extends Authenticatable
+{
     use Notifiable;
 
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'ebillprovider'
     ];
 
     protected $hidden = [
@@ -17,16 +18,19 @@ class User extends Authenticatable {
     ];
 
     // Accessors
-    public function getAvatarAttribute($avatar) {
+    public function getAvatarAttribute($avatar)
+    {
         return $avatar ? '/storage/avatars/' . $avatar : 'https://via.placeholder.com/250';
     }
 
     // Relations
-    public function spaces() {
+    public function spaces()
+    {
         return $this->belongsToMany(Space::class, 'user_space')->withPivot('role');
     }
 
-    public function currency() {
+    public function currency()
+    {
         return $this->belongsTo(Currency::class);
     }
 }

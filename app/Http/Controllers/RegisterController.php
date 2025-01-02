@@ -11,15 +11,19 @@ use App\User;
 use App\Space;
 use Hash;
 use Mail;
+use Illuminate\Support\Str;
 
-class RegisterController extends Controller {
-    public function index() {
+class RegisterController extends Controller
+{
+    public function index()
+    {
         $currencies = Currency::all();
 
         return view('register', compact('currencies'));
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
@@ -28,19 +32,19 @@ class RegisterController extends Controller {
         ]);
 
         // User
-        $user = new User;
+        $user = new User();
 
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
-        $user->verification_token = str_random(100);
+        $user->verification_token = Str::random(100);
         $user->currency_id = $request->currency;
         $user->ebillprovider = $request->ebillprovider;
 
         $user->save();
 
         // Space
-        $space = new Space;
+        $space = new Space();
 
         $space->name = $user->name . '\'s Space';
 

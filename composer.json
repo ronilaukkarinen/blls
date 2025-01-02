@@ -10,12 +10,14 @@
   "type": "project",
   "require": {
     "php": "^8.1",
-    "laravel/framework": "^10.0",
     "doctrine/dbal": "^3.0",
     "globalcitizen/php-iban": "^4.0",
     "intervention/image": "^2.7",
+    "laravel/framework": "^10.0",
     "laravel/tinker": "^2.0",
-    "s-ichikawa/laravel-sendgrid-driver": "^4.0"
+    "s-ichikawa/laravel-sendgrid-driver": "^4.0",
+    "symfony/http-client": "^7.2",
+    "symfony/mailgun-mailer": "^7.1"
   },
   "require-dev": {
     "filp/whoops": "~2.0",

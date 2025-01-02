@@ -30,7 +30,7 @@
 * Composer 2.0+
 * Web server (Apache/Nginx)
 * SSL certificate (recommended for production)
-* SendGrid account for email notifications
+* Mailgun account for email notifications
 * Minimum 512MB RAM
 * 1GB free disk space
 
@@ -81,16 +81,28 @@ npm install gulp@4.0.2 -g
 gulp build
 ```
 
+Cache config.
+
+```bash
+php artisan config:cache
+```
+
 Start the development server.
 
 ```bash
 php artisan serve
 ```
 
-## Configuration
+Register a new user and check the email from the log file `storage/logs/laravel.log`.
+
+## Email configuration for production
 
 1. Update `.env` file with your database credentials
-2. Configure SendGrid API key for email notifications
+2. Set up Mailgun:
+   - Create a Mailgun account at https://mailgun.com
+   - Add and verify your domain
+   - Copy your API key from Mailgun dashboard
+   - Update MAILGUN_* variables in .env
 3. Set up your application URL
 4. Configure timezone settings
 

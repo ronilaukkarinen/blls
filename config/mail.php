@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'support@blls.io'),
-        'name' => env('MAIL_FROM_NAME', 'Blls.io'),
+        'address' => env('MAIL_FROM_ADDRESS', 'noreply@yourdomain.com'),
+        'name' => env('MAIL_FROM_NAME', 'Your App Name'),
     ],
 
     /*
@@ -117,6 +117,12 @@ return [
 
         'paths' => [
             resource_path('views/vendor/mail'),
+        ],
+    ],
+
+    'mailers' => [
+        'mailgun' => [
+            'transport' => 'mailgun',
         ],
     ],
 
