@@ -9,6 +9,9 @@
 
 **Blls** (bills.io as in _bills I owe_) is a web application for managing and tracking your bills and payments. Keep tabs on what you owe, what you've paid, and maintain a clear financial history.
 
+> [!NOTE]  
+> This app is considered as legacy, but the main components are functioning. It needs a lot of rework, especially accessibility wise. The project was started as a personal solutions to manage bills, but was surpassed by [synci.io](https://synci.io/) and [YNAB](https://www.ynab.com). Might still continue developing it further some day. Started as private project on GitHub on Mar 14 2019, released as public v0.1.0 Jan 2 2025.
+
 ## Features
 
 * Track both paid and unpaid bills
@@ -163,8 +166,8 @@ sudo supervisorctl start blls-worker:*
 
 ## Todo
 
-[ ] Add dark mode
-[ ] Add screenshots
-[ ] Release 1.0
-[ ] Improve accessibility: Change plus icon spans to buttons
-[ ] Improve accessibility: Add close button to modals
+- [ ] Add dark mode
+- [ ] Add screenshots
+- [ ] Release 1.0
+- [ ] Improve accessibility: Change plus icon spans to buttons
+- [ ] Improve accessibility: Add close button to modals
