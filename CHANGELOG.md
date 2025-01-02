@@ -24,6 +24,9 @@
 * Remove muuri, packery and macy that are no longer needed
 * Clean up SVG icons
 * Fix SVG class mismatches
+* Make placeholder text more subtle to distinguish them from input text
+* Fix JS modules loading up twice
+* Add eslint
 
 ### 0.0.8: 2025-01-02
 

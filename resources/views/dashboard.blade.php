@@ -841,10 +841,4 @@ foreach ($bills as $bill) :
 endforeach;
 ?>
 
-<script src="/js/moment-with-locales.min.js"></script>
-<script src="/js/app.js"></script>
-<script>
-  moment.locale('{{ Config::get('app.locale') }}');
-</script>
-
 @endsection

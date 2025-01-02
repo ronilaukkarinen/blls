@@ -47,8 +47,13 @@
       @endif
     </div>
   </div>
+
   <script src="/js/moment-with-locales.min.js"></script>
   <script src="/js/app.js"></script>
   <script src="/js/vue-app.js"></script>
+
+  <script>
+    moment.locale('{{ Config::get('app.locale') }}');
+  </script>
 </body>
 </html>

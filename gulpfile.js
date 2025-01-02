@@ -120,12 +120,6 @@ SCRIPTS
 */
 
 const jsConfig = {
-  vendor: [
-    'node_modules/moment/min/moment-with-locales.min.js',
-    'node_modules/macy/dist/macy.js',
-    'resources/assets/js/vendor/**/*.js'
-  ],
-  modules: 'resources/assets/js/modules/**/*.js',
   vue: [
     'resources/assets/js/vue-app.js'
   ],
